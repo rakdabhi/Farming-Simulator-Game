@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5f27cd#5f27cd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="720.0" prefWidth="713.0">
+         <children>
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#feca57" height="627.0" layoutX="19.0" layoutY="46.0" strokeType="INSIDE" width="691.0" />
+            <GridPane layoutX="26.0" layoutY="57.0" prefHeight="587.0" prefWidth="665.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Group fx:id="plotGroup00" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup01" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup02" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup03" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup10" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup11" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup12" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup13" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup20" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup21" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup22" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+                  <Group fx:id="plotGroup23" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
+                        <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                     </children>
+                  </Group>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="720.0" prefWidth="367.0">
+         <children>
+            <Pane layoutX="-2.0" layoutY="-1.0" prefHeight="191.0" prefWidth="368.0">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="150.0" layoutX="19.0" layoutY="47.0" strokeType="INSIDE" width="320.0">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
+                  </Rectangle>
+                  <Arc fx:id="sunBG" fill="#feca57" layoutX="182.0" layoutY="197.0" length="180.0" radiusX="114.0" radiusY="119.0" strokeType="INSIDE" type="ROUND" />
+                  <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="122.0" prefHeight="45.0" prefWidth="147.0" text="DAY 1" textAlignment="CENTER" textFill="#ff9f43">
+                     <font>
+                        <Font name="Arial Black" size="39.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutY="196.0" prefHeight="246.0" prefWidth="375.0">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="208.0" layoutX="19.0" layoutY="19.0" strokeType="INSIDE" width="320.0" />
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#5f27cd" height="60.0" layoutX="27.0" layoutY="155.0" strokeType="INSIDE" width="304.0" />
+                  <Text fx:id="moneyLabel" fill="#ff9f43" layoutX="120.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00">
+                     <font>
+                        <Font name="Arial Black" size="39.0" />
+                     </font>
+                  </Text>
+                  <Group fx:id="pigGroup" layoutX="179.0" layoutY="82.0">
+                     <children>
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f368e0" height="27.0" layoutX="-35.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f368e0" height="27.0" layoutX="17.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
+                        <Ellipse fx:id="pigGraphic" fill="#ff9ff3" layoutX="1.0" layoutY="5.0" radiusX="56.0" radiusY="44.0" strokeType="INSIDE" />
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#ff9ff3" height="31.0" layoutX="-64.0" layoutY="-9.0" strokeType="INSIDE" width="23.0" />
+                        <Circle fill="#f368e0" layoutX="-28.0" layoutY="-13.0" radius="5.0" strokeType="INSIDE" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ff9ff3" height="30.0" layoutX="24.0" layoutY="27.0" strokeType="INSIDE" width="15.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ff9ff3" height="27.0" layoutX="-27.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
+                        <SVGPath content="M110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21zM110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21z" fill="#f368e0" layoutX="-160.0" layoutY="-213.0" />
+                        <SVGPath content="M195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7zM195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7z" fill="#ff9ff3" layoutX="-231.0" layoutY="-184.0" />
+                        <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="#f368e0" layoutX="-108.0" layoutY="-216.0" rotate="7.1" />
+                        <SVGPath content="M113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73ZM113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73Z" fill="#ff9ff3" layoutX="-60.0" layoutY="-176.0" />
+                     </children>
+                  </Group>
+               </children>
+            </Pane>
+            <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="232.0" layoutX="19.0" layoutY="5.0" strokeType="INSIDE" width="320.0" />
+                  <Button fx:id="waterButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                     <padding>
+                        <Insets top="150.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Black" size="17.0" />
+                     </font></Button>
+                  <Button fx:id="sowButton" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                     <padding>
+                        <Insets top="150.0" />
+                     </padding></Button>
+                  <Button fx:id="plantInfoButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                     <padding>
+                        <Insets top="150.0" />
+                     </padding></Button>
+                  <Group fx:id="waterGraphic" layoutX="-44.0" layoutY="-35.0">
+                     <children>
+                        <SVGPath content="M119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79ZM119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79Z" fill="#24bee2" layoutY="-3.0" />
+                        <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="WHITE" layoutX="-15.0" layoutY="-11.0" rotate="-103.0" scaleX="0.5" />
+                     </children>
+                  </Group>
+                  <Group layoutX="117.0" layoutY="28.0">
+                     <children>
+                        <SVGPath content="M185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161ZM185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161Z" fill="#feca57" layoutX="13.0" layoutY="-71.0" />
+                        <Circle fill="#ff9f43" layoutX="164.0" layoutY="88.0" radius="10.0" strokeType="INSIDE" />
+                     </children>
+                  </Group>
+                  <Group layoutX="26.0" layoutY="-15.0" scaleX="0.75" scaleY="0.75">
+                     <children>
+                        <SVGPath content="M190,56l-26-9-4,18,8.94,3L135.77,179.88l5.1,1.52L174,69.75,183,73Zm-26,6.37,3-10.24,16.82,5-3,10.24ZM190,56l-26-9-4,18,8.94,3L135.77,179.88l5.1,1.52L174,69.75,183,73Zm-26,6.37,3-10.24,16.82,5-3,10.24Z" fill="#ce804a" />
+                        <SVGPath content="M123.37,219.24s20.8-10.76,34.13-45.05c0,0-15.57,7-17.85,0,0,0-11.84,1.21-13.2-6.3,0,0-3.43,11-3.08,48.52M123.37,219.24s20.8-10.76,34.13-45.05c0,0-15.57,7-17.85,0,0,0-11.84,1.21-13.2-6.3,0,0-3.43,11-3.08,48.52" fill="#c9d6e4" />
+                     </children>
+                  </Group>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
