@@ -10,7 +10,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("FarmUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FarmUI.fxml"));
+        Parent root = loader.load();
         primaryStage.setTitle("Farming Simulator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
