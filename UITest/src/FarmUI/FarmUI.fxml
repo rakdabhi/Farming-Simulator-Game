@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5f27cd#5f27cd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5f27cd#5f27cd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmUI.MainUIController">
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="713.0">
          <children>
@@ -134,7 +134,7 @@
                         <Point3D />
                      </rotationAxis>
                   </Rectangle>
-                  <Arc fx:id="sunBG" fill="#feca57" layoutX="182.0" layoutY="197.0" length="180.0" radiusX="114.0" radiusY="119.0" strokeType="INSIDE" type="ROUND" />
+                  <Arc fx:id="sunGraphic" fill="#feca57" layoutX="182.0" layoutY="197.0" length="180.0" radiusX="114.0" radiusY="119.0" strokeType="INSIDE" type="ROUND" />
                   <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="122.0" prefHeight="45.0" prefWidth="147.0" text="DAY 1" textAlignment="CENTER" textFill="#ff9f43">
                      <font>
                         <Font name="Arial Black" size="39.0" />
@@ -146,7 +146,7 @@
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="208.0" layoutX="19.0" layoutY="19.0" strokeType="INSIDE" width="320.0" />
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#5f27cd" height="60.0" layoutX="27.0" layoutY="155.0" strokeType="INSIDE" width="304.0" />
-                  <Text fx:id="moneyLabel" fill="#ff9f43" layoutX="120.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00">
+                  <Text fx:id="moneyText" fill="#ff9f43" layoutX="120.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00">
                      <font>
                         <Font name="Arial Black" size="39.0" />
                      </font>
@@ -155,7 +155,7 @@
                      <children>
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f368e0" height="27.0" layoutX="-35.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f368e0" height="27.0" layoutX="17.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
-                        <Ellipse fx:id="pigGraphic" fill="#ff9ff3" layoutX="1.0" layoutY="5.0" radiusX="56.0" radiusY="44.0" strokeType="INSIDE" />
+                        <Ellipse fill="#ff9ff3" layoutX="1.0" layoutY="5.0" radiusX="56.0" radiusY="44.0" strokeType="INSIDE" />
                         <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#ff9ff3" height="31.0" layoutX="-64.0" layoutY="-9.0" strokeType="INSIDE" width="23.0" />
                         <Circle fill="#f368e0" layoutX="-28.0" layoutY="-13.0" radius="5.0" strokeType="INSIDE" />
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ff9ff3" height="30.0" layoutX="24.0" layoutY="27.0" strokeType="INSIDE" width="15.0" />
@@ -171,18 +171,18 @@
             <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="232.0" layoutX="19.0" layoutY="5.0" strokeType="INSIDE" width="320.0" />
-                  <Button fx:id="waterButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                  <Button fx:id="waterButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleWaterButton" onMousePressed="#waterMousePress" onMouseReleased="#waterMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
                      <padding>
                         <Insets top="150.0" />
                      </padding>
                      <font>
                         <Font name="Arial Black" size="17.0" />
                      </font></Button>
-                  <Button fx:id="sowButton" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                  <Button fx:id="sowButton" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSowButton" onMousePressed="#sowMousePress" onMouseReleased="#sowMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
                      <padding>
                         <Insets top="150.0" />
                      </padding></Button>
-                  <Button fx:id="plantInfoButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                  <Button fx:id="inventoryButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleInventoryButton" onMousePressed="#inventoryMousePress" onMouseReleased="#inventoryMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
                      <padding>
                         <Insets top="150.0" />
                      </padding></Button>
@@ -192,13 +192,13 @@
                         <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="WHITE" layoutX="-15.0" layoutY="-11.0" rotate="-103.0" scaleX="0.5" />
                      </children>
                   </Group>
-                  <Group layoutX="117.0" layoutY="28.0">
+                  <Group fx:id="inventoryGraphic" layoutX="117.0" layoutY="28.0">
                      <children>
                         <SVGPath content="M185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161ZM185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161Z" fill="#feca57" layoutX="13.0" layoutY="-71.0" />
                         <Circle fill="#ff9f43" layoutX="164.0" layoutY="88.0" radius="10.0" strokeType="INSIDE" />
                      </children>
                   </Group>
-                  <Group layoutX="26.0" layoutY="-15.0" scaleX="0.75" scaleY="0.75">
+                  <Group fx:id="shovelGraphic" layoutX="26.0" layoutY="-15.0" scaleX="0.75" scaleY="0.75">
                      <children>
                         <SVGPath content="M190,56l-26-9-4,18,8.94,3L135.77,179.88l5.1,1.52L174,69.75,183,73Zm-26,6.37,3-10.24,16.82,5-3,10.24ZM190,56l-26-9-4,18,8.94,3L135.77,179.88l5.1,1.52L174,69.75,183,73Zm-26,6.37,3-10.24,16.82,5-3,10.24Z" fill="#ce804a" />
                         <SVGPath content="M123.37,219.24s20.8-10.76,34.13-45.05c0,0-15.57,7-17.85,0,0,0-11.84,1.21-13.2-6.3,0,0-3.43,11-3.08,48.52M123.37,219.24s20.8-10.76,34.13-45.05c0,0-15.57,7-17.85,0,0,0-11.84,1.21-13.2-6.3,0,0-3.43,11-3.08,48.52" fill="#c9d6e4" />
