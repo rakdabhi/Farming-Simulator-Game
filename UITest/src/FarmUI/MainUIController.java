@@ -1,5 +1,6 @@
 package FarmUI;
 
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -8,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+
 
 public class MainUIController {
 
@@ -76,8 +79,7 @@ public class MainUIController {
     private Group inventoryGraphic;
 
     @FXML
-    private Group shovelGraphic;
-
+    private Group sowGraphic;
 
     @FXML
     void handleInventoryButton(ActionEvent event) {
@@ -94,36 +96,43 @@ public class MainUIController {
 
     }
 
+
     @FXML
-    void inventoryMousePress(MouseEvent event) {
-        inventoryButton.setStyle("-fx-background-color: #5423b8; -fx-background-radius: 10");
+    void inventoryButtonMouseEnter(MouseEvent event) {
+        lowerRightGraphicTransition(inventoryGraphic);
     }
 
     @FXML
-    void inventoryMouseRelease(MouseEvent event) {
-        inventoryButton.setStyle("-fx-background-color: #5f27cd; -fx-background-radius: 10;");
+    void sowButtonMouseEnter(MouseEvent event) {
+        lowerRightGraphicTransition(sowGraphic);
     }
 
     @FXML
-    void sowMousePress(MouseEvent event) {
-        sowButton.setStyle("-fx-background-color: #5423b8; -fx-background-radius: 10");
+    void waterButtonMouseEnter(MouseEvent event) {
+        lowerRightGraphicTransition(waterGraphic);
+    }
+
+
+    @FXML
+    void lowerRightMousePress(MouseEvent event) {
+        ((Button) event.getSource()).setStyle("-fx-background-color: #5423b8; -fx-background-radius: 10");
     }
 
     @FXML
-    void sowMouseRelease(MouseEvent event) {
-        sowButton.setStyle("-fx-background-color: #5f27cd; -fx-background-radius: 10;");
+    void lowerRightMouseRelease(MouseEvent event) {
+        ((Button) event.getSource()).setStyle("-fx-background-color: #5f27cd; -fx-background-radius: 10;");
     }
 
-    @FXML
-    void waterMousePress(MouseEvent event) {
-        waterButton.setStyle("-fx-background-color: #5423b8; -fx-background-radius: 10");
+    void lowerRightGraphicTransition(Group gr) {
+        RotateTransition rt = new RotateTransition(new Duration(200), gr);
+        rt.setFromAngle(0);
+        rt.setToAngle(5);
+        rt.setCycleCount(4);
+        rt.setAutoReverse(true);
+
+        rt.play();
     }
 
-    @FXML
-    void waterMouseRelease(MouseEvent event) {
-        waterButton.setStyle("-fx-background-color: #5f27cd; -fx-background-radius: 10;");
-
-    }
 
 }
 
