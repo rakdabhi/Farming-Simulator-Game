@@ -17,7 +17,7 @@ public class Farmer {
     public Farmer(String name, String experienceLevel) {
         this.name = name;
         this.experienceLevel = experienceLevel;
-        seedBag = null;
+        seedBag = new ArrayList<Seed>();
         setMoney(this.experienceLevel);
     }
 
