@@ -134,6 +134,7 @@ public class ConfigurationScreenController implements Initializable {
             }
 
             Farmer farmer1 = new Farmer(farmerName, difficultyLevel);
+            farmer1.setSeedBag(seedBag);
             Season startingSeason = new Season((String) seasonChoiceBox.getValue());
 
             Parent nextPage = FXMLLoader.load(getClass().getResource("FarmUI.fxml"));
