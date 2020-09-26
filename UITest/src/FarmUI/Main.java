@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FarmUI.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfigurationScreenUI.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Farming Simulator");
         primaryStage.setScene(new Scene(root));
