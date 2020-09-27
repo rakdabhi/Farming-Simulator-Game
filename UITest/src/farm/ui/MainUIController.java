@@ -58,7 +58,7 @@ public class MainUIController {
     private Label dayLabel;
 
     @FXML
-    private Label moneyText;
+    private Label moneyLabel;
 
     @FXML
     private Group pigGroup;
@@ -85,6 +85,9 @@ public class MainUIController {
 
     private Season season;
 
+    void setMoneyLabel(int m) {
+        moneyLabel.setText("$" + m);
+    }
 
     @FXML
     void handleInventoryButton(ActionEvent event) {
@@ -149,8 +152,6 @@ public class MainUIController {
     void setSeason(Season s) {
         season = s;
     }
-
-
 
 
 }
