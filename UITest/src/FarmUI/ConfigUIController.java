@@ -222,13 +222,19 @@ public class ConfigUIController {
             farmer1.setSeedBag(seedBag);
             Season startingSeason = new Season(seasonChoice);
 
-            GameData game = new GameData(startingSeason, farmer1);
 
-            Parent nextPage = FXMLLoader.load(getClass().getResource("FarmUI.fxml"));
-            Scene nextPageScene = new Scene(nextPage);
+            FXMLLoader nextPage = new FXMLLoader(getClass().getResource("FarmUI.fxml"));
+            Parent root = nextPage.load();
+
+            MainUIController controller2 = nextPage.getController();
+            controller2.setSeason(startingSeason);
+            controller2.setFarmer(farmer1);
+
+            Scene nextPageScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(nextPageScene);
             window.show();
+
 
         } catch (IllegalArgumentException i) {
             Alert a = new Alert(Alert.AlertType.ERROR);
