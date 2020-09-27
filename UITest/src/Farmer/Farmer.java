@@ -28,9 +28,9 @@ public class Farmer {
      * @param experienceLevel the experience level of the Farmer
      */
     public void setMoney(String experienceLevel) {
-        if (experienceLevel.equals("Beginner")) {
+        if (experienceLevel.equals("1")) {
             this.money = 1000;
-        } else if (experienceLevel.equals("Intermediate")) {
+        } else if (experienceLevel.equals("2")) {
             this.money = 5000;
         } else {
             money = 10000;
@@ -96,5 +96,6 @@ public class Farmer {
     public String getName() {
         return this.name;
     }
+
 
 }
