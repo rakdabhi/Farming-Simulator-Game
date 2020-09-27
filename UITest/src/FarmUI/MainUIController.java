@@ -3,7 +3,6 @@ package FarmUI;
 import Farmer.Farmer;
 import Season.Season;
 import javafx.animation.RotateTransition;
-import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
@@ -60,7 +58,7 @@ public class MainUIController {
     private Label dayLabel;
 
     @FXML
-    private Label moneyText;
+    private Label moneyLabel;
 
     @FXML
     private Group pigGroup;
@@ -87,6 +85,9 @@ public class MainUIController {
 
     private Season season;
 
+    void setMoneyLabel(int m) {
+        moneyLabel.setText("$" + m);
+    }
 
     @FXML
     void handleInventoryButton(ActionEvent event) {
@@ -149,8 +150,6 @@ public class MainUIController {
     void setSeason(Season s) {
         season = s;
     }
-
-
 
 
 }

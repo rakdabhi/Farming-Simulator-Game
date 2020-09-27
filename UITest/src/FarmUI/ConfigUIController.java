@@ -229,6 +229,7 @@ public class ConfigUIController {
             MainUIController controller2 = nextPage.getController();
             controller2.setSeason(startingSeason);
             controller2.setFarmer(farmer1);
+            controller2.setMoneyLabel(farmer1.getMoney());
 
             Scene nextPageScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
