@@ -15,6 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("Farming Simulator");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
     }
 
 
