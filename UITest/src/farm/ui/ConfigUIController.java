@@ -1,5 +1,9 @@
 package farm.ui;
 
+import exceptions.DifficultyLevelChoiceNotFoundException;
+import exceptions.FarmerNameNotFoundException;
+import exceptions.SeasonChoiceNotFoundException;
+import exceptions.SeedChoiceNotFoundException;
 import farmer.Farmer;
 import season.Season;
 import seed.Seed;
@@ -18,8 +22,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-
 
 public class ConfigUIController {
 
@@ -88,6 +90,10 @@ public class ConfigUIController {
 
     private String customSkin = "#efdfbf";
 
+    /**
+     * This method helps give a button functionality to the seed-choice options.
+     * @param event the event
+     */
     @FXML
     void seedOnAction(ActionEvent event) {
         Button btn = ((Button) event.getSource());
@@ -111,6 +117,10 @@ public class ConfigUIController {
         }
     }
 
+    /**
+     * This method helps give a button functionality to the season-choice options.
+     * @param event the event
+     */
     @FXML
     void seasonOnAction(ActionEvent event) {
         Button btn = ((Button) event.getSource());
@@ -143,6 +153,11 @@ public class ConfigUIController {
             winterButton.setStyle(winterStyle + " -fx-border-color: white; -fx-border-radius: 10");
         }
     }
+
+    /**
+     * This method helps give a button functionality to the difficulty-level choices.
+     * @param event the event
+     */
     @FXML
     void difficultyOnAction(ActionEvent event) {
         Button btn = ((Button) event.getSource());
@@ -166,7 +181,10 @@ public class ConfigUIController {
 
     }
 
-
+    /**
+     * This method helps change the skin of the farmer to the player's new choice.
+     * @param event the event
+     */
     @FXML
     void skinChange(ActionEvent event) {
         customSkin = ((Button) event.getSource()).getText().strip();
@@ -190,9 +208,8 @@ public class ConfigUIController {
 
         try {
 
-            if ((farmerName.equals("")) || (farmerName == null)
-                    || (farmerName.strip().equals(""))) {
-                throw new IllegalArgumentException();
+            if ((farmerName.equals("")) || (farmerName.strip().equals(""))) {
+                throw new FarmerNameNotFoundException();
             }
 
             if (seedChoice.equals("Apple")) {
@@ -206,15 +223,15 @@ public class ConfigUIController {
                 seedBag.add(cornSeed);
             }
             if (seedBag.size() == 0) {
-                throw new NoSuchElementException();
+                throw new SeedChoiceNotFoundException();
             }
 
             if (seasonChoice.equals("")) {
-                throw new NullPointerException();
+                throw new SeasonChoiceNotFoundException();
             }
 
             if (difficultyLevel.equals("0")) {
-                throw new ClassNotFoundException();
+                throw new DifficultyLevelChoiceNotFoundException();
             }
 
             Farmer farmer1 = new Farmer(farmerName, difficultyLevel, customSkin);
@@ -235,33 +252,29 @@ public class ConfigUIController {
             window.setScene(nextPageScene);
             window.show();
 
-
-        } catch (IllegalArgumentException i) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error");
-            a.setHeaderText("Invalid Name Input");
-            a.setContentText("It seems like the you haven't entered a name. "
-                    + "Please enter a name!");
-            a.showAndWait();
-        } catch (NoSuchElementException n) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error");
-            a.setHeaderText("No Seeds Chosen");
-            a.setContentText("Please select at least one seed to start with!");
-            a.showAndWait();
-        } catch (NullPointerException u) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error");
-            a.setHeaderText("No season Chosen");
-            a.setContentText("Please select a season to start farming in!");
-            a.showAndWait();
-        } catch (ClassNotFoundException c) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error");
-            a.setHeaderText("No Difficulty Chosen");
-            a.setContentText("Please select your difficulty level!");
-            a.showAndWait();
+        } catch (FarmerNameNotFoundException f) {
+            alertPopUp("Invalid Name Input", f.getMessage());
+        } catch (SeedChoiceNotFoundException s) {
+            alertPopUp("No Seed Chosen", s.getMessage());
+        } catch (SeasonChoiceNotFoundException u) {
+            alertPopUp("No Season Chosen", u.getMessage());
+        } catch (DifficultyLevelChoiceNotFoundException d) {
+            alertPopUp("No Difficulty Chosen", d.getMessage());
         }
+    }
+
+    /**
+     * This methods helps create an alert popup for the user if they don't
+     * provide the proper parameters needed to proceed to the next game.
+     * @param errorHeader the error header for the message
+     * @param message the error message
+     */
+    private void alertPopUp(String errorHeader, String message) {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Error");
+        a.setHeaderText(errorHeader);
+        a.setContentText(message);
+        a.showAndWait();
     }
 
 }
