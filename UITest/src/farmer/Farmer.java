@@ -1,4 +1,5 @@
 package farmer;
+import exceptions.InsufficientFundsException;
 import seed.Seed;
 import java.util.ArrayList;
 
@@ -43,7 +44,11 @@ public class Farmer {
      * @param amount the amount of money to add
      */
     public void addMoney(int amount) {
-        money += amount;
+        if (amount < 0) {
+            pay(-1 * amount);
+        } else {
+            money += amount;
+        }
     }
 
     /**
@@ -51,7 +56,11 @@ public class Farmer {
      * @param amount the amount of money to pay
      */
     public void pay(int amount) {
-        money -= amount;
+        if (amount > money) {
+            throw new InsufficientFundsException();
+        } else {
+            money -= amount;
+        }
     }
 
     /**
@@ -94,9 +103,11 @@ public class Farmer {
         return seedBag.size();
     }
 
+    /**
+     * This method returns the name of the Farmer.
+     * @return the name of the farmer
+     */
     public String getName() {
         return this.name;
     }
-
-
 }
