@@ -8,16 +8,18 @@ public class Farmer {
     private String experienceLevel;
     private int money;
     private ArrayList<Seed> seedBag;
+    private String customSkin;
 
     /**
      * This constructor instantiates a Farmer object for the game.
      * @param name the name of this farmer
      * @param experienceLevel the experience level of this farmer
      */
-    public Farmer(String name, String experienceLevel) {
+    public Farmer(String name, String experienceLevel, String customSkin) {
         this.name = name;
         this.experienceLevel = experienceLevel;
         seedBag = new ArrayList<Seed>();
+        this.customSkin = customSkin;
         setMoney(this.experienceLevel);
     }
 
@@ -89,6 +91,10 @@ public class Farmer {
      */
     public int numOfSeeds() {
         return seedBag.size();
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 }

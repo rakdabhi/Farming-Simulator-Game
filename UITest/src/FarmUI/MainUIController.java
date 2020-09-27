@@ -3,6 +3,7 @@ package FarmUI;
 import Farmer.Farmer;
 import Season.Season;
 import javafx.animation.RotateTransition;
+import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -59,7 +60,7 @@ public class MainUIController {
     private Label dayLabel;
 
     @FXML
-    private Text moneyText;
+    private Label moneyText;
 
     @FXML
     private Group pigGroup;
@@ -81,6 +82,10 @@ public class MainUIController {
 
     @FXML
     private Group sowGraphic;
+
+    private Farmer farmer;
+
+    private Season season;
 
 
     @FXML
@@ -134,6 +139,15 @@ public class MainUIController {
         rt.setAutoReverse(true);
 
         rt.play();
+    }
+
+
+    void setFarmer(Farmer f) {
+        farmer = f;
+    }
+
+    void setSeason(Season s) {
+        season = s;
     }
 
 
