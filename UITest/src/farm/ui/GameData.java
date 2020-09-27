@@ -1,7 +1,7 @@
-package FarmUI;
+package farm.ui;
 
-import Season.Season;
-import Farmer.Farmer;
+import season.Season;
+import farmer.Farmer;
 
 public class GameData {
     private Season gameSeason;

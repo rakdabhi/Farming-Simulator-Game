@@ -1,9 +1,8 @@
-package FarmUI;
+package farm.ui;
 
-import Farmer.Farmer;
-import Season.Season;
+import farmer.Farmer;
+import season.Season;
 import javafx.animation.RotateTransition;
-import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Arc;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
@@ -122,12 +120,14 @@ public class MainUIController {
 
     @FXML
     void lowerRightMousePress(MouseEvent event) {
-        ((Button) event.getSource()).setStyle("-fx-background-color: #15936f; -fx-background-radius: 10");
+        ((Button) event.getSource()).setStyle("-fx-background-color: #15936f;"
+                + " -fx-background-radius: 10");
     }
 
     @FXML
     void lowerRightMouseRelease(MouseEvent event) {
-        ((Button) event.getSource()).setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10;");
+        ((Button) event.getSource()).setStyle("-fx-background-color: #15ad86;"
+                + " -fx-background-radius: 10;");
 
     }
 

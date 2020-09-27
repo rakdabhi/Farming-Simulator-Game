@@ -1,8 +1,8 @@
-package FarmUI;
+package farm.ui;
 
-import Farmer.Farmer;
-import Season.Season;
-import Seed.Seed;
+import farmer.Farmer;
+import season.Season;
+import seed.Seed;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -25,7 +24,7 @@ import java.util.NoSuchElementException;
 public class ConfigUIController {
 
     @FXML
-    private HBox ConfigurationScreen;
+    private HBox configurationScreen;
 
     @FXML
     private TextField inputName;
@@ -202,7 +201,7 @@ public class ConfigUIController {
             } else if (seedChoice.equals("Potato")) {
                 Seed potatoSeed = new Seed("Potato");
                 seedBag.add(potatoSeed);
-            } else if (seedChoice.equals("Corn")){
+            } else if (seedChoice.equals("Corn")) {
                 Seed cornSeed = new Seed("Corn");
                 seedBag.add(cornSeed);
             }
@@ -252,7 +251,7 @@ public class ConfigUIController {
         } catch (NullPointerException u) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Error");
-            a.setHeaderText("No Season Chosen");
+            a.setHeaderText("No season Chosen");
             a.setContentText("Please select a season to start farming in!");
             a.showAndWait();
         } catch (ClassNotFoundException c) {

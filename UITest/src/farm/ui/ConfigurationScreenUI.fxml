@@ -12,11 +12,11 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" spacing="23.0" style="-fx-background-color: #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmUI.ConfigUIController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" spacing="23.0" style="-fx-background-color: #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.ConfigUIController">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="330.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" prefHeight="103.0" prefWidth="330.0" text="Howdy Farmer!" textAlignment="CENTER" textFill="#138d6c">
+            <Label alignment="CENTER" prefHeight="103.0" prefWidth="330.0" text="Howdy farmer!" textAlignment="CENTER" textFill="#138d6c">
                <font>
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
@@ -59,7 +59,7 @@
       </VBox>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="330.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" prefHeight="98.0" prefWidth="330.0" text="Choose a Starting Seed" textAlignment="CENTER" textFill="#138d6c" wrapText="true">
+            <Label alignment="CENTER" prefHeight="98.0" prefWidth="330.0" text="Choose a Starting seed" textAlignment="CENTER" textFill="#138d6c" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="32.0" />
                </font>
@@ -102,7 +102,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="330.0" style="-fx-background-color: #22d2a3 #22d2a3; -fx-background-radius: 10;">
          <children>
-            <Label alignment="CENTER" prefHeight="84.0" prefWidth="330.0" text="Starting Season" textAlignment="CENTER" textFill="#138d6c" wrapText="true">
+            <Label alignment="CENTER" prefHeight="84.0" prefWidth="330.0" text="Starting season" textAlignment="CENTER" textFill="#138d6c" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="34.0" />
                </font>

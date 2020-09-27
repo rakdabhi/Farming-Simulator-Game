@@ -1,11 +1,11 @@
-package Season;
+package season;
 
 public class Season {
     private String season;
     private int temperature;
 
     /**
-     * This constructor creates a Season with a randomized temperature that falls
+     * This constructor creates a season with a randomized temperature that falls
      * within the range of the season.
      * @param season one of the four seasons
      */
