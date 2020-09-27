@@ -1,4 +1,5 @@
 package farmer;
+import exceptions.InsufficientFundsException;
 import seed.Seed;
 import java.util.ArrayList;
 
@@ -29,9 +30,9 @@ public class Farmer {
      * @param experienceLevel the experience level of the farmer
      */
     public void setMoney(String experienceLevel) {
-        if (experienceLevel.equals("Beginner")) {
+        if (experienceLevel.equals("1")) {
             this.money = 1000;
-        } else if (experienceLevel.equals("Intermediate")) {
+        } else if (experienceLevel.equals("2")) {
             this.money = 5000;
         } else {
             money = 10000;
@@ -43,7 +44,11 @@ public class Farmer {
      * @param amount the amount of money to add
      */
     public void addMoney(int amount) {
-        money += amount;
+        if (amount < 0) {
+            pay(-1 * amount);
+        } else {
+            money += amount;
+        }
     }
 
     /**
@@ -51,7 +56,11 @@ public class Farmer {
      * @param amount the amount of money to pay
      */
     public void pay(int amount) {
-        money -= amount;
+        if (amount > money) {
+            throw new InsufficientFundsException();
+        } else {
+            money -= amount;
+        }
     }
 
     /**
@@ -94,8 +103,11 @@ public class Farmer {
         return seedBag.size();
     }
 
+    /**
+     * This method returns the name of the Farmer.
+     * @return the name of the farmer
+     */
     public String getName() {
         return this.name;
     }
-
 }

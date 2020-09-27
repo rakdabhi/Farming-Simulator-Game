@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SeedTestRakshit {
+public class SeedTest {
     private Seed corn;
     private Seed wheat;
     private Seed tomato;

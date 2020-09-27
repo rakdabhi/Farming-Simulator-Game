@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SeasonTestRakshit {
+public class SeasonTest {
     private Season spring;
     private Season summer;
     private Season fall;
