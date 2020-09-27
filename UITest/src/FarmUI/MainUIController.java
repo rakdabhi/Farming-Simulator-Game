@@ -1,5 +1,7 @@
 package FarmUI;
 
+import Farmer.Farmer;
+import Season.Season;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +64,6 @@ public class MainUIController {
     @FXML
     private Group pigGroup;
 
-
     @FXML
     private Button waterButton;
 
@@ -80,6 +81,7 @@ public class MainUIController {
 
     @FXML
     private Group sowGraphic;
+
 
     @FXML
     void handleInventoryButton(ActionEvent event) {
@@ -115,12 +117,13 @@ public class MainUIController {
 
     @FXML
     void lowerRightMousePress(MouseEvent event) {
-        ((Button) event.getSource()).setStyle("-fx-background-color: #5423b8; -fx-background-radius: 10");
+        ((Button) event.getSource()).setStyle("-fx-background-color: #15936f; -fx-background-radius: 10");
     }
 
     @FXML
     void lowerRightMouseRelease(MouseEvent event) {
-        ((Button) event.getSource()).setStyle("-fx-background-color: #5f27cd; -fx-background-radius: 10;");
+        ((Button) event.getSource()).setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10;");
+
     }
 
     void lowerRightGraphicTransition(Group gr) {
@@ -132,6 +135,8 @@ public class MainUIController {
 
         rt.play();
     }
+
+
 
 
 }

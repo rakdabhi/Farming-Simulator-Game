@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #5f27cd#5f27cd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmUI.MainUIController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FarmUI.MainUIController">
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="713.0">
          <children>
@@ -129,7 +129,7 @@
          <children>
             <Pane layoutX="-2.0" layoutY="-1.0" prefHeight="191.0" prefWidth="368.0">
                <children>
-                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="150.0" layoutX="19.0" layoutY="47.0" strokeType="INSIDE" width="320.0">
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="150.0" layoutX="19.0" layoutY="47.0" strokeType="INSIDE" width="320.0">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis>
@@ -144,51 +144,51 @@
             </Pane>
             <Pane layoutY="196.0" prefHeight="246.0" prefWidth="375.0">
                <children>
-                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="208.0" layoutX="19.0" layoutY="19.0" strokeType="INSIDE" width="320.0" />
-                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#5f27cd" height="60.0" layoutX="27.0" layoutY="155.0" strokeType="INSIDE" width="304.0" />
-                  <Text fx:id="moneyText" fill="#ff9f43" layoutX="120.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00">
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="208.0" layoutX="19.0" layoutY="19.0" strokeType="INSIDE" width="320.0" />
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#15ad86" height="60.0" layoutX="27.0" layoutY="155.0" strokeType="INSIDE" width="304.0" />
+                  <Text fx:id="moneyText" fill="#feca57" layoutX="120.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00">
                      <font>
                         <Font name="Arial Black" size="39.0" />
                      </font>
                   </Text>
                   <Group fx:id="pigGroup" layoutX="179.0" layoutY="82.0">
                      <children>
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f368e0" height="27.0" layoutX="-35.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f368e0" height="27.0" layoutX="17.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
-                        <Ellipse fill="#ff9ff3" layoutX="1.0" layoutY="5.0" radiusX="56.0" radiusY="44.0" strokeType="INSIDE" />
-                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#ff9ff3" height="31.0" layoutX="-64.0" layoutY="-9.0" strokeType="INSIDE" width="23.0" />
-                        <Circle fill="#f368e0" layoutX="-28.0" layoutY="-13.0" radius="5.0" strokeType="INSIDE" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ff9ff3" height="30.0" layoutX="24.0" layoutY="27.0" strokeType="INSIDE" width="15.0" />
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ff9ff3" height="27.0" layoutX="-27.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
-                        <SVGPath content="M110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21zM110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21z" fill="#f368e0" layoutX="-160.0" layoutY="-213.0" />
-                        <SVGPath content="M195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7zM195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7z" fill="#ff9ff3" layoutX="-231.0" layoutY="-184.0" />
-                        <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="#f368e0" layoutX="-108.0" layoutY="-216.0" rotate="7.1" />
-                        <SVGPath content="M113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73ZM113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73Z" fill="#ff9ff3" layoutX="-60.0" layoutY="-176.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9a0f7" height="27.0" layoutX="-35.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9a0f7" height="27.0" layoutX="17.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
+                        <Ellipse fill="#f9d4f6" layoutX="1.0" layoutY="5.0" radiusX="56.0" radiusY="44.0" strokeType="INSIDE" />
+                        <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#f9d4f6" height="31.0" layoutX="-64.0" layoutY="-9.0" strokeType="INSIDE" width="23.0" />
+                        <Circle fill="#f9a0f7" layoutX="-28.0" layoutY="-13.0" radius="5.0" strokeType="INSIDE" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9d4f6" height="30.0" layoutX="24.0" layoutY="27.0" strokeType="INSIDE" width="15.0" />
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9d4f6" height="27.0" layoutX="-27.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
+                        <SVGPath content="M110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21zM110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21z" fill="#f9a0f7" layoutX="-160.0" layoutY="-213.0" />
+                        <SVGPath content="M195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7zM195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7z" fill="#f9d4f6" layoutX="-231.0" layoutY="-184.0" />
+                        <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="#f9a0f7" layoutX="-108.0" layoutY="-216.0" rotate="7.1" />
+                        <SVGPath content="M113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73ZM113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73Z" fill="#f9d4f6" layoutX="-60.0" layoutY="-176.0" />
                      </children>
                   </Group>
                </children>
             </Pane>
             <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
                <children>
-                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#341f97" height="232.0" layoutX="19.0" layoutY="5.0" strokeType="INSIDE" width="320.0" />
-                  <Button fx:id="waterButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleWaterButton" onMouseEntered="#waterButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="232.0" layoutX="19.0" layoutY="5.0" strokeType="INSIDE" width="320.0" />
+                  <Button fx:id="waterButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleWaterButton" onMouseEntered="#waterButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
                      <padding>
                         <Insets top="150.0" />
                      </padding>
                      <font>
                         <Font name="Arial Black" size="17.0" />
                      </font></Button>
-                  <Button fx:id="sowButton" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSowButton" onMouseEntered="#sowButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                  <Button fx:id="sowButton" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSowButton" onMouseEntered="#sowButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
                      <padding>
                         <Insets top="150.0" />
                      </padding></Button>
-                  <Button fx:id="inventoryButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleInventoryButton" onMouseEntered="#inventoryButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #5f27cd#5f27cd; -fx-background-radius: 10;" textFill="#ff9f43">
+                  <Button fx:id="inventoryButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleInventoryButton" onMouseEntered="#inventoryButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
                      <padding>
                         <Insets top="150.0" />
                      </padding></Button>
                   <Group fx:id="waterGraphic" layoutX="-44.0" layoutY="-35.0">
                      <children>
-                        <SVGPath content="M119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79ZM119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79Z" fill="#24bee2" layoutY="-3.0" />
+                        <SVGPath content="M119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79ZM119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79Z" fill="#51dcfa" layoutY="-3.0" />
                         <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="WHITE" layoutX="-15.0" layoutY="-11.0" rotate="-103.0" scaleX="0.5" />
                      </children>
                   </Group>
