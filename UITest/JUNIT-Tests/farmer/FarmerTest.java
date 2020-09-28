@@ -62,19 +62,19 @@ public class FarmerTest {
     @Test
     public void addMoney() {
         farmer1.addMoney(652);
-        assertEquals(1652, farmer1.getMoney());
+        assertEquals(10652, farmer1.getMoney());
     }
 
     @Test
     public void negativeAddMoney() {
         farmer1.addMoney((-500));
-        assertEquals(500, farmer1.getMoney());
+        assertEquals(9500, farmer1.getMoney());
     }
 
     @Test
     public void pay() {
-        farmer3.pay(5932);
-        assertEquals(4068, farmer3.getMoney());
+        farmer1.pay(5932);
+        assertEquals(4068, farmer1.getMoney());
     }
 
     @Test
