@@ -31,11 +31,11 @@ public class Farmer {
      */
     public void setMoney(String experienceLevel) {
         if (experienceLevel.equals("1")) {
-            this.money = 1000;
+            this.money = 10000;
         } else if (experienceLevel.equals("2")) {
             this.money = 5000;
         } else {
-            money = 10000;
+            money = 1000;
         }
     }
 

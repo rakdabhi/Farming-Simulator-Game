@@ -36,13 +36,13 @@ public class FarmerTest {
 
     @Test
     public void testInitialConfig() {
-        assertEquals(1000, farmer1.getMoney());
+        assertEquals(10000, farmer1.getMoney());
         assertEquals(0, farmer1.numOfSeeds());
 
         assertEquals(5000, farmer2.getMoney());
         assertEquals(0, farmer2.numOfSeeds());
 
-        assertEquals(10000, farmer3.getMoney());
+        assertEquals(1000, farmer3.getMoney());
         assertEquals(0, farmer3.numOfSeeds());
     }
 
@@ -53,10 +53,10 @@ public class FarmerTest {
         assertEquals(5000, farmer1.getMoney());
 
         farmer2.setMoney("3");
-        assertEquals(10000, farmer2.getMoney());
+        assertEquals(1000, farmer2.getMoney());
 
         farmer3.setMoney("1");
-        assertEquals(1000, farmer3.getMoney());
+        assertEquals(10000, farmer3.getMoney());
     }
 
     @Test
