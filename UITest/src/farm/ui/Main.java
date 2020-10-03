@@ -1,5 +1,6 @@
 package farm.ui;
 
+import farm.ui.controllers.WelcomeUIController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScreenUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("style/StartScreenUI.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Farming Simulator");
         Scene startScene = new Scene(root);

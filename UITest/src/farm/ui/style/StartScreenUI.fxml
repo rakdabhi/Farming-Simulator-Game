@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1080.0" maxWidth="1920.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #048213;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.WelcomeUIController">
+<AnchorPane maxHeight="1080.0" maxWidth="1920.0" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #048213;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.WelcomeUIController">
    <children>
       <Rectangle fill="#1fc3ff" height="394.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1080.0" />
       <Rectangle arcHeight="100.0" arcWidth="75.0" fill="WHITE" height="86.0" layoutX="803.0" layoutY="114.0" stroke="TRANSPARENT" strokeType="INSIDE" width="229.0" />
