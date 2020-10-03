@@ -10,22 +10,21 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.shape.SVGPath?>
 
-<AnchorPane prefHeight="720.0" prefWidth="367.0" style="-fx-background-color: #15ad86 #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.InventoryUIController" fx:id="rightPaneInventory">
+<AnchorPane fx:id="rightPaneInventory" prefHeight="720.0" prefWidth="367.0" style="-fx-background-color: #15ad86 #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.InventoryUIController">
    <children>
       <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
          <children>
-            <Button fx:id="homeScreenButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" textFill="#ff9f43" onAction="#handleHomeScreenButton" >
+            <Button fx:id="homeScreenButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHomeScreenButton" onMouseEntered="#homeButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" textFill="#ff9f43">
                <padding>
                   <Insets top="150.0" />
                </padding>
             </Button>
-            <Button fx:id="accessMarketButton" layoutX="26.0" layoutY="15.0" mnemonicParsing="false" prefHeight="212.0" prefWidth="198.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" textFill="#ff9f43" onAction="#handleMarketButton">
+            <Button fx:id="accessMarketButton" layoutX="26.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleMarketButton" onMouseEntered="#marketButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="198.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" textFill="#ff9f43">
                <padding>
                   <Insets top="150.0" />
                </padding>
             </Button>
-            <SVGPath content="M704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24ZM704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24Z" fill="#feca57" layoutX="-425.0" layoutY="-334.0" scaleX="0.5" scaleY="0.5" strokeWidth="2.0" />
-            <Group layoutX="-493.0" layoutY="-13.0" scaleX="0.5" scaleY="0.5">
+            <Group fx:id="truckGraphic" layoutX="-493.0" layoutY="-13.0" scaleX="0.5" scaleY="0.5">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#24bee2" height="37.0" layoutX="462.0" layoutY="114.0" strokeType="INSIDE" width="141.0" />
                   <SVGPath content="M726.8,169.28s-2.49,26.52,25.63,25.07c0,0,29,2,26.61-27.87l-7.18-20.63-32.52-2.35L723.82,162ZM726.8,169.28s-2.49,26.52,25.63,25.07c0,0,29,2,26.61-27.87l-7.18-20.63-32.52-2.35L723.82,162Z" fill="#586574" layoutX="-10.0" layoutY="1.0" />
@@ -92,12 +91,17 @@
                   <SVGPath content="M474.61,140s71.22-30.26,93,7.41l3.23,15.87s5.65-35-44.4-37C526.45,126.21,504.55,128,474.61,140ZM474.61,140s71.22-30.26,93,7.41l3.23,15.87s5.65-35-44.4-37C526.45,126.21,504.55,128,474.61,140Z" fill="WHITE" layoutY="3.0" />
                </children>
             </Group>
+            <Group fx:id="homeGraphic" layoutX="-425.0" layoutY="-329.0" scaleX="0.5" scaleY="0.5">
+               <children>
+                  <SVGPath content="M704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24ZM704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24Z" fill="#feca57" strokeWidth="2.0" />
+               </children>
+            </Group>
          </children>
       </Pane>
       <Pane prefHeight="436.0" prefWidth="368.0">
          <children>
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="379.0" layoutX="17.0" layoutY="46.0" strokeType="INSIDE" width="321.0" />
-            <TableView layoutX="23.0" layoutY="54.0" prefHeight="363.0" prefWidth="305.0" style="-fx-background-color: TRANSPARENT;" fx:id="inventoryList">
+            <TableView fx:id="inventoryList" layoutX="23.0" layoutY="54.0" prefHeight="363.0" prefWidth="305.0" style="-fx-background-color: TRANSPARENT;">
                <columns>
                   <TableColumn prefWidth="209.666748046875" style="-fx-font-family: Arial Rounded MT Bold; -fx-background-color: #15ad86;" text="Item" />
                   <TableColumn prefWidth="103.333251953125" style="-fx-font-family: Arial Rounded MT Bold; -fx-background-color: #15ad86 #15ad86;" text="Quantity" />

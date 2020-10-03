@@ -4,9 +4,7 @@ import farmer.Farmer;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -56,30 +54,40 @@ public class MainPanelUIController {
 
     private Season season;
 
-    void setFarmer(Farmer f) {
-        farmer = f;
+    private PlotUIController plotu;
+
+    private InventoryUIController invu;
+
+    // |     Initialize Settings     |
+    // |                             |
+
+    public void initMainPanelUI (Farmer f, Season s, PlotUIController plotu, InventoryUIController invu) {
+        this.farmer = f;
+        this.season = s;
+        this.plotu = plotu;
+        this.invu = invu;
+
+        setMoneyLabel(f.getMoney());
     }
 
-    void setSeason(Season s) {
-        season = s;
-    }
+    // |     Getters and Setters     |
+    // |                             |
 
     void setMoneyLabel(int m) {
         moneyLabel.setText("$" + m);
     }
 
-    private PlotUIController puc;
-
-    private InventoryUIController iuc;
-
     AnchorPane getRightPaneMain() {
         return rightPaneMain;
     }
 
+
+    // |     Button Behavior         |
+    // |                             |
+
     @FXML
     void handleInventoryButton(ActionEvent event) throws IOException {
-        puc.setRightPaneWrapper(iuc.getRightPaneInventory());
-
+        plotu.setRightPaneWrapper(invu.getRightPaneInventory());
     }
 
     @FXML
@@ -130,14 +138,4 @@ public class MainPanelUIController {
 
         rt.play();
     }
-
-    void setIuc(InventoryUIController iuc) {
-        this.iuc = iuc;
-    }
-
-    void setPuc(PlotUIController puc) {
-        this.puc = puc;
-    }
-
-
 }

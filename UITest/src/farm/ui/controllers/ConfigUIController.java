@@ -5,7 +5,6 @@ import exceptions.FarmerNameNotFoundException;
 import exceptions.SeasonChoiceNotFoundException;
 import exceptions.SeedChoiceNotFoundException;
 import farmer.Farmer;
-import javafx.scene.layout.AnchorPane;
 import season.Season;
 import seed.Seed;
 import javafx.event.ActionEvent;
@@ -241,28 +240,19 @@ public class ConfigUIController {
 
             FXMLLoader nextPage = new FXMLLoader(getClass().getResource("../style/PlotUI.fxml"));
             Parent root = nextPage.load();
-
             PlotUIController plotController = nextPage.getController();
-            plotController.setSeason(startingSeason);
-            plotController.setFarmer(farmer1);
 
             FXMLLoader loadMain = new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
             loadMain.load();
             MainPanelUIController mainPanelController = loadMain.getController();
-            mainPanelController.setPuc(plotController);
-            plotController.setMpu(mainPanelController);
-            plotController.setRightPaneWrapper(mainPanelController.getRightPaneMain());
-            mainPanelController.setMoneyLabel(farmer1.getMoney());
 
             FXMLLoader loadInventory = new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
             loadInventory.load();
             InventoryUIController inventoryController = loadInventory.getController();
-            inventoryController.setPuc(plotController);
-            inventoryController.setMpu(mainPanelController);
 
-            plotController.setIuc(inventoryController);
-            mainPanelController.setIuc(inventoryController);
-
+            plotController.initPlotUI(farmer1, startingSeason, mainPanelController, inventoryController);
+            mainPanelController.initMainPanelUI(farmer1, startingSeason, plotController, inventoryController);
+            inventoryController.initInventoryUI(farmer1, startingSeason, mainPanelController, plotController);
 
             Scene nextPageScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

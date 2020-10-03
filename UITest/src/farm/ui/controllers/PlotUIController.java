@@ -2,14 +2,10 @@ package farm.ui.controllers;
 
 
 import farmer.Farmer;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import season.Season;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
-
-import java.io.IOException;
 
 
 public class PlotUIController {
@@ -57,42 +53,30 @@ public class PlotUIController {
     private Farmer farmer;
 
     private Season season;
+
     private MainPanelUIController mpu;
 
-    private InventoryUIController iuc;
+    private InventoryUIController invu;
 
-    void setFarmer(Farmer f) {
-        farmer = f;
+    // |     Initialize Settings     |
+    // |                             |
+
+    public void initPlotUI (Farmer f, Season s, MainPanelUIController mpu, InventoryUIController invu) {
+        this.farmer = f;
+        this.season = s;
+        this.mpu = mpu;
+        this.invu = invu;
+
+        setRightPaneWrapper(mpu.getRightPaneMain());
     }
 
-    void setSeason(Season s) {
-        season = s;
-    }
+    // |     Getters and Setters     |
+    // |                             |
 
     void setRightPaneWrapper(AnchorPane a) {
         rightPaneWrapper.getChildren().clear();
         rightPaneWrapper.getChildren().add(a);
     }
-
-    void setMpu(MainPanelUIController mpu) {
-        this.mpu = mpu;
-
-    }
-
-    void setIuc(InventoryUIController iuc) {
-        this.iuc = iuc;
-    }
-
-    /**
-     * public void changes() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../style/MainPanelUIController.fxml"));
-        AnchorPane node = loader.load();
-        rightPaneWrapper.getChildren().add(node);
-    } */
-
-
-
 
 }
 
