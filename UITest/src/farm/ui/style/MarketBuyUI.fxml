@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: ecd5a1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.MarketBuyUIController">
+   <children>
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#c9d6e4" height="600.0" layoutX="22.0" layoutY="75.0" strokeType="INSIDE" width="691.0" />
+      <GridPane alignment="CENTER" layoutX="38.0" layoutY="80.0" prefHeight="587.0" prefWidth="665.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="button1" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="button2" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="button3" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="button4" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+            <Button fx:id="button5" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="button6" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="button7" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="button8" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="button9" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="button10" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="button11" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="button12" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="button13" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="button14" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="button15" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button fx:id="button16" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+      <AnchorPane fx:id="rightPaneInventory" layoutX="712.0" prefHeight="720.0" prefWidth="367.0">
+         <children>
+            <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
+               <children>
+                  <Button fx:id="homeScreenButton" layoutX="245.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleHomeScreenButton" onMouseEntered="#homeButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" textFill="#ff9f43">
+                     <padding>
+                        <Insets top="150.0" />
+                     </padding>
+                  </Button>
+                  <Group fx:id="homeGraphic" layoutX="-412.0" layoutY="-316.0" scaleX="0.5" scaleY="0.5">
+                     <children>
+                        <SVGPath content="M704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24ZM704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24Z" fill="#feca57" strokeWidth="2.0" />
+                     </children>
+                  </Group>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="92.0" layoutX="26.0" layoutY="28.0" strokeType="INSIDE" width="214.0" />
+                  <Label fx:id="quantityLabel" layoutX="122.0" layoutY="41.0" text="1" textFill="#15ad86">
+                     <font>
+                        <Font size="56.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="minusButton" layoutX="58.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleMinusButton" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #15ad86;" textFill="#22d2a3">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Button>
+                  <Text fx:id="quantityMinusButton" fill="#22d2a3" layoutX="63.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                     <font>
+                        <Font size="81.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="plusButton" layoutX="168.0" layoutY="47.0" mnemonicParsing="false" onAction="#handlePlusButton" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #15ad86;" textFill="#22d2a3">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Button>
+                  <Text fx:id="quantityAddButton" fill="#22d2a3" layoutX="172.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
+                     <font>
+                        <Font size="63.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="buyButton" layoutX="25.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleBuyButton" onMouseEntered="#homeButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="108.0" prefWidth="216.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="BUY" textFill="#feca57">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="45.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane prefHeight="460.0" prefWidth="368.0">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="382.0" layoutX="21.0" layoutY="70.0" strokeType="INSIDE" width="321.0" />
+                  <Label fx:id="itemName" alignment="CENTER" layoutX="32.0" layoutY="81.0" prefHeight="81.0" prefWidth="300.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Item" textFill="#feca57">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="itemDescription" alignment="TOP_CENTER" layoutX="32.0" layoutY="166.0" prefHeight="278.0" prefWidth="299.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Item Description" textFill="#22d2a3">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="30.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <Button fx:id="buyTab" disable="true" layoutX="45.0" layoutY="27.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="161.0" style="-fx-background-color: #c9d6e4;" text="Buy" textFill="#586574">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="sellTab" layoutX="206.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleSellTab" prefHeight="47.0" prefWidth="161.0" style="-fx-background-color: fcca5f fcca5f;" text="Sell" textFill="#eb4d53">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

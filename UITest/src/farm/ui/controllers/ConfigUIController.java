@@ -5,6 +5,9 @@ import exceptions.FarmerNameNotFoundException;
 import exceptions.SeasonChoiceNotFoundException;
 import exceptions.SeedChoiceNotFoundException;
 import farmer.Farmer;
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import season.Season;
 import seed.Seed;
 import javafx.event.ActionEvent;
@@ -21,7 +24,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class ConfigUIController {
 
@@ -204,7 +207,7 @@ public class ConfigUIController {
     public void startButtonOnAction(ActionEvent event) throws Exception {
         String farmerName = inputName.getCharacters().toString();
         String difficultyLevel = difficultyChoice;
-        ArrayList<Seed> seedBag = new ArrayList<>();
+        ArrayList<Seed> seedBag = new ArrayList<Seed>();
 
         try {
 

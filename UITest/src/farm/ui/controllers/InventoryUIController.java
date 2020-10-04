@@ -4,14 +4,21 @@ import farmer.Farmer;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import season.Season;
 import seed.Seed;
+
+import java.io.IOException;
 
 public class InventoryUIController {
 
@@ -80,10 +87,18 @@ public class InventoryUIController {
 
     public void handleHomeScreenButton(ActionEvent actionEvent) {
         plotu.setRightPaneWrapper(mpu.getRightPaneMain());
-        System.out.println(farmer);
     }
 
-    public void handleMarketButton(ActionEvent actionEvent) {
+    public void handleMarketButton(ActionEvent event) throws IOException {
+        FXMLLoader loadMarketBuy = new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
+        Parent root = loadMarketBuy.load();
+        MarketBuyUIController mbu = loadMarketBuy.getController();
+        mbu.initMarketBuy(farmer, season);
+
+        Scene nextPageScene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(nextPageScene);
+        window.show();
     }
 
     @FXML
@@ -117,5 +132,9 @@ public class InventoryUIController {
         ((Button) event.getSource()).setStyle("-fx-background-color:  #22d2a3;"
                 + " -fx-background-radius: 10;");
     }
+
+    // |  Table Population +  Behavior  |
+    // |                                |
+
 
 }

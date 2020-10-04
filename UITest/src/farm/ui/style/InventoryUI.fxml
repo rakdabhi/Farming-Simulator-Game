@@ -103,8 +103,8 @@
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="379.0" layoutX="17.0" layoutY="46.0" strokeType="INSIDE" width="321.0" />
             <TableView fx:id="inventoryList" layoutX="23.0" layoutY="54.0" prefHeight="363.0" prefWidth="305.0" style="-fx-background-color: TRANSPARENT;">
                <columns>
-                  <TableColumn prefWidth="209.666748046875" style="-fx-font-family: Arial Rounded MT Bold; -fx-background-color: #15ad86;" text="Item" />
-                  <TableColumn prefWidth="103.333251953125" style="-fx-font-family: Arial Rounded MT Bold; -fx-background-color: #15ad86 #15ad86;" text="Quantity" />
+                  <TableColumn fx:id="itemColumn" prefWidth="209.666748046875" style="-fx-font-family: Arial Rounded MT Bold; -fx-background-color: #15ad86;" text="Item" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="103.333251953125" style="-fx-font-family: Arial Rounded MT Bold; -fx-background-color: #15ad86 #15ad86;" text="Quantity" />
                </columns>
             </TableView>
          </children>
