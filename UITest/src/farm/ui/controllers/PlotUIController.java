@@ -61,7 +61,7 @@ public class PlotUIController {
     // |     Initialize Settings     |
     // |                             |
 
-    public void initPlotUI (Farmer f, Season s, MainPanelUIController mpu, InventoryUIController invu) {
+    public void initPlotUI(Farmer f, Season s, MainPanelUIController mpu, InventoryUIController invu) {
         this.farmer = f;
         this.season = s;
         this.mpu = mpu;

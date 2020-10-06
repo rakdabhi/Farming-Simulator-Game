@@ -61,7 +61,7 @@ public class MainPanelUIController {
     // |     Initialize Settings     |
     // |                             |
 
-    public void initMainPanelUI (Farmer f, Season s, PlotUIController plotu, InventoryUIController invu) {
+    public void initMainPanelUI(Farmer f, Season s, PlotUIController plotu, InventoryUIController invu) {
         this.farmer = f;
         this.season = s;
         this.plotu = plotu;
@@ -73,8 +73,8 @@ public class MainPanelUIController {
     // |     Getters and Setters     |
     // |                             |
 
-    void setMoneyLabel(int m) {
-        moneyLabel.setText("$" + m);
+    void setMoneyLabel(double m) {
+        moneyLabel.setText(String.format("$%,.2f", m));
     }
 
     AnchorPane getRightPaneMain() {

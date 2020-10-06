@@ -1,5 +1,7 @@
 package farmer;
 import exceptions.InsufficientFundsException;
+import exceptions.InsufficientInventorySpaceException;
+import exceptions.SeedChoiceNotFoundException;
 import seed.Seed;
 import java.util.ArrayList;
 
@@ -7,8 +9,10 @@ public class Farmer {
 
     private String name;
     private String experienceLevel;
-    private int money;
+    private double money;
     private ArrayList<Seed> seedBag;
+    private int inventoryCapacity;
+    private int availableCapacity;
     private String customSkin;
 
     /**
@@ -23,6 +27,40 @@ public class Farmer {
         seedBag = new ArrayList<Seed>();
         this.customSkin = customSkin;
         setMoney(this.experienceLevel);
+        setInventoryCapacity(this.experienceLevel);
+    }
+
+    /**
+     * This method sets the starting inventory capacity of the farmer based on their experience level.
+     * @param experienceLevel the experience level of the farmer
+     */
+    public void setInventoryCapacity(String experienceLevel) {
+        if (experienceLevel.equals("1")) {
+            this.inventoryCapacity = 100;
+            this.availableCapacity = 100;
+        } else if (experienceLevel.equals("2")) {
+            this.inventoryCapacity = 50;
+            this.availableCapacity = 50;
+        } else {
+            this.inventoryCapacity = 25;
+            this.availableCapacity = 25;
+        }
+    }
+
+    /**
+     * This method helps the player retrieve the current inventory capacity of their farmer.
+     * @return the current inventory capacity of the farmer
+     */
+    public int getAvailableCapacity() {
+        return availableCapacity;
+    }
+
+    /**
+     * This method helps the player retrieve the total inventory capacity of their farmer.
+     * @return the total inventory capacity of the farmer
+     */
+    public int getInventoryCapacity() {
+        return inventoryCapacity;
     }
 
     /**
@@ -31,11 +69,11 @@ public class Farmer {
      */
     public void setMoney(String experienceLevel) {
         if (experienceLevel.equals("1")) {
-            this.money = 10000;
+            this.money = 200.0;
         } else if (experienceLevel.equals("2")) {
-            this.money = 5000;
+            this.money = 100.0;
         } else {
-            money = 1000;
+            money = 50.0;
         }
     }
 
@@ -43,7 +81,7 @@ public class Farmer {
      * This method adds money to the farmer's current wealth.
      * @param amount the amount of money to add
      */
-    public void addMoney(int amount) {
+    public void addMoney(double amount) {
         if (amount < 0) {
             pay(-1 * amount);
         } else {
@@ -55,7 +93,7 @@ public class Farmer {
      * This method allows a farmer to pay for items related to the game.
      * @param amount the amount of money to pay
      */
-    public void pay(int amount) {
+    public void pay(double amount) {
         if (amount > money) {
             throw new InsufficientFundsException();
         } else {
@@ -67,16 +105,67 @@ public class Farmer {
      * This method returns the current wealth of a farmer.
      * @return the amount of money that the farmer has.
      */
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
     /**
-     * This method helps a farmer add a new seed to their collection.
-     * @param seed the new seed to add
+     * This method helps a farmer add a Seed to their inventory.
+     * @param seed the Seed to add
      */
     public void addSeed(Seed seed) {
-        seedBag.add(seed);
+        if (seed.getQuantity() > availableCapacity) {
+            throw new InsufficientInventorySpaceException();
+        }
+        if (holds(seed)) {
+            for (Seed s : seedBag) {
+                if (s.getName().toLowerCase().equals(seed.getName().toLowerCase())) {
+                    s.addQuantity(seed.getQuantity());
+                }
+            }
+        } else {
+            seedBag.add(seed);
+        }
+        availableCapacity -= seed.getQuantity();
+    }
+
+    /**
+     * This method helps a farmer remove a seed from their inventory.
+     * @param seed the seed to remove
+     * @throws InsufficientInventorySpaceException if there is insufficient space in the inventory
+     * @throws SeedChoiceNotFoundException if there is no seed in this inventory
+     */
+    public void removeSeed(Seed seed) throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
+        if (holds(seed)) {
+            for (Seed s : seedBag) {
+                if (s.getName().toLowerCase().equals(seed.getName().toLowerCase())) {
+                    if (seed.getQuantity() > s.getQuantity()) {
+                        throw new InsufficientInventorySpaceException("You currently don't have enough"
+                                + " seeds of this kind in your inventory!");
+                    } else {
+                        s.removeQuantity(seed.getQuantity());
+                        availableCapacity += seed.getQuantity();
+                    }
+                }
+            }
+
+        } else {
+            throw new SeedChoiceNotFoundException("You currently don't have any seeds of this kind in your inventory!");
+        }
+    }
+
+    /**
+     * This helper method searches to see whether a seed is in seedBag or not.
+     * @param seed the seed to be found
+     * @return whether the seed is in seedBag or not
+     */
+    private Boolean holds(Seed seed) {
+        for (Seed s : seedBag) {
+            if (s.getName().toLowerCase().equals(seed.getName().toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -84,7 +173,15 @@ public class Farmer {
      * @param seedBag the bag of seeds assigned to this farmer
      */
     public void setSeedBag(ArrayList<Seed> seedBag) {
+        int numOfSeeds = 0;
+        for (Seed s : seedBag) {
+            numOfSeeds += s.getQuantity();
+        }
+        if (numOfSeeds > availableCapacity) {
+            throw new InsufficientInventorySpaceException();
+        }
         this.seedBag = seedBag;
+        availableCapacity -= numOfSeeds;
     }
 
     /**
@@ -109,5 +206,13 @@ public class Farmer {
      */
     public String getName() {
         return this.name;
+    }
+
+    /**
+     * This method returns the experience level of the Farmer.
+     * @return the experience level of the farmer
+     */
+    public String getExperienceLevel() {
+        return experienceLevel;
     }
 }
