@@ -1,5 +1,8 @@
 package seed;
 
+import exceptions.InsufficientInventorySpaceException;
+import exceptions.SeedChoiceNotFoundException;
+
 public class Seed {
     private String name;
     private int quantity;
@@ -53,8 +56,12 @@ public class Seed {
      * particular seed from their seedBag.
      * @param amount the amount of seeds to remove
      */
-    public void removeQuantity(int amount) {
-        quantity -= amount;
+    public void removeQuantity(int amount)  {
+        if (amount > quantity) {
+            throw new InsufficientInventorySpaceException("You currently don't have enough"
+                    + " seeds of this kind in your inventory to remove!");
+        } else {
+            quantity -= amount;
+        }
     }
 }
-
