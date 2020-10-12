@@ -12,7 +12,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: ecd5a1;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.MarketSellUIController">
    <children>
@@ -31,9 +30,78 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="button1" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="button2" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button fx:id="button3" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="appleButton" alignment="CENTER" mnemonicParsing="false" onAction="#seedOnAction" onMouseEntered="#appleButtonMouseEnter" onMousePressed="#seedRightMousePress" onMouseReleased="#seedRightMouseRelease" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Group fx:id="appleImage" accessibleRole="BUTTON" scaleX="0.8" scaleY="0.8" scaleZ="0.8">
+               <children>
+                  <SVGPath content="M155.89,124.93s2.53-23.72-3.15-28.77l3.71-3.79s3.45.06,3.45,32.56S155.89,124.93,155.89,124.93ZM155.89,124.93s2.53-23.72-3.15-28.77l3.71-3.79s3.45.06,3.45,32.56S155.89,124.93,155.89,124.93Z" fill="#fd9e49" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fd676b" height="64.0" layoutX="139.0" layoutY="122.0" strokeType="INSIDE" width="36.0" />
+                  <SVGPath content="M156.36,120.39v63.86h-.09V120.39s-40.87-17.24-42.15,21.72c0,0,10.86,59.39,28.1,50.45,10.48-5.43,13.41-7.33,14.1-8,.69.65,3.61,2.55,14.09,8,17.24,8.94,28.1-50.45,28.1-50.45C197.23,103.15,156.36,120.39,156.36,120.39ZM156.36,120.39v63.86h-.09V120.39s-40.87-17.24-42.15,21.72c0,0,10.86,59.39,28.1,50.45,10.48-5.43,13.41-7.33,14.1-8,.69.65,3.61,2.55,14.09,8,17.24,8.94,28.1-50.45,28.1-50.45C197.23,103.15,156.36,120.39,156.36,120.39Z" fill="#fd676b" />
+                  <SVGPath content="M137.92,124.74s-14.84,3.71-13,21-.16,3.09-.16,3.09S114.43,121,137.92,124.74ZM137.92,124.74s-14.84,3.71-13,21-.16,3.09-.16,3.09S114.43,121,137.92,124.74Z" fill="WHITE" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="40.0" />
+               </GridPane.margin>
+            </Group>
+            <Label fx:id="appleQuantityLabel" text="x00">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" top="106.0" />
+               </GridPane.margin>
+            </Label>
+            <Button fx:id="potatoButton" alignment="CENTER" mnemonicParsing="false" onAction="#seedOnAction" onMouseEntered="#potatoButtonMouseEnter" onMousePressed="#seedRightMousePress" onMouseReleased="#seedRightMouseRelease" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Group fx:id="potatoImage" accessibleRole="BUTTON" scaleX="0.8" scaleY="0.8" scaleZ="0.8" GridPane.columnIndex="1">
+               <children>
+                  <SVGPath content="M137.27,146a6.09,6.09,0,0,1-.22-.74A1,1,0,0,0,137.27,146ZM137.27,146a6.09,6.09,0,0,1-.22-.74A1,1,0,0,0,137.27,146Z" />
+                  <SVGPath content="M147.55,187.46a5.72,5.72,0,0,1-.52.56A1,1,0,0,0,147.55,187.46ZM147.55,187.46a5.72,5.72,0,0,1-.52.56A1,1,0,0,0,147.55,187.46Z" />
+                  <SVGPath content="M165.34,143.57a6.76,6.76,0,0,1-.66-.39A1,1,0,0,0,165.34,143.57ZM165.34,143.57a6.76,6.76,0,0,1-.66-.39A1,1,0,0,0,165.34,143.57Z" />
+                  <SVGPath content="M151.77,167.28a7.59,7.59,0,0,1-.75-.16A1,1,0,0,0,151.77,167.28ZM151.77,167.28a7.59,7.59,0,0,1-.75-.16A1,1,0,0,0,151.77,167.28Z" />
+                  <SVGPath content="M195.48,123.77a5.16,5.16,0,0,1,.58-.5A.94.94,0,0,0,195.48,123.77ZM195.48,123.77a5.16,5.16,0,0,1,.58-.5A.94.94,0,0,0,195.48,123.77Z" />
+                  <SVGPath content="M188.78,165.24c0,.28,0,.53,0,.77A1,1,0,0,0,188.78,165.24ZM188.78,165.24c0,.28,0,.53,0,.77A1,1,0,0,0,188.78,165.24Z" />
+                  <SVGPath content="M129,151s-23,15,10,40c0,0,40-4,45-18,0,0,41-13,27-37,0,0-5-30-31-4,0,0-8,3-33,4C147,136,140,135,129,151ZM129,151s-23,15,10,40c0,0,40-4,45-18,0,0,41-13,27-37,0,0-5-30-31-4,0,0-8,3-33,4C147,136,140,135,129,151Z" fill="#cd8345" />
+                  <SVGPath content="M211.34,144.3a6.74,6.74,0,0,1,.4.65A.94.94,0,0,0,211.34,144.3ZM211.34,144.3a6.74,6.74,0,0,1,.4.65A.94.94,0,0,0,211.34,144.3Z" fill="#ce8345" />
+                  <SVGPath content="M216,144.88s-4.46-45-40.61-12.67c0,0-39.41-1.57-42.65,12.67,0,0-38.23,21.87,6.84,49.15,0,0,44.9-9.11,46.06-19.28C185.62,174.75,218.14,163.37,216,144.88ZM126.3,171c-3-3,0-7.37,0-7.37Zm10.75-25.68c-1.16-4.63,4.44-5.17,4.44-5.17C137.82,142.82,137.08,144.44,137.05,145.28Zm3.27,41.51c4.19,1.81,6,1.63,6.71,1.23C143.61,191.35,140.32,186.79,140.32,186.79Zm8.22-26c.67,4.51,1.76,5.93,2.48,6.35C146.39,166,148.54,160.77,148.54,160.77Zm16-24.41c-.89,4.47-.35,6.17.19,6.82C160.71,140.53,164.49,136.36,164.49,136.36Zm18.33,33c4.36-1.32,5.6-2.61,5.92-3.39C188.28,170.76,182.82,169.4,182.82,169.4Zm13.24-46.13c3.77-2.93,6.53,2,6.53,2C198.63,123,196.84,123,196.06,123.27Zm12.73,27.83c2.85-3.57,3.14-5.33,3-6.15C214.06,149.12,208.79,151.1,208.79,151.1ZM216,144.88s-4.46-45-40.61-12.67c0,0-39.41-1.57-42.65,12.67,0,0-38.23,21.87,6.84,49.15,0,0,44.9-9.11,46.06-19.28C185.62,174.75,218.14,163.37,216,144.88ZM126.3,171c-3-3,0-7.37,0-7.37Zm10.75-25.68c-1.16-4.63,4.44-5.17,4.44-5.17C137.82,142.82,137.08,144.44,137.05,145.28Zm3.27,41.51c4.19,1.81,6,1.63,6.71,1.23C143.61,191.35,140.32,186.79,140.32,186.79Zm8.22-26c.67,4.51,1.76,5.93,2.48,6.35C146.39,166,148.54,160.77,148.54,160.77Zm16-24.41c-.89,4.47-.35,6.17.19,6.82C160.71,140.53,164.49,136.36,164.49,136.36Zm18.33,33c4.36-1.32,5.6-2.61,5.92-3.39C188.28,170.76,182.82,169.4,182.82,169.4Zm13.24-46.13c3.77-2.93,6.53,2,6.53,2C198.63,123,196.84,123,196.06,123.27Zm12.73,27.83c2.85-3.57,3.14-5.33,3-6.15C214.06,149.12,208.79,151.1,208.79,151.1Z" fill="#fd9e49" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="35.0" />
+               </GridPane.margin>
+            </Group>
+            <Label fx:id="potatoQuantityLabel" text="x00" GridPane.columnIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" top="106.0" />
+               </GridPane.margin>
+            </Label>
+            <Button fx:id="cornButton" alignment="CENTER" mnemonicParsing="false" onAction="#seedOnAction" onMouseEntered="#cornButtonMouseEnter" onMousePressed="#seedRightMousePress" onMouseReleased="#seedRightMouseRelease" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Group fx:id="cornImage" accessibleRole="BUTTON" scaleX="0.8" scaleY="0.8" scaleZ="0.8" GridPane.columnIndex="2">
+               <children>
+                  <SVGPath content="M221.77,98.36C222,88,211.58,80.67,208,78.46l0-.69s-.24.11-.64.32l-.61-.35,0,.69c-3.73,2-14.5,8.82-14.75,19.22,0,0-14.38,123.07,12.32,109.59C230.31,222,221.77,98.36,221.77,98.36ZM221.77,98.36C222,88,211.58,80.67,208,78.46l0-.69s-.24.11-.64.32l-.61-.35,0,.69c-3.73,2-14.5,8.82-14.75,19.22,0,0-14.38,123.07,12.32,109.59C230.31,222,221.77,98.36,221.77,98.36Z" fill="#fcca5f" layoutY="-1.0" />
+                  <SVGPath content="M205.07,173.89s-4.41-34.9-33.84-17.43c0,0-13.53,6.95-11.91,16.34,0,0,25.52-23.8,28.41-1.4,0,0-.7,36.55,9.91,36.8,0,0,6.07,2.12,15.08-1.62,0,0,9.33-10.49,9.86-37.47,0,0,5.88-17.52,13-7.48l6.41,1.71s-5.1-13.11-19.09-8.77C222.92,154.57,206.39,164.05,205.07,173.89ZM205.07,173.89s-4.41-34.9-33.84-17.43c0,0-13.53,6.95-11.91,16.34,0,0,25.52-23.8,28.41-1.4,0,0-.7,36.55,9.91,36.8,0,0,6.07,2.12,15.08-1.62,0,0,9.33-10.49,9.86-37.47,0,0,5.88-17.52,13-7.48l6.41,1.71s-5.1-13.11-19.09-8.77C222.92,154.57,206.39,164.05,205.07,173.89Z" fill="#22d2a3" />
+               </children>
+               <GridPane.margin>
+                  <Insets left="41.0" />
+               </GridPane.margin>
+            </Group>
+            <Label fx:id="cornQuantityLabel" text="x00" GridPane.columnIndex="2">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" top="106.0" />
+               </GridPane.margin>
+            </Label>
             <Button fx:id="button4" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
             <Button fx:id="button5" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="button6" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #fd9e49; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
@@ -53,7 +121,7 @@
          <children>
             <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
                <children>
-                  <Button fx:id="homeScreenButton" layoutX="245.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleHomeScreenButton" onMouseEntered="#homeButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" textFill="#ff9f43">
+                  <Button fx:id="homeScreenButton" layoutX="245.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleHomeScreenButton" onMouseEntered="#homeButtonMouseEnter" onMousePressed="#homeMousePress" onMouseReleased="#homeMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" textFill="#ff9f43">
                      <padding>
                         <Insets top="150.0" />
                      </padding>
@@ -63,37 +131,50 @@
                         <SVGPath content="M704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24ZM704.86,381.52l-69,49.49h16.38v79.45h41.32v-40.1H716.1v40.1h41.32V431h16.39ZM677.23,456c2.57-10.4,14-18.24,27.63-18.24s25.06,7.84,27.63,18.24Z" fill="#feca57" strokeWidth="2.0" />
                      </children>
                   </Group>
-                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="92.0" layoutX="26.0" layoutY="28.0" strokeType="INSIDE" width="214.0" />
-                  <Label fx:id="quantityLabel" layoutX="122.0" layoutY="41.0" text="1" textFill="#15ad86">
+                  <Label fx:id="bankTag" alignment="CENTER" layoutX="23.0" layoutY="26.0" prefHeight="38.0" prefWidth="213.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Bank Account" textAlignment="CENTER" textFill="#d1f957" wrapText="true">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
                      <font>
-                        <Font size="56.0" />
+                        <Font name="Arial Rounded MT Bold" size="21.0" />
                      </font>
                   </Label>
-                  <Button fx:id="minusButton" layoutX="58.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleMinusButton" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #15ad86;" textFill="#22d2a3">
+                  <Label fx:id="bankAmount" alignment="CENTER" layoutX="22.0" layoutY="70.0" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="\$0.00" textFill="#15ad86">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
                      <font>
-                        <Font size="26.0" />
+                        <Font name="Arial Rounded MT Bold" size="35.0" />
                      </font>
-                  </Button>
-                  <Text fx:id="quantityMinusButton" fill="#22d2a3" layoutX="63.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-">
+                  </Label>
+                  <Label fx:id="availableInventoryTag" alignment="CENTER" layoutX="22.0" layoutY="136.0" prefHeight="38.0" prefWidth="215.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Available Inventory" textAlignment="CENTER" textFill="#d1f957" wrapText="true">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
                      <font>
-                        <Font size="81.0" />
+                        <Font name="Arial Rounded MT Bold" size="21.0" />
                      </font>
-                  </Text>
-                  <Button fx:id="plusButton" layoutX="168.0" layoutY="47.0" mnemonicParsing="false" onAction="#handlePlusButton" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #15ad86;" textFill="#22d2a3">
+                  </Label>
+                  <Label fx:id="availableInventory" alignment="CENTER" layoutX="22.0" layoutY="180.0" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="0" textFill="#15ad86">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
                      <font>
-                        <Font size="26.0" />
+                        <Font name="Arial Rounded MT Bold" size="35.0" />
                      </font>
-                  </Button>
-                  <Text fx:id="quantityAddButton" fill="#22d2a3" layoutX="172.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
-                     <font>
-                        <Font size="63.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="sellButton" layoutX="25.0" layoutY="129.0" mnemonicParsing="false" onAction="#handleSellButton" onMouseEntered="#homeButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="108.0" prefWidth="216.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="SELL" textFill="#feca57">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="45.0" />
-                     </font>
-                  </Button>
+                  </Label>
                </children>
             </Pane>
             <Pane prefHeight="460.0" prefWidth="368.0">
@@ -104,15 +185,63 @@
                         <Font name="Arial Rounded MT Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="itemDescription" alignment="TOP_CENTER" layoutX="32.0" layoutY="166.0" prefHeight="278.0" prefWidth="299.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Item Description" textFill="#22d2a3">
+                  <Label fx:id="itemDescription" alignment="CENTER" layoutX="32.0" layoutY="166.0" prefHeight="135.0" prefWidth="299.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Item Description" textAlignment="CENTER" textFill="#22d2a3" wrapText="true">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <padding>
-                        <Insets top="30.0" />
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalCostTag" alignment="CENTER" layoutX="86.0" layoutY="311.0" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Total Price" textFill="#feca57">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
                      </padding>
                      <font>
                         <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalCost" alignment="CENTER" layoutX="85.0" layoutY="354.0" prefHeight="90.0" prefWidth="161.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="\$0.00" textFill="#22d2a3">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="sellButton" layoutX="255.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleSellButton" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="131.0" prefWidth="78.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="SELL" textFill="#feca57">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="minusButton" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="403.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleMinusButton" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="-" textFill="#22d2a3" wrapText="true">
+                     <font>
+                        <Font size="63.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-15.0" top="-30.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="plusButton" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="311.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlusButton" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="+" textFill="#22d2a3" wrapText="true">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-15.0" top="-20.0" />
+                     </padding>
+                  </Button>
+                  <Label fx:id="quantityLabel" alignment="CENTER" layoutX="24.0" layoutY="350.0" prefHeight="54.0" prefWidth="59.0" text="0" textFill="#15ad86">
+                     <font>
+                        <Font size="32.0" />
                      </font>
                   </Label>
                </children>
