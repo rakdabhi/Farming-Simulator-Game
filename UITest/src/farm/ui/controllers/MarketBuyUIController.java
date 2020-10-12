@@ -33,15 +33,27 @@ public class MarketBuyUIController {
     private double appleSeedCost;
     private double potatoSeedCost;
     private double cornSeedCost;
+    private int appleQuantity;
+    private int potatoQuantity;
+    private int cornQuantity;
 
     @FXML
     private Group appleImage;
 
     @FXML
+    private Label appleQuantityLabel;
+
+    @FXML
     private Group potatoImage;
 
     @FXML
+    private Label potatoQuantityLabel;
+
+    @FXML
     private Group cornImage;
+
+    @FXML
+    private Label cornQuantityLabel;
 
     @FXML
     private Button appleButton;
@@ -161,6 +173,7 @@ public class MarketBuyUIController {
     public void initMarketBuy(Farmer f, Season s) {
         this.farmer = f;
         this.season = s;
+        updateAvailableQuantity();
         updateBankAmount();
         updateAvailableCapacity();
         appleSeedCost = calculateSeedCost(2.89, 2.59);
@@ -191,6 +204,34 @@ public class MarketBuyUIController {
      */
     private void updateAvailableCapacity() {
         availableInventory.setText("" + farmer.getAvailableCapacity() + " seeds");
+    }
+
+    /**
+     * This helper method helps get the current quantities of the seeds that the farmer object has.
+     */
+    private void getQuantities() {
+        appleQuantity = 0;
+        potatoQuantity = 0;
+        cornQuantity = 0;
+
+        for (Seed s : farmer.getSeedBag()) {
+            if (s.getName().toLowerCase().equals("apple")) {
+                appleQuantity = s.getQuantity();
+            } else if (s.getName().toLowerCase().equals("potato")) {
+                potatoQuantity = s.getQuantity();
+            } else if (s.getName().toLowerCase().equals("corn")) {
+                cornQuantity = s.getQuantity();
+            }
+        }
+    }
+    /**
+     * This helper method helps display the quantity of seeds that this farmer has.
+     */
+    private void updateAvailableQuantity() {
+        getQuantities();
+        appleQuantityLabel.setText(String.format("x%02d", appleQuantity));
+        potatoQuantityLabel.setText(String.format("x%02d", potatoQuantity));
+        cornQuantityLabel.setText(String.format("x%02d", cornQuantity));
     }
 
     /**
@@ -257,6 +298,7 @@ public class MarketBuyUIController {
             Seed s = new Seed(seedName, quantity);
             farmer.addSeed(s);
             farmer.pay(seedCost * quantity);
+            updateAvailableQuantity();
             updateAvailableCapacity();
             updateBankAmount();
             resetQuantityAndCostLabels();
@@ -447,7 +489,7 @@ public class MarketBuyUIController {
      */
     @FXML
     void lowerRightMouseRelease(MouseEvent event) {
-        ((Button) event.getSource()).setStyle("-fx-background-color:  #15ad86;"
+        ((Button) event.getSource()).setStyle("-fx-background-color: #15ad86;"
                 + " -fx-background-radius: 10;");
     }
 
