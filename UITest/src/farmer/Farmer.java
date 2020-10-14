@@ -2,6 +2,7 @@ package farmer;
 import exceptions.InsufficientFundsException;
 import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
+import farm.objects.Field;
 import seed.Seed;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class Farmer {
     private int inventoryCapacity;
     private int availableCapacity;
     private String customSkin;
+    private Field field;
 
     /**
      * This constructor instantiates a farmer object for the game.
@@ -28,6 +30,7 @@ public class Farmer {
         this.customSkin = customSkin;
         setMoney(this.experienceLevel);
         setInventoryCapacity(this.experienceLevel);
+        field = new Field(3,4);
     }
 
     /**
@@ -214,5 +217,9 @@ public class Farmer {
      */
     public String getExperienceLevel() {
         return experienceLevel;
+    }
+
+    public Field getField() {
+        return field;
     }
 }
