@@ -2,6 +2,7 @@ package farm.objects;
 
 import exceptions.EmptyPlotException;
 import exceptions.ImmatureHarvestException;
+import farmer.Farmer;
 import seed.Seed;
 import java.util.Random;
 
@@ -24,12 +25,12 @@ public class Plot {
         crop = new Crop(seed, growthStage);
     }
 
-    public void harvest() throws ImmatureHarvestException, EmptyPlotException {
+    public void harvest(Farmer farmer) throws ImmatureHarvestException, EmptyPlotException {
         if (crop == null) {
             throw new EmptyPlotException();
         }
         if (crop.getGrowthStage() == 2) {
-            //*TODO*: add crop to inventory
+            farmer.addSeed(crop.getSeed());
             this.crop = null;
         } else {
             throw new ImmatureHarvestException();
