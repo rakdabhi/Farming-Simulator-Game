@@ -51,7 +51,8 @@ public class InventoryUIController {
     // |     Initialize Settings     |
     // |                             |
 
-    public void initInventoryUI(Farmer f, Season s, MainPanelUIController mpu, PlotUIController plotu) {
+    public void initInventoryUI(Farmer f, Season s,
+                                MainPanelUIController mpu, PlotUIController plotu) {
         this.farmer = f;
         this.season = s;
         this.mpu = mpu;
@@ -90,7 +91,8 @@ public class InventoryUIController {
     }
 
     public void handleMarketButton(ActionEvent event) throws IOException {
-        FXMLLoader loadMarketBuy = new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
+        FXMLLoader loadMarketBuy =
+                new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
         Parent root = loadMarketBuy.load();
         MarketBuyUIController mbu = loadMarketBuy.getController();
         mbu.initMarketBuy(farmer, season);

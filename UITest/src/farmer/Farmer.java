@@ -30,11 +30,12 @@ public class Farmer {
         this.customSkin = customSkin;
         setMoney(this.experienceLevel);
         setInventoryCapacity(this.experienceLevel);
-        field = new Field(3,4);
+        field = new Field(3, 4);
     }
 
     /**
-     * This method sets the starting inventory capacity of the farmer based on their experience level.
+     * This method sets the starting inventory capacity of the farmer
+     * based on their experience level.
      * @param experienceLevel the experience level of the farmer
      */
     public void setInventoryCapacity(String experienceLevel) {
@@ -140,7 +141,8 @@ public class Farmer {
      * @throws InsufficientInventorySpaceException if there is insufficient space in the inventory
      * @throws SeedChoiceNotFoundException if there is no seed in this inventory
      */
-    public void removeSeed(Seed seed) throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
+    public void removeSeed(Seed seed)
+            throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
         boolean isInSeedBag = false;
         for (Seed s : seedBag) {
             if (s.getName().toLowerCase().equals(seed.getName().toLowerCase())) {
@@ -155,7 +157,8 @@ public class Farmer {
             }
         }
         if (!isInSeedBag) {
-            throw new SeedChoiceNotFoundException("You currently don't have any seeds of this kind in your inventory!");
+            throw new SeedChoiceNotFoundException("You currently don't have any seeds of this kind "
+                                                + "in your inventory!");
         }
     }
 

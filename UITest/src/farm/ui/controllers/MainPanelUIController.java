@@ -65,7 +65,8 @@ public class MainPanelUIController {
     // |     Initialize Settings     |
     // |                             |
 
-    public void initMainPanelUI(Farmer f, Season s, PlotUIController plotu, InventoryUIController invu) {
+    public void initMainPanelUI(Farmer f, Season s,
+                                PlotUIController plotu, InventoryUIController invu) {
         this.farmer = f;
         this.season = s;
         this.plotu = plotu;
