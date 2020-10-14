@@ -132,10 +132,11 @@ public class PlotUIController {
                 }
             }
             if (!MainPanelUIController.getSowPress() && !MainPanelUIController.getWaterPress()) {
-                farmer.getField().getPlot(column, row).harvest();
+                farmer.getField().getPlot(column, row).harvest(farmer);
                 displayCrops();
             }
             //handle sow and water press
+
         } catch (ImmatureHarvestException i) {
             alertPopUp("Attempted Infanticide", i.getMessage());
         } catch (EmptyPlotException empty) {
