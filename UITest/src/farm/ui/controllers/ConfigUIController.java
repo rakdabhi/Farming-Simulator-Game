@@ -279,7 +279,7 @@ public class ConfigUIController {
      * @param errorHeader the error header for the message
      * @param message the error message
      */
-    private void alertPopUp(String errorHeader, String message) {
+    static void alertPopUp(String errorHeader, String message) {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Error");
         a.setHeaderText(errorHeader);
