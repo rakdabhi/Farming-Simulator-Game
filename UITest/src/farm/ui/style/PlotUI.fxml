@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.PlotUIController">
    <children>
@@ -126,6 +127,11 @@
                   </Group>
                </children>
             </GridPane>
+            <Label layoutX="225.0" layoutY="3.0" prefHeight="42.0" prefWidth="279.0" text="Click on a plot to harvest a crop!">
+               <font>
+                  <Font name="Impact" size="21.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="rightPaneWrapper" prefHeight="793.0" prefWidth="63.0" />

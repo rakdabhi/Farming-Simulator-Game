@@ -65,14 +65,14 @@
       <Rectangle fill="#d40707" height="30.0" layoutX="798.0" layoutY="260.0" stroke="TRANSPARENT" strokeType="INSIDE" width="149.0" />
       <Line endX="159.0" endY="-46.800018310546875" fill="WHITE" layoutX="708.0" layoutY="266.0" startX="89.0" startY="-6.0" stroke="WHITE" strokeWidth="6.0" />
       <Line endX="216.5" endY="-11.0" fill="WHITE" layoutX="730.0" layoutY="271.0" startX="139.0" startY="-51.800018310546875" stroke="WHITE" strokeWidth="6.0" />
-      <Rectangle fill="#d40707" height="144.0" layoutX="774.0" layoutY="312.0" stroke="#a8070759" strokeType="INSIDE" width="191.0" />
+      <Rectangle fill="#d40707" height="144.0" layoutX="774.0" layoutY="312.0" stroke="#a8070759" strokeType="INSIDE" strokeWidth="3.0" width="191.0" />
       <Line endX="127.20001220703125" endY="-51.600006103515625" fill="WHITE" layoutX="668.0" layoutY="314.0" startX="105.66668701171875" startY="-1.5" stroke="WHITE" strokeWidth="6.0" />
-      <Line endX="100.0" endY="53.999969482421875" layoutX="706.0" layoutY="402.0" startX="100.0" startY="-90.0" stroke="#a6080859" />
-      <Line endX="100.0" endY="53.999969482421875" layoutX="738.0" layoutY="402.0" startX="100.0" startY="-90.0" stroke="#a6080859" />
-      <Line endX="100.5" endY="70.99996948242188" layoutX="769.0" layoutY="385.0" startX="100.5" startY="-73.0" stroke="#a6080859" />
-      <Line endX="100.00006103515625" endY="54.999969482421875" layoutX="799.0" layoutY="401.0" startX="100.00006103515625" startY="-89.0" stroke="#a6080859" />
-      <Line endX="100.00006103515625" endY="54.999969482421875" layoutX="829.0" layoutY="401.0" startX="100.00006103515625" startY="-89.0" stroke="#a6080859" />
-      <Rectangle fill="#000000c6" height="42.0" layoutX="847.0" layoutY="254.0" stroke="TRANSPARENT" strokeType="INSIDE" width="42.0" />
+      <Line endX="100.0" endY="53.999969482421875" layoutX="706.0" layoutY="402.0" startX="100.0" startY="-90.0" stroke="#a6080859" strokeWidth="2.0" />
+      <Line endX="100.0" endY="53.999969482421875" layoutX="738.0" layoutY="402.0" startX="100.0" startY="-90.0" stroke="#a6080859" strokeWidth="2.0" />
+      <Line endX="100.5" endY="70.99996948242188" layoutX="769.0" layoutY="385.0" startX="100.5" startY="-73.0" stroke="#a6080859" strokeWidth="2.0" />
+      <Line endX="100.00006103515625" endY="54.999969482421875" layoutX="801.0" layoutY="401.0" startX="100.00006103515625" startY="-89.0" stroke="#a6080859" strokeWidth="2.0" />
+      <Line endX="100.00006103515625" endY="54.999969482421875" layoutX="833.0" layoutY="401.0" startX="100.00006103515625" startY="-89.0" stroke="#a6080859" strokeWidth="2.0" />
+      <Rectangle fill="#000000c6" height="42.0" layoutX="847.0" layoutY="254.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
       <Rectangle fill="#d40707" height="47.0" layoutX="844.0" layoutY="385.0" scaleX="2.0" scaleY="2.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="51.0" />
       <Line endX="140.0" endY="56.0" layoutX="753.0" layoutY="375.0" scaleX="2.0" scaleY="2.0" startX="92.933349609375" startY="11.533340454101562" stroke="WHITE" strokeWidth="2.0" />
       <Line endX="83.4666748046875" endY="45.26666259765625" layoutX="763.0" layoutY="385.0" scaleX="2.0" scaleY="2.0" startX="130.4" startY="1.5" stroke="WHITE" strokeWidth="2.0" />
