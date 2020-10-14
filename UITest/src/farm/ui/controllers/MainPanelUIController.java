@@ -99,6 +99,14 @@ public class MainPanelUIController {
 
     @FXML
     void handleInventoryButton(ActionEvent event) throws IOException {
+        String notHighlighted = "-fx-background-color: #15ad86; -fx-background-radius: 10";
+        if (waterPress) {
+            waterButton.setStyle(notHighlighted);
+            waterPress = false;
+        } else if (sowPress) {
+            sowButton.setStyle(notHighlighted);
+            sowPress = false;
+        }
         plotu.setRightPaneWrapper(invu.getRightPaneInventory());
     }
 
