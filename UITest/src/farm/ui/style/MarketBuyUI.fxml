@@ -42,6 +42,17 @@
                   <Insets left="40.0" />
                </GridPane.margin>
             </Group>
+            <Label fx:id="appleQuantityLabel" text="x00">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" top="106.0" />
+               </GridPane.margin>
+            </Label>
             <Button fx:id="potatoButton" alignment="CENTER" mnemonicParsing="false" onAction="#seedOnAction" onMouseEntered="#potatoButtonMouseEnter" onMousePressed="#seedRightMousePress" onMouseReleased="#seedRightMouseRelease" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Group fx:id="potatoImage" accessibleRole="BUTTON" scaleX="0.8" scaleY="0.8" scaleZ="0.8" GridPane.columnIndex="1">
                <children>
@@ -59,6 +70,17 @@
                   <Insets left="35.0" />
                </GridPane.margin>
             </Group>
+            <Label fx:id="potatoQuantityLabel" text="x00" GridPane.columnIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" top="106.0" />
+               </GridPane.margin>
+            </Label>
             <Button fx:id="cornButton" alignment="CENTER" mnemonicParsing="false" onAction="#seedOnAction" onMouseEntered="#cornButtonMouseEnter" onMousePressed="#seedRightMousePress" onMouseReleased="#seedRightMouseRelease" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Group fx:id="cornImage" accessibleRole="BUTTON" scaleX="0.8" scaleY="0.8" scaleZ="0.8" GridPane.columnIndex="2">
                <children>
@@ -69,6 +91,17 @@
                   <Insets left="41.0" />
                </GridPane.margin>
             </Group>
+            <Label fx:id="cornQuantityLabel" text="x00" GridPane.columnIndex="2">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" top="106.0" />
+               </GridPane.margin>
+            </Label>
             <Button fx:id="button16" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <Button fx:id="button4" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
             <Button fx:id="button5" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

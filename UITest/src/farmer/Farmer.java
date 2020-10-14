@@ -119,17 +119,19 @@ public class Farmer {
     public void addSeed(Seed seed) {
         if (seed.getQuantity() > availableCapacity) {
             throw new InsufficientInventorySpaceException();
-        }
-        if (holds(seed)) {
+        } else {
+            boolean isInSeedBag = false;
             for (Seed s : seedBag) {
                 if (s.getName().toLowerCase().equals(seed.getName().toLowerCase())) {
                     s.addQuantity(seed.getQuantity());
+                    isInSeedBag = true;
                 }
             }
-        } else {
-            seedBag.add(seed);
+            if (!isInSeedBag) {
+                seedBag.add(seed);
+            }
+            availableCapacity -= seed.getQuantity();
         }
-        availableCapacity -= seed.getQuantity();
     }
 
     /**
@@ -139,36 +141,22 @@ public class Farmer {
      * @throws SeedChoiceNotFoundException if there is no seed in this inventory
      */
     public void removeSeed(Seed seed) throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
-        if (holds(seed)) {
-            for (Seed s : seedBag) {
-                if (s.getName().toLowerCase().equals(seed.getName().toLowerCase())) {
-                    if (seed.getQuantity() > s.getQuantity()) {
-                        throw new InsufficientInventorySpaceException("You currently don't have enough"
-                                + " seeds of this kind in your inventory!");
-                    } else {
-                        s.removeQuantity(seed.getQuantity());
-                        availableCapacity += seed.getQuantity();
-                    }
-                }
-            }
-
-        } else {
-            throw new SeedChoiceNotFoundException("You currently don't have any seeds of this kind in your inventory!");
-        }
-    }
-
-    /**
-     * This helper method searches to see whether a seed is in seedBag or not.
-     * @param seed the seed to be found
-     * @return whether the seed is in seedBag or not
-     */
-    private Boolean holds(Seed seed) {
+        boolean isInSeedBag = false;
         for (Seed s : seedBag) {
             if (s.getName().toLowerCase().equals(seed.getName().toLowerCase())) {
-                return true;
+                if (seed.getQuantity() > s.getQuantity()) {
+                    throw new InsufficientInventorySpaceException("You currently don't have enough"
+                            + " seeds of this kind in your inventory to remove!");
+                } else {
+                    s.removeQuantity(seed.getQuantity());
+                    availableCapacity += seed.getQuantity();
+                    isInSeedBag = true;
+                }
             }
         }
-        return false;
+        if (!isInSeedBag) {
+            throw new SeedChoiceNotFoundException("You currently don't have any seeds of this kind in your inventory!");
+        }
     }
 
     /**
