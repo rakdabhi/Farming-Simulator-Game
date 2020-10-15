@@ -205,7 +205,4 @@ public class InventoryUIController {
         ((Button) event.getSource()).setStyle("-fx-background-color:  #22d2a3;"
                 + " -fx-background-radius: 10;");
     }
-
 }
-
-
