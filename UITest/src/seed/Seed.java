@@ -1,7 +1,6 @@
 package seed;
 
 import exceptions.InsufficientInventorySpaceException;
-import exceptions.SeedChoiceNotFoundException;
 
 public class Seed {
     private String name;

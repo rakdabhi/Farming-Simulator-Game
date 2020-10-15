@@ -1,7 +1,5 @@
 package farm.ui.controllers;
 
-import exceptions.InsufficientFundsException;
-import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
 import farmer.Farmer;
 import javafx.animation.RotateTransition;
@@ -248,7 +246,8 @@ public class MarketSellUIController {
      */
     @FXML
     void handleBuyTab(ActionEvent event) throws IOException {
-        FXMLLoader loadMarketBuy = new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
+        FXMLLoader loadMarketBuy =
+                new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
         Parent root = loadMarketBuy.load();
         MarketBuyUIController mbu = loadMarketBuy.getController();
         mbu.initMarketBuy(farmer, season);
@@ -270,11 +269,13 @@ public class MarketSellUIController {
         Parent root = nextPage.load();
         PlotUIController plotController = nextPage.getController();
 
-        FXMLLoader loadMain = new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
+        FXMLLoader loadMain =
+                new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
         loadMain.load();
         MainPanelUIController mainPanelController = loadMain.getController();
 
-        FXMLLoader loadInventory = new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
+        FXMLLoader loadInventory =
+                new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
         loadInventory.load();
         InventoryUIController inventoryController = loadInventory.getController();
 
@@ -409,7 +410,8 @@ public class MarketSellUIController {
             seedSelectActions(cornButton, appleButton, potatoButton);
         }
         itemName.setText(seedChoice);
-        itemDescription.setText(String.format("The current selling price for one %s Seed in the %s Season is $%,.2f!",
+        itemDescription.setText(String.format("The current selling price for "
+                        + "one %s Seed in the %s Season is $%,.2f!",
                 seedChoice, season.getSeason(), seedCost));
     }
 

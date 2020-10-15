@@ -10,9 +10,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import season.Season;
@@ -22,9 +25,48 @@ import java.io.IOException;
 
 public class InventoryUIController {
 
+    private int appleQuantity;
+    private int potatoQuantity;
+    private int cornQuantity;
+
+    @FXML
+    private Label appleQuantityLabel;
+
+    @FXML
+    private Label potatoQuantityLabel;
+
+    @FXML
+    private Label cornQuantityLabel;
+
     private PlotUIController plotu;
 
+    @FXML
+    private SVGPath appleSeedInventory;
+
+    @FXML
+    private SVGPath potatoSeedInventory;
+
+    @FXML
+    private SVGPath cornSeedInventory;
+
+    @FXML
+    private Label numAppleSeeds;
+
+    @FXML
+    private Label numPotatoSeeds;
+
+    @FXML
+    private Label numCornSeeds;
+
+    @FXML
+    private Label cornLabel;
+
     private MainPanelUIController mpu;
+    @FXML
+    private Label potatoLabel;
+
+    @FXML
+    private Label appleLabel;
 
     @FXML
     private TableView<Seed> inventoryList;
@@ -56,6 +98,35 @@ public class InventoryUIController {
         this.season = s;
         this.mpu = mpu;
         this.plotu = plotu;
+        updateAvailableQuantity();
+    }
+
+    /**
+     * This helper method helps get the current quantities of the seeds that the farmer object has.
+     */
+    private void getQuantities() {
+        appleQuantity = 0;
+        potatoQuantity = 0;
+        cornQuantity = 0;
+
+        for (Seed s : farmer.getSeedBag()) {
+            if (s.getName().toLowerCase().equals("apple")) {
+                appleQuantity = s.getQuantity();
+            } else if (s.getName().toLowerCase().equals("potato")) {
+                potatoQuantity = s.getQuantity();
+            } else if (s.getName().toLowerCase().equals("corn")) {
+                cornQuantity = s.getQuantity();
+            }
+        }
+    }
+    /**
+     * This helper method helps display the quantity of seeds that this farmer has.
+     */
+    private void updateAvailableQuantity() {
+        getQuantities();
+        appleQuantityLabel.setText(String.format("x%02d", appleQuantity));
+        potatoQuantityLabel.setText(String.format("x%02d", potatoQuantity));
+        cornQuantityLabel.setText(String.format("x%02d", cornQuantity));
     }
 
 
@@ -63,10 +134,12 @@ public class InventoryUIController {
     // |                             |
 
     public void setFarmer(Farmer f) {
+        farmer = f;
 
     }
 
     public void setSeason(Season s) {
+        season = s;
 
     }
 
@@ -133,8 +206,6 @@ public class InventoryUIController {
                 + " -fx-background-radius: 10;");
     }
 
-    // |  Table Population +  Behavior  |
-    // |                                |
-
-
 }
+
+

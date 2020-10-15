@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -241,7 +240,8 @@ public class MarketBuyUIController {
      */
     @FXML
     void handleSellTab(ActionEvent event) throws IOException {
-        FXMLLoader loadMarketSell = new FXMLLoader(getClass().getResource("../style/MarketSellUI.fxml"));
+        FXMLLoader loadMarketSell =
+                new FXMLLoader(getClass().getResource("../style/MarketSellUI.fxml"));
         Parent root = loadMarketSell.load();
         MarketSellUIController msu = loadMarketSell.getController();
         msu.initMarketSell(farmer, season);
@@ -259,15 +259,18 @@ public class MarketBuyUIController {
      */
     @FXML
     void handleHomeScreenButton(ActionEvent event) throws IOException {
-        FXMLLoader nextPage = new FXMLLoader(getClass().getResource("../style/PlotUI.fxml"));
+        FXMLLoader nextPage =
+                new FXMLLoader(getClass().getResource("../style/PlotUI.fxml"));
         Parent root = nextPage.load();
         PlotUIController plotController = nextPage.getController();
 
-        FXMLLoader loadMain = new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
+        FXMLLoader loadMain =
+                new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
         loadMain.load();
         MainPanelUIController mainPanelController = loadMain.getController();
 
-        FXMLLoader loadInventory = new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
+        FXMLLoader loadInventory =
+                new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
         loadInventory.load();
         InventoryUIController inventoryController = loadInventory.getController();
 
@@ -291,7 +294,8 @@ public class MarketBuyUIController {
             if (itemName.getText().equals("Item")) {
                 throw new SeedChoiceNotFoundException("Please select a seed to buy!");
             } else if (quantityLabel.getText().equals("0")) {
-                throw new SeedChoiceNotFoundException("Please add some quantity of seeds you'd like to purchase!");
+                throw new SeedChoiceNotFoundException("Please add some quantity of seeds "
+                        + "you'd like to purchase!");
             }
             String seedName = itemName.getText();
             int quantity = Integer.parseInt(quantityLabel.getText());
@@ -397,7 +401,8 @@ public class MarketBuyUIController {
             seedSelectActions(cornButton, appleButton, potatoButton);
         }
         itemName.setText(seedChoice);
-        itemDescription.setText(String.format("The current price for one %s Seed in the %s Season is $%,.2f!",
+        itemDescription.setText(String.format("The current price for "
+                        + "one %s Seed in the %s Season is $%,.2f!",
                 seedChoice, season.getSeason(), seedCost));
     }
 

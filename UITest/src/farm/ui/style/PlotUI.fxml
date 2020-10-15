@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -8,113 +9,131 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.PlotUIController">
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="713.0">
          <children>
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#feca57" height="627.0" layoutX="19.0" layoutY="46.0" strokeType="INSIDE" width="691.0" />
-            <GridPane layoutX="26.0" layoutY="57.0" prefHeight="587.0" prefWidth="665.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <GridPane fx:id="plotGrid" layoutX="26.0" layoutY="57.0" prefHeight="587.0" prefWidth="665.0">
+               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <Group fx:id="plotGroup00" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup00" onMouseClicked="#interact" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="6.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup01" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup01" onMouseClicked="#interact" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup02" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup02" onMouseClicked="#interact" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup03" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup03" onMouseClicked="#interact" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup10" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup10" onMouseClicked="#interact" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup11" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup11" onMouseClicked="#interact" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup12" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup12" onMouseClicked="#interact" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup13" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup13" onMouseClicked="#interact" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup20" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup20" onMouseClicked="#interact" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup21" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup21" onMouseClicked="#interact" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup22" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup22" onMouseClicked="#interact" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
-                  <Group fx:id="plotGroup23" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                  <Group fx:id="plotGroup23" onMouseClicked="#interact" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                      <children>
                         <Arc fill="#bf7949" layoutX="57.0" length="180.0" radiusX="18.0" radiusY="21.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#ce804a" length="180.0" radiusX="61.0" radiusY="58.0" strokeType="INSIDE" type="ROUND" />
                         <Arc fill="#bf7949" layoutX="-59.0" length="180.0" radiusX="19.0" radiusY="20.0" strokeType="INSIDE" type="ROUND" />
+                        <Label layoutX="-80.0" layoutY="3.0" text="Label" />
                      </children>
                   </Group>
                </children>
             </GridPane>
+            <Label alignment="CENTER" layoutX="190.0" prefHeight="42.0" prefWidth="341.0" text="Click on a plot to harvest a crop!">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="21.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rightPaneWrapper" prefHeight="793.0" prefWidth="63.0"/>
+      <AnchorPane fx:id="rightPaneWrapper" prefHeight="793.0" prefWidth="63.0" />
    </children>
 </HBox>

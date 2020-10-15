@@ -5,9 +5,6 @@ import exceptions.FarmerNameNotFoundException;
 import exceptions.SeasonChoiceNotFoundException;
 import exceptions.SeedChoiceNotFoundException;
 import farmer.Farmer;
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import season.Season;
 import seed.Seed;
 import javafx.event.ActionEvent;
@@ -241,21 +238,27 @@ public class ConfigUIController {
             farmer1.setSeedBag(seedBag);
             Season startingSeason = new Season(seasonChoice);
 
-            FXMLLoader nextPage = new FXMLLoader(getClass().getResource("../style/PlotUI.fxml"));
+            FXMLLoader nextPage =
+                    new FXMLLoader(getClass().getResource("../style/PlotUI.fxml"));
             Parent root = nextPage.load();
             PlotUIController plotController = nextPage.getController();
 
-            FXMLLoader loadMain = new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
+            FXMLLoader loadMain =
+                    new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
             loadMain.load();
             MainPanelUIController mainPanelController = loadMain.getController();
 
-            FXMLLoader loadInventory = new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
+            FXMLLoader loadInventory =
+                    new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
             loadInventory.load();
             InventoryUIController inventoryController = loadInventory.getController();
 
-            plotController.initPlotUI(farmer1, startingSeason, mainPanelController, inventoryController);
-            mainPanelController.initMainPanelUI(farmer1, startingSeason, plotController, inventoryController);
-            inventoryController.initInventoryUI(farmer1, startingSeason, mainPanelController, plotController);
+            plotController.initPlotUI(farmer1, startingSeason,
+                    mainPanelController, inventoryController);
+            mainPanelController.initMainPanelUI(farmer1, startingSeason,
+                    plotController, inventoryController);
+            inventoryController.initInventoryUI(farmer1, startingSeason,
+                    mainPanelController, plotController);
 
             Scene nextPageScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -279,7 +282,7 @@ public class ConfigUIController {
      * @param errorHeader the error header for the message
      * @param message the error message
      */
-    private void alertPopUp(String errorHeader, String message) {
+    static void alertPopUp(String errorHeader, String message) {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Error");
         a.setHeaderText(errorHeader);
