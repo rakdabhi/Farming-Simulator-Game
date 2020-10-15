@@ -411,8 +411,8 @@ public class MarketSellUIController {
         }
         itemName.setText(seedChoice);
         itemDescription.setText(String.format("The current selling price for "
-                                            + "one %s Seed in the %s Season is $%,.2f!",
-                                            seedChoice, season.getSeason(), seedCost));
+                        + "one %s Seed in the %s Season is $%,.2f!",
+                seedChoice, season.getSeason(), seedCost));
     }
 
     /**

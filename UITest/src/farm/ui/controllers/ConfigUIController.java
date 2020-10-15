@@ -254,11 +254,11 @@ public class ConfigUIController {
             InventoryUIController inventoryController = loadInventory.getController();
 
             plotController.initPlotUI(farmer1, startingSeason,
-                                      mainPanelController, inventoryController);
+                    mainPanelController, inventoryController);
             mainPanelController.initMainPanelUI(farmer1, startingSeason,
-                                                plotController, inventoryController);
+                    plotController, inventoryController);
             inventoryController.initInventoryUI(farmer1, startingSeason,
-                                                mainPanelController, plotController);
+                    mainPanelController, plotController);
 
             Scene nextPageScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

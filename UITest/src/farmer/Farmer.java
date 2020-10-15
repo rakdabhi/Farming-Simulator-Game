@@ -158,7 +158,7 @@ public class Farmer {
         }
         if (!isInSeedBag) {
             throw new SeedChoiceNotFoundException("You currently don't have any seeds of this kind "
-                                                + "in your inventory!");
+                    + "in your inventory!");
         }
     }
 

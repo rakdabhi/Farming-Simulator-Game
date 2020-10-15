@@ -1,3 +1,4 @@
+
 package farm.ui.controllers;
 
 
@@ -82,8 +83,8 @@ public class PlotUIController {
         this.mpu = mpu;
         this.invu = invu;
         plotArray = new Group[][]{{plotGroup00, plotGroup01, plotGroup02, plotGroup03},
-                                  {plotGroup10, plotGroup11, plotGroup12, plotGroup13},
-                                  {plotGroup20, plotGroup21, plotGroup22, plotGroup23}};
+                {plotGroup10, plotGroup11, plotGroup12, plotGroup13},
+                {plotGroup20, plotGroup21, plotGroup22, plotGroup23}};
 
         setRightPaneWrapper(mpu.getRightPaneMain());
 
@@ -144,5 +145,3 @@ public class PlotUIController {
         }
     }
 }
-
-

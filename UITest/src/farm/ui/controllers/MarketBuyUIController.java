@@ -295,7 +295,7 @@ public class MarketBuyUIController {
                 throw new SeedChoiceNotFoundException("Please select a seed to buy!");
             } else if (quantityLabel.getText().equals("0")) {
                 throw new SeedChoiceNotFoundException("Please add some quantity of seeds "
-                                                    + "you'd like to purchase!");
+                        + "you'd like to purchase!");
             }
             String seedName = itemName.getText();
             int quantity = Integer.parseInt(quantityLabel.getText());
@@ -402,8 +402,8 @@ public class MarketBuyUIController {
         }
         itemName.setText(seedChoice);
         itemDescription.setText(String.format("The current price for "
-                                            + "one %s Seed in the %s Season is $%,.2f!",
-                                            seedChoice, season.getSeason(), seedCost));
+                        + "one %s Seed in the %s Season is $%,.2f!",
+                seedChoice, season.getSeason(), seedCost));
     }
 
     /**
