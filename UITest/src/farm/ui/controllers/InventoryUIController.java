@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
@@ -93,7 +92,8 @@ public class InventoryUIController {
     // |     Initialize Settings     |
     // |                             |
 
-    public void initInventoryUI(Farmer f, Season s, MainPanelUIController mpu, PlotUIController plotu) {
+    public void initInventoryUI(Farmer f, Season s,
+                                MainPanelUIController mpu, PlotUIController plotu) {
         this.farmer = f;
         this.season = s;
         this.mpu = mpu;
@@ -122,7 +122,7 @@ public class InventoryUIController {
     /**
      * This helper method helps display the quantity of seeds that this farmer has.
      */
-    private void updateAvailableQuantity() {
+    void updateAvailableQuantity() {
         getQuantities();
         appleQuantityLabel.setText(String.format("x%02d", appleQuantity));
         potatoQuantityLabel.setText(String.format("x%02d", potatoQuantity));
@@ -163,7 +163,8 @@ public class InventoryUIController {
     }
 
     public void handleMarketButton(ActionEvent event) throws IOException {
-        FXMLLoader loadMarketBuy = new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
+        FXMLLoader loadMarketBuy =
+                new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
         Parent root = loadMarketBuy.load();
         MarketBuyUIController mbu = loadMarketBuy.getController();
         mbu.initMarketBuy(farmer, season);
