@@ -1,4 +1,4 @@
-=======
+
 package exceptions;
 
 public class EmptyPlotException extends Exception {
