@@ -253,12 +253,18 @@ public class ConfigUIController {
             loadInventory.load();
             InventoryUIController inventoryController = loadInventory.getController();
 
+            FXMLLoader loadInspect =
+                    new FXMLLoader(getClass().getResource("../style/PlantInspectUI.fxml"));
+            loadInspect.load();
+            PlantInspectUIController inspectController = loadInspect.getController();
+
             plotController.initPlotUI(farmer1, startingSeason,
-                    mainPanelController, inventoryController);
+                    mainPanelController, inventoryController, inspectController);
             mainPanelController.initMainPanelUI(farmer1, startingSeason,
-                    plotController, inventoryController);
+                    plotController, inventoryController, inspectController);
             inventoryController.initInventoryUI(farmer1, startingSeason,
                     mainPanelController, plotController);
+            inspectController.initPlantInspectUI(farmer1, startingSeason, plotController, mainPanelController);
 
             Scene nextPageScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -71,17 +71,20 @@ public class PlotUIController {
 
     private InventoryUIController invu;
 
+    private PlantInspectUIController piu;
+
     private Group[][] plotArray;
 
     // |     Initialize Settings     |
     // |                             |
 
     public void initPlotUI(Farmer f, Season s, MainPanelUIController mpu,
-                           InventoryUIController invu) {
+                           InventoryUIController invu, PlantInspectUIController piu) {
         this.farmer = f;
         this.season = s;
         this.mpu = mpu;
         this.invu = invu;
+        this.piu = piu;
         plotArray = new Group[][]{{plotGroup00, plotGroup01, plotGroup02, plotGroup03},
                                   {plotGroup10, plotGroup11, plotGroup12, plotGroup13},
                                   {plotGroup20, plotGroup21, plotGroup22, plotGroup23}};
@@ -113,36 +116,50 @@ public class PlotUIController {
         }
     }
 
+    void updateRightPaneInspect(Crop crop) {
+        if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
+            String text = (crop == null) ? "Empty\n\n" : crop.getSeed().getName();
+            piu.setPlantNameLabel(text);
+
+            if (crop != null) {
+                piu.setGrowthMeter(crop.getGrowthStage());
+                piu.setWaterMeter(crop.getWaterLevel());
+            } else {
+                piu.setGrowthMeter(-1);
+                piu.setWaterMeter(0);
+            }
+        }
+    }
+
     @FXML
     public void interact(MouseEvent e) {
         try {
             Node source = (Node) e.getSource();
-            int column = 0;
-            int row = 0;
-            boolean found = false;
-            for (row = 0; row < farmer.getField().getRows(); row++) {
-                for (column = 0; column < farmer.getField().getColumns(); column++) {
-                    int index = farmer.getField().getRows() * column + row;
-                    if (source == plotGrid.getChildren().get(index)) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) {
-                    break;
-                }
-            }
-            if (!MainPanelUIController.getSowPress() && !MainPanelUIController.getWaterPress()) {
+            String s = source.toString();
+            int column = Integer.parseInt(source.toString().substring(18, 19));
+            int row = Integer.parseInt(source.toString().substring(19, 20));
+            Crop crop = farmer.getField().getPlot(column, row).getCrop();
+
+            updateRightPaneInspect(crop);
+
+            //handle sowPress
+            if (PlantInspectUIController.getSowPress() && crop != null) {
                 farmer.getField().getPlot(column, row).harvest(farmer);
                 displayCrops();
+                updateRightPaneInspect(null);
                 invu.updateAvailableQuantity();
             }
-            //handle sow and water press
 
+            //handle waterPress
+            if (PlantInspectUIController.getWaterPress() && crop != null) {
+                crop.setWaterLevel(crop.getWaterLevel() + 1);
+                updateRightPaneInspect(crop);
+            }
         } catch (ImmatureHarvestException i) {
             alertPopUp("Attempted Infanticide", i.getMessage());
         } catch (EmptyPlotException empty) {
             alertPopUp("Empty Plot Harvest", empty.getMessage());
         }
     }
+
 }

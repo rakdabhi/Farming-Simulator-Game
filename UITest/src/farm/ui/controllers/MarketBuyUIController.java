@@ -274,9 +274,15 @@ public class MarketBuyUIController {
         loadInventory.load();
         InventoryUIController inventoryController = loadInventory.getController();
 
-        plotController.initPlotUI(farmer, season, mainPanelController, inventoryController);
-        mainPanelController.initMainPanelUI(farmer, season, plotController, inventoryController);
+        FXMLLoader loadInspect =
+                new FXMLLoader(getClass().getResource("../style/PlantInspectUI.fxml"));
+        loadInspect.load();
+        PlantInspectUIController inspectController = loadInspect.getController();
+
+        plotController.initPlotUI(farmer, season, mainPanelController, inventoryController, inspectController);
+        mainPanelController.initMainPanelUI(farmer, season, plotController, inventoryController, inspectController);
         inventoryController.initInventoryUI(farmer, season, mainPanelController, plotController);
+        inspectController.initPlantInspectUI(farmer, season, plotController, mainPanelController);
 
         Scene nextPageScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
