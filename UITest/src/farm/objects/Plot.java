@@ -15,6 +15,7 @@ public class Plot {
         Seed seed;
         int seedType = rand.nextInt(3);
         int growthStage = rand.nextInt(3);
+        int waterLevel = rand.nextInt(5);
         if (seedType == 0) {
             seed = new Seed("Apple", 1);
         } else if (seedType == 1) {
@@ -22,7 +23,7 @@ public class Plot {
         } else {
             seed = new Seed("Corn", 1);
         }
-        crop = new Crop(seed, growthStage);
+        crop = new Crop(seed, growthStage, waterLevel);
     }
 
     public void harvest(Farmer farmer) throws ImmatureHarvestException, EmptyPlotException {
