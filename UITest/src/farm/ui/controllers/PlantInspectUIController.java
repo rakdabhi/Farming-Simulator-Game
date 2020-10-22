@@ -1,5 +1,6 @@
 package farm.ui.controllers;
 
+import farm.objects.Crop;
 import farmer.Farmer;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
@@ -68,6 +69,21 @@ public class PlantInspectUIController {
     private Group sowGraphic;
 
     @FXML
+    private Group growthGraphicPotato;
+
+    @FXML
+    private Group growthGraphicCorn;
+
+    @FXML
+    private Group growthGraphicApple;
+
+    @FXML
+    private SVGPath growthGraphic0;
+
+    @FXML
+    private SVGPath growthGraphic1;
+
+    @FXML
     private SVGPath testPath;
 
     private Farmer farmer;
@@ -104,6 +120,12 @@ public class PlantInspectUIController {
         this.plotu = plotu;
         this.mpu = mpu;
 
+        growthGraphic0.setVisible(false);
+        growthGraphic1.setVisible(false);
+        growthGraphicCorn.setVisible(false);
+        growthGraphicPotato.setVisible(false);
+        growthGraphicApple.setVisible(false);
+
         waterMeterAnimation();
     }
 
@@ -111,25 +133,85 @@ public class PlantInspectUIController {
         plantNameLabel.setText(s);
     }
 
-    void setGrowthMeter(int stage) {
-        if (stage == -1) {
+    void setGrowthMeter(Crop c) {
+
+        if (c == null) {
             growthStage1.setFill(Color.web("#ff9f43"));
             growthStage2.setFill(Color.web("#ff9f43"));
             growthStage3.setFill(Color.web("#ff9f43"));
-        } else if (stage == 0) {
+
+            growthGraphic0.setVisible(false);
+            growthGraphic1.setVisible(false);
+            growthGraphicCorn.setVisible(false);
+            growthGraphicPotato.setVisible(false);
+            growthGraphicApple.setVisible(false);
+
+            return;
+        }
+
+        int stage = c.getGrowthStage();
+
+        if (stage == 0) {
             growthStage1.setFill(Color.web("#15ad86"));
             growthStage2.setFill(Color.web("#ff9f43"));
             growthStage3.setFill(Color.web("#ff9f43"));
+
+            growthGraphic0.setVisible(true);
+            growthGraphic1.setVisible(false);
+            growthGraphicCorn.setVisible(false);
+            growthGraphicPotato.setVisible(false);
+            growthGraphicApple.setVisible(false);
+
         } else if (stage == 1) {
             growthStage1.setFill(Color.web("#15ad86"));
             growthStage2.setFill(Color.web("#15ad86"));
             growthStage3.setFill(Color.web("#ff9f43"));
+
+            growthGraphic0.setVisible(false);
+            growthGraphic1.setVisible(true);
+            growthGraphicCorn.setVisible(false);
+            growthGraphicPotato.setVisible(false);
+            growthGraphicApple.setVisible(false);
         } else {
             growthStage1.setFill(Color.web("#15ad86"));
             growthStage2.setFill(Color.web("#15ad86"));
             growthStage3.setFill(Color.web("#15ad86"));
+
+            growthGraphic0.setVisible(false);
+            growthGraphic1.setVisible(false);
+            growthGraphicCorn.setVisible(false);
+            growthGraphicPotato.setVisible(false);
+            growthGraphicApple.setVisible(false);
+
+            if (c.getSeed().getName().equals("Corn")) {
+                growthGraphicCorn.setVisible(true);
+            } else if (c.getSeed().getName().equals("Potato")) {
+                growthGraphicPotato.setVisible(true);
+            } else if (c.getSeed().getName().equals("Apple")) {
+                growthGraphicApple.setVisible(true);
+            }
         }
     }
+
+    void setWaterMeter(int i) {
+        if (i == 0) {
+            lightWaterLevel.setLayoutY(147);
+            darkWaterLevel.setLayoutY(142);
+        } else if (i == 1) {
+            lightWaterLevel.setLayoutY(119);
+            darkWaterLevel.setLayoutY(116);
+        } else if (i == 2) {
+            lightWaterLevel.setLayoutY(70);
+            darkWaterLevel.setLayoutY(67);
+        } else if (i == 3) {
+            lightWaterLevel.setLayoutY(35);
+            darkWaterLevel.setLayoutY(32);
+        } else if (i == 4) {
+            lightWaterLevel.setLayoutY(3);
+            darkWaterLevel.setLayoutY(0);
+        }
+    }
+
 
     @FXML
     void interact(MouseEvent event) {
@@ -206,25 +288,6 @@ public class PlantInspectUIController {
 
         rt.play();
 
-    }
-
-    void setWaterMeter(int i) {
-        if (i == 0) {
-            lightWaterLevel.setLayoutY(147);
-            darkWaterLevel.setLayoutY(142);
-        } else if (i == 1) {
-            lightWaterLevel.setLayoutY(119);
-            darkWaterLevel.setLayoutY(116);
-        } else if (i == 2) {
-            lightWaterLevel.setLayoutY(70);
-            darkWaterLevel.setLayoutY(67);
-        } else if (i == 3) {
-            lightWaterLevel.setLayoutY(35);
-            darkWaterLevel.setLayoutY(32);
-        } else if (i == 4) {
-            lightWaterLevel.setLayoutY(3);
-            darkWaterLevel.setLayoutY(0);
-        }
     }
 
     void waterMeterAnimation() {

@@ -75,6 +75,8 @@ public class PlotUIController {
 
     private Group[][] plotArray;
 
+
+
     // |     Initialize Settings     |
     // |                             |
 
@@ -122,10 +124,10 @@ public class PlotUIController {
             piu.setPlantNameLabel(text);
 
             if (crop != null) {
-                piu.setGrowthMeter(crop.getGrowthStage());
+                piu.setGrowthMeter(crop);
                 piu.setWaterMeter(crop.getWaterLevel());
             } else {
-                piu.setGrowthMeter(-1);
+                piu.setGrowthMeter(crop);
                 piu.setWaterMeter(0);
             }
         }
@@ -142,10 +144,13 @@ public class PlotUIController {
 
             updateRightPaneInspect(crop);
 
+
             //handle sowPress
+            //harvests crop, updates PlotUI plant graphic to be invisible
             if (PlantInspectUIController.getSowPress() && crop != null) {
                 farmer.getField().getPlot(column, row).harvest(farmer);
                 displayCrops();
+                ((Group) source).getChildren().get(4).setVisible(false);
                 updateRightPaneInspect(null);
                 invu.updateAvailableQuantity();
             }
