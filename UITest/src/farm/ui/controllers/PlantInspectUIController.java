@@ -78,10 +78,10 @@ public class PlantInspectUIController {
     private Group growthGraphicApple;
 
     @FXML
-    private SVGPath growthGraphic0;
+    private Group growthGraphic0;
 
     @FXML
-    private SVGPath growthGraphic1;
+    private Group growthGraphic1;
 
     @FXML
     private SVGPath testPath;
@@ -134,17 +134,19 @@ public class PlantInspectUIController {
     }
 
     void setGrowthMeter(Crop c) {
+        Color unfilled = Color.web("#ff9f43");
+        Color filled = Color.web("#15ad86");
+        Group[] gfx = {growthGraphic0, growthGraphic1, growthGraphicCorn, growthGraphicApple, growthGraphicPotato};
+        Circle[] meter = {growthStage1, growthStage2, growthStage3};
 
         if (c == null) {
-            growthStage1.setFill(Color.web("#ff9f43"));
-            growthStage2.setFill(Color.web("#ff9f43"));
-            growthStage3.setFill(Color.web("#ff9f43"));
+            for (Circle circle : meter) {
+                circle.setFill(unfilled);
+            }
 
-            growthGraphic0.setVisible(false);
-            growthGraphic1.setVisible(false);
-            growthGraphicCorn.setVisible(false);
-            growthGraphicPotato.setVisible(false);
-            growthGraphicApple.setVisible(false);
+            for (Group graphic : gfx) {
+                graphic.setVisible(false);
+            }
 
             return;
         }
@@ -152,43 +154,59 @@ public class PlantInspectUIController {
         int stage = c.getGrowthStage();
 
         if (stage == 0) {
-            growthStage1.setFill(Color.web("#15ad86"));
-            growthStage2.setFill(Color.web("#ff9f43"));
-            growthStage3.setFill(Color.web("#ff9f43"));
+            for (Circle circle : meter) {
+                if (circle == growthStage1) {
+                    circle.setFill(filled);
+                } else {
+                    circle.setFill(unfilled);
+                }
+            }
 
-            growthGraphic0.setVisible(true);
-            growthGraphic1.setVisible(false);
-            growthGraphicCorn.setVisible(false);
-            growthGraphicPotato.setVisible(false);
-            growthGraphicApple.setVisible(false);
+            for (Group graphic : gfx) {
+                if (graphic == growthGraphic0) {
+                    graphic.setVisible(true);
+                } else{
+                    graphic.setVisible(false);
+                }
+            }
+
 
         } else if (stage == 1) {
-            growthStage1.setFill(Color.web("#15ad86"));
-            growthStage2.setFill(Color.web("#15ad86"));
-            growthStage3.setFill(Color.web("#ff9f43"));
+            for (Circle circle : meter) {
+                if (circle != growthStage3) {
+                    circle.setFill(filled);
+                } else {
+                    circle.setFill(unfilled);
+                }
+            }
 
-            growthGraphic0.setVisible(false);
-            growthGraphic1.setVisible(true);
-            growthGraphicCorn.setVisible(false);
-            growthGraphicPotato.setVisible(false);
-            growthGraphicApple.setVisible(false);
+            for (Group graphic : gfx) {
+                if (graphic == growthGraphic1) {
+                    graphic.setVisible(true);
+                } else{
+                    graphic.setVisible(false);
+                }
+            }
+
         } else {
-            growthStage1.setFill(Color.web("#15ad86"));
-            growthStage2.setFill(Color.web("#15ad86"));
-            growthStage3.setFill(Color.web("#15ad86"));
+            for (Circle circle : meter) {
+                circle.setFill(filled);
+            }
 
-            growthGraphic0.setVisible(false);
-            growthGraphic1.setVisible(false);
-            growthGraphicCorn.setVisible(false);
-            growthGraphicPotato.setVisible(false);
-            growthGraphicApple.setVisible(false);
+            for (Group graphic : gfx) {
+                graphic.setVisible(false);
+            }
 
-            if (c.getSeed().getName().equals("Corn")) {
-                growthGraphicCorn.setVisible(true);
-            } else if (c.getSeed().getName().equals("Potato")) {
-                growthGraphicPotato.setVisible(true);
-            } else if (c.getSeed().getName().equals("Apple")) {
-                growthGraphicApple.setVisible(true);
+            switch (c.getSeed().getName()) {
+                case "Corn":
+                    growthGraphicCorn.setVisible(true);
+                    break;
+                case "Potato":
+                    growthGraphicPotato.setVisible(true);
+                    break;
+                case "Apple":
+                    growthGraphicApple.setVisible(true);
+                    break;
             }
         }
     }
