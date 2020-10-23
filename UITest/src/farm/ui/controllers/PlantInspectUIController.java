@@ -7,6 +7,7 @@ import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -83,9 +84,6 @@ public class PlantInspectUIController {
     @FXML
     private Group growthGraphic1;
 
-    @FXML
-    private SVGPath testPath;
-
     private Farmer farmer;
 
     private Season season;
@@ -93,6 +91,16 @@ public class PlantInspectUIController {
     private PlotUIController plotu;
 
     private MainPanelUIController mpu;
+
+    @FXML
+    private Group waterLevelGFX;
+
+    // Variables used in the water level animations //
+    // ___________________________________________//
+    private double centerY;
+
+    private double currentWaterLevel = 0;
+    // ___________________________________________//
 
     private static boolean waterPress;
 
@@ -126,7 +134,8 @@ public class PlantInspectUIController {
         growthGraphicPotato.setVisible(false);
         growthGraphicApple.setVisible(false);
 
-        waterMeterAnimation();
+        centerY = ((Bounds) waterLevelGFX.getLayoutBounds()).getCenterY();
+
     }
 
     void setPlantNameLabel(String s) {
@@ -211,26 +220,6 @@ public class PlantInspectUIController {
         }
     }
 
-    void setWaterMeter(int i) {
-        if (i == 0) {
-            lightWaterLevel.setLayoutY(147);
-            darkWaterLevel.setLayoutY(142);
-        } else if (i == 1) {
-            lightWaterLevel.setLayoutY(119);
-            darkWaterLevel.setLayoutY(116);
-        } else if (i == 2) {
-            lightWaterLevel.setLayoutY(70);
-            darkWaterLevel.setLayoutY(67);
-        } else if (i == 3) {
-            lightWaterLevel.setLayoutY(35);
-            darkWaterLevel.setLayoutY(32);
-        } else if (i == 4) {
-            lightWaterLevel.setLayoutY(3);
-            darkWaterLevel.setLayoutY(0);
-        }
-    }
-
-
     @FXML
     void interact(MouseEvent event) {
 
@@ -308,17 +297,53 @@ public class PlantInspectUIController {
 
     }
 
-    void waterMeterAnimation() {
+    void setWaterMeter(int i) {
+        double yShift = 0;
 
-       /* PathTransition pt = new PathTransition();
-        pt.setDuration(Duration.seconds(2));
-        pt.setPath(testPath);
-        pt.setNode(lightWaterLevel);
-        pt.setCycleCount(Animation.INDEFINITE);
-        pt.setAutoReverse(true);
+        switch(i) {
+            case 0:
+                yShift = 0;
+                break;
+            case 1:
+                yShift = 30;
+                break;
+            case 2:
+                yShift = 70;
+                break;
+            case 3:
+                yShift = 110;
+                break;
+            case 4:
+                yShift = 140;
+                break;
+        }
 
-        pt.play();
-        */
+        double temp = currentWaterLevel;
+        currentWaterLevel = yShift;
+        yShift = yShift - temp;
+        waterMeterAnimation(yShift);
+    }
+
+    void waterMeterAnimation(double y) {
+        Bounds b = waterLevelGFX.getLayoutBounds();
+        Line l = new Line();
+
+        l.setStartX(b.getCenterX());
+        l.setEndX(b.getCenterX());
+        l.setStartY(centerY);
+        l.setEndY(centerY - y);
+
+        centerY = l.getEndY();
+
+        if (y != 0) {
+            PathTransition pt = new PathTransition();
+            pt.setDuration(Duration.seconds(1));
+            pt.setPath(l);
+            pt.setNode(waterLevelGFX);
+            pt.setCycleCount(1);
+
+            pt.play();
+        }
 
     }
 

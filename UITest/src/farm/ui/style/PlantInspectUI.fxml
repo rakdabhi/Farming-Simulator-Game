@@ -37,9 +37,13 @@
             </GridPane>
             <Group fx:id="waterMeter" layoutX="-468.0" layoutY="-220.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff9f43" height="184.0" layoutX="513.0" layoutY="263.0" strokeType="INSIDE" width="50.0" />
-                  <SVGPath fx:id="darkWaterLevel" content="M548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12ZM548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12Z" fill="#24bee2" layoutX="-6.0" layoutY="142.0" scaleY="1.5" />
-                  <SVGPath fx:id="lightWaterLevel" content="M548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12ZM548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12Z" fill="#50dcf8" layoutX="-8.0" layoutY="147.0" scaleY="1.5" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff9f43" height="184.0" layoutX="508.0" layoutY="263.0" strokeType="INSIDE" width="50.0" />
+                  <Group fx:id="waterLevelGFX" layoutX="-7.0" layoutY="19.0">
+                     <children>
+                        <SVGPath fx:id="darkWaterLevel" content="M548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12ZM548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12Z" fill="#24bee2" layoutX="-1.0" layoutY="116.0" scaleY="1.5" />
+                        <SVGPath fx:id="lightWaterLevel" content="M548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12ZM548.79,308.12s-4.73-3.08-8.54,0c0,0-5.55-3.44-10.4,0,0,0-4.73-3.08-8.54,0v107.7h37.88V308.12S553.64,304.68,548.79,308.12Z" fill="#50dcf8" layoutX="-1.0" layoutY="119.0" scaleY="1.5" />
+                     </children>
+                  </Group>
                   <SVGPath content="M501.21,256.6V463.9h78.08V256.6Zm55.06,103.34v73.39c-15.91,21.56-32,0-32,0V287.17c15.91-21.56,32,0,32,0ZM501.21,256.6V463.9h78.08V256.6Zm55.06,103.34v73.39c-15.91,21.56-32,0-32,0V287.17c15.91-21.56,32,0,32,0Z" fill="#feca57" layoutX="-8.0" layoutY="-4.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#feca57" height="184.0" layoutX="503.0" layoutY="442.0" strokeType="INSIDE" width="60.0" />
                </children>
