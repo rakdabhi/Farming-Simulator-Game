@@ -215,19 +215,9 @@ public class MarketSellUIController {
      * This helper method helps get the current quantities of the seeds that the farmer object has.
      */
     private void getQuantities() {
-        appleQuantity = 0;
-        potatoQuantity = 0;
-        cornQuantity = 0;
-
-        for (Seed s : farmer.getSeedBag()) {
-            if (s.getName().toLowerCase().equals("apple")) {
-                appleQuantity = s.getQuantity();
-            } else if (s.getName().toLowerCase().equals("potato")) {
-                potatoQuantity = s.getQuantity();
-            } else if (s.getName().toLowerCase().equals("corn")) {
-                cornQuantity = s.getQuantity();
-            }
-        }
+        appleQuantity = farmer.getSeedBag()[0].getQuantity();
+        potatoQuantity = farmer.getSeedBag()[1].getQuantity();
+        cornQuantity = farmer.getSeedBag()[2].getQuantity();
     }
     /**
      * This helper method helps display the quantity of seeds that this farmer has.

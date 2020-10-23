@@ -2,6 +2,7 @@ package farm.objects;
 
 import exceptions.EmptyPlotException;
 import exceptions.ImmatureHarvestException;
+import exceptions.SeedChoiceNotFoundException;
 import farmer.Farmer;
 import seed.Seed;
 import java.util.Random;
@@ -26,7 +27,7 @@ public class Plot {
         crop = new Crop(seed, growthStage, waterLevel);
     }
 
-    public void harvest(Farmer farmer) throws ImmatureHarvestException, EmptyPlotException {
+    public void harvest(Farmer farmer) throws ImmatureHarvestException, EmptyPlotException, SeedChoiceNotFoundException {
         if (crop == null) {
             throw new EmptyPlotException();
         }

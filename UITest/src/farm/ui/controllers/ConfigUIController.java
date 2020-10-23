@@ -100,21 +100,32 @@ public class ConfigUIController {
         String oldStyle = "-fx-background-color: #15ad86; -fx-background-radius: 10";
         String newStyle = "-fx-background-color: #15936f; -fx-background-radius: 10";
         if (btn == appleButton) {
-            seedChoice = "Apple";
-            appleButton.setStyle(newStyle);
-            potatoButton.setStyle(oldStyle);
-            cornButton.setStyle(oldStyle);
+            setSeedandSytle("Apple", newStyle, oldStyle,
+                    appleButton, potatoButton, cornButton);
         } else if (btn == potatoButton) {
-            seedChoice = "Potato";
-            appleButton.setStyle(oldStyle);
-            potatoButton.setStyle(newStyle);
-            cornButton.setStyle(oldStyle);
+            setSeedandSytle("Potato", newStyle, oldStyle,
+                    potatoButton, appleButton, cornButton);
         } else {
-            seedChoice = "Corn";
-            appleButton.setStyle(oldStyle);
-            potatoButton.setStyle(oldStyle);
-            cornButton.setStyle(newStyle);
+            setSeedandSytle("Corn", newStyle, oldStyle,
+                    cornButton, potatoButton, appleButton);
         }
+    }
+
+    /**
+     * This helper method helps set the style of a button and sets the seed choice to the selected seed's name.
+     * @param seedChoiceName the name of the seed
+     * @param newStyle the new style
+     * @param oldStyle the old style
+     * @param withNewStyle the button with the new style
+     * @param withOldStyle1 the button with the old style
+     * @param withOldStyle2 the button with the old style
+     */
+    private void setSeedandSytle(String seedChoiceName, String newStyle, String oldStyle,
+                                 Button withNewStyle, Button withOldStyle1, Button withOldStyle2) {
+        seedChoice = seedChoiceName;
+        withNewStyle.setStyle(newStyle);
+        withOldStyle1.setStyle(oldStyle);
+        withOldStyle2.setStyle(oldStyle);
     }
 
     /**
@@ -204,25 +215,13 @@ public class ConfigUIController {
     public void startButtonOnAction(ActionEvent event) throws Exception {
         String farmerName = inputName.getCharacters().toString();
         String difficultyLevel = difficultyChoice;
-        ArrayList<Seed> seedBag = new ArrayList<Seed>();
 
         try {
 
             if ((farmerName.equals("")) || (farmerName.strip().equals(""))) {
                 throw new FarmerNameNotFoundException();
             }
-
-            if (seedChoice.equals("Apple")) {
-                Seed appleSeed = new Seed("Apple");
-                seedBag.add(appleSeed);
-            } else if (seedChoice.equals("Potato")) {
-                Seed potatoSeed = new Seed("Potato");
-                seedBag.add(potatoSeed);
-            } else if (seedChoice.equals("Corn")) {
-                Seed cornSeed = new Seed("Corn");
-                seedBag.add(cornSeed);
-            }
-            if (seedBag.size() == 0) {
+            if (seedChoice.length() == 0) {
                 throw new SeedChoiceNotFoundException();
             }
 
@@ -235,7 +234,7 @@ public class ConfigUIController {
             }
 
             Farmer farmer1 = new Farmer(farmerName, difficultyLevel, customSkin);
-            farmer1.setSeedBag(seedBag);
+            farmer1.addSeed(new Seed(seedChoice));
             Season startingSeason = new Season(seasonChoice);
 
             FXMLLoader nextPage =

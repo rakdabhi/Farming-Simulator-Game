@@ -31,7 +31,9 @@ public class Crop {
         }
     }
 
-    public int getWaterLevel() {return this.waterLevel;}
+    public int getWaterLevel() {
+        return this.waterLevel;
+    }
 
     public int getGrowthStage() {
         return this.growthStage;

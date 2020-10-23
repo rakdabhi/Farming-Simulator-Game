@@ -21,14 +21,14 @@
          <children>
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#feca57" height="415.0" layoutX="19.0" layoutY="19.0" strokeType="INSIDE" width="320.0" />
             <GridPane layoutX="262.0" layoutY="72.0" prefHeight="127.0" prefWidth="54.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="62.77665710449219" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="62.77665710449219" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="96.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+               </rowConstraints>
                <children>
                   <Circle fx:id="growthStage1" fill="#15ad86" radius="15.0" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <Circle fx:id="growthStage2" fill="#ff9f43" radius="15.0" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

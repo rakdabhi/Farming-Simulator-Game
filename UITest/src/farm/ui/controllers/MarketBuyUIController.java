@@ -209,19 +209,9 @@ public class MarketBuyUIController {
      * This helper method helps get the current quantities of the seeds that the farmer object has.
      */
     private void getQuantities() {
-        appleQuantity = 0;
-        potatoQuantity = 0;
-        cornQuantity = 0;
-
-        for (Seed s : farmer.getSeedBag()) {
-            if (s.getName().toLowerCase().equals("apple")) {
-                appleQuantity = s.getQuantity();
-            } else if (s.getName().toLowerCase().equals("potato")) {
-                potatoQuantity = s.getQuantity();
-            } else if (s.getName().toLowerCase().equals("corn")) {
-                cornQuantity = s.getQuantity();
-            }
-        }
+        appleQuantity = farmer.getSeedBag()[0].getQuantity();
+        potatoQuantity = farmer.getSeedBag()[1].getQuantity();
+        cornQuantity = farmer.getSeedBag()[2].getQuantity();
     }
     /**
      * This helper method helps display the quantity of seeds that this farmer has.
@@ -305,13 +295,20 @@ public class MarketBuyUIController {
             }
             String seedName = itemName.getText();
             int quantity = Integer.parseInt(quantityLabel.getText());
-            Seed s = new Seed(seedName, quantity);
-            farmer.addSeed(s);
-            farmer.pay(seedCost * quantity);
-            updateAvailableQuantity();
-            updateAvailableCapacity();
-            updateBankAmount();
-            resetQuantityAndCostLabels();
+            if (quantity > farmer.getAvailableCapacity()) {
+                throw new InsufficientInventorySpaceException();
+            }
+            if (seedCost * quantity > farmer.getMoney()) {
+                throw new InsufficientFundsException();
+            } else {
+                Seed s = new Seed(seedName, quantity);
+                farmer.addSeed(s);
+                farmer.pay(seedCost * quantity);
+                updateAvailableQuantity();
+                updateAvailableCapacity();
+                updateBankAmount();
+                resetQuantityAndCostLabels();
+            }
         } catch (SeedChoiceNotFoundException s) {
             if (quantityLabel.getText().equals("0") && !itemName.getText().equals("Item")) {
                 alertPopUp("No Quantity Chosen", s.getMessage());
