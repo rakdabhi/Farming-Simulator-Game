@@ -4,6 +4,7 @@ package farm.ui.controllers;
 
 import exceptions.EmptyPlotException;
 import exceptions.ImmatureHarvestException;
+import exceptions.SeedChoiceNotFoundException;
 import farm.objects.Crop;
 import farmer.Farmer;
 import javafx.scene.Node;
@@ -164,6 +165,8 @@ public class PlotUIController {
             alertPopUp("Attempted Infanticide", i.getMessage());
         } catch (EmptyPlotException empty) {
             alertPopUp("Empty Plot Harvest", empty.getMessage());
+        } catch (SeedChoiceNotFoundException seedChoiceNotFoundException) {
+            seedChoiceNotFoundException.printStackTrace();
         }
     }
 

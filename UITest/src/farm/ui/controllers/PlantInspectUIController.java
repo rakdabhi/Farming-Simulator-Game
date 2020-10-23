@@ -1,3 +1,4 @@
+
 package farm.ui.controllers;
 
 import farm.objects.Crop;
@@ -122,7 +123,7 @@ public class PlantInspectUIController {
     // |                             |
 
     public void initPlantInspectUI(Farmer f, Season s,
-                                PlotUIController plotu, MainPanelUIController mpu) {
+                                   PlotUIController plotu, MainPanelUIController mpu) {
         this.farmer = f;
         this.season = s;
         this.plotu = plotu;
@@ -344,7 +345,5 @@ public class PlantInspectUIController {
 
             pt.play();
         }
-
     }
-
 }

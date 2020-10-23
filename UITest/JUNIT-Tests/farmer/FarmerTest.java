@@ -20,6 +20,7 @@ public class FarmerTest {
     private Seed seed3;
     private ArrayList<Seed> seedArrayList;
 
+    /*
     @Before
     public void setUp() throws Exception {
         farmer1 = new Farmer("Rakshit", "1", "#efdfbf");
@@ -158,4 +159,5 @@ public class FarmerTest {
         farmer1.addSeed(apple);
         farmer1.removeSeed(new Seed("Corn", 5));
     }
+    */
 }
