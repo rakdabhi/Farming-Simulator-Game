@@ -8,6 +8,7 @@ public class Season {
     private int temperature;
     private Clock timer;
     private int day;
+    private int hour;
 
     /**
      * This constructor creates a season with a randomized temperature that falls
@@ -15,23 +16,29 @@ public class Season {
      * @param season one of the four seasons
      */
     public Season(String season) {
-        this(season, 1);
+        this(season, 1, 0);
     }
 
-    public Season(String season, int day) {
+    public Season(String season, int day, int hour) {
         this.season = season;
         this.day = day;
+        this.hour = hour;
         generateTemperature();
     }
 
-    public Clock createTimer(Label label, int dayNumber) {
-        timer = new Clock(label, dayNumber);
+    public Clock createTimer(Label dayLabel, Label hourLabel, Label ampmLabel, int day, int hour) {
+        timer = new Clock(dayLabel, hourLabel, ampmLabel, day, hour);
         return timer;
     }
 
     public int getDay() {
         day = timer.getDay();
         return day;
+    }
+
+    public int getHour() {
+        hour = timer.getHour();
+        return hour;
     }
 
     /**

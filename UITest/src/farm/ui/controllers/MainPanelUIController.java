@@ -24,7 +24,19 @@ public class MainPanelUIController {
     private Arc sunGraphic;
 
     @FXML
+    private Label dayTitleLabel;
+
+    @FXML
     private Label dayLabel;
+
+    @FXML
+    private Label hourLabel;
+
+    @FXML
+    private Label minuteLabel;
+
+    @FXML
+    private Label ampmLabel;
 
     @FXML
     private Group pigGroup;
@@ -53,40 +65,57 @@ public class MainPanelUIController {
 
     private Clock timer;
     private int day;
+    private int hour;
 
     // |     Initialize Settings     |
     // |                             |
 
-    public void initMainPanelUI(Farmer f, Season s, PlotUIController plotu,
-                                InventoryUIController invu, PlantInspectUIController piu) {
-        initMainPanelUI(f, s, plotu, invu, piu, 1);
-    }
 
     public void initMainPanelUI(Farmer f, Season s, PlotUIController plotu,
                                 InventoryUIController invu, PlantInspectUIController piu,
-                                int day) {
+                                int day, int hour) {
         this.farmer = f;
         this.season = s;
         this.plotu = plotu;
         this.invu = invu;
         this.piu = piu;
         this.day = day;
-        dayLabel.setText("Day " + day);
-        timer = s.createTimer(dayLabel, day);
+        this.hour = hour;
+        setStartingLabels();
+        timer = s.createTimer(dayLabel, hourLabel, ampmLabel, day, hour);
         setMoneyLabel(f.getMoney());
     }
+
+    // |     Getters and Setters     |
+    // |
 
     public int getDay() {
         return day;
     }
 
-
-    // |     Getters and Setters     |
-    // |                             |
-
+    public int getHour() {
+        return hour;
+    }
 
     void setMoneyLabel(double m) {
         moneyLabel.setText(String.format("$%,.2f", m));
+    }
+
+    public void setStartingLabels() {
+        if (hour == 0) {
+            dayLabel.setText(String.format("%02d", day));
+            hourLabel.setText(String.format("%02d", 12));
+            ampmLabel.setText("AM");
+        } else if (hour < 12) {
+            hourLabel.setText(String.format("%02d", hour));
+            ampmLabel.setText("AM");
+        } else if (hour == 12) {
+            hourLabel.setText(String.format("%02d", hour));
+            ampmLabel.setText("PM");
+        } else {
+            hourLabel.setText(String.format("%02d", hour % 12));
+            ampmLabel.setText("PM");
+        }
     }
 
     AnchorPane getRightPaneMain() {
