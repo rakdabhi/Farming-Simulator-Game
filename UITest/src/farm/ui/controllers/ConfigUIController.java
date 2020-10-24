@@ -261,7 +261,7 @@ public class ConfigUIController {
             plotController.initPlotUI(farmer1, startingSeason,
                     mainPanelController, inventoryController, inspectController);
             mainPanelController.initMainPanelUI(farmer1, startingSeason,
-                    plotController, inventoryController, inspectController);
+                    plotController, inventoryController, inspectController, 1, 8);
             inventoryController.initInventoryUI(farmer1, startingSeason,
                     mainPanelController, plotController);
             inspectController.initPlantInspectUI(farmer1, startingSeason,
