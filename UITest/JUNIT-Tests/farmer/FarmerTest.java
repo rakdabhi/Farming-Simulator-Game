@@ -7,34 +7,28 @@ import seed.Seed;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class FarmerTest {
     private Farmer farmer1;
     private Farmer farmer2;
     private Farmer farmer3;
-    private Seed seed1;
-    private Seed seed2;
-    private Seed seed3;
-    private ArrayList<Seed> seedArrayList;
+    private Seed apple;
+    private Seed potato;
+    private Seed corn;
+    private Seed[] seedArray;
 
-    /*
     @Before
     public void setUp() throws Exception {
         farmer1 = new Farmer("Rakshit", "1", "#efdfbf");
         farmer2 = new Farmer("Bob", "2", " #d3b485");
         farmer3 = new Farmer("Steve", "3", " #a58862");
 
-        seed1 = new Seed("Corn");
-        seed2 = new Seed("Wheat");
-        seed3 = new Seed("Tomato");
+        apple = new Seed("Apple");
+        potato = new Seed("Potato");
+        corn = new Seed("Corn");
 
-        seedArrayList = new ArrayList<Seed>();
-        seedArrayList.add(seed2);
-        seedArrayList.add(seed1);
-        seedArrayList.add(seed3);
+        seedArray = new Seed[]{apple, potato, corn};
     }
 
     @Test
@@ -73,7 +67,7 @@ public class FarmerTest {
     }
 
     public void testCapacityAfterAddSeed() {
-        farmer3.setSeedBag(seedArrayList);
+        farmer3.setSeedBag(seedArray);
         assertEquals(22, farmer3.getAvailableCapacity());
         assertEquals(25, farmer3.getInventoryCapacity());
     }
@@ -97,11 +91,16 @@ public class FarmerTest {
     }
 
     @Test
-    public void addSeed() {
-        farmer1.addSeed(seed2);
-        farmer1.addSeed(seed1);
-        farmer1.addSeed(seed3);
-        assertEquals(seedArrayList, farmer1.getSeedBag());
+    public void addSeed() throws SeedChoiceNotFoundException {
+        farmer1.addSeed(potato);
+        farmer1.addSeed(apple);
+        farmer1.addSeed(corn);
+        assertEquals(seedArray[0].getName(), farmer1.getSeedBag()[0].getName());
+        assertEquals(seedArray[0].getQuantity(), farmer1.getSeedBag()[0].getQuantity());
+        assertEquals(seedArray[1].getName(), farmer1.getSeedBag()[1].getName());
+        assertEquals(seedArray[1].getQuantity(), farmer1.getSeedBag()[1].getQuantity());
+        assertEquals(seedArray[2].getName(), farmer1.getSeedBag()[2].getName());
+        assertEquals(seedArray[2].getQuantity(), farmer1.getSeedBag()[2].getQuantity());
         assertEquals(97, farmer1.getAvailableCapacity());
         assertEquals(100, farmer1.getInventoryCapacity());
 
@@ -115,25 +114,27 @@ public class FarmerTest {
     public void removeSeed() throws SeedChoiceNotFoundException {
         Seed corn = new Seed("Corn", 10);
         farmer3.addSeed(corn);
-        assertEquals(corn, farmer3.getSeedBag().get(0));
+        assertEquals(corn.getName(), farmer3.getSeedBag()[2].getName());
+        assertEquals(corn.getQuantity(), farmer3.getSeedBag()[2].getQuantity());
         assertEquals(15, farmer3.getAvailableCapacity());
         assertEquals(25, farmer3.getInventoryCapacity());
 
         farmer3.removeSeed(new Seed("Corn", 5));
-        assertEquals(5, farmer3.getSeedBag().get(0).getQuantity());
+        assertEquals(corn.getName(), farmer3.getSeedBag()[2].getName());
+        assertEquals(5, farmer3.getSeedBag()[2].getQuantity());
         assertEquals(20, farmer3.getAvailableCapacity());
         assertEquals(25, farmer3.getInventoryCapacity());
     }
 
     @Test
     public void setSeedBag() {
-        farmer2.setSeedBag(seedArrayList);
-        assertEquals(seedArrayList, farmer2.getSeedBag());
+        farmer2.setSeedBag(seedArray);
+        assertEquals(seedArray, farmer2.getSeedBag());
     }
 
     @Test
     public void numOfSeeds() {
-        farmer3.setSeedBag(seedArrayList);
+        farmer3.setSeedBag(seedArray);
         assertEquals(3, farmer3.numOfSeeds());
     }
 
@@ -153,11 +154,10 @@ public class FarmerTest {
         farmer1.removeSeed(new Seed("Apple", 20));
     }
 
-    @Test(expected = SeedChoiceNotFoundException.class)
+    @Test(expected = InsufficientInventorySpaceException.class)
     public void removeSeedWithException() throws SeedChoiceNotFoundException {
         Seed apple = new Seed("Apple", 10);
         farmer1.addSeed(apple);
         farmer1.removeSeed(new Seed("Corn", 5));
     }
-    */
 }

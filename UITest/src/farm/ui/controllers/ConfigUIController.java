@@ -112,7 +112,8 @@ public class ConfigUIController {
     }
 
     /**
-     * This helper method helps set the style of a button and sets the seed choice to the selected seed's name.
+     * This helper method helps set the style of a button and sets the
+     * seed choice to the selected seed's name.
      * @param seedChoiceName the name of the seed
      * @param newStyle the new style
      * @param oldStyle the old style
@@ -263,7 +264,8 @@ public class ConfigUIController {
                     plotController, inventoryController, inspectController);
             inventoryController.initInventoryUI(farmer1, startingSeason,
                     mainPanelController, plotController);
-            inspectController.initPlantInspectUI(farmer1, startingSeason, plotController, mainPanelController);
+            inspectController.initPlantInspectUI(farmer1, startingSeason,
+                    plotController, mainPanelController);
 
             Scene nextPageScene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -27,7 +27,8 @@ public class Plot {
         crop = new Crop(seed, growthStage, waterLevel);
     }
 
-    public void harvest(Farmer farmer) throws ImmatureHarvestException, EmptyPlotException, SeedChoiceNotFoundException {
+    public void harvest(Farmer farmer)
+            throws ImmatureHarvestException, EmptyPlotException, SeedChoiceNotFoundException {
         if (crop == null) {
             throw new EmptyPlotException();
         }

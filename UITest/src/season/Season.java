@@ -1,8 +1,13 @@
 package season;
 
+import clock.Clock;
+import javafx.scene.control.Label;
+
 public class Season {
     private String season;
     private int temperature;
+    private Clock timer;
+    private int day;
 
     /**
      * This constructor creates a season with a randomized temperature that falls
@@ -10,8 +15,23 @@ public class Season {
      * @param season one of the four seasons
      */
     public Season(String season) {
+        this(season, 1);
+    }
+
+    public Season(String season, int day) {
         this.season = season;
+        this.day = day;
         generateTemperature();
+    }
+
+    public Clock createTimer(Label label, int dayNumber) {
+        timer = new Clock(label, dayNumber);
+        return timer;
+    }
+
+    public int getDay() {
+        day = timer.getDay();
+        return day;
     }
 
     /**
