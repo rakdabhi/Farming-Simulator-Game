@@ -11,7 +11,7 @@ public class SeedTest {
     private Seed potato;
     private Seed corn;
 
-    /*
+
     @Before
     public void setUp() throws Exception {
         apple = new Seed("Apple", 0);
@@ -61,5 +61,5 @@ public class SeedTest {
         corn.removeQuantity(6);
         apple.removeQuantity(10);
     }
-    */
+
 }

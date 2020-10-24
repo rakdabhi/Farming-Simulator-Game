@@ -269,8 +269,10 @@ public class MarketBuyUIController {
         loadInspect.load();
         PlantInspectUIController inspectController = loadInspect.getController();
 
-        plotController.initPlotUI(farmer, season, mainPanelController, inventoryController, inspectController);
-        mainPanelController.initMainPanelUI(farmer, season, plotController, inventoryController, inspectController);
+        plotController.initPlotUI(farmer, season, mainPanelController,
+                inventoryController, inspectController);
+        mainPanelController.initMainPanelUI(farmer, season, plotController,
+                inventoryController, inspectController, season.getDay());
         inventoryController.initInventoryUI(farmer, season, mainPanelController, plotController);
         inspectController.initPlantInspectUI(farmer, season, plotController, mainPanelController);
 

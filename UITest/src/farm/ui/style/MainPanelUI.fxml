@@ -29,11 +29,6 @@
                   <Font name="Arial Black" size="39.0" />
                </font>
             </Label>
-            <Button fx:id="nextDayButton" layoutX="294.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="→" textFill="#22d2a3">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
       <Pane layoutY="196.0" prefHeight="246.0" prefWidth="375.0">

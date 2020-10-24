@@ -1,5 +1,6 @@
 package farm.ui.controllers;
 
+import clock.Clock;
 import farmer.Farmer;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -12,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Arc;
 import javafx.util.Duration;
 import season.Season;
-
 import java.io.IOException;
 
 public class MainPanelUIController {
@@ -51,19 +51,35 @@ public class MainPanelUIController {
 
     private PlantInspectUIController piu;
 
+    private Clock timer;
+    private int day;
+
     // |     Initialize Settings     |
     // |                             |
 
-    public void initMainPanelUI(Farmer f, Season s,
-                                PlotUIController plotu, InventoryUIController invu, PlantInspectUIController piu) {
+    public void initMainPanelUI(Farmer f, Season s, PlotUIController plotu,
+                                InventoryUIController invu, PlantInspectUIController piu) {
+        initMainPanelUI(f, s, plotu, invu, piu, 1);
+    }
+
+    public void initMainPanelUI(Farmer f, Season s, PlotUIController plotu,
+                                InventoryUIController invu, PlantInspectUIController piu,
+                                int day) {
         this.farmer = f;
         this.season = s;
         this.plotu = plotu;
         this.invu = invu;
         this.piu = piu;
-
+        this.day = day;
+        dayLabel.setText("Day " + day);
+        timer = s.createTimer(dayLabel, day);
         setMoneyLabel(f.getMoney());
     }
+
+    public int getDay() {
+        return day;
+    }
+
 
     // |     Getters and Setters     |
     // |                             |

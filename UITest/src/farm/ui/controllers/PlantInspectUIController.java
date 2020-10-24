@@ -3,7 +3,6 @@ package farm.ui.controllers;
 
 import farm.objects.Crop;
 import farmer.Farmer;
-import javafx.animation.Animation;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -146,7 +145,8 @@ public class PlantInspectUIController {
     void setGrowthMeter(Crop c) {
         Color unfilled = Color.web("#ff9f43");
         Color filled = Color.web("#15ad86");
-        Group[] gfx = {growthGraphic0, growthGraphic1, growthGraphicCorn, growthGraphicApple, growthGraphicPotato};
+        Group[] gfx = {growthGraphic0, growthGraphic1, growthGraphicCorn,
+            growthGraphicApple, growthGraphicPotato};
         Circle[] meter = {growthStage1, growthStage2, growthStage3};
 
         if (c == null) {
@@ -175,7 +175,7 @@ public class PlantInspectUIController {
             for (Group graphic : gfx) {
                 if (graphic == growthGraphic0) {
                     graphic.setVisible(true);
-                } else{
+                } else {
                     graphic.setVisible(false);
                 }
             }
@@ -193,7 +193,7 @@ public class PlantInspectUIController {
             for (Group graphic : gfx) {
                 if (graphic == growthGraphic1) {
                     graphic.setVisible(true);
-                } else{
+                } else {
                     graphic.setVisible(false);
                 }
             }
@@ -208,15 +208,17 @@ public class PlantInspectUIController {
             }
 
             switch (c.getSeed().getName()) {
-                case "Corn":
-                    growthGraphicCorn.setVisible(true);
-                    break;
-                case "Potato":
-                    growthGraphicPotato.setVisible(true);
-                    break;
-                case "Apple":
-                    growthGraphicApple.setVisible(true);
-                    break;
+            case "Corn":
+                growthGraphicCorn.setVisible(true);
+                break;
+            case "Potato":
+                growthGraphicPotato.setVisible(true);
+                break;
+            case "Apple":
+                growthGraphicApple.setVisible(true);
+                break;
+            default:
+                break;
             }
         }
     }
@@ -301,22 +303,24 @@ public class PlantInspectUIController {
     void setWaterMeter(int i) {
         double yShift = 0;
 
-        switch(i) {
-            case 0:
-                yShift = 0;
-                break;
-            case 1:
-                yShift = 30;
-                break;
-            case 2:
-                yShift = 70;
-                break;
-            case 3:
-                yShift = 110;
-                break;
-            case 4:
-                yShift = 140;
-                break;
+        switch (i) {
+        case 0:
+            yShift = 0;
+            break;
+        case 1:
+            yShift = 30;
+            break;
+        case 2:
+            yShift = 70;
+            break;
+        case 3:
+            yShift = 110;
+            break;
+        case 4:
+            yShift = 140;
+            break;
+        default:
+            break;
         }
 
         double temp = currentWaterLevel;
