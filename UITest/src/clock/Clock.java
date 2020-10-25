@@ -11,7 +11,7 @@ import javafx.util.Duration;
 
 public class Clock {
 
-    private Timeline hoursCount = new Timeline(new KeyFrame(Duration.seconds(2),
+    private Timeline hoursCount = new Timeline(new KeyFrame(Duration.seconds(10),
         event -> hourLabel()));
 
     private Farmer farmer;
