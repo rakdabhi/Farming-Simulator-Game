@@ -1,5 +1,6 @@
 package season;
 
+import farm.objects.Season;
 import org.junit.Before;
 import org.junit.Test;
 

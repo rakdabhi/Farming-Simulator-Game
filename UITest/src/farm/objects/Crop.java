@@ -1,7 +1,5 @@
 package farm.objects;
 
-import seed.Seed;
-
 public class Crop {
     private Seed seed;
     private int growthStage;

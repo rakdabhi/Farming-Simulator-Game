@@ -4,9 +4,9 @@ import exceptions.DifficultyLevelChoiceNotFoundException;
 import exceptions.FarmerNameNotFoundException;
 import exceptions.SeasonChoiceNotFoundException;
 import exceptions.SeedChoiceNotFoundException;
-import farmer.Farmer;
-import season.Season;
-import seed.Seed;
+import farm.objects.Farmer;
+import farm.objects.Season;
+import farm.objects.Seed;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,8 +20,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-
-import java.util.*;
 
 public class ConfigUIController {
 

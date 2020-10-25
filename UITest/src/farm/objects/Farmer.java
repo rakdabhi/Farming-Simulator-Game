@@ -1,9 +1,7 @@
-package farmer;
+package farm.objects;
 import exceptions.InsufficientFundsException;
 import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
-import farm.objects.Field;
-import seed.Seed;
 
 public class Farmer {
 

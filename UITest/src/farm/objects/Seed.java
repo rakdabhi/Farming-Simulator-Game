@@ -1,4 +1,4 @@
-package seed;
+package farm.objects;
 
 import exceptions.InsufficientInventorySpaceException;
 

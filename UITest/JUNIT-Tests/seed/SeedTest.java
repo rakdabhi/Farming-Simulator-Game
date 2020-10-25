@@ -1,6 +1,7 @@
 package seed;
 
 import exceptions.InsufficientInventorySpaceException;
+import farm.objects.Seed;
 import org.junit.Before;
 import org.junit.Test;
 

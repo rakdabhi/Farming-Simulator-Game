@@ -1,8 +1,6 @@
-package clock;
+package farm.objects;
 
-import farm.objects.Crop;
 import farm.ui.controllers.PlotUIController;
-import farmer.Farmer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;

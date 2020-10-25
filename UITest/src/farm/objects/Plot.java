@@ -3,8 +3,7 @@ package farm.objects;
 import exceptions.EmptyPlotException;
 import exceptions.ImmatureHarvestException;
 import exceptions.SeedChoiceNotFoundException;
-import farmer.Farmer;
-import seed.Seed;
+
 import java.util.Random;
 
 public class Plot {
