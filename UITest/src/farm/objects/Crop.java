@@ -23,7 +23,7 @@ public class Crop {
 
     public void setWaterLevel(int i) {
         waterLevel = i;
-        if ((waterLevel <= 0) || (waterLevel >= 4)) {
+        if ((waterLevel < 0) || (waterLevel > 4)) {
             setDead();
         }
     }
