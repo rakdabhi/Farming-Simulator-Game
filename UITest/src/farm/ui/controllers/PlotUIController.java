@@ -109,6 +109,10 @@ public class PlotUIController {
         return plotArray[column][row];
     }
 
+    public Group[][] getPlotArray() {
+        return plotArray;
+    }
+
     private void displayCrops() {
         for (int i = 0; i < plotArray.length; i++) {
             for (int j = 0; j < plotArray[i].length; j++) {
@@ -119,12 +123,16 @@ public class PlotUIController {
         }
     }
 
-    void updateRightPaneInspect(Crop crop) {
+    public void updateRightPaneInspect(Crop crop) {
         if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
             String text = (crop == null) ? "Empty\n\n" : crop.getSeed().getName();
-            piu.setPlantNameLabel(text);
+            if (crop != null && crop.isDead()) {
+                piu.setPlantNameLabel("Dead " + text);
+            } else {
+                piu.setPlantNameLabel(text);
+            }
 
-            if (crop != null) {
+            if (crop != null && !crop.isDead()) {
                 piu.setGrowthMeter(crop);
                 piu.setWaterMeter(crop.getWaterLevel());
             } else {
@@ -157,8 +165,11 @@ public class PlotUIController {
             }
 
             //handle waterPress
-            if (PlantInspectUIController.getWaterPress() && crop != null) {
+            if (PlantInspectUIController.getWaterPress() && crop != null && !crop.isDead()) {
                 crop.setWaterLevel(crop.getWaterLevel() + 1);
+                if (crop.isDead()) {
+                    ((Label) plotArray[column][row].getChildren().get(3)).setText(crop.toString());
+                }
                 updateRightPaneInspect(crop);
             }
         } catch (ImmatureHarvestException i) {

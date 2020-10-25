@@ -82,7 +82,7 @@ public class MainPanelUIController {
         this.day = day;
         this.hour = hour;
         setStartingLabels();
-        timer = s.createTimer(dayLabel, hourLabel, ampmLabel, day, hour);
+        timer = s.createTimer(farmer, plotu, dayLabel, hourLabel, ampmLabel, day, hour);
         setMoneyLabel(f.getMoney());
     }
 
