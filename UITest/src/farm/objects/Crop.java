@@ -22,17 +22,28 @@ public class Crop {
     }
 
     public void setWaterLevel(int i) {
-        if (i > 4) {
-            waterLevel = 4;
-        } else if (i < 0) {
-            waterLevel = 0;
-        } else {
-            waterLevel = i;
+        waterLevel = i;
+        if ((waterLevel <= 0) || (waterLevel >= 4)) {
+            setDead();
         }
     }
 
     public int getWaterLevel() {
         return this.waterLevel;
+    }
+
+    public void grow() {
+        if (growthStage < 2) {
+            growthStage++;
+        }
+    }
+
+    public void setDead() {
+        growthStage = 3;
+    }
+
+    public Boolean isDead() {
+        return growthStage == 3;
     }
 
     public int getGrowthStage() {
@@ -45,7 +56,8 @@ public class Crop {
 
     @Override
     public String toString() {
-        String[] growthStages = new String[]{"Seed", "Immature Plant", "Mature Plant"};
+        String[] growthStages = new String[]{"Seed", "Immature Plant",
+            "Mature Plant", "Dead Plant"};
         return "Type: " + seed.getName() + "\nGrowth Stage: " + growthStages[growthStage];
     }
 }

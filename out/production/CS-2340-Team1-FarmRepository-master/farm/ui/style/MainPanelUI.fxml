@@ -24,16 +24,36 @@
                </rotationAxis>
             </Rectangle>
             <Arc fx:id="sunGraphic" fill="#feca57" layoutX="182.0" layoutY="197.0" length="180.0" radiusX="114.0" radiusY="119.0" strokeType="INSIDE" type="ROUND" />
-            <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="122.0" prefHeight="45.0" prefWidth="147.0" text="DAY 1" textAlignment="CENTER" textFill="#ff9f43">
+            <Label fx:id="dayTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="113.0" prefHeight="53.0" prefWidth="87.0" text="DAY" textAlignment="CENTER" textFill="#ff9f43">
                <font>
-                  <Font name="Arial Black" size="39.0" />
+                  <Font name="Arial Black" size="35.0" />
                </font>
             </Label>
-            <Button fx:id="nextDayButton" layoutX="294.0" layoutY="52.0" mnemonicParsing="false" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="→" textFill="#22d2a3">
+            <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="201.0" layoutY="113.0" prefHeight="44.0" prefWidth="54.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Arial Black" size="35.0" />
                </font>
-            </Button>
+            </Label>
+            <Label fx:id="hourLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="129.0" layoutY="163.0" prefHeight="30.0" prefWidth="30.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="separator" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="155.0" layoutY="161.0" prefHeight="18.0" prefWidth="17.0" text=":" textAlignment="CENTER" textFill="#ff9f43">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="minuteLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="163.0" layoutY="162.0" prefHeight="31.0" prefWidth="38.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="ampmLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="196.0" layoutY="162.0" prefHeight="31.0" prefWidth="45.0" text="AM" textAlignment="CENTER" textFill="#ff9f43">
+               <font>
+                  <Font name="Arial Black" size="20.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutY="196.0" prefHeight="246.0" prefWidth="375.0">

@@ -149,7 +149,7 @@ public class PlantInspectUIController {
             growthGraphicApple, growthGraphicPotato};
         Circle[] meter = {growthStage1, growthStage2, growthStage3};
 
-        if (c == null) {
+        if (c == null || c.isDead()) {
             for (Circle circle : meter) {
                 circle.setFill(unfilled);
             }

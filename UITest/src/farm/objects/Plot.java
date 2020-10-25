@@ -31,8 +31,9 @@ public class Plot {
             throws ImmatureHarvestException, EmptyPlotException, SeedChoiceNotFoundException {
         if (crop == null) {
             throw new EmptyPlotException();
-        }
-        if (crop.getGrowthStage() == 2) {
+        } else if (crop.isDead()) {
+            this.crop = null;
+        } else if (crop.getGrowthStage() == 2) {
             farmer.addSeed(crop.getSeed());
             this.crop = null;
         } else {

@@ -1,6 +1,8 @@
 package season;
 
 import clock.Clock;
+import farm.ui.controllers.PlotUIController;
+import farmer.Farmer;
 import javafx.scene.control.Label;
 
 public class Season {
@@ -26,8 +28,9 @@ public class Season {
         generateTemperature();
     }
 
-    public Clock createTimer(Label dayLabel, Label hourLabel, Label ampmLabel, int day, int hour) {
-        timer = new Clock(dayLabel, hourLabel, ampmLabel, day, hour);
+    public Clock createTimer(Farmer farmer, PlotUIController plotu, Label dayLabel,
+                             Label hourLabel, Label ampmLabel, int day, int hour) {
+        timer = new Clock(farmer, plotu, dayLabel, hourLabel, ampmLabel, day, hour);
         return timer;
     }
 
