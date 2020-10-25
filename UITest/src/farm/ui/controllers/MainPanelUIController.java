@@ -1,7 +1,7 @@
 package farm.ui.controllers;
 
-import clock.Clock;
-import farmer.Farmer;
+import farm.objects.Clock;
+import farm.objects.Farmer;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Arc;
 import javafx.util.Duration;
-import season.Season;
+import farm.objects.Season;
 import java.io.IOException;
 
 public class MainPanelUIController {

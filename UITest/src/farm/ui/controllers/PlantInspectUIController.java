@@ -2,7 +2,7 @@
 package farm.ui.controllers;
 
 import farm.objects.Crop;
-import farmer.Farmer;
+import farm.objects.Farmer;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
-import season.Season;
+import farm.objects.Season;
 
 public class PlantInspectUIController {
 

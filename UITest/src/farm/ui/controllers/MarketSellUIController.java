@@ -1,7 +1,7 @@
 package farm.ui.controllers;
 
 import exceptions.SeedChoiceNotFoundException;
-import farmer.Farmer;
+import farm.objects.Farmer;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,8 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import season.Season;
-import seed.Seed;
+import farm.objects.Season;
+import farm.objects.Seed;
 
 import java.io.IOException;
 

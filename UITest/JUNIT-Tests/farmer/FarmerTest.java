@@ -3,7 +3,8 @@ package farmer;
 import exceptions.InsufficientFundsException;
 import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
-import seed.Seed;
+import farm.objects.Farmer;
+import farm.objects.Seed;
 import org.junit.Before;
 import org.junit.Test;
 
