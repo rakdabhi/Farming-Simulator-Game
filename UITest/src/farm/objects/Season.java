@@ -1,8 +1,6 @@
 package farm.objects;
 
-import farm.objects.Clock;
 import farm.ui.controllers.PlotUIController;
-import farm.objects.Farmer;
 import javafx.scene.control.Label;
 
 public class Season {
