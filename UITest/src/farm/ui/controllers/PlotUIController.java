@@ -8,14 +8,19 @@ import exceptions.PlotAlreadyFullException;
 import exceptions.SeedChoiceNotFoundException;
 import farm.objects.Crop;
 import farm.objects.Farmer;
+import farm.objects.Plot;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.Shadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import farm.objects.Season;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 import static farm.ui.controllers.ConfigUIController.alertPopUp;
 
@@ -77,6 +82,8 @@ public class PlotUIController {
 
     private Group[][] plotArray;
 
+    private Plot selectedPlot;
+
 
 
     // |     Initialize Settings     |
@@ -94,6 +101,7 @@ public class PlotUIController {
                                   {plotGroup20, plotGroup21, plotGroup22, plotGroup23}};
 
         setRightPaneWrapper(mpu.getRightPaneMain());
+        selectedPlot = null;
 
         displayCrops();
     }
@@ -120,9 +128,23 @@ public class PlotUIController {
                 Crop crop = farmer.getField().getPlot(i, j).getCrop();
                 if (crop == null) {
                     plotArray[i][j].getChildren().get(4).setVisible(false);
+                    plotArray[i][j].getChildren().get(5).setVisible(false);
+                    plotArray[i][j].setEffect(null);
+                } else {
+                    if (crop.isDead()) {
+                        plotArray[i][j].getChildren().get(4).setVisible(false);
+                        plotArray[i][j].getChildren().get(5).setVisible(true);
+                    } else {
+                        plotArray[i][j].getChildren().get(5).setVisible(false);
+                        if (farmer.getField().getPlot(i, j) == selectedPlot) {
+                            plotArray[i][j].setEffect(new DropShadow(5, Color.BLUE));
+                        } else {
+                            plotArray[i][j].setEffect(null);
+                        }
+                    }
                 }
-                String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
-                ((Label) plotArray[i][j].getChildren().get(3)).setText(text);
+                //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
+                ((Label) plotArray[i][j].getChildren().get(3)).setText("");
             }
         }
     }
@@ -150,44 +172,47 @@ public class PlotUIController {
     public void interact(MouseEvent e) {
         try {
             Node source = (Node) e.getSource();
-            String s = source.toString();
             int column = Integer.parseInt(source.toString().substring(18, 19));
             int row = Integer.parseInt(source.toString().substring(19, 20));
             Crop crop = farmer.getField().getPlot(column, row).getCrop();
-
-            updateRightPaneInspect(crop);
-
-
-            //handle sowPress
-            //harvests crop, updates PlotUI plant graphic to be invisible
-            if (PlantInspectUIController.getSowPress() && crop != null) {
-                farmer.getField().getPlot(column, row).harvest(farmer);
+            Plot currPlot = farmer.getField().getPlot(column, row);
+            if (!(PlantInspectUIController.getWaterPress() || PlantInspectUIController.getSowPress())) {
+                selectedPlot = currPlot;
                 displayCrops();
-                ((Group) source).getChildren().get(4).setVisible(false);
-                updateRightPaneInspect(null);
-                invu.updateAvailableQuantity();
             }
 
-            //handle sowPress on empty plot
-            //plants crop, updates PlotUI plant graphic to be visible
-            if (PlantInspectUIController.getSowPress() && crop == null) {
-                if (!alertPopUp(farmer)) {
-                    return;
-                }
-                farmer.getField().getPlot(column, row).plant(farmer);
-                displayCrops();
-                ((Group) source).getChildren().get(4).setVisible(true);
+            if (selectedPlot == currPlot) {
                 updateRightPaneInspect(crop);
-                invu.updateAvailableQuantity();
-            }
 
-            //handle waterPress
-            if (PlantInspectUIController.getWaterPress() && crop != null && !crop.isDead()) {
-                crop.setWaterLevel(crop.getWaterLevel() + 1);
-                if (crop.isDead()) {
-                    ((Label) plotArray[column][row].getChildren().get(3)).setText(crop.toString());
+                //handle sowPress
+                //harvests crop, updates PlotUI plant graphic to be invisible
+                if (PlantInspectUIController.getSowPress() && crop != null) {
+                    farmer.getField().getPlot(column, row).harvest(farmer);
+                    displayCrops();
+                    ((Group) source).getChildren().get(4).setVisible(false);
+                    updateRightPaneInspect(null);
+                    invu.updateAvailableQuantity();
                 }
-                updateRightPaneInspect(crop);
+
+                //handle sowPress on empty plot
+                //plants crop, updates PlotUI plant graphic to be visible
+                if (PlantInspectUIController.getSowPress() && crop == null) {
+                    if (!alertPopUp(farmer)) {
+                        return;
+                    }
+                    farmer.getField().getPlot(column, row).plant(farmer);
+                    displayCrops();
+                    ((Group) source).getChildren().get(4).setVisible(true);
+                    updateRightPaneInspect(crop);
+                    invu.updateAvailableQuantity();
+                }
+
+                //handle waterPress
+                if (PlantInspectUIController.getWaterPress() && crop != null && !crop.isDead()) {
+                    crop.setWaterLevel(crop.getWaterLevel() + 1);
+                    updateRightPaneInspect(crop);
+                    displayCrops();
+                }
             }
         } catch (ImmatureHarvestException i) {
             alertPopUp("Attempted Infanticide", i.getMessage());
