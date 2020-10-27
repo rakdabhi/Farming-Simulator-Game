@@ -46,7 +46,9 @@ public class Plot {
         if (crop != null) {
             throw new PlotAlreadyFullException();
         }
-        crop = new Crop(ConfigUIController.getSeedSelect(), 0, 0);
+        Seed seed =
+                new Seed(ConfigUIController.getSeedSelect().getName(), 0, 0);
+        this.crop = new Crop(seed, 0, 0);
         farmer.removeSeed(ConfigUIController.getSeedSelect());
     }
 
