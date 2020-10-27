@@ -15,11 +15,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import java.util.Optional;
 
 public class ConfigUIController {
 
@@ -87,6 +90,8 @@ public class ConfigUIController {
     private String seedChoice = "";
 
     private String customSkin = "#efdfbf";
+
+    private static Seed seedSelect = new Seed(null);
 
     /**
      * This method helps give a button functionality to the seed-choice options.
@@ -295,4 +300,55 @@ public class ConfigUIController {
         a.showAndWait();
     }
 
+    /**
+     * This methods helps create an alert popup for the user to
+     * select which seed they want to plant.
+     */
+    static boolean alertPopUp(Farmer farmer) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setTitle("Seed Select");
+        a.setHeaderText("Which seed do you want to plant?");
+        a.setContentText("Choose one:");
+        ButtonType buttonTypeOne =
+                new ButtonType("Apple: x" + farmer.getSeedBag()[0].getQuantity());
+        ButtonType buttonTypeTwo =
+                new ButtonType("Potato: x" + farmer.getSeedBag()[1].getQuantity());
+        ButtonType buttonTypeThree =
+                new ButtonType("Corn: x" + farmer.getSeedBag()[2].getQuantity());
+        ButtonType buttonTypeCancel =
+                new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
+        if (farmer.getSeedBag()[0].getQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
+        }
+        if (farmer.getSeedBag()[1].getQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
+        }
+        if (farmer.getSeedBag()[2].getQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeThree).setDisable(true);
+        }
+
+        Optional<ButtonType> result = a.showAndWait();
+        if (result.get() == buttonTypeOne){
+            seedSelect.setName("Apple");
+            return true;
+        } else if (result.get() == buttonTypeTwo) {
+            seedSelect.setName("Potato");
+            return true;
+        } else if (result.get() == buttonTypeThree) {
+            seedSelect.setName("Corn");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * This getter method returns which seed has been selected.
+     * @return the seed
+     */
+    public static Seed getSeedSelect() {
+        return seedSelect;
+    }
 }
