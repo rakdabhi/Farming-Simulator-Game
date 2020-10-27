@@ -2,7 +2,9 @@ package farm.objects;
 
 import exceptions.EmptyPlotException;
 import exceptions.ImmatureHarvestException;
+import exceptions.PlotAlreadyFullException;
 import exceptions.SeedChoiceNotFoundException;
+import farm.ui.controllers.ConfigUIController;
 
 import java.util.Random;
 
@@ -38,6 +40,14 @@ public class Plot {
         } else {
             throw new ImmatureHarvestException();
         }
+    }
+
+    public void plant(Farmer farmer) throws SeedChoiceNotFoundException, PlotAlreadyFullException {
+        if (crop != null) {
+            throw new PlotAlreadyFullException();
+        }
+        crop = new Crop(ConfigUIController.getSeedSelect(), 0, 0);
+        farmer.removeSeed(ConfigUIController.getSeedSelect());
     }
 
     public Crop getCrop() {
