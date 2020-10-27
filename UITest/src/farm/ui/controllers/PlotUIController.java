@@ -118,6 +118,9 @@ public class PlotUIController {
         for (int i = 0; i < plotArray.length; i++) {
             for (int j = 0; j < plotArray[i].length; j++) {
                 Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                if (crop == null) {
+                    plotArray[i][j].getChildren().get(4).setVisible(false);
+                }
                 String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
                 ((Label) plotArray[i][j].getChildren().get(3)).setText(text);
             }
