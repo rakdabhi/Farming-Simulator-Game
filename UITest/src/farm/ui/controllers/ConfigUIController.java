@@ -103,13 +103,13 @@ public class ConfigUIController {
         String oldStyle = "-fx-background-color: #15ad86; -fx-background-radius: 10";
         String newStyle = "-fx-background-color: #15936f; -fx-background-radius: 10";
         if (btn == appleButton) {
-            setSeedandSytle("Apple", newStyle, oldStyle,
+            setSeedAndStyle("Apple", newStyle, oldStyle,
                     appleButton, potatoButton, cornButton);
         } else if (btn == potatoButton) {
-            setSeedandSytle("Potato", newStyle, oldStyle,
+            setSeedAndStyle("Potato", newStyle, oldStyle,
                     potatoButton, appleButton, cornButton);
         } else {
-            setSeedandSytle("Corn", newStyle, oldStyle,
+            setSeedAndStyle("Corn", newStyle, oldStyle,
                     cornButton, potatoButton, appleButton);
         }
     }
@@ -124,7 +124,7 @@ public class ConfigUIController {
      * @param withOldStyle1 the button with the old style
      * @param withOldStyle2 the button with the old style
      */
-    private void setSeedandSytle(String seedChoiceName, String newStyle, String oldStyle,
+    private void setSeedAndStyle(String seedChoiceName, String newStyle, String oldStyle,
                                  Button withNewStyle, Button withOldStyle1, Button withOldStyle2) {
         seedChoice = seedChoiceName;
         withNewStyle.setStyle(newStyle);

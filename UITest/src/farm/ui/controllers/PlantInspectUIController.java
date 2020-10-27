@@ -9,8 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -18,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 import farm.objects.Season;
+
+import java.util.Optional;
 
 public class PlantInspectUIController {
 
@@ -84,6 +85,9 @@ public class PlantInspectUIController {
     @FXML
     private Group growthGraphic1;
 
+    @FXML
+    private Group growthGraphicGrave;
+
     private Farmer farmer;
 
     private Season season;
@@ -133,6 +137,10 @@ public class PlantInspectUIController {
         growthGraphicCorn.setVisible(false);
         growthGraphicPotato.setVisible(false);
         growthGraphicApple.setVisible(false);
+        growthGraphicGrave.setVisible(false);
+
+        waterPress = false;
+        sowPress = false;
 
         centerY = ((Bounds) waterLevelGFX.getLayoutBounds()).getCenterY();
 
@@ -146,7 +154,7 @@ public class PlantInspectUIController {
         Color unfilled = Color.web("#ff9f43");
         Color filled = Color.web("#15ad86");
         Group[] gfx = {growthGraphic0, growthGraphic1, growthGraphicCorn,
-            growthGraphicApple, growthGraphicPotato};
+            growthGraphicApple, growthGraphicPotato, growthGraphicGrave};
         Circle[] meter = {growthStage1, growthStage2, growthStage3};
 
         if (c == null || c.isDead()) {
@@ -156,6 +164,10 @@ public class PlantInspectUIController {
 
             for (Group graphic : gfx) {
                 graphic.setVisible(false);
+            }
+
+            if (c!= null && c.isDead()) {
+                growthGraphicGrave.setVisible(true);
             }
 
             return;
@@ -348,6 +360,52 @@ public class PlantInspectUIController {
             pt.setCycleCount(1);
 
             pt.play();
+        }
+    }
+
+    /**
+     * This methods helps create an alert popup for the user to
+     * select which seed they want to plant.
+     * @param farmer the farmer
+     * @return whether a seed was chosen or not
+     */
+    static boolean alertPopUp(Farmer farmer) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setTitle("Seed Select");
+        a.setHeaderText("Which seed do you want to plant?");
+        a.setContentText("Choose one:");
+        ButtonType buttonTypeOne =
+                new ButtonType("Apple: x" + farmer.getSeedBag()[0].getQuantity());
+        ButtonType buttonTypeTwo =
+                new ButtonType("Potato: x" + farmer.getSeedBag()[1].getQuantity());
+        ButtonType buttonTypeThree =
+                new ButtonType("Corn: x" + farmer.getSeedBag()[2].getQuantity());
+        ButtonType buttonTypeCancel =
+                new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
+        if (farmer.getSeedBag()[0].getQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
+        }
+        if (farmer.getSeedBag()[1].getQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
+        }
+        if (farmer.getSeedBag()[2].getQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeThree).setDisable(true);
+        }
+
+        Optional<ButtonType> result = a.showAndWait();
+        if (result.get() == buttonTypeOne) {
+            seedSelect.setName("Apple");
+            return true;
+        } else if (result.get() == buttonTypeTwo) {
+            seedSelect.setName("Potato");
+            return true;
+        } else if (result.get() == buttonTypeThree) {
+            seedSelect.setName("Corn");
+            return true;
+        } else {
+            return false;
         }
     }
 }
