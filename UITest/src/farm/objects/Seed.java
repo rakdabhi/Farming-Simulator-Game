@@ -106,4 +106,12 @@ public class Seed {
             harvestable -= amount;
         }
     }
+
+    /**
+     * This setter method sets the type of seed.
+     * @param name the name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }
