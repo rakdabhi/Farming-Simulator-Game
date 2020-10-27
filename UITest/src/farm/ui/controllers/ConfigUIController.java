@@ -303,6 +303,8 @@ public class ConfigUIController {
     /**
      * This methods helps create an alert popup for the user to
      * select which seed they want to plant.
+     * @param farmer the farmer
+     * @return whether a seed was chosen or not
      */
     static boolean alertPopUp(Farmer farmer) {
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
@@ -330,7 +332,7 @@ public class ConfigUIController {
         }
 
         Optional<ButtonType> result = a.showAndWait();
-        if (result.get() == buttonTypeOne){
+        if (result.get() == buttonTypeOne) {
             seedSelect.setName("Apple");
             return true;
         } else if (result.get() == buttonTypeTwo) {
