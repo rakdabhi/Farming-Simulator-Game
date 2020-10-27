@@ -4,6 +4,7 @@ package farm.ui.controllers;
 
 import exceptions.EmptyPlotException;
 import exceptions.ImmatureHarvestException;
+import exceptions.PlotAlreadyFullException;
 import exceptions.SeedChoiceNotFoundException;
 import farm.objects.Crop;
 import farm.objects.Farmer;
@@ -164,6 +165,19 @@ public class PlotUIController {
                 invu.updateAvailableQuantity();
             }
 
+            //handle sowPress on empty plot
+            //plants crop, updates PlotUI plant graphic to be visible
+            if (PlantInspectUIController.getSowPress() && crop == null) {
+                if (!alertPopUp(farmer)) {
+                    return;
+                }
+                farmer.getField().getPlot(column, row).plant(farmer);
+                displayCrops();
+                ((Group) source).getChildren().get(4).setVisible(true);
+                updateRightPaneInspect(crop);
+                invu.updateAvailableQuantity();
+            }
+
             //handle waterPress
             if (PlantInspectUIController.getWaterPress() && crop != null && !crop.isDead()) {
                 crop.setWaterLevel(crop.getWaterLevel() + 1);
@@ -178,6 +192,8 @@ public class PlotUIController {
             alertPopUp("Empty Plot Harvest", empty.getMessage());
         } catch (SeedChoiceNotFoundException seedChoiceNotFoundException) {
             seedChoiceNotFoundException.printStackTrace();
+        } catch (PlotAlreadyFullException p) {
+            alertPopUp("Plot Full", p.getMessage());
         }
     }
 
