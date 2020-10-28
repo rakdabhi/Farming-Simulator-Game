@@ -1,5 +1,6 @@
 package farm.ui.controllers;
 
+import exceptions.ExcessSeedBuyException;
 import exceptions.InsufficientFundsException;
 import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
@@ -24,10 +25,11 @@ import farm.objects.Season;
 import farm.objects.Seed;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class MarketBuyUIController {
 
-    private String seedChoice;
+    private Seed seedChoice;
     private double seedCost;
     private double appleSeedCost;
     private double potatoSeedCost;
@@ -170,8 +172,14 @@ public class MarketBuyUIController {
      * @param s the season that the farmer is farming in
      */
     public void initMarketBuy(Farmer f, Season s) {
+        Random rand = new Random();
+        appleQuantity = rand.nextInt(5);
+        cornQuantity = rand.nextInt(5);
+        potatoQuantity = rand.nextInt(5);
+
         this.farmer = f;
         this.season = s;
+        this.seedChoice = null;
         updateAvailableQuantity();
         updateBankAmount();
         updateAvailableCapacity();
@@ -202,25 +210,44 @@ public class MarketBuyUIController {
      * This helper method helps display the current inventory capacity of this farmer.
      */
     private void updateAvailableCapacity() {
-        availableInventory.setText("" + farmer.getAvailableCapacity() + " seeds");
+        availableInventory.setText("" + farmer.getInventory().getAvailableSeedBagCapacity() + " seeds");
     }
 
-    /**
-     * This helper method helps get the current quantities of the seeds that the farmer object has.
-     */
-    private void getQuantities() {
-        appleQuantity = farmer.getSeedBag()[0].getQuantity();
-        potatoQuantity = farmer.getSeedBag()[1].getQuantity();
-        cornQuantity = farmer.getSeedBag()[2].getQuantity();
-    }
     /**
      * This helper method helps display the quantity of seeds that this farmer has.
      */
     private void updateAvailableQuantity() {
-        getQuantities();
         appleQuantityLabel.setText(String.format("x%02d", appleQuantity));
         potatoQuantityLabel.setText(String.format("x%02d", potatoQuantity));
         cornQuantityLabel.setText(String.format("x%02d", cornQuantity));
+    }
+
+    private void updateAvailableQuantity(Seed s, int quantity) {
+        if (s.getSeedID() == 0) {
+            appleQuantity -= quantity;
+        } else if (s.getSeedID() == 1) {
+            potatoQuantity -= quantity;
+        } else if (s.getSeedID() == 2) {
+            cornQuantity -= quantity;
+        }
+
+        appleQuantityLabel.setText(String.format("x%02d", appleQuantity));
+        potatoQuantityLabel.setText(String.format("x%02d", potatoQuantity));
+        cornQuantityLabel.setText(String.format("x%02d", cornQuantity));
+    }
+
+    private int getQuantityOfType(Seed s) {
+        if (s != null) {
+            if (s.getSeedID() == 0) {
+                return appleQuantity;
+            } else if (s.getSeedID() == 1) {
+                return potatoQuantity;
+            } else if (s.getSeedID() == 2) {
+                return cornQuantity;
+            }
+        }
+
+        return -99;
     }
 
     /**
@@ -272,7 +299,7 @@ public class MarketBuyUIController {
         plotController.initPlotUI(farmer, season, mainPanelController,
                 inventoryController, inspectController);
         mainPanelController.initMainPanelUI(farmer, season, plotController,
-                inventoryController, inspectController, season.getDay(), season.getHour());
+                inventoryController, inspectController);
         inventoryController.initInventoryUI(farmer, season, mainPanelController, plotController);
         inspectController.initPlantInspectUI(farmer, season, plotController, mainPanelController);
 
@@ -295,18 +322,18 @@ public class MarketBuyUIController {
                 throw new SeedChoiceNotFoundException("Please add some quantity of seeds "
                         + "you'd like to purchase!");
             }
-            String seedName = itemName.getText();
-            int quantity = Integer.parseInt(quantityLabel.getText());
-            if (quantity > farmer.getAvailableCapacity()) {
+            int merchQuantity = getQuantityOfType(seedChoice);
+            int buyQuantity = Integer.parseInt(quantityLabel.getText());
+            if (buyQuantity > farmer.getInventory().getAvailableSeedBagCapacity()) {
                 throw new InsufficientInventorySpaceException();
-            }
-            if (seedCost * quantity > farmer.getMoney()) {
+            } else if (seedCost * buyQuantity > farmer.getMoney()) {
                 throw new InsufficientFundsException();
+            }  else if (buyQuantity > merchQuantity){
+                throw new ExcessSeedBuyException();
             } else {
-                Seed s = new Seed(seedName, quantity);
-                farmer.addSeed(s);
-                farmer.pay(seedCost * quantity);
-                updateAvailableQuantity();
+                farmer.getInventory().addSeed(seedChoice, buyQuantity);
+                farmer.pay(seedCost * buyQuantity);
+                updateAvailableQuantity(seedChoice, buyQuantity);
                 updateAvailableCapacity();
                 updateBankAmount();
                 resetQuantityAndCostLabels();
@@ -321,6 +348,8 @@ public class MarketBuyUIController {
             alertPopUp("Not Enough Space In Inventory", i.getMessage());
         } catch (InsufficientFundsException i) {
             alertPopUp("Not Enough Money", i.getMessage());
+        } catch (ExcessSeedBuyException e) {
+            alertPopUp("Too many seeds!", e.getMessage());
         }
     }
 
@@ -382,6 +411,7 @@ public class MarketBuyUIController {
     private void resetQuantityAndCostLabels() {
         quantityLabel.setText("0");
         totalCost.setText("$0.00");
+        seedChoice = null;
     }
 
     /**
@@ -393,22 +423,22 @@ public class MarketBuyUIController {
         Button btn = ((Button) event.getSource());
         resetQuantityAndCostLabels();
         if (btn == appleButton) {
-            seedChoice = "Apple";
+            seedChoice = new Seed("Apple");
             seedCost = appleSeedCost;
             seedSelectActions(appleButton, potatoButton, cornButton);
         } else if (btn == potatoButton) {
-            seedChoice = "Potato";
+            seedChoice = new Seed("Potato");
             seedCost = potatoSeedCost;
             seedSelectActions(potatoButton, appleButton, cornButton);
         } else {
-            seedChoice = "Corn";
+            seedChoice = new Seed("Corn");
             seedCost = cornSeedCost;
             seedSelectActions(cornButton, appleButton, potatoButton);
         }
-        itemName.setText(seedChoice);
+        itemName.setText(seedChoice.getName() + " Seed");
         itemDescription.setText(String.format("The current price for "
                         + "one %s Seed in the %s Season is $%,.2f!",
-                seedChoice, season.getSeason(), seedCost));
+                seedChoice.getName(), season.getSeason(), seedCost));
     }
 
     /**

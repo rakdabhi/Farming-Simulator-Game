@@ -105,9 +105,9 @@ public class InventoryUIController {
      * This helper method helps get the current quantities of the seeds that the farmer object has.
      */
     private void getQuantities() {
-        appleQuantity = farmer.getSeedBag()[0].getQuantity();
-        potatoQuantity = farmer.getSeedBag()[1].getQuantity();
-        cornQuantity = farmer.getSeedBag()[2].getQuantity();
+        appleQuantity = farmer.getInventory().getSeedBag()[0];
+        potatoQuantity = farmer.getInventory().getSeedBag()[1];
+        cornQuantity = farmer.getInventory().getSeedBag()[2];
     }
     /**
      * This helper method helps display the quantity of seeds that this farmer has.
