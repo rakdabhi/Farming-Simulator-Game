@@ -243,6 +243,11 @@ public class PlantInspectUIController {
     @FXML
     void handleHomeButton(ActionEvent event) {
         plotu.setRightPaneWrapper(mpu.getRightPaneMain());
+        plotu.setSelectedPlot(null);
+        sowPress = false;
+        waterPress = false;
+        waterButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
+        sowButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
     }
 
     @FXML
@@ -363,49 +368,4 @@ public class PlantInspectUIController {
         }
     }
 
-    /**
-     * This methods helps create an alert popup for the user to
-     * select which seed they want to plant.
-     * @param farmer the farmer
-     * @return whether a seed was chosen or not
-     */
-    static boolean alertPopUp(Farmer farmer) {
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.setTitle("Seed Select");
-        a.setHeaderText("Which seed do you want to plant?");
-        a.setContentText("Choose one:");
-        ButtonType buttonTypeOne =
-                new ButtonType("Apple: x" + farmer.getSeedBag()[0].getQuantity());
-        ButtonType buttonTypeTwo =
-                new ButtonType("Potato: x" + farmer.getSeedBag()[1].getQuantity());
-        ButtonType buttonTypeThree =
-                new ButtonType("Corn: x" + farmer.getSeedBag()[2].getQuantity());
-        ButtonType buttonTypeCancel =
-                new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
-        if (farmer.getSeedBag()[0].getQuantity() <= 0) {
-            a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
-        }
-        if (farmer.getSeedBag()[1].getQuantity() <= 0) {
-            a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
-        }
-        if (farmer.getSeedBag()[2].getQuantity() <= 0) {
-            a.getDialogPane().lookupButton(buttonTypeThree).setDisable(true);
-        }
-
-        Optional<ButtonType> result = a.showAndWait();
-        if (result.get() == buttonTypeOne) {
-            seedSelect.setName("Apple");
-            return true;
-        } else if (result.get() == buttonTypeTwo) {
-            seedSelect.setName("Potato");
-            return true;
-        } else if (result.get() == buttonTypeThree) {
-            seedSelect.setName("Corn");
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

@@ -61,6 +61,8 @@ public class MarketSellUIController {
     @FXML
     private Button cornButton;
 
+    private Button[] cropArr = {appleButton, potatoButton, cornButton};
+
     @FXML
     private Button button1;
 
@@ -208,19 +210,19 @@ public class MarketSellUIController {
      * This helper method helps display the current inventory capacity of this farmer.
      */
     private void updateAvailableCapacity() {
-        availableInventory.setText("" + farmer.getAvailableCapacity() + " seeds");
+        availableInventory.setText("" + farmer.getInventory().getAvailableHarvestBagCapacity() + " crops");
     }
 
     /**
-     * This helper method helps get the current quantities of the seeds that the farmer object has.
+     * This helper method helps get the current quantities of salable crops that the farmer object has.
      */
     private void getQuantities() {
-        appleQuantity = farmer.getSeedBag()[0].getQuantity();
-        potatoQuantity = farmer.getSeedBag()[1].getQuantity();
-        cornQuantity = farmer.getSeedBag()[2].getQuantity();
+        appleQuantity = farmer.getInventory().getHarvestBag()[0];
+        potatoQuantity = farmer.getInventory().getHarvestBag()[1];
+        cornQuantity = farmer.getInventory().getHarvestBag()[2];
     }
     /**
-     * This helper method helps display the quantity of seeds that this farmer has.
+     * This helper method helps display the quantities of salable crops that this farmer has.
      */
     private void updateAvailableQuantity() {
         getQuantities();
@@ -277,7 +279,7 @@ public class MarketSellUIController {
         plotController.initPlotUI(farmer, season, mainPanelController,
                 inventoryController, inspectController);
         mainPanelController.initMainPanelUI(farmer, season, plotController,
-                inventoryController, inspectController, season.getDay(), season.getHour());
+                inventoryController, inspectController);
         inventoryController.initInventoryUI(farmer, season, mainPanelController, plotController);
         inspectController.initPlantInspectUI(farmer, season, plotController, mainPanelController);
 
@@ -299,10 +301,9 @@ public class MarketSellUIController {
             } else if (quantityLabel.getText().equals("0")) {
                 throw new SeedChoiceNotFoundException("You can't sell 0 seeds!");
             }
-            String seedName = itemName.getText();
+
             int quantity = Integer.parseInt(quantityLabel.getText());
-            Seed s = new Seed(seedName, quantity);
-            farmer.removeSeed(s);
+            farmer.getInventory().removeHarvest(new Seed(seedChoice), quantity);
             farmer.addMoney(seedCost * quantity);
             updateAvailableQuantity();
             updateAvailableCapacity();
@@ -312,7 +313,7 @@ public class MarketSellUIController {
             if (quantityLabel.getText().equals("0") && !itemName.getText().equals("Item")) {
                 alertPopUp("Can't Sell On Market", s.getMessage());
             } else {
-                alertPopUp("No Seed Chosen", s.getMessage());
+                alertPopUp("No Crop Chosen", s.getMessage());
             }
         }
     }
@@ -324,7 +325,7 @@ public class MarketSellUIController {
     void handleMinusButton(ActionEvent event) {
         try {
             if (itemName.getText().equals("Item")) {
-                throw new SeedChoiceNotFoundException("Please select a seed to sell!");
+                throw new SeedChoiceNotFoundException("Please select a crop to sell!");
             }
             int quantity = Integer.parseInt(quantityLabel.getText());
             if (quantity > 0) {
@@ -332,7 +333,7 @@ public class MarketSellUIController {
                 totalCost.setText(String.format("$%,.2f", ((quantity - 1) * seedCost)));
             }
         } catch (SeedChoiceNotFoundException s) {
-            alertPopUp("No Seed Chosen", s.getMessage());
+            alertPopUp("No Crop Chosen", s.getMessage());
         }
     }
 
@@ -397,15 +398,15 @@ public class MarketSellUIController {
         if (btn == appleButton) {
             seedChoice = "Apple";
             seedCost = appleSeedCost;
-            seedSelectActions(appleButton, potatoButton, cornButton);
+            seedSelectActions(appleButton);
         } else if (btn == potatoButton) {
             seedChoice = "Potato";
             seedCost = potatoSeedCost;
-            seedSelectActions(potatoButton, appleButton, cornButton);
+            seedSelectActions(potatoButton);
         } else {
             seedChoice = "Corn";
             seedCost = cornSeedCost;
-            seedSelectActions(cornButton, appleButton, potatoButton);
+            seedSelectActions(cornButton);
         }
         itemName.setText(seedChoice);
         itemDescription.setText(String.format("The current selling price for "
@@ -416,16 +417,20 @@ public class MarketSellUIController {
     /**
      * This helper method helps set the opacity and clickability of a button.
      * @param selected the button that is selected
-     * @param notSelected1 the first button that isn't selected
-     * @param notSelected2 the second button that isn't selected
      */
-    private void seedSelectActions(Button selected, Button notSelected1, Button notSelected2) {
-        selected.setOpacity(0.75);
-        selected.setDisable(true);
-        notSelected1.setOpacity(0.5);
-        notSelected1.setDisable(false);
-        notSelected2.setOpacity(0.5);
-        notSelected2.setDisable(false);
+    private void seedSelectActions(Button selected) {
+        for (Button btn : cropArr) {
+            if (btn != null) {
+                if (btn == selected) {
+                    btn.setOpacity(0.75);
+                    btn.setDisable(true);
+                } else {
+                    btn.setOpacity(0.5);
+                    btn.setDisable(false);
+
+                }
+            }
+        }
     }
 
     /**

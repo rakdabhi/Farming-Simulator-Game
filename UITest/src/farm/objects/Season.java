@@ -16,19 +16,17 @@ public class Season {
      * @param season one of the four seasons
      */
     public Season(String season) {
-        this(season, 1, 0);
+        this(season, 1, 8);
     }
 
     public Season(String season, int day, int hour) {
         this.season = season;
-        this.day = day;
-        this.hour = hour;
+        this.timer = new Clock(day, hour);
         generateTemperature();
     }
 
-    public Clock createTimer(Farmer farmer, PlotUIController plotu, Label dayLabel,
-                             Label hourLabel, Label ampmLabel, int day, int hour) {
-        timer = new Clock(farmer, plotu, dayLabel, hourLabel, ampmLabel, day, hour);
+
+    public Clock getTimer() {
         return timer;
     }
 
