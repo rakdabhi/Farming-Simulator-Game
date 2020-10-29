@@ -3,6 +3,7 @@ package farm.ui.controllers;
 import farm.objects.Clock;
 import farm.objects.Farmer;
 import javafx.animation.RotateTransition;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -53,6 +54,9 @@ public class MainPanelUIController {
     @FXML
     private Group inspectGraphic;
 
+    @FXML
+    private Button nextDayButton;
+
     private Farmer farmer;
 
     private Season season;
@@ -67,55 +71,33 @@ public class MainPanelUIController {
     private int day;
     private int hour;
 
+
     // |     Initialize Settings     |
     // |                             |
 
 
     public void initMainPanelUI(Farmer f, Season s, PlotUIController plotu,
-                                InventoryUIController invu, PlantInspectUIController piu,
-                                int day, int hour) {
+                                InventoryUIController invu, PlantInspectUIController piu) {
         this.farmer = f;
         this.season = s;
         this.plotu = plotu;
         this.invu = invu;
         this.piu = piu;
-        this.day = day;
-        this.hour = hour;
-        setStartingLabels();
-        timer = s.createTimer(farmer, plotu, dayLabel, hourLabel, ampmLabel, day, hour);
+        timer = season.getTimer();
+
         setMoneyLabel(f.getMoney());
+
+        hourLabel.textProperty().bind(timer.hourProperty().textProperty());
+        dayLabel.textProperty().bind(Bindings.convert(timer.dayProperty()));
+        ampmLabel.textProperty().bind(timer.amPmProperty().textProperty());
     }
 
     // |     Getters and Setters     |
     // |
 
-    public int getDay() {
-        return day;
-    }
-
-    public int getHour() {
-        return hour;
-    }
 
     void setMoneyLabel(double m) {
         moneyLabel.setText(String.format("$%,.2f", m));
-    }
-
-    public void setStartingLabels() {
-        if (hour == 0) {
-            dayLabel.setText(String.format("%02d", day));
-            hourLabel.setText(String.format("%02d", 12));
-            ampmLabel.setText("AM");
-        } else if (hour < 12) {
-            hourLabel.setText(String.format("%02d", hour));
-            ampmLabel.setText("AM");
-        } else if (hour == 12) {
-            hourLabel.setText(String.format("%02d", hour));
-            ampmLabel.setText("PM");
-        } else {
-            hourLabel.setText(String.format("%02d", hour % 12));
-            ampmLabel.setText("PM");
-        }
     }
 
     AnchorPane getRightPaneMain() {
@@ -134,6 +116,11 @@ public class MainPanelUIController {
     @FXML
     void handleInspectButton(ActionEvent event) throws IOException {
         plotu.setRightPaneWrapper(piu.getRightPaneInspect());
+    }
+
+    @FXML
+    void handleNextDayButton(ActionEvent event) {
+        season.getTimer().advanceDay();
     }
 
     @FXML

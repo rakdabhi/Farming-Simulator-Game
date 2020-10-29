@@ -17,7 +17,6 @@ public class FarmerTest {
     private Seed apple;
     private Seed potato;
     private Seed corn;
-    private Seed[] seedArray;
 
     @Before
     public void setUp() throws Exception {
@@ -28,20 +27,16 @@ public class FarmerTest {
         apple = new Seed("Apple");
         potato = new Seed("Potato");
         corn = new Seed("Corn");
-
-        seedArray = new Seed[]{apple, potato, corn};
     }
 
     @Test
     public void testInitialConfig() {
         assertEquals(200.0, farmer1.getMoney(), 0.01);
-        assertEquals(0, farmer1.numOfSeeds());
-
+        assertEquals(75, farmer1.getInventory().getTotalCapacity());
         assertEquals(100.0, farmer2.getMoney(), 0.01);
-        assertEquals(0, farmer2.numOfSeeds());
-
+        assertEquals(50, farmer2.getInventory().getTotalCapacity());
         assertEquals(50.0, farmer3.getMoney(), 0.01);
-        assertEquals(0, farmer3.numOfSeeds());
+        assertEquals(25, farmer3.getInventory().getTotalCapacity());
     }
 
 
@@ -59,18 +54,12 @@ public class FarmerTest {
 
     @Test
     public void inventoryCapacity() {
-        assertEquals(100, farmer1.getAvailableCapacity());
-        assertEquals(100, farmer1.getInventoryCapacity());
-        assertEquals(50, farmer2.getAvailableCapacity());
-        assertEquals(50, farmer2.getInventoryCapacity());
-        assertEquals(25, farmer3.getAvailableCapacity());
-        assertEquals(25, farmer3.getInventoryCapacity());
-    }
-
-    public void testCapacityAfterAddSeed() {
-        farmer3.setSeedBag(seedArray);
-        assertEquals(22, farmer3.getAvailableCapacity());
-        assertEquals(25, farmer3.getInventoryCapacity());
+        assertEquals(75, farmer1.getInventory().getAvailableSeedBagCapacity());
+        assertEquals(75, farmer1.getInventory().getTotalCapacity());
+        assertEquals(50, farmer2.getInventory().getAvailableSeedBagCapacity());
+        assertEquals(50, farmer2.getInventory().getTotalCapacity());
+        assertEquals(25, farmer3.getInventory().getAvailableSeedBagCapacity());
+        assertEquals(25, farmer3.getInventory().getTotalCapacity());
     }
 
     @Test
@@ -93,50 +82,33 @@ public class FarmerTest {
 
     @Test
     public void addSeed() throws SeedChoiceNotFoundException {
-        farmer1.addSeed(potato);
-        farmer1.addSeed(apple);
-        farmer1.addSeed(corn);
-        assertEquals(seedArray[0].getName(), farmer1.getSeedBag()[0].getName());
-        assertEquals(seedArray[0].getQuantity(), farmer1.getSeedBag()[0].getQuantity());
-        assertEquals(seedArray[1].getName(), farmer1.getSeedBag()[1].getName());
-        assertEquals(seedArray[1].getQuantity(), farmer1.getSeedBag()[1].getQuantity());
-        assertEquals(seedArray[2].getName(), farmer1.getSeedBag()[2].getName());
-        assertEquals(seedArray[2].getQuantity(), farmer1.getSeedBag()[2].getQuantity());
-        assertEquals(97, farmer1.getAvailableCapacity());
-        assertEquals(100, farmer1.getInventoryCapacity());
+        farmer1.getInventory().addSeed(potato, 1);
+        farmer1.getInventory().addSeed(apple, 1);
+        farmer1.getInventory().addSeed(corn, 1);
+        assertEquals(1, farmer1.getInventory().getSeedBag()[0]);
+        assertEquals(1, farmer1.getInventory().getSeedBag()[1]);
+        assertEquals(1, farmer1.getInventory().getSeedBag()[2]);
+        assertEquals(72, farmer1.getInventory().getAvailableSeedBagCapacity());
+        assertEquals(75, farmer1.getInventory().getTotalCapacity());
 
-        Seed potato = new Seed("Potato", 37);
-        farmer2.addSeed(potato);
-        assertEquals(13, farmer2.getAvailableCapacity());
-        assertEquals(50, farmer2.getInventoryCapacity());
+        Seed potato = new Seed("Potato");
+        farmer2.getInventory().addSeed(potato, 37);
+        assertEquals(13, farmer2.getInventory().getAvailableSeedBagCapacity());
+        assertEquals(50, farmer2.getInventory().getTotalCapacity());
     }
 
     @Test
     public void removeSeed() throws SeedChoiceNotFoundException {
-        Seed corn = new Seed("Corn", 10);
-        farmer3.addSeed(corn);
-        assertEquals(corn.getName(), farmer3.getSeedBag()[2].getName());
-        assertEquals(corn.getQuantity(), farmer3.getSeedBag()[2].getQuantity());
-        assertEquals(15, farmer3.getAvailableCapacity());
-        assertEquals(25, farmer3.getInventoryCapacity());
+        Seed corn = new Seed("Corn");
+        farmer3.getInventory().addSeed(corn, 10);
+        assertEquals(10, farmer3.getInventory().getSeedBag()[2]);
+        assertEquals(15, farmer3.getInventory().getAvailableSeedBagCapacity());
+        assertEquals(25, farmer3.getInventory().getTotalCapacity());
 
-        farmer3.removeSeed(new Seed("Corn", 5));
-        assertEquals(corn.getName(), farmer3.getSeedBag()[2].getName());
-        assertEquals(5, farmer3.getSeedBag()[2].getQuantity());
-        assertEquals(20, farmer3.getAvailableCapacity());
-        assertEquals(25, farmer3.getInventoryCapacity());
-    }
-
-    @Test
-    public void setSeedBag() {
-        farmer2.setSeedBag(seedArray);
-        assertEquals(seedArray, farmer2.getSeedBag());
-    }
-
-    @Test
-    public void numOfSeeds() {
-        farmer3.setSeedBag(seedArray);
-        assertEquals(3, farmer3.numOfSeeds());
+        farmer3.getInventory().removeSeed(new Seed("Corn"), 5);
+        assertEquals(5, farmer3.getInventory().getSeedBag()[2]);
+        assertEquals(20, farmer3.getInventory().getAvailableSeedBagCapacity());
+        assertEquals(25, farmer3.getInventory().getTotalCapacity());
     }
 
     @Test(expected = InsufficientFundsException.class)
@@ -149,16 +121,16 @@ public class FarmerTest {
 
     @Test(expected = InsufficientInventorySpaceException.class)
     public void insufficientInventory() throws SeedChoiceNotFoundException {
-        Seed apple = new Seed("Apple", 50);
-        farmer3.addSeed(apple);
-        farmer1.addSeed(new Seed("Apple", 10));
-        farmer1.removeSeed(new Seed("Apple", 20));
+        Seed apple = new Seed("Apple");
+        farmer3.getInventory().addSeed(apple, 50);
+        farmer1.getInventory().addSeed(new Seed("Apple"), 10);
+        farmer1.getInventory().removeSeed(new Seed("Apple"), 20);
     }
 
     @Test(expected = InsufficientInventorySpaceException.class)
     public void removeSeedWithException() throws SeedChoiceNotFoundException {
-        Seed apple = new Seed("Apple", 10);
-        farmer1.addSeed(apple);
-        farmer1.removeSeed(new Seed("Corn", 5));
+        Seed apple = new Seed("Apple");
+        farmer1.getInventory().addSeed(apple, 10);
+        farmer1.getInventory().removeSeed(new Seed("Corn"), 5);
     }
 }

@@ -9,8 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -84,6 +83,9 @@ public class PlantInspectUIController {
     @FXML
     private Group growthGraphic1;
 
+    @FXML
+    private Group growthGraphicGrave;
+
     private Farmer farmer;
 
     private Season season;
@@ -133,6 +135,10 @@ public class PlantInspectUIController {
         growthGraphicCorn.setVisible(false);
         growthGraphicPotato.setVisible(false);
         growthGraphicApple.setVisible(false);
+        growthGraphicGrave.setVisible(false);
+
+        waterPress = false;
+        sowPress = false;
 
         centerY = ((Bounds) waterLevelGFX.getLayoutBounds()).getCenterY();
 
@@ -146,7 +152,7 @@ public class PlantInspectUIController {
         Color unfilled = Color.web("#ff9f43");
         Color filled = Color.web("#15ad86");
         Group[] gfx = {growthGraphic0, growthGraphic1, growthGraphicCorn,
-            growthGraphicApple, growthGraphicPotato};
+            growthGraphicApple, growthGraphicPotato, growthGraphicGrave};
         Circle[] meter = {growthStage1, growthStage2, growthStage3};
 
         if (c == null || c.isDead()) {
@@ -156,6 +162,10 @@ public class PlantInspectUIController {
 
             for (Group graphic : gfx) {
                 graphic.setVisible(false);
+            }
+
+            if (c != null && c.isDead()) {
+                growthGraphicGrave.setVisible(true);
             }
 
             return;
@@ -231,6 +241,11 @@ public class PlantInspectUIController {
     @FXML
     void handleHomeButton(ActionEvent event) {
         plotu.setRightPaneWrapper(mpu.getRightPaneMain());
+        plotu.setSelectedPlot(null);
+        sowPress = false;
+        waterPress = false;
+        waterButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
+        sowButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
     }
 
     @FXML
@@ -350,4 +365,5 @@ public class PlantInspectUIController {
             pt.play();
         }
     }
+
 }

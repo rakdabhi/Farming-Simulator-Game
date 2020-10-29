@@ -1,7 +1,6 @@
 package farm.objects;
 
-import farm.ui.controllers.PlotUIController;
-import javafx.scene.control.Label;
+import java.util.Random;
 
 public class Season {
     private String season;
@@ -9,6 +8,7 @@ public class Season {
     private Clock timer;
     private int day;
     private int hour;
+    private Random rand;
 
     /**
      * This constructor creates a season with a randomized temperature that falls
@@ -16,19 +16,18 @@ public class Season {
      * @param season one of the four seasons
      */
     public Season(String season) {
-        this(season, 1, 0);
+        this(season, 1, 8);
     }
 
     public Season(String season, int day, int hour) {
         this.season = season;
-        this.day = day;
-        this.hour = hour;
-        generateTemperature();
+        this.timer = new Clock(day, hour);
+        this.rand = new Random();
+        this.temperature = generateTemperature();
     }
 
-    public Clock createTimer(Farmer farmer, PlotUIController plotu, Label dayLabel,
-                             Label hourLabel, Label ampmLabel, int day, int hour) {
-        timer = new Clock(farmer, plotu, dayLabel, hourLabel, ampmLabel, day, hour);
+
+    public Clock getTimer() {
         return timer;
     }
 
@@ -45,16 +44,17 @@ public class Season {
     /**
      * This method helps create a randomized temperature value that falls within
      * the range of the given season.
+     * @return the temperature
      */
-    public void generateTemperature() {
+    public int generateTemperature() {
         if (season.equals("Summer")) {
-            temperature = (int) (Math.random() * ((100 - 80) + 1)) + 80;
+            return rand.nextInt(100 - 80) + 80;
         } else if (season.equals("Spring")) {
-            temperature = (int) (Math.random() * ((79.9 - 67) + 1)) + 67;
+            return rand.nextInt(80 - 67) + 67;
         } else if (season.equals("Fall")) {
-            temperature = (int) (Math.random() * ((66.9 - 50) + 1)) + 50;
+            return rand.nextInt(67 - 50) + 50;
         } else {
-            temperature = (int) (Math.random() * (49.9 + 1));
+            return rand.nextInt(50);
         }
     }
 

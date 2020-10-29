@@ -11,7 +11,7 @@ public class Field {
         plots = new Plot[columns][rows];
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
-                plots[i][j] = new Plot();
+                plots[i][j] = new Plot(true);
             }
         }
     }

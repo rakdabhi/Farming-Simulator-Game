@@ -1,6 +1,5 @@
 package seed;
 
-import exceptions.InsufficientInventorySpaceException;
 import farm.objects.Seed;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,12 +11,11 @@ public class SeedTest {
     private Seed potato;
     private Seed corn;
 
-
     @Before
     public void setUp() throws Exception {
-        apple = new Seed("Apple", 0);
+        apple = new Seed("Apple");
         potato = new Seed("Potato");
-        corn = new Seed("Corn", 5);
+        corn = new Seed("Corn");
 
     }
 
@@ -29,38 +27,10 @@ public class SeedTest {
     }
 
     @Test
-    public void getQuantity() {
-        assertEquals(0, apple.getQuantity());
-        assertEquals(1, potato.getQuantity());
-        assertEquals(5, corn.getQuantity());
-    }
-
-    @Test
-    public void addQuantity() {
-        apple.addQuantity(10);
-        assertEquals(10, apple.getQuantity());
-
-        potato.addQuantity(100);
-        assertEquals(101, potato.getQuantity());
-
-        corn.addQuantity(50);
-        assertEquals(55, corn.getQuantity());
-    }
-
-    @Test
-    public void removeQuantity() {
-        corn.addQuantity(50);
-        corn.removeQuantity(37);
-        assertEquals(18, corn.getQuantity());
-
-        potato.removeQuantity(1);
-        assertEquals(0, potato.getQuantity());
-    }
-
-    @Test(expected = InsufficientInventorySpaceException.class)
-    public void removeSeedWithException() {
-        corn.removeQuantity(6);
-        apple.removeQuantity(10);
+    public void getID() {
+        assertEquals(0, apple.getSeedID());
+        assertEquals(1, potato.getSeedID());
+        assertEquals(2, corn.getSeedID());
     }
 
 }
