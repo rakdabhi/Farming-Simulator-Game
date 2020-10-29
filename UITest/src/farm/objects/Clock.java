@@ -1,13 +1,8 @@
 package farm.objects;
 
-import farm.ui.controllers.PlotUIController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.Group;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -15,7 +10,6 @@ public class Clock {
 
     private Timeline hoursCount = new Timeline(new KeyFrame(Duration.seconds(10),
         event -> hourLabel()));
-
 
     private int day;
     private int hour;
@@ -29,7 +23,7 @@ public class Clock {
         hoursCount.setCycleCount(Timeline.INDEFINITE);
         hoursCount.play();
 
-        hourWatch = new Text(((Integer)hour).toString());
+        hourWatch = new Text(String.format("%02d", hour));
         dayWatch = new SimpleIntegerProperty(day);
         ampmWatch = new Text("AM");
 

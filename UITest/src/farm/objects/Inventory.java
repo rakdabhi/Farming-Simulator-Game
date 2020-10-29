@@ -11,7 +11,6 @@ public class Inventory {
     private int totalCapacity;
 
     public Inventory(int experienceLevel) {
-        int totalCapacity;
         if (experienceLevel == 1) {
             totalCapacity = 75;
         } else if (experienceLevel == 2) {
@@ -48,9 +47,14 @@ public class Inventory {
         return availableHarvestBagCapacity;
     }
 
+    public int getTotalCapacity() {
+        return totalCapacity;
+    }
+
     /**
      * This method helps a farmer add a Seed to their inventory.
      * @param seed the Seed to add
+     * @param quantity the quantity to add
      * @throws SeedChoiceNotFoundException if the seed is not found in seedBag
      */
     public void addSeed(Seed seed, int quantity) throws SeedChoiceNotFoundException {
@@ -66,6 +70,7 @@ public class Inventory {
     /**
      * This method helps a farmer remove a seed from their inventory.
      * @param seed the seed to remove
+     * @param quantity the quantity to remove
      * @throws InsufficientInventorySpaceException if there is insufficient space in the inventory
      * @throws SeedChoiceNotFoundException if the seed is not found in seedBag
      */
@@ -85,6 +90,7 @@ public class Inventory {
     /**
      * This method helps a farmer add a Seed to their inventory.
      * @param seed the Crop to add
+     * @param quantity the quantity to add
      * @throws SeedChoiceNotFoundException if the seed is not found in seedBag
      */
     public void addHarvest(Seed seed, int quantity) throws SeedChoiceNotFoundException {
@@ -100,6 +106,7 @@ public class Inventory {
     /**
      * This method helps a farmer remove a seed from their inventory.
      * @param seed the seed to remove
+     * @param quantity the quantity to remove
      * @throws InsufficientInventorySpaceException if there is insufficient space in the inventory
      * @throws SeedChoiceNotFoundException if the seed is not found in seedBag
      */

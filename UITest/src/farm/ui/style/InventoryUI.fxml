@@ -17,12 +17,12 @@
             <AnchorPane prefHeight="436.0" prefWidth="368.0">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="397.0" layoutX="30.0" layoutY="29.0" strokeType="INSIDE" width="303.0" />
-                  <Label alignment="CENTER" layoutX="53.0" layoutY="50.0" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: #15ad86 #15ad86; -fx-background-radius: 10;" text="Item" textFill="#feca57">
+                  <Label alignment="CENTER" layoutX="46.0" layoutY="58.0" prefHeight="40.0" prefWidth="60.0" style="-fx-background-color: #15ad86 #15ad86; -fx-background-radius: 10;" text="Item" textFill="#feca57">
                      <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Group fx:id="appleImage" accessibleRole="BUTTON" layoutX="-318.0" layoutY="21.0" scaleX="0.8" scaleY="0.8" scaleZ="0.8">
+                  <Group fx:id="appleImage" accessibleRole="BUTTON" layoutX="-340.0" layoutY="25.0" scaleX="0.6" scaleY="0.6" scaleZ="0.6">
                      <children>
                         <SVGPath content="M155.89,124.93s2.53-23.72-3.15-28.77l3.71-3.79s3.45.06,3.45,32.56S155.89,124.93,155.89,124.93ZM155.89,124.93s2.53-23.72-3.15-28.77l3.71-3.79s3.45.06,3.45,32.56S155.89,124.93,155.89,124.93Z" fill="#fd9e49" layoutX="260.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fd676b" height="64.0" layoutX="398.0" layoutY="108.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" strokeType="INSIDE" width="36.0" />
@@ -30,7 +30,7 @@
                         <SVGPath content="M137.92,124.74s-14.84,3.71-13,21-.16,3.09-.16,3.09S114.43,121,137.92,124.74ZM137.92,124.74s-14.84,3.71-13,21-.16,3.09-.16,3.09S114.43,121,137.92,124.74Z" fill="WHITE" layoutX="270.0" layoutY="-7.0" scaleX="0.7" scaleY="0.7" scaleZ="0.7" />
                      </children>
                   </Group>
-                  <Group fx:id="potatoImage" accessibleRole="BUTTON" layoutX="-23.0" layoutY="90.0" scaleX="0.8" scaleY="0.8" scaleZ="0.8">
+                  <Group fx:id="potatoImage" accessibleRole="BUTTON" layoutX="-45.0" layoutY="94.0" scaleX="0.6" scaleY="0.6" scaleZ="0.6">
                      <children>
                         <SVGPath content="M137.27,146a6.09,6.09,0,0,1-.22-.74A1,1,0,0,0,137.27,146ZM137.27,146a6.09,6.09,0,0,1-.22-.74A1,1,0,0,0,137.27,146Z" layoutX="-20.0" />
                         <SVGPath content="M147.55,187.46a5.72,5.72,0,0,1-.52.56A1,1,0,0,0,147.55,187.46ZM147.55,187.46a5.72,5.72,0,0,1-.52.56A1,1,0,0,0,147.55,187.46Z" layoutX="-20.0" />
@@ -43,28 +43,48 @@
                         <SVGPath fx:id="potatoSeedInventory" content="M216,144.88s-4.46-45-40.61-12.67c0,0-39.41-1.57-42.65,12.67,0,0-38.23,21.87,6.84,49.15,0,0,44.9-9.11,46.06-19.28C185.62,174.75,218.14,163.37,216,144.88ZM126.3,171c-3-3,0-7.37,0-7.37Zm10.75-25.68c-1.16-4.63,4.44-5.17,4.44-5.17C137.82,142.82,137.08,144.44,137.05,145.28Zm3.27,41.51c4.19,1.81,6,1.63,6.71,1.23C143.61,191.35,140.32,186.79,140.32,186.79Zm8.22-26c.67,4.51,1.76,5.93,2.48,6.35C146.39,166,148.54,160.77,148.54,160.77Zm16-24.41c-.89,4.47-.35,6.17.19,6.82C160.71,140.53,164.49,136.36,164.49,136.36Zm18.33,33c4.36-1.32,5.6-2.61,5.92-3.39C188.28,170.76,182.82,169.4,182.82,169.4Zm13.24-46.13c3.77-2.93,6.53,2,6.53,2C198.63,123,196.84,123,196.06,123.27Zm12.73,27.83c2.85-3.57,3.14-5.33,3-6.15C214.06,149.12,208.79,151.1,208.79,151.1ZM216,144.88s-4.46-45-40.61-12.67c0,0-39.41-1.57-42.65,12.67,0,0-38.23,21.87,6.84,49.15,0,0,44.9-9.11,46.06-19.28C185.62,174.75,218.14,163.37,216,144.88ZM126.3,171c-3-3,0-7.37,0-7.37Zm10.75-25.68c-1.16-4.63,4.44-5.17,4.44-5.17C137.82,142.82,137.08,144.44,137.05,145.28Zm3.27,41.51c4.19,1.81,6,1.63,6.71,1.23C143.61,191.35,140.32,186.79,140.32,186.79Zm8.22-26c.67,4.51,1.76,5.93,2.48,6.35C146.39,166,148.54,160.77,148.54,160.77Zm16-24.41c-.89,4.47-.35,6.17.19,6.82C160.71,140.53,164.49,136.36,164.49,136.36Zm18.33,33c4.36-1.32,5.6-2.61,5.92-3.39C188.28,170.76,182.82,169.4,182.82,169.4Zm13.24-46.13c3.77-2.93,6.53,2,6.53,2C198.63,123,196.84,123,196.06,123.27Zm12.73,27.83c2.85-3.57,3.14-5.33,3-6.15C214.06,149.12,208.79,151.1,208.79,151.1Z" fill="#fd9e49" layoutX="-50.0" />
                      </children>
                   </Group>
-                  <Group fx:id="cornImage" accessibleRole="BUTTON" layoutX="-103.0" layoutY="214.0" scaleX="0.75" scaleY="0.75" scaleZ="0.75">
+                  <Group fx:id="cornImage" accessibleRole="BUTTON" layoutX="-125.0" layoutY="218.0" scaleX="0.6" scaleY="0.6" scaleZ="0.6">
                      <children>
                         <SVGPath fx:id="cornSeedInventory" content="M221.77,98.36C222,88,211.58,80.67,208,78.46l0-.69s-.24.11-.64.32l-.61-.35,0,.69c-3.73,2-14.5,8.82-14.75,19.22,0,0-14.38,123.07,12.32,109.59C230.31,222,221.77,98.36,221.77,98.36ZM221.77,98.36C222,88,211.58,80.67,208,78.46l0-.69s-.24.11-.64.32l-.61-.35,0,.69c-3.73,2-14.5,8.82-14.75,19.22,0,0-14.38,123.07,12.32,109.59C230.31,222,221.77,98.36,221.77,98.36Z" fill="#fcca5f" layoutY="-1.0" />
                         <SVGPath content="M205.07,173.89s-4.41-34.9-33.84-17.43c0,0-13.53,6.95-11.91,16.34,0,0,25.52-23.8,28.41-1.4,0,0-.7,36.55,9.91,36.8,0,0,6.07,2.12,15.08-1.62,0,0,9.33-10.49,9.86-37.47,0,0,5.88-17.52,13-7.48l6.41,1.71s-5.1-13.11-19.09-8.77C222.92,154.57,206.39,164.05,205.07,173.89ZM205.07,173.89s-4.41-34.9-33.84-17.43c0,0-13.53,6.95-11.91,16.34,0,0,25.52-23.8,28.41-1.4,0,0-.7,36.55,9.91,36.8,0,0,6.07,2.12,15.08-1.62,0,0,9.33-10.49,9.86-37.47,0,0,5.88-17.52,13-7.48l6.41,1.71s-5.1-13.11-19.09-8.77C222.92,154.57,206.39,164.05,205.07,173.89Z" fill="#159470" />
                      </children>
                   </Group>
-                  <Label alignment="CENTER" layoutX="165.0" layoutY="50.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Quantity" textFill="#feca57">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="appleQuantityLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="134.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
+                  <Label alignment="CENTER" layoutX="128.0" layoutY="57.0" prefHeight="40.0" prefWidth="75.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Seeds" textFill="#feca57">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="potatoQuantityLabel" alignment="CENTER" layoutX="204.0" layoutY="227.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
+                  <Label fx:id="appleSeedQuantityLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="133.0" layoutY="141.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="cornQuantityLabel" alignment="CENTER" layoutX="206.0" layoutY="337.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
+                  <Label fx:id="potatoSeedQuantityLabel" alignment="CENTER" layoutX="131.0" layoutY="234.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cornSeedQuantityLabel" alignment="CENTER" layoutX="133.0" layoutY="344.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="226.0" layoutY="56.0" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Harvest" textFill="#feca57">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="appleHarvestQuantityLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="231.0" layoutY="140.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="potatoHarvestQuantityLabel" alignment="CENTER" layoutX="229.0" layoutY="233.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cornHarvestQuantityLabel" alignment="CENTER" layoutX="231.0" layoutY="343.0" prefHeight="40.0" prefWidth="70.0" text="x00" textFill="#15ad86">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>

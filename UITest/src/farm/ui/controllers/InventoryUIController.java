@@ -24,18 +24,30 @@ import java.io.IOException;
 
 public class InventoryUIController {
 
-    private int appleQuantity;
-    private int potatoQuantity;
-    private int cornQuantity;
+    private int appleSeedQuantity;
+    private int potatoSeedQuantity;
+    private int cornSeedQuantity;
+    private int appleHarvestQuantity;
+    private int potatoHarvestQuantity;
+    private int cornHarvestQuantity;
 
     @FXML
-    private Label appleQuantityLabel;
+    private Label appleSeedQuantityLabel;
 
     @FXML
-    private Label potatoQuantityLabel;
+    private Label potatoSeedQuantityLabel;
 
     @FXML
-    private Label cornQuantityLabel;
+    private Label cornSeedQuantityLabel;
+
+    @FXML
+    private Label appleHarvestQuantityLabel;
+
+    @FXML
+    private Label potatoHarvestQuantityLabel;
+
+    @FXML
+    private Label cornHarvestQuantityLabel;
 
     private PlotUIController plotu;
 
@@ -105,18 +117,24 @@ public class InventoryUIController {
      * This helper method helps get the current quantities of the seeds that the farmer object has.
      */
     private void getQuantities() {
-        appleQuantity = farmer.getInventory().getSeedBag()[0];
-        potatoQuantity = farmer.getInventory().getSeedBag()[1];
-        cornQuantity = farmer.getInventory().getSeedBag()[2];
+        appleSeedQuantity = farmer.getInventory().getSeedBag()[0];
+        potatoSeedQuantity = farmer.getInventory().getSeedBag()[1];
+        cornSeedQuantity = farmer.getInventory().getSeedBag()[2];
+        appleHarvestQuantity = farmer.getInventory().getHarvestBag()[0];
+        potatoHarvestQuantity = farmer.getInventory().getHarvestBag()[1];
+        cornHarvestQuantity = farmer.getInventory().getHarvestBag()[2];
     }
     /**
      * This helper method helps display the quantity of seeds that this farmer has.
      */
     void updateAvailableQuantity() {
         getQuantities();
-        appleQuantityLabel.setText(String.format("x%02d", appleQuantity));
-        potatoQuantityLabel.setText(String.format("x%02d", potatoQuantity));
-        cornQuantityLabel.setText(String.format("x%02d", cornQuantity));
+        appleSeedQuantityLabel.setText(String.format("x%02d", appleSeedQuantity));
+        potatoSeedQuantityLabel.setText(String.format("x%02d", potatoSeedQuantity));
+        cornSeedQuantityLabel.setText(String.format("x%02d", cornSeedQuantity));
+        appleHarvestQuantityLabel.setText(String.format("x%02d", appleHarvestQuantity));
+        potatoHarvestQuantityLabel.setText(String.format("x%02d", potatoHarvestQuantity));
+        cornHarvestQuantityLabel.setText(String.format("x%02d", cornHarvestQuantity));
     }
 
 

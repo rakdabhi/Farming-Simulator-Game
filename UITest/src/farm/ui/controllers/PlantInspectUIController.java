@@ -166,7 +166,7 @@ public class PlantInspectUIController {
                 graphic.setVisible(false);
             }
 
-            if (c!= null && c.isDead()) {
+            if (c != null && c.isDead()) {
                 growthGraphicGrave.setVisible(true);
             }
 

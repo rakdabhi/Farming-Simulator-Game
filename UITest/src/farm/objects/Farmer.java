@@ -1,7 +1,5 @@
 package farm.objects;
 import exceptions.InsufficientFundsException;
-import exceptions.InsufficientInventorySpaceException;
-import exceptions.SeedChoiceNotFoundException;
 
 public class Farmer {
 
@@ -99,5 +97,7 @@ public class Farmer {
         return field;
     }
 
-    public Inventory getInventory() { return inventory; }
+    public Inventory getInventory() {
+        return inventory;
+    }
 }

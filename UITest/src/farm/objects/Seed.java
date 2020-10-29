@@ -1,8 +1,5 @@
 package farm.objects;
 
-import exceptions.InsufficientInventorySpaceException;
-import exceptions.SeedChoiceNotFoundException;
-
 public class Seed {
     private String name;
     private int seedID;
@@ -32,7 +29,9 @@ public class Seed {
         return name;
     }
 
-    public int getSeedID() { return seedID; }
+    public int getSeedID() {
+        return seedID;
+    }
 
 
     /**

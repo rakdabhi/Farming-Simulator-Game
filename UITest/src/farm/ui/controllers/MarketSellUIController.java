@@ -210,11 +210,13 @@ public class MarketSellUIController {
      * This helper method helps display the current inventory capacity of this farmer.
      */
     private void updateAvailableCapacity() {
-        availableInventory.setText("" + farmer.getInventory().getAvailableHarvestBagCapacity() + " crops");
+        availableInventory.setText("" + farmer.getInventory().getAvailableHarvestBagCapacity()
+            + " crops");
     }
 
     /**
-     * This helper method helps get the current quantities of salable crops that the farmer object has.
+     * This helper method helps get the current quantities of salable
+     * crops that the farmer object has.
      */
     private void getQuantities() {
         appleQuantity = farmer.getInventory().getHarvestBag()[0];

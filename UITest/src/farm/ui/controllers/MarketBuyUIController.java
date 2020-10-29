@@ -203,14 +203,16 @@ public class MarketBuyUIController {
      * This helper method helps display the current amount of money that the farmer has.
      */
     private void updateBankAmount() {
-        bankAmount.setText(String.format("$%,.2f", farmer.getMoney()));
+        bankAmount.setText(String.format("$%,.2f",
+            farmer.getMoney()));
     }
 
     /**
      * This helper method helps display the current inventory capacity of this farmer.
      */
     private void updateAvailableCapacity() {
-        availableInventory.setText("" + farmer.getInventory().getAvailableSeedBagCapacity() + " seeds");
+        availableInventory.setText("" + farmer.getInventory().getAvailableSeedBagCapacity()
+            + " seeds");
     }
 
     /**
@@ -328,7 +330,7 @@ public class MarketBuyUIController {
                 throw new InsufficientInventorySpaceException();
             } else if (seedCost * buyQuantity > farmer.getMoney()) {
                 throw new InsufficientFundsException();
-            }  else if (buyQuantity > merchQuantity){
+            }  else if (buyQuantity > merchQuantity) {
                 throw new ExcessSeedBuyException();
             } else {
                 farmer.getInventory().addSeed(seedChoice, buyQuantity);
