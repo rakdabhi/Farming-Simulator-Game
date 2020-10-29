@@ -153,6 +153,7 @@ public class InventoryUIController {
     }
 
     public void handleMarketButton(ActionEvent event) throws IOException {
+        plotu.dayEndListen();
         FXMLLoader loadMarketBuy =
                 new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
         Parent root = loadMarketBuy.load();

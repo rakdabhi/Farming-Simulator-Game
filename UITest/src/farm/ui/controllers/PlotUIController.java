@@ -86,6 +86,13 @@ public class PlotUIController {
 
     private SimpleIntegerProperty day = new SimpleIntegerProperty(this, "day");
 
+    ChangeListener<Number> dayChange = (observable, oldValue, newValue) -> {
+        advanceGrowthCycle();
+        if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
+            updateRightPaneInspect(selectedPlot.getCrop());
+        }
+    };
+
 
 
     // |     Initialize Settings     |
@@ -106,17 +113,7 @@ public class PlotUIController {
         selectedPlot = null;
 
         day.bind(s.getTimer().dayProperty());
-
-        day.addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                    Number oldValue, Number newValue) {
-                advanceGrowthCycle();
-                if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
-                    updateRightPaneInspect(selectedPlot.getCrop());
-                }
-            }
-        });
+        dayStartListen();
 
         displayCrops();
     }
@@ -324,6 +321,14 @@ public class PlotUIController {
         }
 
         displayCrops();
+    }
+
+    void dayStartListen() {
+        day.addListener(dayChange);
+    }
+
+    void dayEndListen() {
+        day.removeListener(dayChange);
     }
 
 }
