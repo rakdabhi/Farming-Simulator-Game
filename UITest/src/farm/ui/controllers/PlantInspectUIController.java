@@ -18,6 +18,8 @@ import javafx.scene.shape.*;
 import javafx.util.Duration;
 import farm.objects.Season;
 
+import java.util.Optional;
+
 public class PlantInspectUIController {
 
     @FXML
