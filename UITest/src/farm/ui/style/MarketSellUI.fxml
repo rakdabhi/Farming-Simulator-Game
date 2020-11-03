@@ -180,7 +180,7 @@
             <Pane prefHeight="460.0" prefWidth="368.0">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="382.0" layoutX="21.0" layoutY="70.0" strokeType="INSIDE" width="321.0" />
-                  <Label fx:id="itemName" alignment="CENTER" layoutX="32.0" layoutY="81.0" prefHeight="81.0" prefWidth="300.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Item" textFill="#feca57">
+                  <Label fx:id="itemName" alignment="CENTER" layoutX="32.0" layoutY="81.0" prefHeight="81.0" prefWidth="161.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Item" textFill="#feca57">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="36.0" />
                      </font>
@@ -244,6 +244,19 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="129.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #15ad86 #15ad86; -fx-background-radius: 10;" text="Pesticide Free" textFill="#22d2a3">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <Button layoutX="196.0" layoutY="79.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="140.0" style="-fx-background-color: #15ad86 #15ad86; -fx-background-radius: 10;" text="Pesticide Treated" textAlignment="CENTER" textFill="#feca57" wrapText="true">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
