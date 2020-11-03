@@ -6,8 +6,10 @@ import exceptions.SeedChoiceNotFoundException;
 public class Inventory {
     private int availableSeedBagCapacity;
     private int availableHarvestBagCapacity;
-    private int[] seedBag;
-    private int[] harvestBag;
+    private int availableItemBagCapacity;
+    private InventoryItem[] seedBag;
+    private InventoryItem[] harvestBag;
+    private InventoryItem[] itemBag;
     private int totalCapacity;
 
     public Inventory(int experienceLevel) {
@@ -19,24 +21,40 @@ public class Inventory {
             totalCapacity = 25;
         }
 
-        seedBag = new int[3];
-        harvestBag = new int[3];
-
-        for (int i = 0; i < seedBag.length; i++) {
-            seedBag[i] = 0;
-            harvestBag[i] = 0;
-        }
+        seedBag = new InventoryItem[3];
+        harvestBag = new InventoryItem[3];
+        itemBag = new InventoryItem[2];
 
         availableHarvestBagCapacity = totalCapacity;
         availableSeedBagCapacity = totalCapacity;
+        availableItemBagCapacity = totalCapacity;
+
+        initInventoryBags();
     }
 
-    public int[] getSeedBag() {
+    private void initInventoryBags() {
+        seedBag[0] = new InventoryItem("Apple Seed", 0);
+        seedBag[1] = new InventoryItem("Potato Seed", 0);
+        seedBag[2] = new InventoryItem("Corn Seed", 0);
+
+        harvestBag[0] = new InventoryItem("Apple", 0);
+        harvestBag[1] = new InventoryItem("Potato", 0);
+        harvestBag[2] = new InventoryItem("Corn", 0);
+
+        itemBag[0] = new InventoryItem("Fertilizer", 0);
+        itemBag[1] = new InventoryItem("Pesticide", 0);
+    }
+
+    public InventoryItem[] getSeedBag() {
         return seedBag;
     }
 
-    public int[] getHarvestBag() {
+    public InventoryItem[] getHarvestBag() {
         return harvestBag;
+    }
+
+    public InventoryItem[] getItemBag() {
+        return itemBag;
     }
 
     public int getAvailableSeedBagCapacity() {
@@ -62,7 +80,7 @@ public class Inventory {
             throw new InsufficientInventorySpaceException();
         } else {
             int seedID = seed.getSeedID();
-            seedBag[seedID] += quantity;
+            seedBag[seedID].addQuantity(quantity);
             availableSeedBagCapacity -= quantity;
         }
     }
@@ -77,12 +95,12 @@ public class Inventory {
     public void removeSeed(Seed seed, int quantity)
             throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
         int index = seed.getSeedID();
-        if ((seedBag[index] == 0)
-                || (seedBag[index] < quantity)) {
+        if ((seedBag[index].getQuantity() == 0)
+                || (seedBag[index].getQuantity() < quantity)) {
             throw new InsufficientInventorySpaceException("You currently don't have enough"
                     + " seeds of this kind in your inventory to remove!");
         } else {
-            seedBag[index] -= quantity;
+            seedBag[index].addQuantity(-quantity);
             availableSeedBagCapacity += quantity;
         }
     }
@@ -98,7 +116,7 @@ public class Inventory {
             throw new InsufficientInventorySpaceException();
         } else {
             int seedID = seed.getSeedID();
-            harvestBag[seedID] += quantity;
+            harvestBag[seedID].addQuantity(quantity);
             availableHarvestBagCapacity -= quantity;
         }
     }
@@ -113,12 +131,12 @@ public class Inventory {
     public void removeHarvest(Seed seed, int quantity)
             throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
         int index = seed.getSeedID();
-        if ((harvestBag[index] == 0)
-                || (harvestBag[index] < quantity)) {
+        if ((harvestBag[index].getQuantity() == 0)
+                || (harvestBag[index].getQuantity() < quantity)) {
             throw new InsufficientInventorySpaceException("You currently don't have enough"
                     + " crops of this kind in your inventory to remove!");
         } else {
-            harvestBag[index] -= quantity;
+            harvestBag[index].addQuantity(-quantity);
             availableHarvestBagCapacity += quantity;
         }
     }

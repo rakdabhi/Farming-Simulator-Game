@@ -219,9 +219,9 @@ public class MarketSellUIController {
      * crops that the farmer object has.
      */
     private void getQuantities() {
-        appleQuantity = farmer.getInventory().getHarvestBag()[0];
-        potatoQuantity = farmer.getInventory().getHarvestBag()[1];
-        cornQuantity = farmer.getInventory().getHarvestBag()[2];
+        appleQuantity = farmer.getInventory().getHarvestBag()[0].getQuantity();
+        potatoQuantity = farmer.getInventory().getHarvestBag()[1].getQuantity();
+        cornQuantity = farmer.getInventory().getHarvestBag()[2].getQuantity();
     }
     /**
      * This helper method helps display the quantities of salable crops that this farmer has.
