@@ -111,6 +111,7 @@ public class MainPanelUIController {
     @FXML
     void handleInventoryButton(ActionEvent event) throws IOException {
         plotu.setRightPaneWrapper(invu.getRightPaneInventory());
+        invu.handleInvBtns(null);
     }
 
     @FXML
