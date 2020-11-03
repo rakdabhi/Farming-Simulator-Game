@@ -1,8 +1,11 @@
 package farm.ui.controllers;
 
 import exceptions.SeedChoiceNotFoundException;
-import farm.objects.Farmer;
+import farm.objects.*;
 import javafx.animation.RotateTransition;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +18,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import farm.objects.Season;
-import farm.objects.Seed;
 
 import java.io.IOException;
 
@@ -168,9 +170,26 @@ public class MarketSellUIController {
     @FXML
     private Button sellTab;
 
+    @FXML
+    private Button pesticideFreeBtn;
+
+    @FXML
+    private Button pesticideTreatedBtn;
+
+    @FXML
+    private Label inspectCountLabel;
+
+    private Button selectedPestBtn;
+
     private Farmer farmer;
 
     private Season season;
+
+    private SimpleIntegerProperty trackQuantity = new SimpleIntegerProperty(this, "trackQuantity");
+
+    private ChangeListener<Number> quantityChange = (observable, oldValue, newValue) -> {
+        inspectCountLabel.setText(String.format("x%02d",trackQuantity.getValue()));
+    };
 
     /**
      * This method initializes the market sell screen with a given Farmer and Season.
@@ -186,6 +205,9 @@ public class MarketSellUIController {
         appleSeedCost = calculateSeedCost(2.89, 2.59);
         potatoSeedCost = calculateSeedCost(4.22, 2.33);
         cornSeedCost = calculateSeedCost(3.35, 3.36);
+
+        selectedPestBtn = pesticideFreeBtn;
+        quantityStartListen();
     }
 
     /**
@@ -219,9 +241,9 @@ public class MarketSellUIController {
      * crops that the farmer object has.
      */
     private void getQuantities() {
-        appleQuantity = farmer.getInventory().getHarvestBag()[0].getQuantity();
-        potatoQuantity = farmer.getInventory().getHarvestBag()[1].getQuantity();
-        cornQuantity = farmer.getInventory().getHarvestBag()[2].getQuantity();
+        appleQuantity = farmer.getInventory().getHarvestBag()[0].getTotalQuantity();
+        potatoQuantity = farmer.getInventory().getHarvestBag()[1].getTotalQuantity();
+        cornQuantity = farmer.getInventory().getHarvestBag()[2].getTotalQuantity();
     }
     /**
      * This helper method helps display the quantities of salable crops that this farmer has.
@@ -245,6 +267,7 @@ public class MarketSellUIController {
         Parent root = loadMarketBuy.load();
         MarketBuyUIController mbu = loadMarketBuy.getController();
         mbu.initMarketBuy(farmer, season);
+        quantityEndListen();
 
         Scene nextPageScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -284,6 +307,7 @@ public class MarketSellUIController {
                 inventoryController, inspectController);
         inventoryController.initInventoryUI(farmer, season, mainPanelController, plotController);
         inspectController.initPlantInspectUI(farmer, season, plotController, mainPanelController);
+        quantityEndListen();
 
         Scene nextPageScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -305,7 +329,11 @@ public class MarketSellUIController {
             }
 
             int quantity = Integer.parseInt(quantityLabel.getText());
-            farmer.getInventory().removeHarvest(new Seed(seedChoice), quantity);
+            Crop c = new Crop(new Seed(seedChoice), 0, 0);
+            if (selectedPestBtn == pesticideTreatedBtn) {
+                c.setPesticideTreated(true);
+            }
+            farmer.getInventory().removeHarvest(c, quantity);
             farmer.addMoney(seedCost * quantity);
             updateAvailableQuantity();
             updateAvailableCapacity();
@@ -410,7 +438,17 @@ public class MarketSellUIController {
             seedCost = cornSeedCost;
             seedSelectActions(cornButton);
         }
+        if (selectedPestBtn == pesticideTreatedBtn) {
+            handlePesticideTreatedBtn(new ActionEvent());
+            seedCost -= 2;
+        } else {
+            handlePesticideFreeBtn(new ActionEvent());
+        }
         itemName.setText(seedChoice);
+        setItemDescription();
+    }
+
+    void setItemDescription() {
         itemDescription.setText(String.format("The current selling price for "
                         + "one %s Seed in the %s Season is $%,.2f!",
                 seedChoice, season.getSeason(), seedCost));
@@ -433,6 +471,74 @@ public class MarketSellUIController {
                 }
             }
         }
+    }
+
+    @FXML
+    void handlePesticideTreatedBtn(ActionEvent e) {
+        if (selectedPestBtn != pesticideTreatedBtn) {
+            selectedPestBtn = pesticideTreatedBtn;
+            seedCost -= 2;
+        }
+
+        setItemDescription();
+
+        pesticideTreatedBtn.setTextFill(Color.web("#feca57"));
+        pesticideFreeBtn.setTextFill(Color.web("#22d2a3"));
+        Crop c;
+
+        if (seedChoice.equals("Apple")) {
+            c = new Crop(new Seed("Apple"),0, 0);
+        } else if (seedChoice.equals("Potato")) {
+            c = new Crop(new Seed("Potato"),0, 0);
+        } else {
+            c = new Crop(new Seed("Corn"),0, 0);
+        }
+
+        c.setPesticideTreated(true);
+        bindTrackQuantity(c);
+    }
+
+    @FXML
+    void handlePesticideFreeBtn(ActionEvent e) {
+        if (selectedPestBtn != pesticideFreeBtn) {
+            selectedPestBtn = pesticideFreeBtn;
+            seedCost += 2;
+        }
+
+        setItemDescription();
+
+        pesticideTreatedBtn.setTextFill(Color.web("#22d2a3"));
+        pesticideFreeBtn.setTextFill(Color.web("#feca57"));
+        Crop c;
+
+        if (seedChoice.equals("Apple")) {
+            c = new Crop(new Seed("Apple"),0, 0);
+        } else if (seedChoice.equals("Potato")) {
+            c = new Crop(new Seed("Potato"),0, 0);
+        } else {
+            c = new Crop(new Seed("Corn"),0, 0);
+        }
+
+        bindTrackQuantity(c);
+
+    }
+
+    void bindTrackQuantity(Crop c) {
+        int i = c.getSeed().getSeedID();
+        InventoryItem j = (farmer.getInventory().getHarvestBag()[i]);
+        if (c.isPesticideTreated()) {
+            trackQuantity.bind(j.getPesticideTreatedCount());
+        } else {
+            trackQuantity.bind(j.getPesticideFreeCount());
+        }
+    }
+
+    void quantityStartListen() {
+        trackQuantity.addListener(quantityChange);
+    }
+
+    void quantityEndListen() {
+        trackQuantity.removeListener(quantityChange);
     }
 
     /**

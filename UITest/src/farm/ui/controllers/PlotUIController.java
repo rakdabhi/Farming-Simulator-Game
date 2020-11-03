@@ -9,7 +9,6 @@ import exceptions.SeedChoiceNotFoundException;
 import farm.objects.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -199,8 +198,9 @@ public class PlotUIController {
                 selectedPlot = currPlot;
                 displayCrops();
                 updateRightPaneInspect(selectedPlot.getCrop());
-                if ((PlantInspectUIController.getWaterPress()
-                        || PlantInspectUIController.getSowPress())) {
+                if (PlantInspectUIController.getWaterPress()
+                        || PlantInspectUIController.getSowPress()
+                        || PlantInspectUIController.getTreatmentPress()) {
                     return;
                 }
             }
@@ -212,8 +212,7 @@ public class PlotUIController {
             if (PlantInspectUIController.getSowPress() && crop != null) {
                 Seed s = farmer.getField().getPlot(column, row).harvest();
                 if (s != null) {
-                    farmer.getInventory().addHarvest(s, 1);
-                    //invu.updateAvailableQuantity();
+                    farmer.getInventory().addHarvest(crop, 1);
                 }
                 displayCrops();
                 ((Group) source).getChildren().get(4).setVisible(false);
@@ -230,7 +229,6 @@ public class PlotUIController {
                     displayCrops();
                     ((Group) source).getChildren().get(4).setVisible(true);
                     updateRightPaneInspect(farmer.getField().getPlot(column, row).getCrop());
-                    //invu.updateAvailableQuantity();
                 }
             }
 
@@ -239,6 +237,24 @@ public class PlotUIController {
                 crop.setWaterLevel(crop.getWaterLevel() + 1);
                 updateRightPaneInspect(crop);
                 displayCrops();
+            }
+
+            //handle treatmentPress
+            if ((PlantInspectUIController.getTreatmentPress()) && crop != null) {
+                InventoryItem item = treatmentPopUp(farmer, crop);
+                if (item != null) {
+                    if (item.getItemName().equals("Fertilizer")) {
+
+
+                    } else if (item.getItemName().equals("Pesticide")) {
+                        farmer.getField().getPlot(column, row).getCrop().setPesticideTreated(true);
+                        farmer.getInventory().getItemBag()[1].addQuantity(-1);
+                    }
+
+                    displayCrops();
+                    updateRightPaneInspect(farmer.getField().getPlot(column, row).getCrop());
+                }
+
             }
         } catch (ImmatureHarvestException i) {
             alertPopUp("Attempted Infanticide", i.getMessage());
@@ -250,6 +266,38 @@ public class PlotUIController {
             alertPopUp("Plot Full", p.getMessage());
         }
     }
+
+    static InventoryItem treatmentPopUp(Farmer farmer, Crop crop) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setTitle("Treatment Select");
+        a.setHeaderText("Would you like to treat a plant with pesticide or fertilizer?");
+        a.setContentText("Choose one:");
+        ButtonType buttonTypeOne =
+                new ButtonType("Fertilizer: x" + farmer.getInventory().getItemBag()[0].getTotalQuantity());
+        ButtonType buttonTypeTwo =
+                new ButtonType("Pesticide: x" + farmer.getInventory().getItemBag()[1].getTotalQuantity());
+        ButtonType buttonTypeCancel =
+                new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+        if (farmer.getInventory().getItemBag()[0].getTotalQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
+        }
+        if (farmer.getInventory().getItemBag()[1].getTotalQuantity() <= 0
+                || crop.isPesticideTreated()) {
+            a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
+        }
+
+        Optional<ButtonType> result = a.showAndWait();
+        if (result.get() == buttonTypeOne) {
+            return new InventoryItem("Fertilizer", 0);
+        } else if (result.get() == buttonTypeTwo) {
+            return new InventoryItem("Pesticide", 0);
+        } else {
+            return null;
+        }
+    }
+
 
     /**
      * This methods helps create an alert popup for the user to
@@ -263,22 +311,22 @@ public class PlotUIController {
         a.setHeaderText("Which seed do you want to plant?");
         a.setContentText("Choose one:");
         ButtonType buttonTypeOne =
-                new ButtonType("Apple: x" + farmer.getInventory().getSeedBag()[0].getQuantity());
+                new ButtonType("Apple: x" + farmer.getInventory().getSeedBag()[0].getTotalQuantity());
         ButtonType buttonTypeTwo =
-                new ButtonType("Potato: x" + farmer.getInventory().getSeedBag()[1].getQuantity());
+                new ButtonType("Potato: x" + farmer.getInventory().getSeedBag()[1].getTotalQuantity());
         ButtonType buttonTypeThree =
-                new ButtonType("Corn: x" + farmer.getInventory().getSeedBag()[2].getQuantity());
+                new ButtonType("Corn: x" + farmer.getInventory().getSeedBag()[2].getTotalQuantity());
         ButtonType buttonTypeCancel =
                 new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
-        if (farmer.getInventory().getSeedBag()[0].getQuantity() <= 0) {
+        if (farmer.getInventory().getSeedBag()[0].getTotalQuantity() <= 0) {
             a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
         }
-        if (farmer.getInventory().getSeedBag()[1].getQuantity() <= 0) {
+        if (farmer.getInventory().getSeedBag()[1].getTotalQuantity() <= 0) {
             a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
         }
-        if (farmer.getInventory().getSeedBag()[2].getQuantity() <= 0) {
+        if (farmer.getInventory().getSeedBag()[2].getTotalQuantity() <= 0) {
             a.getDialogPane().lookupButton(buttonTypeThree).setDisable(true);
         }
 

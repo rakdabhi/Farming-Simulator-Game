@@ -95,8 +95,8 @@ public class Inventory {
     public void removeSeed(Seed seed, int quantity)
             throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
         int index = seed.getSeedID();
-        if ((seedBag[index].getQuantity() == 0)
-                || (seedBag[index].getQuantity() < quantity)) {
+        if ((seedBag[index].getTotalQuantity() == 0)
+                || (seedBag[index].getTotalQuantity() < quantity)) {
             throw new InsufficientInventorySpaceException("You currently don't have enough"
                     + " seeds of this kind in your inventory to remove!");
         } else {
@@ -106,37 +106,44 @@ public class Inventory {
     }
 
     /**
-     * This method helps a farmer add a Seed to their inventory.
-     * @param seed the Crop to add
+     * This method helps a farmer add a harvested crop to their inventory.
+     * @param c the Crop to add
      * @param quantity the quantity to add
      * @throws SeedChoiceNotFoundException if the seed is not found in seedBag
      */
-    public void addHarvest(Seed seed, int quantity) throws SeedChoiceNotFoundException {
+    public void addHarvest(Crop c, int quantity) throws SeedChoiceNotFoundException {
         if (quantity > availableHarvestBagCapacity) {
             throw new InsufficientInventorySpaceException();
         } else {
-            int seedID = seed.getSeedID();
-            harvestBag[seedID].addQuantity(quantity);
+            int seedID = c.getSeed().getSeedID();
+            harvestBag[seedID].addQuantity(c, quantity);
             availableHarvestBagCapacity -= quantity;
         }
     }
 
     /**
-     * This method helps a farmer remove a seed from their inventory.
-     * @param seed the seed to remove
+     * This method helps a farmer remove a harvested crop from their inventory.
+     * @param c the crop to remove
      * @param quantity the quantity to remove
      * @throws InsufficientInventorySpaceException if there is insufficient space in the inventory
      * @throws SeedChoiceNotFoundException if the seed is not found in seedBag
      */
-    public void removeHarvest(Seed seed, int quantity)
+    public void removeHarvest(Crop c, int quantity)
             throws InsufficientInventorySpaceException, SeedChoiceNotFoundException {
-        int index = seed.getSeedID();
-        if ((harvestBag[index].getQuantity() == 0)
-                || (harvestBag[index].getQuantity() < quantity)) {
+        int index = c.getSeed().getSeedID();
+        int total;
+        if (c.isPesticideTreated()) {
+            total = harvestBag[index].getPesticideTreatedCount().getValue();
+        } else {
+            total = harvestBag[index].getPesticideFreeCount().getValue();
+        }
+
+        if ((total == 0)
+                || (total < quantity)) {
             throw new InsufficientInventorySpaceException("You currently don't have enough"
                     + " crops of this kind in your inventory to remove!");
         } else {
-            harvestBag[index].addQuantity(-quantity);
+            harvestBag[index].addQuantity(c, -quantity);
             availableHarvestBagCapacity += quantity;
         }
     }
