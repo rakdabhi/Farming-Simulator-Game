@@ -77,7 +77,7 @@ public class InventoryUIController {
 
     void initTable() {
         itemCol.setCellValueFactory(new PropertyValueFactory<InventoryItem, String>("itemName"));
-        quantityCol.setCellValueFactory(new PropertyValueFactory<InventoryItem, String>("quantity"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<InventoryItem, String>("totalQuantity"));
 
         for (InventoryItem item : farmer.getInventory().getSeedBag()) {
             inventoryTable.getItems().add(item);

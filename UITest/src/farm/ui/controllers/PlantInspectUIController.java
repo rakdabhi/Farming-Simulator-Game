@@ -18,6 +18,7 @@ import javafx.scene.shape.*;
 import javafx.util.Duration;
 import farm.objects.Season;
 
+
 import java.util.Optional;
 
 public class PlantInspectUIController {
@@ -88,6 +89,9 @@ public class PlantInspectUIController {
     @FXML
     private Group growthGraphicGrave;
 
+    @FXML
+    private Button plantTreatmentButton;
+
     private Farmer farmer;
 
     private Season season;
@@ -110,6 +114,8 @@ public class PlantInspectUIController {
 
     private static boolean sowPress;
 
+    private static boolean treatmentPress;
+
     public static boolean getWaterPress() {
         return waterPress;
     }
@@ -117,6 +123,8 @@ public class PlantInspectUIController {
     public static boolean getSowPress() {
         return sowPress;
     }
+
+    public static boolean getTreatmentPress() { return treatmentPress; }
 
     AnchorPane getRightPaneInspect() {
         return rightPaneInspect;
@@ -141,6 +149,7 @@ public class PlantInspectUIController {
 
         waterPress = false;
         sowPress = false;
+        treatmentPress = false;
 
         centerY = ((Bounds) waterLevelGFX.getLayoutBounds()).getCenterY();
 
@@ -246,12 +255,14 @@ public class PlantInspectUIController {
         plotu.setSelectedPlot(null);
         sowPress = false;
         waterPress = false;
+        treatmentPress = false;
         waterButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
         sowButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
+        plantTreatmentButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
     }
 
     @FXML
-    void handleSowAndWaterButton(MouseEvent event) {
+    void handleFarmToolButtons(MouseEvent event) {
         Button btn = ((Button) event.getSource());
         String notHighlighted = "-fx-background-color: #15ad86; -fx-background-radius: 10";
         String highlighted = "-fx-background-color: #15936f; -fx-background-radius: 10";
@@ -259,7 +270,9 @@ public class PlantInspectUIController {
             if (!waterPress) {
                 waterButton.setStyle(highlighted);
                 sowButton.setStyle(notHighlighted);
+                plantTreatmentButton.setStyle(notHighlighted);
                 sowPress = false;
+                treatmentPress = false;
             } else {
                 waterButton.setStyle(notHighlighted);
             }
@@ -268,14 +281,28 @@ public class PlantInspectUIController {
             if (!sowPress) {
                 waterButton.setStyle(notHighlighted);
                 sowButton.setStyle(highlighted);
+                plantTreatmentButton.setStyle(notHighlighted);
                 waterPress = false;
+                treatmentPress = false;
             } else {
                 sowButton.setStyle(notHighlighted);
             }
             sowPress = !sowPress;
+        } else if (btn == plantTreatmentButton) {
+            if (!treatmentPress) {
+                waterButton.setStyle(notHighlighted);
+                sowButton.setStyle(notHighlighted);
+                plantTreatmentButton.setStyle(highlighted);
+                waterPress = false;
+                sowPress = false;
+            } else {
+                plantTreatmentButton.setStyle(notHighlighted);
+            }
+            treatmentPress = !treatmentPress;
         }
 
     }
+
 
     @FXML
     void homeButtonMouseEnter(MouseEvent event) {
