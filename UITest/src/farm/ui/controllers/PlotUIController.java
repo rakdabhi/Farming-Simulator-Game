@@ -1,4 +1,3 @@
-
 package farm.ui.controllers;
 
 
@@ -9,11 +8,9 @@ import exceptions.SeedChoiceNotFoundException;
 import farm.objects.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -23,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class PlotUIController {
 
@@ -69,6 +67,15 @@ public class PlotUIController {
     @FXML
     private GridPane plotGrid;
 
+    @FXML
+    private Button rainButton;
+
+    @FXML
+    private Button droughtButton;
+
+    @FXML
+    private Button locustButton;
+
     private Farmer farmer;
 
     private Season season;
@@ -83,10 +90,14 @@ public class PlotUIController {
 
     private Plot selectedPlot;
 
+    private Random chance = new Random();
+
+    private RandomEvent randomEvent;
+
     private SimpleIntegerProperty day = new SimpleIntegerProperty(this, "day");
 
     private ChangeListener<Number> dayChange = (observable, oldValue, newValue) -> {
-        advanceGrowthCycle();
+        advanceGrowthCycle(chance.nextInt(101));
         if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
             updateRightPaneInspect(selectedPlot.getCrop());
         }
@@ -99,6 +110,7 @@ public class PlotUIController {
                            InventoryUIController invu, PlantInspectUIController piu) {
         this.farmer = f;
         this.season = s;
+        this.randomEvent = new RandomEvent(s);
         this.mpu = mpu;
         this.invu = invu;
         this.piu = piu;
@@ -356,20 +368,65 @@ public class PlotUIController {
         a.showAndWait();
     }
 
-    public void advanceGrowthCycle() {
-        for (int i = 0; i < plotArray.length; i++) {
-            for (int j = 0; j < plotArray[i].length; j++) {
-                Crop crop = farmer.getField().getPlot(i, j).getCrop();
-                if (crop != null) {
-                    crop.grow();
-                    crop.setWaterLevel(crop.getWaterLevel() - 2);
+    public void advanceGrowthCycle(int chance) {
+        try {
+            for (int i = 0; i < plotArray.length; i++) {
+                for (int j = 0; j < plotArray[i].length; j++) {
+                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                    if (crop != null) {
+                        crop.grow();
+                        crop.setWaterLevel(crop.getWaterLevel() - 2);
+                        randomEvent.performRandomEvent(crop, chance);
+                    }
+                    //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
+                    ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                 }
-                //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
-                ((Label) plotArray[i][j].getChildren().get(3)).setText("");
+            }
+            displayCrops();
+        } finally {
+            if ((randomEvent.getErrorHeader().length() != 0)
+                && (randomEvent.getErrorMessage().length() != 0)) {
+                alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
+                randomEvent.resetDeadFromLocusts();
             }
         }
+    }
 
-        displayCrops();
+    private void randomEventHandler(int chance) {
+        try {
+            randomEvent.generateNewRainAndDroughtLevels();
+            for (int i = 0; i < plotArray.length; i++) {
+                for (int j = 0; j < plotArray[i].length; j++) {
+                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                    if (crop != null) {
+                        randomEvent.performRandomEvent(crop, chance);
+                    }
+                    ((Label) plotArray[i][j].getChildren().get(3)).setText("");
+                }
+            }
+            displayCrops();
+        } finally {
+            if ((randomEvent.getErrorHeader().length() != 0)
+                    && (randomEvent.getErrorMessage().length() != 0)) {
+                alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
+                randomEvent.resetDeadFromLocusts();
+            }
+        }
+    }
+
+    @FXML
+    void handleRainButton(ActionEvent event) {
+        randomEventHandler(0);
+    }
+
+    @FXML
+    void handleDroughtButton(ActionEvent event) {
+        randomEventHandler(30);
+    }
+
+    @FXML
+    void handleLocustButton(ActionEvent event) {
+        randomEventHandler(60);
     }
 
     void dayStartListen() {

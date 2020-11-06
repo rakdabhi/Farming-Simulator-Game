@@ -1,0 +1,37 @@
+
+
+/* TABLES */
+
+.table-view,
+.table-view .column-header,
+.table-view .column-header-background .filler,
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:horizontal .increment-arrow,
+.table-view .scroll-bar:horizontal .decrement-arrow,
+.table-view .scroll-bar:horizontal .increment-button,
+.table-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #15ad86;
+    -fx-text-background-color: #feca57;
+    -fx-background-radius: 5px;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial Rounded MT Bold";
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell {
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-text-background-color: #15ad86;
+    -fx-background-radius: 3px;
+    -fx-background-insets: 1px;
+}

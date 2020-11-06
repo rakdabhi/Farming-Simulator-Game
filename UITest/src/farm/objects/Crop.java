@@ -28,6 +28,20 @@ public class Crop {
         }
     }
 
+    public void rain(int i) {
+        waterLevel += i;
+        if ((waterLevel < 0) || (waterLevel > 4)) {
+            setDead();
+        }
+    }
+
+    public void drought(int i) {
+        waterLevel -= i;
+        if ((waterLevel < 0) || (waterLevel > 4)) {
+            setDead();
+        }
+    }
+
     public int getWaterLevel() {
         return this.waterLevel;
     }

@@ -54,6 +54,11 @@
                   <Font name="Arial Black" size="20.0" />
                </font>
             </Label>
+            <Button fx:id="nextDayButton" layoutX="252.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleNextDayButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Next Day" textAlignment="CENTER" textFill="#feca57" wrapText="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Pane layoutY="196.0" prefHeight="246.0" prefWidth="375.0">

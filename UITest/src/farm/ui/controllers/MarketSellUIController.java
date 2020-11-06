@@ -35,6 +35,9 @@ public class MarketSellUIController {
     private int appleQuantity;
     private int potatoQuantity;
     private int cornQuantity;
+    private int marketBuyAppleQuantity;
+    private int marketBuyPotatoQuantity;
+    private int marketBuyCornQuantity;
 
     @FXML
     private Group appleImage;
@@ -188,17 +191,24 @@ public class MarketSellUIController {
     private SimpleIntegerProperty trackQuantity = new SimpleIntegerProperty(this, "trackQuantity");
 
     private ChangeListener<Number> quantityChange = (observable, oldValue, newValue) -> {
-        inspectCountLabel.setText(String.format("x%02d",trackQuantity.getValue()));
+        inspectCountLabel.setText(String.format("x%02d", trackQuantity.getValue()));
     };
 
     /**
      * This method initializes the market sell screen with a given Farmer and Season.
      * @param f the farmer
      * @param s the season
+     * @param marketBuyAppleQuantity the apple quantity in the Market Buy Screen
+     * @param marketBuyPotatoQuantity the potato quantity in the Market Buy Screen
+     * @param marketBuyCornQuantity the corn quantity in the Market Buy Screen
      */
-    public void initMarketSell(Farmer f, Season s) {
+    public void initMarketSell(Farmer f, Season s, int marketBuyAppleQuantity,
+                           int marketBuyPotatoQuantity, int marketBuyCornQuantity) {
         this.farmer = f;
         this.season = s;
+        this.marketBuyAppleQuantity = marketBuyAppleQuantity;
+        this.marketBuyPotatoQuantity = marketBuyPotatoQuantity;
+        this.marketBuyCornQuantity = marketBuyCornQuantity;
         updateAvailableQuantity();
         updateBankAmount();
         updateAvailableCapacity();
@@ -266,7 +276,8 @@ public class MarketSellUIController {
                 new FXMLLoader(getClass().getResource("../style/MarketBuyUI.fxml"));
         Parent root = loadMarketBuy.load();
         MarketBuyUIController mbu = loadMarketBuy.getController();
-        mbu.initMarketBuy(farmer, season);
+        mbu.initMarketBuy(farmer, season, marketBuyAppleQuantity,
+            marketBuyPotatoQuantity, marketBuyCornQuantity);
         quantityEndListen();
 
         Scene nextPageScene = new Scene(root);
