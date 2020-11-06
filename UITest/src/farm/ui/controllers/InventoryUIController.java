@@ -1,86 +1,43 @@
 package farm.ui.controllers;
 
-import farm.objects.Farmer;
+import farm.objects.*;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.SVGPath;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import farm.objects.Season;
-import farm.objects.Seed;
 
 import java.io.IOException;
 
 public class InventoryUIController {
 
-    private int appleSeedQuantity;
-    private int potatoSeedQuantity;
-    private int cornSeedQuantity;
-    private int appleHarvestQuantity;
-    private int potatoHarvestQuantity;
-    private int cornHarvestQuantity;
+    @FXML
+    private TableView<InventoryItem> inventoryTable;
 
     @FXML
-    private Label appleSeedQuantityLabel;
+    private TableColumn<InventoryItem, String> itemCol;
 
     @FXML
-    private Label potatoSeedQuantityLabel;
+    private TableColumn<InventoryItem, String> quantityCol;
 
     @FXML
-    private Label cornSeedQuantityLabel;
+    private Button seedInvBtn;
 
     @FXML
-    private Label appleHarvestQuantityLabel;
+    private Button cropInvBtn;
 
     @FXML
-    private Label potatoHarvestQuantityLabel;
-
-    @FXML
-    private Label cornHarvestQuantityLabel;
-
-    private PlotUIController plotu;
-
-    @FXML
-    private SVGPath appleSeedInventory;
-
-    @FXML
-    private SVGPath potatoSeedInventory;
-
-    @FXML
-    private SVGPath cornSeedInventory;
-
-    @FXML
-    private Label numAppleSeeds;
-
-    @FXML
-    private Label numPotatoSeeds;
-
-    @FXML
-    private Label numCornSeeds;
-
-    @FXML
-    private Label cornLabel;
-
-    private MainPanelUIController mpu;
-    @FXML
-    private Label potatoLabel;
-
-    @FXML
-    private Label appleLabel;
-
-    @FXML
-    private TableView<Seed> inventoryList;
+    private Button itemInvBtn;
 
     @FXML
     private AnchorPane rightPaneInventory;
@@ -101,6 +58,10 @@ public class InventoryUIController {
 
     private Season season;
 
+    private PlotUIController plotu;
+
+    private MainPanelUIController mpu;
+
     // |     Initialize Settings     |
     // |                             |
 
@@ -110,32 +71,21 @@ public class InventoryUIController {
         this.season = s;
         this.mpu = mpu;
         this.plotu = plotu;
-        updateAvailableQuantity();
+
+        initTable();
     }
 
-    /**
-     * This helper method helps get the current quantities of the seeds that the farmer object has.
-     */
-    private void getQuantities() {
-        appleSeedQuantity = farmer.getInventory().getSeedBag()[0];
-        potatoSeedQuantity = farmer.getInventory().getSeedBag()[1];
-        cornSeedQuantity = farmer.getInventory().getSeedBag()[2];
-        appleHarvestQuantity = farmer.getInventory().getHarvestBag()[0];
-        potatoHarvestQuantity = farmer.getInventory().getHarvestBag()[1];
-        cornHarvestQuantity = farmer.getInventory().getHarvestBag()[2];
+    void initTable() {
+        itemCol.setCellValueFactory(new PropertyValueFactory<InventoryItem, String>("itemName"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<InventoryItem, String>("totalQuantity"));
+
+        for (InventoryItem item : farmer.getInventory().getSeedBag()) {
+            inventoryTable.getItems().add(item);
+        }
+
+
     }
-    /**
-     * This helper method helps display the quantity of seeds that this farmer has.
-     */
-    void updateAvailableQuantity() {
-        getQuantities();
-        appleSeedQuantityLabel.setText(String.format("x%02d", appleSeedQuantity));
-        potatoSeedQuantityLabel.setText(String.format("x%02d", potatoSeedQuantity));
-        cornSeedQuantityLabel.setText(String.format("x%02d", cornSeedQuantity));
-        appleHarvestQuantityLabel.setText(String.format("x%02d", appleHarvestQuantity));
-        potatoHarvestQuantityLabel.setText(String.format("x%02d", potatoHarvestQuantity));
-        cornHarvestQuantityLabel.setText(String.format("x%02d", cornHarvestQuantity));
-    }
+
 
 
     // |     Getters and Setters     |
@@ -215,4 +165,36 @@ public class InventoryUIController {
         ((Button) event.getSource()).setStyle("-fx-background-color:  #22d2a3;"
                 + " -fx-background-radius: 10;");
     }
+
+    @FXML
+    void handleInvBtns(ActionEvent e) {
+        inventoryTable.getItems().clear();
+        InventoryItem[] arr;
+
+        Color selected = Color.web("#feca57");
+        Color unselected = Color.web("#22d2a3");
+
+
+        if ((e == null) || (e.getSource() == seedInvBtn)) {
+            arr = farmer.getInventory().getSeedBag();
+            seedInvBtn.setTextFill(selected);
+            cropInvBtn.setTextFill(unselected);
+            itemInvBtn.setTextFill(unselected);
+        } else if (e.getSource() == cropInvBtn) {
+            arr = farmer.getInventory().getHarvestBag();
+            seedInvBtn.setTextFill(unselected);
+            cropInvBtn.setTextFill(selected);
+            itemInvBtn.setTextFill(unselected);
+        } else {
+            arr = farmer.getInventory().getItemBag();
+            seedInvBtn.setTextFill(unselected);
+            cropInvBtn.setTextFill(unselected);
+            itemInvBtn.setTextFill(selected);
+        }
+
+        for (InventoryItem item : arr) {
+            inventoryTable.getItems().add(item);
+        }
+    }
+
 }

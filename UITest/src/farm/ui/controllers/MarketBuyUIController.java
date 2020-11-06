@@ -173,9 +173,15 @@ public class MarketBuyUIController {
      */
     public void initMarketBuy(Farmer f, Season s) {
         Random rand = new Random();
-        appleQuantity = rand.nextInt(5);
-        cornQuantity = rand.nextInt(5);
-        potatoQuantity = rand.nextInt(5);
+        initMarketBuy(f, s, rand.nextInt(5) + 10,
+             rand.nextInt(5) + 10, rand.nextInt(5) + 10);
+    }
+
+    public void initMarketBuy(Farmer f, Season s, int appleQuantity, int potatoQuantity, int cornQuantity) {
+        Random rand = new Random();
+        this.appleQuantity = appleQuantity;
+        this.potatoQuantity = potatoQuantity;
+        this.cornQuantity = cornQuantity;
 
         this.farmer = f;
         this.season = s;
@@ -248,8 +254,19 @@ public class MarketBuyUIController {
                 return cornQuantity;
             }
         }
-
         return -99;
+    }
+
+    public int getAppleQuantity() {
+        return appleQuantity;
+    }
+
+    public int getPotatoQuantity() {
+        return potatoQuantity;
+    }
+
+    public int getCornQuantity() {
+        return cornQuantity;
     }
 
     /**
@@ -263,7 +280,7 @@ public class MarketBuyUIController {
                 new FXMLLoader(getClass().getResource("../style/MarketSellUI.fxml"));
         Parent root = loadMarketSell.load();
         MarketSellUIController msu = loadMarketSell.getController();
-        msu.initMarketSell(farmer, season);
+        msu.initMarketSell(farmer, season, appleQuantity, potatoQuantity, cornQuantity);
 
         Scene nextPageScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -385,9 +402,19 @@ public class MarketBuyUIController {
             if (itemName.getText().equals("Item")) {
                 throw new SeedChoiceNotFoundException("Please select a seed to buy!");
             }
+            int availableSeeds = 0;
+            if (itemName.getText().substring(0, 5).equals("Apple")) {
+                availableSeeds = appleQuantity;
+            } else if (itemName.getText().substring(0, 6).equals("Potato")) {
+                availableSeeds = potatoQuantity;
+            } else if (itemName.getText().substring(0, 4).equals("Corn")) {
+                availableSeeds = cornQuantity;
+            }
             int quantity = Integer.parseInt(quantityLabel.getText());
-            quantityLabel.setText("" + (quantity + 1));
-            totalCost.setText(String.format("$%,.2f", ((quantity + 1) * seedCost)));
+            if (availableSeeds > quantity) {
+                quantityLabel.setText("" + (quantity + 1));
+                totalCost.setText(String.format("$%,.2f", ((quantity + 1) * seedCost)));
+            }
         } catch (SeedChoiceNotFoundException s) {
             alertPopUp("No Seed Chosen", s.getMessage());
         }

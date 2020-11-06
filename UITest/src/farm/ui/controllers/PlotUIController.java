@@ -1,4 +1,3 @@
-
 package farm.ui.controllers;
 
 
@@ -9,12 +8,9 @@ import exceptions.SeedChoiceNotFoundException;
 import farm.objects.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -24,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class PlotUIController {
 
@@ -70,6 +67,15 @@ public class PlotUIController {
     @FXML
     private GridPane plotGrid;
 
+    @FXML
+    private Button rainButton;
+
+    @FXML
+    private Button droughtButton;
+
+    @FXML
+    private Button locustButton;
+
     private Farmer farmer;
 
     private Season season;
@@ -84,10 +90,14 @@ public class PlotUIController {
 
     private Plot selectedPlot;
 
+    private Random chance = new Random();
+
+    private RandomEvent randomEvent;
+
     private SimpleIntegerProperty day = new SimpleIntegerProperty(this, "day");
 
     private ChangeListener<Number> dayChange = (observable, oldValue, newValue) -> {
-        advanceGrowthCycle();
+        advanceGrowthCycle(chance.nextInt(101));
         if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
             updateRightPaneInspect(selectedPlot.getCrop());
         }
@@ -100,6 +110,7 @@ public class PlotUIController {
                            InventoryUIController invu, PlantInspectUIController piu) {
         this.farmer = f;
         this.season = s;
+        this.randomEvent = new RandomEvent(s);
         this.mpu = mpu;
         this.invu = invu;
         this.piu = piu;
@@ -199,8 +210,9 @@ public class PlotUIController {
                 selectedPlot = currPlot;
                 displayCrops();
                 updateRightPaneInspect(selectedPlot.getCrop());
-                if ((PlantInspectUIController.getWaterPress()
-                        || PlantInspectUIController.getSowPress())) {
+                if (PlantInspectUIController.getWaterPress()
+                        || PlantInspectUIController.getSowPress()
+                        || PlantInspectUIController.getTreatmentPress()) {
                     return;
                 }
             }
@@ -212,8 +224,7 @@ public class PlotUIController {
             if (PlantInspectUIController.getSowPress() && crop != null) {
                 Seed s = farmer.getField().getPlot(column, row).harvest();
                 if (s != null) {
-                    farmer.getInventory().addHarvest(s, 1);
-                    invu.updateAvailableQuantity();
+                    farmer.getInventory().addHarvest(crop, 1);
                 }
                 displayCrops();
                 ((Group) source).getChildren().get(4).setVisible(false);
@@ -230,7 +241,6 @@ public class PlotUIController {
                     displayCrops();
                     ((Group) source).getChildren().get(4).setVisible(true);
                     updateRightPaneInspect(farmer.getField().getPlot(column, row).getCrop());
-                    invu.updateAvailableQuantity();
                 }
             }
 
@@ -239,6 +249,24 @@ public class PlotUIController {
                 crop.setWaterLevel(crop.getWaterLevel() + 1);
                 updateRightPaneInspect(crop);
                 displayCrops();
+            }
+
+            //handle treatmentPress
+            if ((PlantInspectUIController.getTreatmentPress()) && crop != null) {
+                InventoryItem item = treatmentPopUp(farmer, crop);
+                if (item != null) {
+                    if (item.getItemName().equals("Fertilizer")) {
+
+
+                    } else if (item.getItemName().equals("Pesticide")) {
+                        farmer.getField().getPlot(column, row).getCrop().setPesticideTreated(true);
+                        farmer.getInventory().getItemBag()[1].addQuantity(-1);
+                    }
+
+                    displayCrops();
+                    updateRightPaneInspect(farmer.getField().getPlot(column, row).getCrop());
+                }
+
             }
         } catch (ImmatureHarvestException i) {
             alertPopUp("Attempted Infanticide", i.getMessage());
@@ -251,6 +279,38 @@ public class PlotUIController {
         }
     }
 
+    static InventoryItem treatmentPopUp(Farmer farmer, Crop crop) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setTitle("Treatment Select");
+        a.setHeaderText("Would you like to treat a plant with pesticide or fertilizer?");
+        a.setContentText("Choose one:");
+        ButtonType buttonTypeOne =
+                new ButtonType("Fertilizer: x" + farmer.getInventory().getItemBag()[0].getTotalQuantity());
+        ButtonType buttonTypeTwo =
+                new ButtonType("Pesticide: x" + farmer.getInventory().getItemBag()[1].getTotalQuantity());
+        ButtonType buttonTypeCancel =
+                new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+        if (farmer.getInventory().getItemBag()[0].getTotalQuantity() <= 0) {
+            a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
+        }
+        if (farmer.getInventory().getItemBag()[1].getTotalQuantity() <= 0
+                || crop.isPesticideTreated()) {
+            a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
+        }
+
+        Optional<ButtonType> result = a.showAndWait();
+        if (result.get() == buttonTypeOne) {
+            return new InventoryItem("Fertilizer", 0);
+        } else if (result.get() == buttonTypeTwo) {
+            return new InventoryItem("Pesticide", 0);
+        } else {
+            return null;
+        }
+    }
+
+
     /**
      * This methods helps create an alert popup for the user to
      * select which seed they want to plant.
@@ -263,22 +323,22 @@ public class PlotUIController {
         a.setHeaderText("Which seed do you want to plant?");
         a.setContentText("Choose one:");
         ButtonType buttonTypeOne =
-                new ButtonType("Apple: x" + farmer.getInventory().getSeedBag()[0]);
+                new ButtonType("Apple: x" + farmer.getInventory().getSeedBag()[0].getTotalQuantity());
         ButtonType buttonTypeTwo =
-                new ButtonType("Potato: x" + farmer.getInventory().getSeedBag()[1]);
+                new ButtonType("Potato: x" + farmer.getInventory().getSeedBag()[1].getTotalQuantity());
         ButtonType buttonTypeThree =
-                new ButtonType("Corn: x" + farmer.getInventory().getSeedBag()[2]);
+                new ButtonType("Corn: x" + farmer.getInventory().getSeedBag()[2].getTotalQuantity());
         ButtonType buttonTypeCancel =
                 new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
-        if (farmer.getInventory().getSeedBag()[0] <= 0) {
+        if (farmer.getInventory().getSeedBag()[0].getTotalQuantity() <= 0) {
             a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
         }
-        if (farmer.getInventory().getSeedBag()[1] <= 0) {
+        if (farmer.getInventory().getSeedBag()[1].getTotalQuantity() <= 0) {
             a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
         }
-        if (farmer.getInventory().getSeedBag()[2] <= 0) {
+        if (farmer.getInventory().getSeedBag()[2].getTotalQuantity() <= 0) {
             a.getDialogPane().lookupButton(buttonTypeThree).setDisable(true);
         }
 
@@ -308,101 +368,65 @@ public class PlotUIController {
         a.showAndWait();
     }
 
-    public void advanceGrowthCycle() {
-        for (int i = 0; i < plotArray.length; i++) {
-            for (int j = 0; j < plotArray[i].length; j++) {
-                Crop crop = farmer.getField().getPlot(i, j).getCrop();
-                if (crop != null) {
-                    crop.grow();
-                    crop.setWaterLevel(crop.getWaterLevel() - 2);
+    public void advanceGrowthCycle(int chance) {
+        try {
+            for (int i = 0; i < plotArray.length; i++) {
+                for (int j = 0; j < plotArray[i].length; j++) {
+                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                    if (crop != null) {
+                        crop.grow();
+                        crop.setWaterLevel(crop.getWaterLevel() - 2);
+                        randomEvent.performRandomEvent(crop, chance);
+                    }
+                    //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
+                    ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                 }
-                //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
-                ((Label) plotArray[i][j].getChildren().get(3)).setText("");
+            }
+            displayCrops();
+        } finally {
+            if ((randomEvent.getErrorHeader().length() != 0)
+                && (randomEvent.getErrorMessage().length() != 0)) {
+                alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
+                randomEvent.resetDeadFromLocusts();
             }
         }
-
-        displayCrops();
     }
 
-    void dayStartListen() {
-        day.addListener(dayChange);
-    }
-
-    void dayEndListen() {
-        day.removeListener(dayChange);
-    }
-
-    /**
-     * This methods helps create an alert popup for the user to
-     * select which seed they want to plant.
-     * @param farmer the farmer
-     * @return whether a seed was chosen or not
-     */
-    static Seed seedPopUp(Farmer farmer) {
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.setTitle("Seed Select");
-        a.setHeaderText("Which seed do you want to plant?");
-        a.setContentText("Choose one:");
-        ButtonType buttonTypeOne =
-                new ButtonType("Apple: x" + farmer.getInventory().getSeedBag()[0]);
-        ButtonType buttonTypeTwo =
-                new ButtonType("Potato: x" + farmer.getInventory().getSeedBag()[1]);
-        ButtonType buttonTypeThree =
-                new ButtonType("Corn: x" + farmer.getInventory().getSeedBag()[2]);
-        ButtonType buttonTypeCancel =
-                new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
-        if (farmer.getInventory().getSeedBag()[0] <= 0) {
-            a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
-        }
-        if (farmer.getInventory().getSeedBag()[1] <= 0) {
-            a.getDialogPane().lookupButton(buttonTypeTwo).setDisable(true);
-        }
-        if (farmer.getInventory().getSeedBag()[2] <= 0) {
-            a.getDialogPane().lookupButton(buttonTypeThree).setDisable(true);
-        }
-
-        Optional<ButtonType> result = a.showAndWait();
-        if (result.get() == buttonTypeOne) {
-            return new Seed("Apple");
-        } else if (result.get() == buttonTypeTwo) {
-            return new Seed("Potato");
-        } else if (result.get() == buttonTypeThree) {
-            return new Seed("Corn");
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * This methods helps create an alert popup for the user if they don't
-     * provide the proper parameters needed to proceed to the next game.
-     * @param errorHeader the error header for the message
-     * @param message the error message
-     */
-    static void alertPopUp(String errorHeader, String message) {
-        Alert a = new Alert(Alert.AlertType.ERROR);
-        a.setTitle("Error");
-        a.setHeaderText(errorHeader);
-        a.setContentText(message);
-        a.showAndWait();
-    }
-
-    public void advanceGrowthCycle() {
-        for (int i = 0; i < plotArray.length; i++) {
-            for (int j = 0; j < plotArray[i].length; j++) {
-                Crop crop = farmer.getField().getPlot(i, j).getCrop();
-                if (crop != null) {
-                    crop.grow();
-                    crop.setWaterLevel(crop.getWaterLevel() - 2);
+    private void randomEventHandler(int chance) {
+        try {
+            randomEvent.generateNewRainAndDroughtLevels();
+            for (int i = 0; i < plotArray.length; i++) {
+                for (int j = 0; j < plotArray[i].length; j++) {
+                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                    if (crop != null) {
+                        randomEvent.performRandomEvent(crop, chance);
+                    }
+                    ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                 }
-                //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
-                ((Label) plotArray[i][j].getChildren().get(3)).setText("");
+            }
+            displayCrops();
+        } finally {
+            if ((randomEvent.getErrorHeader().length() != 0)
+                    && (randomEvent.getErrorMessage().length() != 0)) {
+                alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
+                randomEvent.resetDeadFromLocusts();
             }
         }
+    }
 
-        displayCrops();
+    @FXML
+    void handleRainButton(ActionEvent event) {
+        randomEventHandler(0);
+    }
+
+    @FXML
+    void handleDroughtButton(ActionEvent event) {
+        randomEventHandler(30);
+    }
+
+    @FXML
+    void handleLocustButton(ActionEvent event) {
+        randomEventHandler(60);
     }
 
     void dayStartListen() {

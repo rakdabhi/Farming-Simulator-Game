@@ -4,6 +4,7 @@ public class Crop {
     private Seed seed;
     private int growthStage;
     private int waterLevel;
+    private boolean pesticideTreated;
 
     /**
      * This constructor instantiates a crop object that can be placed at each plot.
@@ -17,10 +18,25 @@ public class Crop {
         this.seed = seed;
         this.growthStage = growthStage;
         this.waterLevel = waterLevel;
+        this.pesticideTreated = false;
     }
 
     public void setWaterLevel(int i) {
         waterLevel = i;
+        if ((waterLevel < 0) || (waterLevel > 4)) {
+            setDead();
+        }
+    }
+
+    public void rain(int i) {
+        waterLevel += i;
+        if ((waterLevel < 0) || (waterLevel > 4)) {
+            setDead();
+        }
+    }
+
+    public void drought(int i) {
+        waterLevel -= i;
         if ((waterLevel < 0) || (waterLevel > 4)) {
             setDead();
         }
@@ -42,6 +58,14 @@ public class Crop {
 
     public Boolean isDead() {
         return growthStage == 3;
+    }
+
+    public boolean isPesticideTreated() {
+        return pesticideTreated;
+    }
+
+    public void setPesticideTreated(boolean b) {
+        pesticideTreated = b;
     }
 
     public int getGrowthStage() {

@@ -136,15 +136,12 @@
       <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
          <children>
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="232.0" layoutX="19.0" layoutY="5.0" strokeType="INSIDE" width="320.0" />
-            <Button fx:id="waterButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleSowAndWaterButton" onMouseEntered="#waterButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
-               <padding>
-                  <Insets top="150.0" />
-               </padding>
+            <Button fx:id="waterButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleFarmToolButtons" onMouseEntered="#waterButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="100.0" prefWidth="93.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
                <font>
                   <Font name="Arial Black" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="sowButton" layoutX="130.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleSowAndWaterButton" onMouseEntered="#sowButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
+            <Button fx:id="sowButton" layoutX="128.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#handleFarmToolButtons" onMouseEntered="#sowButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
                <padding>
                   <Insets top="150.0" />
                </padding>
@@ -154,7 +151,7 @@
                   <Insets top="150.0" />
                </padding>
             </Button>
-            <Group fx:id="waterGraphic" layoutX="-44.0" layoutY="-35.0">
+            <Group fx:id="waterGraphic" layoutX="-44.0" layoutY="-86.0">
                <children>
                   <SVGPath content="M119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79ZM119.66,123.79c-22.8,22.37-22.36,46-22.36,46h0c0,.4,0,.79,0,1.2.06,23.22,42.25,23.85,44.58,1.87H142C143.74,144.75,119.66,123.79,119.66,123.79Z" fill="#51dcfa" layoutY="-3.0" />
                   <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="WHITE" layoutX="-15.0" layoutY="-11.0" rotate="-103.0" scaleX="0.5" />
@@ -171,6 +168,11 @@
                   <SVGPath content="M123.37,219.24s20.8-10.76,34.13-45.05c0,0-15.57,7-17.85,0,0,0-11.84,1.21-13.2-6.3,0,0-3.43,11-3.08,48.52M123.37,219.24s20.8-10.76,34.13-45.05c0,0-15.57,7-17.85,0,0,0-11.84,1.21-13.2-6.3,0,0-3.43,11-3.08,48.52" fill="#c9d6e4" />
                </children>
             </Group>
+            <Button fx:id="plantTreatmentButton" contentDisplay="TOP" layoutX="28.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#handleFarmToolButtons" onMouseEntered="#waterButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="100.0" prefWidth="93.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Pesticide + Fertilizer" textAlignment="CENTER" textFill="#ff9f43" wrapText="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
