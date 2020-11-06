@@ -169,6 +169,7 @@
                </children>
             </Group>
             <Button fx:id="plantTreatmentButton" contentDisplay="TOP" layoutX="28.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#handleFarmToolButtons" onMouseEntered="#waterButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="100.0" prefWidth="93.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Pesticide + Fertilizer" textAlignment="CENTER" textFill="#ff9f43" wrapText="true">
+
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
