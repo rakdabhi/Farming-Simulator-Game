@@ -32,6 +32,7 @@ public class RandomEvent {
     }
     public RandomEvent(Season season) {
         this.season = season;
+        this.seasonString = "";
         this.errorHeader = "";
         this.errorMessage = "";
         this.deadFromLocusts = 0;
