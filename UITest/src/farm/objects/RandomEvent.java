@@ -106,9 +106,15 @@ public class RandomEvent {
     }
 
     public void performLocustAttack(Crop crop) {
-        if (!crop.isPesticideTreated() && !crop.isDead()) {
-            crop.setDead();
-            deadFromLocusts++;
+        int percentage = num.nextInt(100);
+        if ((percentage >= 10 && percentage <= 20)
+            || (percentage >= 40 && percentage <= 50)
+            || (percentage >= 60 && percentage <= 70)
+            || (percentage >= 90)) {
+            if (!crop.isPesticideTreated() && !crop.isDead()) {
+                crop.setDead();
+                deadFromLocusts++;
+            }
         }
         errorHeader = "New Day Update: Hit with locusts!";
         errorMessage = "Today, a swarm of locusts ate and killed " + deadFromLocusts + " crops!";
