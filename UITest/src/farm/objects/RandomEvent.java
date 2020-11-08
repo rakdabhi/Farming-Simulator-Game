@@ -8,6 +8,7 @@ public class RandomEvent {
 
     private Random num = new Random();
     private Season season;
+    private String seasonString;
     private int rainMin;
     private int rainMax;
     private int rainLevel;
@@ -20,6 +21,15 @@ public class RandomEvent {
     private String errorMessage;
     private int deadFromLocusts;
 
+    public RandomEvent(String season) {
+        this.seasonString = season;
+        this.errorHeader = "";
+        this.errorMessage = "";
+        this.deadFromLocusts = 0;
+        setRanges();
+        this.rainLevel = num.nextInt(4) + 1;
+        this.droughtLevel = num.nextInt(4) + 1;
+    }
     public RandomEvent(Season season) {
         this.season = season;
         this.errorHeader = "";
@@ -31,21 +41,24 @@ public class RandomEvent {
     }
 
     private void setRanges() {
-        if (season.getSeason().equals("Spring")) {
+        if (seasonString.equals("Spring")
+            || season.getSeason().equals("Spring")) {
             rainMin = 0;
             rainMax = 20;
             droughtMin = 30;
             droughtMax = 37;
             locustMin = 60;
             locustMax = 67;
-        } else if (season.getSeason().equals("Summer")) {
+        } else if (seasonString.equals("Summer")
+            || season.getSeason().equals("Summer")) {
             rainMin = 0;
             rainMax = 10;
             droughtMin = 30;
             droughtMax = 50;
             locustMin = 60;
             locustMax = 75;
-        } else if (season.getSeason().equals("Fall")) {
+        } else if (seasonString.equals("Fall")
+            || season.getSeason().equals("Fall")) {
             rainMin = 0;
             rainMax = 7;
             droughtMin = 30;

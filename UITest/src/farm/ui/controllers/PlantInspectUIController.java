@@ -18,9 +18,6 @@ import javafx.scene.shape.*;
 import javafx.util.Duration;
 import farm.objects.Season;
 
-
-import java.util.Optional;
-
 public class PlantInspectUIController {
 
     @FXML
@@ -124,7 +121,9 @@ public class PlantInspectUIController {
         return sowPress;
     }
 
-    public static boolean getTreatmentPress() { return treatmentPress; }
+    public static boolean getTreatmentPress() {
+        return treatmentPress;
+    }
 
     AnchorPane getRightPaneInspect() {
         return rightPaneInspect;
