@@ -5,7 +5,6 @@ import farm.objects.*;
 import javafx.animation.RotateTransition;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -498,11 +497,11 @@ public class MarketSellUIController {
         Crop c;
 
         if (seedChoice.equals("Apple")) {
-            c = new Crop(new Seed("Apple"),0, 0);
+            c = new Crop(new Seed("Apple"), 0, 0);
         } else if (seedChoice.equals("Potato")) {
-            c = new Crop(new Seed("Potato"),0, 0);
+            c = new Crop(new Seed("Potato"), 0, 0);
         } else {
-            c = new Crop(new Seed("Corn"),0, 0);
+            c = new Crop(new Seed("Corn"), 0, 0);
         }
 
         c.setPesticideTreated(true);
@@ -523,11 +522,11 @@ public class MarketSellUIController {
         Crop c;
 
         if (seedChoice.equals("Apple")) {
-            c = new Crop(new Seed("Apple"),0, 0);
+            c = new Crop(new Seed("Apple"), 0, 0);
         } else if (seedChoice.equals("Potato")) {
-            c = new Crop(new Seed("Potato"),0, 0);
+            c = new Crop(new Seed("Potato"), 0, 0);
         } else {
-            c = new Crop(new Seed("Corn"),0, 0);
+            c = new Crop(new Seed("Corn"), 0, 0);
         }
 
         bindTrackQuantity(c);

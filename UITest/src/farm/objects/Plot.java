@@ -4,7 +4,6 @@ import exceptions.EmptyPlotException;
 import exceptions.ImmatureHarvestException;
 import exceptions.PlotAlreadyFullException;
 import exceptions.SeedChoiceNotFoundException;
-import farm.ui.controllers.ConfigUIController;
 
 import java.util.Random;
 

@@ -19,7 +19,7 @@ public class InventoryItem {
 
     /**
      * Add quantity FOR SEEDS AND ITEMS.
-     * @param q
+     * @param q quantity for seeds
      */
     public void addQuantity(int q) {
         totalQuantity += q;
@@ -28,7 +28,8 @@ public class InventoryItem {
 
     /**
      * Overloaded add quantity FOR CROPS.
-     * @param q
+     * @param c the crop
+     * @param q quantity for crops
      */
     public void addQuantity(Crop c, int q) {
         totalQuantity += q;

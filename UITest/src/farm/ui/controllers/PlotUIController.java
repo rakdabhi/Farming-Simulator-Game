@@ -257,6 +257,7 @@ public class PlotUIController {
                 if (item != null) {
                     if (item.getItemName().equals("Fertilizer")) {
 
+                        //code for fertilizer to be added here
 
                     } else if (item.getItemName().equals("Pesticide")) {
                         farmer.getField().getPlot(column, row).getCrop().setPesticideTreated(true);
@@ -284,10 +285,10 @@ public class PlotUIController {
         a.setTitle("Treatment Select");
         a.setHeaderText("Would you like to treat a plant with pesticide or fertilizer?");
         a.setContentText("Choose one:");
-        ButtonType buttonTypeOne =
-                new ButtonType("Fertilizer: x" + farmer.getInventory().getItemBag()[0].getTotalQuantity());
-        ButtonType buttonTypeTwo =
-                new ButtonType("Pesticide: x" + farmer.getInventory().getItemBag()[1].getTotalQuantity());
+        ButtonType buttonTypeOne = new ButtonType("Fertilizer: x"
+            + farmer.getInventory().getItemBag()[0].getTotalQuantity());
+        ButtonType buttonTypeTwo = new ButtonType("Pesticide: x"
+            + farmer.getInventory().getItemBag()[1].getTotalQuantity());
         ButtonType buttonTypeCancel =
                 new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
@@ -322,14 +323,14 @@ public class PlotUIController {
         a.setTitle("Seed Select");
         a.setHeaderText("Which seed do you want to plant?");
         a.setContentText("Choose one:");
-        ButtonType buttonTypeOne =
-                new ButtonType("Apple: x" + farmer.getInventory().getSeedBag()[0].getTotalQuantity());
-        ButtonType buttonTypeTwo =
-                new ButtonType("Potato: x" + farmer.getInventory().getSeedBag()[1].getTotalQuantity());
-        ButtonType buttonTypeThree =
-                new ButtonType("Corn: x" + farmer.getInventory().getSeedBag()[2].getTotalQuantity());
-        ButtonType buttonTypeCancel =
-                new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonTypeOne = new ButtonType("Apple: x"
+                    + farmer.getInventory().getSeedBag()[0].getTotalQuantity());
+        ButtonType buttonTypeTwo = new ButtonType("Potato: x"
+                    + farmer.getInventory().getSeedBag()[1].getTotalQuantity());
+        ButtonType buttonTypeThree = new ButtonType("Corn: x"
+                    + farmer.getInventory().getSeedBag()[2].getTotalQuantity());
+        ButtonType buttonTypeCancel = new ButtonType("Cancel",
+            ButtonBar.ButtonData.CANCEL_CLOSE);
 
         a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
         if (farmer.getInventory().getSeedBag()[0].getTotalQuantity() <= 0) {
@@ -370,6 +371,7 @@ public class PlotUIController {
 
     public void advanceGrowthCycle(int chance) {
         try {
+            randomEvent.generateNewRainAndDroughtLevels();
             for (int i = 0; i < plotArray.length; i++) {
                 for (int j = 0; j < plotArray[i].length; j++) {
                     Crop crop = farmer.getField().getPlot(i, j).getCrop();

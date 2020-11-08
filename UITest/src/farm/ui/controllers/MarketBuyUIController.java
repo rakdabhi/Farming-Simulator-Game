@@ -177,7 +177,8 @@ public class MarketBuyUIController {
              rand.nextInt(6) + 10, rand.nextInt(6) + 10);
     }
 
-    public void initMarketBuy(Farmer f, Season s, int appleQuantity, int potatoQuantity, int cornQuantity) {
+    public void initMarketBuy(Farmer f, Season s, int appleQuantity,
+                          int potatoQuantity, int cornQuantity) {
         Random rand = new Random();
         this.appleQuantity = appleQuantity;
         this.potatoQuantity = potatoQuantity;
