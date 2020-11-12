@@ -10,10 +10,14 @@ import java.util.Random;
 public class Plot {
     private Crop crop;
     private Random rand;
+    private int fertilizerLevel;
+    private boolean fertilizerTreated;
 
     public Plot(Seed seed) {
 
         crop = new Crop(seed, 0, 0);
+        this.fertilizerLevel = 0;
+        this.fertilizerTreated = false;
     }
 
     public Plot(boolean randGen) {
@@ -55,6 +59,28 @@ public class Plot {
             throw new PlotAlreadyFullException();
         }
         this.crop = new Crop(s, 0, 0);
+    }
+
+    public boolean isFertilizerTreated() {
+        return fertilizerTreated;
+    }
+
+    public void setFertilizerTreated(boolean b) {
+        fertilizerTreated = b;
+    }
+
+    public void setFertilizerLevel(int i) {
+        if ((fertilizerLevel + i) >= 100) {
+            fertilizerLevel = 100;
+        } else if ((fertilizerLevel + i) <= 0) {
+            fertilizerLevel = 0;
+        } else {
+            fertilizerLevel += i;
+        }
+    }
+
+    public int getFertilizerLevel() {
+        return fertilizerLevel;
     }
 
     public Crop getCrop() {
