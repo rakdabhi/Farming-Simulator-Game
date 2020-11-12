@@ -191,6 +191,7 @@ public class PlotUIController {
             if (crop != null && !crop.isDead()) {
                 piu.setGrowthMeter(crop);
                 piu.setWaterMeter(crop.getWaterLevel());
+                piu.setFertilizerLabel(selectedPlot.getFertilizerLevel());
             } else {
                 piu.setGrowthMeter(crop);
                 piu.setWaterMeter(0);
@@ -223,8 +224,14 @@ public class PlotUIController {
             //harvests crop, updates PlotUI plant graphic to be invisible
             if (PlantInspectUIController.getSowPress() && crop != null) {
                 Seed s = farmer.getField().getPlot(column, row).harvest();
+                Random rand = new Random();
                 if (s != null) {
-                    farmer.getInventory().addHarvest(crop, 1);
+                    if (farmer.getField().getPlot(column, row).isFertilizerTreated()) {
+                        int yieldChance = rand.nextInt(2);
+                        farmer.getInventory().addHarvest(crop, 2 + yieldChance);
+                    } else {
+                        farmer.getInventory().addHarvest(crop, 1);
+                    }
                 }
                 displayCrops();
                 ((Group) source).getChildren().get(4).setVisible(false);
@@ -253,12 +260,12 @@ public class PlotUIController {
 
             //handle treatmentPress
             if ((PlantInspectUIController.getTreatmentPress()) && crop != null) {
-                InventoryItem item = treatmentPopUp(farmer, crop);
+                InventoryItem item = treatmentPopUp(farmer, crop, currPlot);
                 if (item != null) {
                     if (item.getItemName().equals("Fertilizer")) {
-
-                        //code for fertilizer to be added here
-
+                        farmer.getField().getPlot(column, row).setFertilizerTreated(true);
+                        farmer.getField().getPlot(column, row).setFertilizerLevel(15);
+                        farmer.getInventory().getItemBag()[0].addQuantity(-1);
                     } else if (item.getItemName().equals("Pesticide")) {
                         farmer.getField().getPlot(column, row).getCrop().setPesticideTreated(true);
                         farmer.getInventory().getItemBag()[1].addQuantity(-1);
@@ -280,7 +287,7 @@ public class PlotUIController {
         }
     }
 
-    static InventoryItem treatmentPopUp(Farmer farmer, Crop crop) {
+    static InventoryItem treatmentPopUp(Farmer farmer, Crop crop, Plot plot) {
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
         a.setTitle("Treatment Select");
         a.setHeaderText("Would you like to treat a plant with pesticide or fertilizer?");
@@ -293,7 +300,8 @@ public class PlotUIController {
                 new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         a.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
-        if (farmer.getInventory().getItemBag()[0].getTotalQuantity() <= 0) {
+        if (farmer.getInventory().getItemBag()[0].getTotalQuantity() <= 0
+                || plot.getFertilizerLevel() == 100) {
             a.getDialogPane().lookupButton(buttonTypeOne).setDisable(true);
         }
         if (farmer.getInventory().getItemBag()[1].getTotalQuantity() <= 0
@@ -374,9 +382,14 @@ public class PlotUIController {
             randomEvent.generateNewRainAndDroughtLevels();
             for (int i = 0; i < plotArray.length; i++) {
                 for (int j = 0; j < plotArray[i].length; j++) {
-                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                    Plot currPlot = farmer.getField().getPlot(i, j);
+                    Crop crop = currPlot.getCrop();
                     if (crop != null) {
+                        if (currPlot.isFertilizerTreated()) {
+                            crop.grow();
+                        }
                         crop.grow();
+                        currPlot.setFertilizerLevel(-5);
                         crop.setWaterLevel(crop.getWaterLevel() - 2);
                         randomEvent.performRandomEvent(crop, chance);
                     }
