@@ -9,6 +9,7 @@ public class Farmer {
     private Inventory inventory;
     private String customSkin;
     private Field field;
+    private Farmhand fh;
 
     /**
      * This constructor instantiates a farmer object for the game.
@@ -23,6 +24,7 @@ public class Farmer {
         setMoney(this.experienceLevel);
         this.inventory = new Inventory(Integer.parseInt(experienceLevel));
         field = new Field(3, 4);
+        fh = new Farmhand();
     }
 
 
@@ -99,5 +101,13 @@ public class Farmer {
 
     public Inventory getInventory() {
         return inventory;
+    }
+
+    public void setNewFarmhand(int skillLevel, int daysActive) {
+        fh = new Farmhand(skillLevel, daysActive, Integer.parseInt(experienceLevel));
+    }
+
+    public Farmhand getFarmhand() {
+        return fh;
     }
 }

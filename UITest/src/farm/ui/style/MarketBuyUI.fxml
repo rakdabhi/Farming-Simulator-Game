@@ -132,7 +132,7 @@
             <Button fx:id="fertilizerButton" alignment="CENTER" mnemonicParsing="false" onAction="#itemOnAction" onMousePressed="#seedRightMousePress" onMouseReleased="#seedRightMouseRelease" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="button7" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="button8" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button fx:id="button9" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="hireButton" alignment="CENTER" mnemonicParsing="false" onAction="#hireOnAction" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button fx:id="button10" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button fx:id="button11" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <Button fx:id="button12" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" style="-fx-background-color: #8495a6; -fx-opacity: 0.5; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
@@ -157,6 +157,14 @@
                   <Insets left="120.0" top="106.0" />
                </GridPane.margin>
             </Label>
+            <Group scaleX="0.75" scaleY="0.75" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb4d53" height="111.0" layoutX="685.0" layoutY="378.0" stroke="BLACK" strokeType="INSIDE" width="84.0" />
+                  <SVGPath content="M726.41,413.69a2.8,2.8,0,0,0-2.24.84,6.3,6.3,0,0,0-.31,6.23,3.19,3.19,0,0,0,4.5.24,5.12,5.12,0,0,0,1-3.29,4.28,4.28,0,0,0-.69-3A2.88,2.88,0,0,0,726.41,413.69ZM726.41,413.69a2.8,2.8,0,0,0-2.24.84,6.3,6.3,0,0,0-.31,6.23,3.19,3.19,0,0,0,4.5.24,5.12,5.12,0,0,0,1-3.29,4.28,4.28,0,0,0-.69-3A2.88,2.88,0,0,0,726.41,413.69Z" fill="WHITE" />
+                  <SVGPath content="M718.45,437.08l-2-.1-.13,2.91,1.9.09a7.22,7.22,0,0,0,1.21-.14,1.2,1.2,0,0,0,.76-.41,1.27,1.27,0,0,0,.32-.81,1.3,1.3,0,0,0-.4-1.09A2.76,2.76,0,0,0,718.45,437.08ZM718.45,437.08l-2-.1-.13,2.91,1.9.09a7.22,7.22,0,0,0,1.21-.14,1.2,1.2,0,0,0,.76-.41,1.27,1.27,0,0,0,.32-.81,1.3,1.3,0,0,0-.4-1.09A2.76,2.76,0,0,0,718.45,437.08Z" fill="WHITE" />
+                  <SVGPath content="M686,366.28s-8.64,45.64-6.48,53.78c0,0,6.5,78.34-.35,84.27,0,0,90.34,2,97.54,0,0,0-7.2-72.79-6.48-74.46,0,0,5.76-50.63,6.48-52.07l.72-1.44v-6.48Zm14.39,81.35-4.55-.22.28-5.78-5-.24-.27,5.78-4.53-.22.69-14.28,4.53.22-.25,5,5,.24.24-5,4.55.22Zm2.22-38.2,4.23.21,5.13,8.16.38-7.89,4.27.2-.69,14.28-4.26-.21-5.11-8.1-.38,7.84-4.26-.21Zm5.5,38.57-4.53-.22.68-14.28,4.54.22Zm12.6.61-2.21-4.48a3.23,3.23,0,0,0-.76-1.14,1.93,1.93,0,0,0-1.1-.39l-.4,0-.27,5.8-4.55-.22.69-14.28,7.54.37a11,11,0,0,1,3.19.5,3.39,3.39,0,0,1,1.73,1.39,3.91,3.91,0,0,1,.57,2.34,4,4,0,0,1-.62,2,4.11,4.11,0,0,1-1.5,1.33,5.68,5.68,0,0,1-1.62.49,4.56,4.56,0,0,1,1.16.58,4.31,4.31,0,0,1,.68.78,6.11,6.11,0,0,1,.6.92l2,4.24Zm11.28.54-4.53-.22.69-14.27,4.53.22ZM733.85,418a8.72,8.72,0,0,1-1.06,4.07,6.13,6.13,0,0,1-2.62,2.37,8.45,8.45,0,0,1-4.12.69,9.63,9.63,0,0,1-4.06-1,6.13,6.13,0,0,1-2.52-2.57,7.91,7.91,0,0,1-.81-4.21,7.31,7.31,0,0,1,2.26-5.35,7.66,7.66,0,0,1,5.66-1.68,7.82,7.82,0,0,1,5.55,2.19A7.13,7.13,0,0,1,733.85,418Zm15.38,32-4.27-.21-5.11-8.1-.37,7.84-4.26-.21.69-14.28,4.23.21,5.13,8.16.38-7.9,4.27.21Zm-2.33-24.11-2.13-9.11-3,8.87-4.44-.22L734.77,411l4.3.21,1.16,8.06,2.65-7.88,4.28.21,1.89,8.09,1.93-7.91,4.28.21-3.92,14.12Zm19.8,22.89a15.11,15.11,0,0,1-3.65,1.65,12.33,12.33,0,0,1-3.68.3,9.07,9.07,0,0,1-4.21-1.07,5.92,5.92,0,0,1-2.42-2.71,8.27,8.27,0,0,1-.72-4,8.06,8.06,0,0,1,1.19-4,6.36,6.36,0,0,1,3-2.49,9.58,9.58,0,0,1,4-.49,11.44,11.44,0,0,1,3.61.6,4.67,4.67,0,0,1,1.94,1.43,5.76,5.76,0,0,1,1.08,2.34l-4.4.54a2.37,2.37,0,0,0-.86-1.28,2.91,2.91,0,0,0-1.62-.5,3,3,0,0,0-2.42.89,4.77,4.77,0,0,0-1,3.15,5,5,0,0,0,.73,3.35,3.2,3.2,0,0,0,2.45,1.11,4.71,4.71,0,0,0,1.46-.14,8.08,8.08,0,0,0,1.61-.65l.07-1.35-3-.14.14-3,7,.33ZM686,366.28s-8.64,45.64-6.48,53.78c0,0,6.5,78.34-.35,84.27,0,0,90.34,2,97.54,0,0,0-7.2-72.79-6.48-74.46,0,0,5.76-50.63,6.48-52.07l.72-1.44v-6.48Zm14.39,81.35-4.55-.22.28-5.78-5-.24-.27,5.78-4.53-.22.69-14.28,4.53.22-.25,5,5,.24.24-5,4.55.22Zm2.22-38.2,4.23.21,5.13,8.16.38-7.89,4.27.2-.69,14.28-4.26-.21-5.11-8.1-.38,7.84-4.26-.21Zm5.5,38.57-4.53-.22.68-14.28,4.54.22Zm12.6.61-2.21-4.48a3.23,3.23,0,0,0-.76-1.14,1.93,1.93,0,0,0-1.1-.39l-.4,0-.27,5.8-4.55-.22.69-14.28,7.54.37a11,11,0,0,1,3.19.5,3.39,3.39,0,0,1,1.73,1.39,3.91,3.91,0,0,1,.57,2.34,4,4,0,0,1-.62,2,4.11,4.11,0,0,1-1.5,1.33,5.68,5.68,0,0,1-1.62.49,4.56,4.56,0,0,1,1.16.58,4.31,4.31,0,0,1,.68.78,6.11,6.11,0,0,1,.6.92l2,4.24Zm11.28.54-4.53-.22.69-14.27,4.53.22ZM733.85,418a8.72,8.72,0,0,1-1.06,4.07,6.13,6.13,0,0,1-2.62,2.37,8.45,8.45,0,0,1-4.12.69,9.63,9.63,0,0,1-4.06-1,6.13,6.13,0,0,1-2.52-2.57,7.91,7.91,0,0,1-.81-4.21,7.31,7.31,0,0,1,2.26-5.35,7.66,7.66,0,0,1,5.66-1.68,7.82,7.82,0,0,1,5.55,2.19A7.13,7.13,0,0,1,733.85,418Zm15.38,32-4.27-.21-5.11-8.1-.37,7.84-4.26-.21.69-14.28,4.23.21,5.13,8.16.38-7.9,4.27.21Zm-2.33-24.11-2.13-9.11-3,8.87-4.44-.22L734.77,411l4.3.21,1.16,8.06,2.65-7.88,4.28.21,1.89,8.09,1.93-7.91,4.28.21-3.92,14.12Zm19.8,22.89a15.11,15.11,0,0,1-3.65,1.65,12.33,12.33,0,0,1-3.68.3,9.07,9.07,0,0,1-4.21-1.07,5.92,5.92,0,0,1-2.42-2.71,8.27,8.27,0,0,1-.72-4,8.06,8.06,0,0,1,1.19-4,6.36,6.36,0,0,1,3-2.49,9.58,9.58,0,0,1,4-.49,11.44,11.44,0,0,1,3.61.6,4.67,4.67,0,0,1,1.94,1.43,5.76,5.76,0,0,1,1.08,2.34l-4.4.54a2.37,2.37,0,0,0-.86-1.28,2.91,2.91,0,0,0-1.62-.5,3,3,0,0,0-2.42.89,4.77,4.77,0,0,0-1,3.15,5,5,0,0,0,.73,3.35,3.2,3.2,0,0,0,2.45,1.11,4.71,4.71,0,0,0,1.46-.14,8.08,8.08,0,0,0,1.61-.65l.07-1.35-3-.14.14-3,7,.33Z" fill="WHITE" />
+               </children>
+            </Group>
          </children>
       </GridPane>
       <AnchorPane fx:id="rightPaneInventory" layoutX="712.0" prefHeight="720.0" prefWidth="367.0">
@@ -219,7 +227,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="460.0" prefWidth="368.0">
+            <Pane id="itemPane" fx:id="itemPane" prefHeight="460.0" prefWidth="368.0">
                <children>
                   <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="382.0" layoutX="21.0" layoutY="70.0" strokeType="INSIDE" width="321.0" />
                   <Label fx:id="itemName" alignment="CENTER" layoutX="32.0" layoutY="81.0" prefHeight="81.0" prefWidth="300.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Item" textFill="#feca57">
@@ -284,6 +292,85 @@
                   <Label fx:id="quantityLabel" alignment="CENTER" layoutX="24.0" layoutY="350.0" prefHeight="54.0" prefWidth="59.0" text="0" textFill="#15ad86">
                      <font>
                         <Font size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane id="farmHandPane" fx:id="farmhandPane" layoutX="10.0" layoutY="10.0" prefHeight="460.0" prefWidth="368.0" visible="false">
+               <children>
+                  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="382.0" layoutX="11.0" layoutY="60.0" strokeType="INSIDE" width="321.0" />
+                  <Label alignment="CENTER" layoutX="22.0" layoutY="71.0" prefHeight="52.0" prefWidth="300.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Hire Farmhand" textFill="#feca57">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="farmhandDescription" alignment="CENTER" layoutX="22.0" layoutY="182.0" prefHeight="109.0" prefWidth="299.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Select Skill Level" textAlignment="CENTER" textFill="#22d2a3" wrapText="true">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalCostTag1" alignment="CENTER" layoutX="118.0" layoutY="303.0" prefHeight="46.0" prefWidth="123.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="# of Days" textFill="#feca57">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="finishHireButton" layoutX="245.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleFinishHireButton" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="131.0" prefWidth="78.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="HIRE" textFill="#feca57">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="dayMinusButton" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="355.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDayIncrementButton" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="-" textFill="#22d2a3" wrapText="true">
+                     <font>
+                        <Font size="63.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-15.0" top="-30.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="dayPlusButton" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="355.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDayIncrementButton" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="+" textFill="#22d2a3" wrapText="true">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-15.0" top="-20.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="amateurButton" layoutX="45.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleFarmhandSkill" prefHeight="41.0" prefWidth="119.0" style="-fx-background-color: #15ad86;" text="Amateur" textFill="#22d2a3">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="21.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="expertButton" layoutX="172.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleFarmhandSkill" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: #15ad86;" text="Expert" textFill="#22d2a3">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="21.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="dayCountLabel" alignment="CENTER" layoutX="150.0" layoutY="349.0" prefHeight="54.0" prefWidth="59.0" text="0" textFill="#15ad86">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalCostTag11" alignment="CENTER" layoutX="18.0" layoutY="303.0" prefHeight="130.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Workers are paid on a daily basis. Unpaid workers will steal the day's harvest and quit." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Label>
                </children>

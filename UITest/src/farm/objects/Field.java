@@ -5,6 +5,7 @@ public class Field {
     private int columns;
     private int rows;
 
+
     public Field(int columns, int rows) {
         this.columns = columns;
         this.rows = rows;
@@ -19,6 +20,7 @@ public class Field {
     public Plot getPlot(int column, int row) {
         return plots[column][row];
     }
+
 
     public int getColumns() {
         return columns;

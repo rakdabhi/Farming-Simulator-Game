@@ -2,6 +2,7 @@ package farm.ui.controllers;
 
 import farm.objects.Clock;
 import farm.objects.Farmer;
+import farm.objects.Farmhand;
 import javafx.animation.RotateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.util.Duration;
 import farm.objects.Season;
@@ -57,6 +59,9 @@ public class MainPanelUIController {
     @FXML
     private Button nextDayButton;
 
+    @FXML
+    private Label farmhandStatus;
+
     private Farmer farmer;
 
     private Season season;
@@ -90,6 +95,8 @@ public class MainPanelUIController {
         hourLabel.textProperty().bind(timer.hourProperty().textProperty());
         dayLabel.textProperty().bind(Bindings.convert(timer.dayProperty()));
         ampmLabel.textProperty().bind(timer.amPmProperty().textProperty());
+
+        updateFarmhandStatus();
     }
 
     // |     Getters and Setters     |
@@ -102,6 +109,32 @@ public class MainPanelUIController {
 
     AnchorPane getRightPaneMain() {
         return rightPaneMain;
+    }
+
+    void updateFarmhandStatus(boolean unpaid) {
+        farmhandStatus.setText("You didn't have enough money to pay your farmhand! " +
+                "All harvests in inventory stolen.");
+        farmhandStatus.setTextFill(Color.web("#ffffff"));
+    }
+
+    void updateFarmhandStatus() {
+        Farmhand fh = farmer.getFarmhand();
+        String s;
+        String lvl;
+        if (fh.isActive()) {
+            if (fh.getSkillLevel() == 0) {
+                lvl = "Amateur";
+            } else {
+                lvl = "Expert";
+            }
+
+            s = lvl + " farmhand is employed for " + fh.getDaysActive() + " more days.";
+
+        } else {
+            s = "No farmhands currently hired.";
+        }
+        farmhandStatus.setText(s);
+        farmhandStatus.setTextFill(Color.web("#22d2a3"));
     }
 
 

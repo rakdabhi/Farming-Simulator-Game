@@ -3,6 +3,8 @@ package farm.objects;
 public class Seed {
     private String name;
     private int seedID;
+    private double baseSell;
+    private double div;
 
     /**
      * This constructor instantiates a seed object that a farmer
@@ -14,10 +16,33 @@ public class Seed {
 
         if (name.toLowerCase().equals("apple")) {
             seedID = 0;
+            baseSell = 2.89;
+            div = 2.59;
         } else if (name.toLowerCase().equals("potato")) {
             seedID = 1;
+            baseSell = 4.22;
+            div = 2.33;
         } else if (name.toLowerCase().equals("corn")) {
             seedID = 2;
+            baseSell = 3.35;
+            div = 3.36;
+        }
+    }
+
+    public Seed(int seedID) {
+        this.seedID = seedID;
+        if (this.seedID == 0) {
+            this.name = "apple";
+            baseSell = 2.89;
+            div = 2.59;
+        } else if (this.seedID == 1) {
+            this.name = "potato";
+            baseSell = 4.22;
+            div = 2.33;
+        } else if (this.seedID == 2) {
+            this.name = "corn";
+            baseSell = 3.35;
+            div = 3.36;
         }
     }
 
@@ -40,5 +65,13 @@ public class Seed {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getBaseSell() {
+        return baseSell;
+    }
+
+    public double getDiv() {
+        return div;
     }
 }

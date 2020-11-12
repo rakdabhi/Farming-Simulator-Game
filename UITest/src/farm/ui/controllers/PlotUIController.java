@@ -101,6 +101,23 @@ public class PlotUIController {
         if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
             updateRightPaneInspect(selectedPlot.getCrop());
         }
+
+        Farmhand fh = farmer.getFarmhand();
+        if (fh.isActive()) {
+            fh.incrementDaysActive(-1);
+            if (farmer.getMoney() - fh.getWage() >= 0) {
+                farmer.pay(fh.getWage());
+                mpu.setMoneyLabel(farmer.getMoney());
+                farmhandWork(farmer.getFarmhand(), true);
+                mpu.updateFarmhandStatus();
+            } else {
+                farmhandWork(farmer.getFarmhand(), false);
+                fh.incrementDaysActive(-(fh.getDaysActive()));
+                mpu.updateFarmhandStatus(true);
+            }
+        } else {
+            mpu.updateFarmhandStatus();
+        }
     };
 
     // |     Initialize Settings     |
@@ -126,6 +143,7 @@ public class PlotUIController {
         dayStartListen();
 
         displayCrops();
+
     }
 
 
@@ -198,6 +216,7 @@ public class PlotUIController {
             }
         }
     }
+
 
     @FXML
     public void interact(MouseEvent e) {
@@ -410,6 +429,66 @@ public class PlotUIController {
         }
     }
 
+    private void farmhandWork(Farmhand fh, boolean isPaid)  {
+        for (int i = 0; i < plotArray.length; i++) {
+            for (int j = 0; j < plotArray[i].length; j++) {
+                Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                if (crop != null && crop.getGrowthStage() == 2) {
+                    try {
+                        farmer.getField().getPlot(i, j).harvest();
+                    } catch (ImmatureHarvestException | EmptyPlotException | SeedChoiceNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    if (isPaid) {
+                        try {
+                            farmer.getInventory().addHarvest(crop, 1);
+                        } catch (SeedChoiceNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }
+        }
+        displayCrops();
+        updateRightPaneInspect(null);
+
+        if (isPaid && fh.getSkillLevel() == 1) {
+            InventoryItem[] harvestBag = farmer.getInventory().getHarvestBag();
+
+            for (int i = 0; i < harvestBag.length; i++) {
+
+                Crop c = new Crop(new Seed(i), true);
+                int noPestCount = harvestBag[i].getPesticideFreeCount().getValue();
+                int pestCount = harvestBag[i].getPesticideTreatedCount().getValue();
+
+                farmer.addMoney(calculateSellPrice(c, pestCount));
+                harvestBag[i].addQuantity(c,  -pestCount);
+
+                c.setPesticideTreated(false);
+                farmer.addMoney(calculateSellPrice(c, noPestCount));
+                harvestBag[i].addQuantity(c,  -noPestCount);
+
+
+            }
+            mpu.setMoneyLabel(farmer.getMoney());
+        }
+
+    }
+
+    private double calculateSellPrice(Crop c, int quantity) {
+        Seed s = c.getSeed();
+        double price = Math.round((s.getBaseSell() + (season.getSeason().length() / s.getDiv())
+                + (Math.random() * Integer.parseInt(farmer.getExperienceLevel()))) * 100.0) / 100.0;
+        if (c.isPesticideTreated()) {
+            price -= 2;
+        }
+
+        price *= quantity;
+
+        return price;
+    }
+
     private void randomEventHandler(int chance) {
         try {
             randomEvent.generateNewRainAndDroughtLevels();
@@ -454,5 +533,6 @@ public class PlotUIController {
     void dayEndListen() {
         day.removeListener(dayChange);
     }
+
 
 }
