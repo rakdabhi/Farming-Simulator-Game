@@ -37,6 +37,8 @@ public class MarketSellUIController {
     private int marketBuyAppleQuantity;
     private int marketBuyPotatoQuantity;
     private int marketBuyCornQuantity;
+    private int marketBuyPesticideQuantity;
+    private int marketBuyFertilizerQuantity;
 
     @FXML
     private Group appleImage;
@@ -200,14 +202,20 @@ public class MarketSellUIController {
      * @param marketBuyAppleQuantity the apple quantity in the Market Buy Screen
      * @param marketBuyPotatoQuantity the potato quantity in the Market Buy Screen
      * @param marketBuyCornQuantity the corn quantity in the Market Buy Screen
+     * @param marketBuyPesticideQuantity the pesticide quantity in the Market Buy Screen
+     * @param marketBuyFertilizerQuantity the fertilizer quantity in the Market Buy Screen
      */
     public void initMarketSell(Farmer f, Season s, int marketBuyAppleQuantity,
-                           int marketBuyPotatoQuantity, int marketBuyCornQuantity) {
+                               int marketBuyPotatoQuantity, int marketBuyCornQuantity,
+                               int marketBuyPesticideQuantity, int marketBuyFertilizerQuantity) {
         this.farmer = f;
         this.season = s;
         this.marketBuyAppleQuantity = marketBuyAppleQuantity;
         this.marketBuyPotatoQuantity = marketBuyPotatoQuantity;
         this.marketBuyCornQuantity = marketBuyCornQuantity;
+        this.marketBuyPesticideQuantity = marketBuyPesticideQuantity;
+        this.marketBuyFertilizerQuantity = marketBuyFertilizerQuantity;
+
         updateAvailableQuantity();
         updateBankAmount();
         updateAvailableCapacity();
@@ -276,7 +284,8 @@ public class MarketSellUIController {
         Parent root = loadMarketBuy.load();
         MarketBuyUIController mbu = loadMarketBuy.getController();
         mbu.initMarketBuy(farmer, season, marketBuyAppleQuantity,
-            marketBuyPotatoQuantity, marketBuyCornQuantity);
+                          marketBuyPotatoQuantity, marketBuyCornQuantity,
+                          marketBuyPesticideQuantity, marketBuyFertilizerQuantity);
         quantityEndListen();
 
         Scene nextPageScene = new Scene(root);

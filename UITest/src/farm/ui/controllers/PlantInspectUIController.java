@@ -89,6 +89,9 @@ public class PlantInspectUIController {
     @FXML
     private Button plantTreatmentButton;
 
+    @FXML
+    private Label fertilizerLabel;
+
     private Farmer farmer;
 
     private Season season;
@@ -151,6 +154,8 @@ public class PlantInspectUIController {
         treatmentPress = false;
 
         centerY = ((Bounds) waterLevelGFX.getLayoutBounds()).getCenterY();
+
+        setFertilizerLabel(0);
 
     }
 
@@ -243,9 +248,21 @@ public class PlantInspectUIController {
         }
     }
 
-    @FXML
-    void interact(MouseEvent event) {
+    private void setGrowthMeterDefault() {
+        Color unfilled = Color.web("#ff9f43");
+        Group[] gfx = {growthGraphic0, growthGraphic1, growthGraphicCorn,
+            growthGraphicApple, growthGraphicPotato, growthGraphicGrave};
+        Circle[] meter = {growthStage1, growthStage2, growthStage3};
 
+        for (Group gr : gfx) {
+            gr.setVisible(false);
+        }
+
+        for (Circle c : meter) {
+            c.setFill(unfilled);
+        }
+
+        plantNameLabel.setText("");
     }
 
     @FXML
@@ -258,6 +275,7 @@ public class PlantInspectUIController {
         waterButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
         sowButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
         plantTreatmentButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
+        setGrowthMeterDefault();
     }
 
     @FXML
@@ -370,6 +388,10 @@ public class PlantInspectUIController {
         currentWaterLevel = yShift;
         yShift = yShift - temp;
         waterMeterAnimation(yShift);
+    }
+
+    void setFertilizerLabel(int i) {
+        fertilizerLabel.setText("Fertilizer Level: " + i + "%");
     }
 
     void waterMeterAnimation(double y) {

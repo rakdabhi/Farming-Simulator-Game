@@ -36,14 +36,6 @@ public class RandomEventTest {
     }
 
     @Test
-    public void pesticideFreeLocustTest() {
-        crop.setPesticideTreated(false);
-        randomEvent.generateNewRainAndDroughtLevels();
-        randomEvent.performRandomEvent(crop, 60);
-        assertTrue(crop.isDead());
-    }
-
-    @Test
     public void pesticideTreatedLocustTest() {
         crop.setPesticideTreated(true);
         randomEvent.generateNewRainAndDroughtLevels();
