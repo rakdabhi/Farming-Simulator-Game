@@ -633,15 +633,15 @@ public class MarketBuyUIController {
         if (btn == appleButton) {
             seedChoice = new Seed("Apple");
             seedCost = appleSeedCost;
-            selectActions(appleButton, potatoButton, cornButton, pesticideButton, fertilizerButton);
+            selectActions(appleButton, potatoButton, cornButton, pesticideButton, fertilizerButton, hireButton);
         } else if (btn == potatoButton) {
             seedChoice = new Seed("Potato");
             seedCost = potatoSeedCost;
-            selectActions(potatoButton, appleButton, cornButton, pesticideButton, fertilizerButton);
+            selectActions(potatoButton, appleButton, cornButton, pesticideButton, fertilizerButton, hireButton);
         } else {
             seedChoice = new Seed("Corn");
             seedCost = cornSeedCost;
-            selectActions(cornButton, appleButton, potatoButton, pesticideButton, fertilizerButton);
+            selectActions(cornButton, appleButton, potatoButton, pesticideButton, fertilizerButton, hireButton);
         }
         itemName.setText(seedChoice.getName() + " Seed");
         itemDescription.setText(String.format("The current price for "
@@ -653,6 +653,7 @@ public class MarketBuyUIController {
     void hireOnAction(ActionEvent e) {
         itemPane.setVisible(false);
         farmhandPane.setVisible(true);
+        selectActions(hireButton, pesticideButton, fertilizerButton, appleButton, potatoButton, cornButton);
     }
 
     @FXML
@@ -750,15 +751,19 @@ public class MarketBuyUIController {
     @FXML
     void itemOnAction(ActionEvent event) {
         Button btn = ((Button) event.getSource());
+        if (!itemPane.isVisible()) {
+            itemPane.setVisible(true);
+            farmhandPane.setVisible(false);
+        }
         resetQuantityAndCostLabels();
         if (btn == fertilizerButton) {
             itemChoice = new InventoryItem("Fertilizer", 1);
             itemCost = fertilizerCost;
-            selectActions(fertilizerButton, pesticideButton, appleButton, potatoButton, cornButton);
+            selectActions(fertilizerButton, pesticideButton, appleButton, potatoButton, cornButton, hireButton);
         } else {
             itemChoice = new InventoryItem("Pesticide", 1);
             itemCost = pesticideCost;
-            selectActions(pesticideButton, fertilizerButton, appleButton, potatoButton, cornButton);
+            selectActions(pesticideButton, fertilizerButton, appleButton, potatoButton, cornButton, hireButton);
         }
         itemName.setText(itemChoice.getItemName());
         itemDescription.setText(String.format("The current price for "
