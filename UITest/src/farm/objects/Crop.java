@@ -21,6 +21,13 @@ public class Crop {
         this.pesticideTreated = false;
     }
 
+    public Crop(Seed seed, boolean pesticideTreated) {
+        this.seed = seed;
+        this.pesticideTreated = pesticideTreated;
+        waterLevel = 0;
+        growthStage = 0;
+    }
+
     public void setWaterLevel(int i) {
         waterLevel = i;
         if ((waterLevel < 0) || (waterLevel > 4)) {

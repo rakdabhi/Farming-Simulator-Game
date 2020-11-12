@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -64,6 +66,9 @@ public class MarketBuyUIController {
 
     @FXML
     private Button cornButton;
+
+    @FXML
+    private Button hireButton;
 
     @FXML
     private Button button4;
@@ -154,6 +159,38 @@ public class MarketBuyUIController {
 
     @FXML
     private Label availableInventory;
+
+    @FXML
+    private Pane itemPane;
+
+    @FXML
+    private Pane farmhandPane;
+
+    @FXML
+    private Button amateurButton;
+
+    @FXML
+    private Button expertButton;
+
+    @FXML
+    private Label farmhandDescription;
+
+    @FXML
+    private Button finishHireButton;
+
+    @FXML
+    private Label totalCostFarmhand;
+
+    @FXML
+    private Button dayPlusButton;
+
+    @FXML
+    private Button dayMinusButton;
+
+    @FXML
+    private Label dayCountLabel;
+
+    private Button selectedFarmhandExperience = null;
 
     @FXML
     private Button buyTab;
@@ -450,6 +487,10 @@ public class MarketBuyUIController {
      */
     @FXML
     void seedOnAction(ActionEvent event) {
+        if (!itemPane.isVisible()) {
+            itemPane.setVisible(true);
+            farmhandPane.setVisible(false);
+        }
         Button btn = ((Button) event.getSource());
         resetQuantityAndCostLabels();
         if (btn == appleButton) {
@@ -469,6 +510,86 @@ public class MarketBuyUIController {
         itemDescription.setText(String.format("The current price for "
                         + "one %s Seed in the %s Season is $%,.2f!",
                 seedChoice.getName(), season.getSeason(), seedCost));
+    }
+
+    @FXML
+    void hireOnAction(ActionEvent e) {
+        itemPane.setVisible(false);
+        farmhandPane.setVisible(true);
+    }
+
+    @FXML
+    void handleFarmhandSkill(ActionEvent e) {
+        Color selected = Color.web("#feca57");
+        Color unselected = Color.web("#22d2a3");
+        String description;
+        if (!(farmer.getFarmhand().isActive())) {
+            if (e.getSource() == amateurButton) {
+                selectedFarmhandExperience = amateurButton;
+                description = "An amateur farmhand will:\n* harvest crops once mature " +
+                        "\nWage: $" + (Integer.parseInt(farmer.getExperienceLevel()) * 10) + " per day.";
+                finishHireButton.setDisable(false);
+                amateurButton.setTextFill(selected);
+                expertButton.setTextFill(unselected);
+            } else {
+                selectedFarmhandExperience = expertButton;
+                description = "An expert farmhand will:\n* harvest crops once mature\n* sell harvested crops at the market." +
+                        "\nWage: $" + (Integer.parseInt(farmer.getExperienceLevel()) * 20) + " per day.";
+                finishHireButton.setDisable(false);
+                amateurButton.setTextFill(unselected);
+                expertButton.setTextFill(selected);
+            }
+        } else {
+            description = "A farmhand is currently employed at your farm for "
+                    + farmer.getFarmhand().getDaysActive() + " more day(s).";
+            finishHireButton.setDisable(true);
+            amateurButton.setTextFill(unselected);
+            expertButton.setTextFill(unselected);
+        }
+
+        farmhandDescription.setText(description);
+    }
+
+
+    @FXML
+    void handleDayIncrementButton(ActionEvent e) {
+        if (selectedFarmhandExperience != null && (!farmer.getFarmhand().isActive())) {
+            int days = Integer.parseInt(dayCountLabel.getText());
+            if (e.getSource() == dayPlusButton) {
+                days++;
+            } else {
+                days--;
+            }
+
+            if (days >= 0) {
+                dayCountLabel.setText(days + "");
+            } else {
+                dayCountLabel.setText("0");
+            }
+        }
+    }
+
+    @FXML
+    void handleFinishHireButton() {
+        if (selectedFarmhandExperience != null && (!farmer.getFarmhand().isActive())) {
+            int days = Integer.parseInt(dayCountLabel.getText());
+            if (days > 0) {
+                int skillLevel;
+                if (selectedFarmhandExperience == amateurButton) {
+                    skillLevel = 0;
+                } else {
+                    skillLevel = 1;
+                }
+
+                farmer.setNewFarmhand(skillLevel, days);
+                finishHireButton.setDisable(true);
+                farmhandDescription.setText("A farmhand is currently employed at your farm for "
+                        + farmer.getFarmhand().getDaysActive() + " more day(s).");
+                amateurButton.setTextFill(Color.web("#22d2a3"));
+                expertButton.setTextFill(Color.web("#22d2a3"));
+            }
+
+        }
     }
 
     /**
