@@ -239,18 +239,18 @@ public class MarketBuyUIController {
      */
     private double calculateFertilizerCost() {
         switch (farmer.getExperienceLevel()) {
-            case "1":
-                fertilizerCost = .5 * 3.49;
-                break;
-            case "2":
-                fertilizerCost = 3.49;
-                break;
-            case "3":
-                fertilizerCost = 1.5 * 3.49;
-                break;
-            default:
-                fertilizerCost = 6.00;
-                break;
+        case "1":
+            fertilizerCost = .5 * 3.49;
+            break;
+        case "2":
+            fertilizerCost = 3.49;
+            break;
+        case "3":
+            fertilizerCost = 1.5 * 3.49;
+            break;
+        default:
+            fertilizerCost = 6.00;
+            break;
         }
         return fertilizerCost;
     }
@@ -262,18 +262,18 @@ public class MarketBuyUIController {
      */
     private double calculatePesticideCost() {
         switch (farmer.getExperienceLevel()) {
-            case "1":
-                pesticideCost = .5 * 5.53;
-                break;
-            case "2":
-                pesticideCost = 5.53;
-                break;
-            case "3":
-                pesticideCost = 1.5 * 5.53;
-                break;
-            default:
-                pesticideCost = 10.00;
-                break;
+        case "1":
+            pesticideCost = .5 * 5.53;
+            break;
+        case "2":
+            pesticideCost = 5.53;
+            break;
+        case "3":
+            pesticideCost = 1.5 * 5.53;
+            break;
+        default:
+            pesticideCost = 10.00;
+            break;
         }
         return pesticideCost;
     }
@@ -613,7 +613,7 @@ public class MarketBuyUIController {
      * @param selected the button that is selected
      * @param notSelected the buttons that aren't selected
      */
-    private void selectActions(Button selected, Button ... notSelected) {
+    private void selectActions(Button selected, Button... notSelected) {
         selected.setOpacity(1.0);
         selected.setDisable(true);
         for (Button button : notSelected) {
