@@ -633,15 +633,18 @@ public class MarketBuyUIController {
         if (btn == appleButton) {
             seedChoice = new Seed("Apple");
             seedCost = appleSeedCost;
-            selectActions(appleButton, potatoButton, cornButton, pesticideButton, fertilizerButton, hireButton);
+            selectActions(appleButton, potatoButton, cornButton, pesticideButton,
+                    fertilizerButton, hireButton);
         } else if (btn == potatoButton) {
             seedChoice = new Seed("Potato");
             seedCost = potatoSeedCost;
-            selectActions(potatoButton, appleButton, cornButton, pesticideButton, fertilizerButton, hireButton);
+            selectActions(potatoButton, appleButton, cornButton, pesticideButton,
+                    fertilizerButton, hireButton);
         } else {
             seedChoice = new Seed("Corn");
             seedCost = cornSeedCost;
-            selectActions(cornButton, appleButton, potatoButton, pesticideButton, fertilizerButton, hireButton);
+            selectActions(cornButton, appleButton, potatoButton, pesticideButton,
+                    fertilizerButton, hireButton);
         }
         itemName.setText(seedChoice.getName() + " Seed");
         itemDescription.setText(String.format("The current price for "
@@ -653,7 +656,8 @@ public class MarketBuyUIController {
     void hireOnAction(ActionEvent e) {
         itemPane.setVisible(false);
         farmhandPane.setVisible(true);
-        selectActions(hireButton, pesticideButton, fertilizerButton, appleButton, potatoButton, cornButton);
+        selectActions(hireButton, pesticideButton, fertilizerButton, appleButton,
+                potatoButton, cornButton);
     }
 
     @FXML
@@ -664,15 +668,18 @@ public class MarketBuyUIController {
         if (!(farmer.getFarmhand().isActive())) {
             if (e.getSource() == amateurButton) {
                 selectedFarmhandExperience = amateurButton;
-                description = "An amateur farmhand will:\n* harvest crops once mature " +
-                        "\nWage: $" + (Integer.parseInt(farmer.getExperienceLevel()) * 10) + " per day.";
+                description = "An amateur farmhand will:\n* harvest crops once mature "
+                       + "\nWage: $" + (Integer.parseInt(farmer.getExperienceLevel()) * 10)
+                        + " per day.";
                 finishHireButton.setDisable(false);
                 amateurButton.setTextFill(selected);
                 expertButton.setTextFill(unselected);
             } else {
                 selectedFarmhandExperience = expertButton;
-                description = "An expert farmhand will:\n* harvest crops once mature\n* sell harvested crops at the market." +
-                        "\nWage: $" + (Integer.parseInt(farmer.getExperienceLevel()) * 20) + " per day.";
+                description = "An expert farmhand will:\n* harvest crops once mature"
+                        + "\n* sell harvested crops at the market."
+                        + "\nWage: $" + (Integer.parseInt(farmer.getExperienceLevel()) * 20)
+                        + " per day.";
                 finishHireButton.setDisable(false);
                 amateurButton.setTextFill(unselected);
                 expertButton.setTextFill(selected);
@@ -759,11 +766,13 @@ public class MarketBuyUIController {
         if (btn == fertilizerButton) {
             itemChoice = new InventoryItem("Fertilizer", 1);
             itemCost = fertilizerCost;
-            selectActions(fertilizerButton, pesticideButton, appleButton, potatoButton, cornButton, hireButton);
+            selectActions(fertilizerButton, pesticideButton, appleButton,
+                    potatoButton, cornButton, hireButton);
         } else {
             itemChoice = new InventoryItem("Pesticide", 1);
             itemCost = pesticideCost;
-            selectActions(pesticideButton, fertilizerButton, appleButton, potatoButton, cornButton, hireButton);
+            selectActions(pesticideButton, fertilizerButton, appleButton,
+                    potatoButton, cornButton, hireButton);
         }
         itemName.setText(itemChoice.getItemName());
         itemDescription.setText(String.format("The current price for "
