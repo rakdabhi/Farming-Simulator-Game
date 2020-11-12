@@ -385,6 +385,9 @@ public class PlotUIController {
                     Plot currPlot = farmer.getField().getPlot(i, j);
                     Crop crop = currPlot.getCrop();
                     if (crop != null) {
+                        if (currPlot.getFertilizerLevel() == 0) {
+                            currPlot.setFertilizerTreated(false);
+                        }
                         if (currPlot.isFertilizerTreated()) {
                             crop.grow();
                         }
