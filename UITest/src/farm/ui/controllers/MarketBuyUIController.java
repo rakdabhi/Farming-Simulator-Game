@@ -5,6 +5,7 @@ import exceptions.InsufficientFundsException;
 import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
 import farm.objects.Farmer;
+import farm.objects.InventoryItem;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,13 +31,19 @@ import java.util.Random;
 public class MarketBuyUIController {
 
     private Seed seedChoice;
+    private InventoryItem itemChoice;
     private double seedCost;
+    private double itemCost;
     private double appleSeedCost;
     private double potatoSeedCost;
     private double cornSeedCost;
+    private double fertilizerCost;
+    private double pesticideCost;
     private int appleQuantity;
     private int potatoQuantity;
     private int cornQuantity;
+    private int fertilizerQuantity;
+    private int pesticideQuantity;
 
     @FXML
     private Group appleImage;
@@ -57,6 +64,18 @@ public class MarketBuyUIController {
     private Label cornQuantityLabel;
 
     @FXML
+    private Group pesticideImage;
+
+    @FXML
+    private Label pesticideQuantityLabel;
+
+    @FXML
+    private Group fertilizerImage;
+
+    @FXML
+    private Label fertilizerQuantityLabel;
+
+    @FXML
     private Button appleButton;
 
     @FXML
@@ -69,10 +88,10 @@ public class MarketBuyUIController {
     private Button button4;
 
     @FXML
-    private Button button5;
+    private Button pesticideButton;
 
     @FXML
-    private Button button6;
+    private Button fertilizerButton;
 
     @FXML
     private Button button7;
@@ -174,15 +193,19 @@ public class MarketBuyUIController {
     public void initMarketBuy(Farmer f, Season s) {
         Random rand = new Random();
         initMarketBuy(f, s, rand.nextInt(6) + 10,
-             rand.nextInt(6) + 10, rand.nextInt(6) + 10);
+                rand.nextInt(6) + 10, rand.nextInt(6) + 10,
+                rand.nextInt(6) + 10,
+                rand.nextInt(6) + 10);
     }
 
-    public void initMarketBuy(Farmer f, Season s, int appleQuantity,
-                          int potatoQuantity, int cornQuantity) {
+    public void initMarketBuy(Farmer f, Season s, int appleQuantity, int potatoQuantity,
+                              int cornQuantity, int pesticideQuantity, int fertilizerQuantity) {
         Random rand = new Random();
         this.appleQuantity = appleQuantity;
         this.potatoQuantity = potatoQuantity;
         this.cornQuantity = cornQuantity;
+        this.pesticideQuantity = pesticideQuantity;
+        this.fertilizerQuantity = fertilizerQuantity;
 
         this.farmer = f;
         this.season = s;
@@ -190,9 +213,12 @@ public class MarketBuyUIController {
         updateAvailableQuantity();
         updateBankAmount();
         updateAvailableCapacity();
+        updateAvailableItemQuantity();
         appleSeedCost = calculateSeedCost(2.89, 2.59);
         potatoSeedCost = calculateSeedCost(4.22, 2.33);
         cornSeedCost = calculateSeedCost(3.35, 3.36);
+        fertilizerCost = calculateFertilizerCost();
+        pesticideCost = calculatePesticideCost();
     }
 
     /**
@@ -204,6 +230,52 @@ public class MarketBuyUIController {
     private double calculateSeedCost(double basePrice, double divideFactor) {
         return Math.round((basePrice + (season.getSeason().length() / divideFactor)
                 + (Math.random() * Integer.parseInt(farmer.getExperienceLevel()))) * 100.0) / 100.0;
+    }
+
+    /**
+     * This helper method generates the price of fertilizer, depending on the current difficulty.
+     *
+     * @return the cost of fertilizer
+     */
+    private double calculateFertilizerCost() {
+        switch (farmer.getExperienceLevel()) {
+            case "1":
+                fertilizerCost = .5 * 3.49;
+                break;
+            case "2":
+                fertilizerCost = 3.49;
+                break;
+            case "3":
+                fertilizerCost = 1.5 * 3.49;
+                break;
+            default:
+                fertilizerCost = 6.00;
+                break;
+        }
+        return fertilizerCost;
+    }
+
+    /**
+     * This helper method generates the price of pesticide, depending on the current difficulty.
+     *
+     * @return the cost of pesticide
+     */
+    private double calculatePesticideCost() {
+        switch (farmer.getExperienceLevel()) {
+            case "1":
+                pesticideCost = .5 * 5.53;
+                break;
+            case "2":
+                pesticideCost = 5.53;
+                break;
+            case "3":
+                pesticideCost = 1.5 * 5.53;
+                break;
+            default:
+                pesticideCost = 10.00;
+                break;
+        }
+        return pesticideCost;
     }
 
     /**
@@ -245,6 +317,22 @@ public class MarketBuyUIController {
         cornQuantityLabel.setText(String.format("x%02d", cornQuantity));
     }
 
+    private void updateAvailableItemQuantity() {
+        fertilizerQuantityLabel.setText(String.format("x%02d", fertilizerQuantity));
+        pesticideQuantityLabel.setText(String.format("x%02d", pesticideQuantity));
+    }
+
+    private void updateAvailableItemQuantity(InventoryItem i, int quantity) {
+        if (i.getItemName().equals("Fertilizer")) {
+            fertilizerQuantity -= quantity;
+        } else if (i.getItemName().equals("Pesticide")) {
+            pesticideQuantity -= quantity;
+        }
+
+        fertilizerQuantityLabel.setText(String.format("x%02d", fertilizerQuantity));
+        pesticideQuantityLabel.setText(String.format("x%02d", pesticideQuantity));
+    }
+
     private int getQuantityOfType(Seed s) {
         if (s != null) {
             if (s.getSeedID() == 0) {
@@ -254,6 +342,16 @@ public class MarketBuyUIController {
             } else if (s.getSeedID() == 2) {
                 return cornQuantity;
             }
+        }
+        return -99;
+    }
+
+    private int getQuantityOfType(InventoryItem i) {
+        if (i != null) {
+            if (i.getItemName().equals("Fertilizer")) {
+                return fertilizerQuantity;
+            }
+            return pesticideQuantity;
         }
         return -99;
     }
@@ -270,6 +368,14 @@ public class MarketBuyUIController {
         return cornQuantity;
     }
 
+    public int getFertilizerQuantity() {
+        return fertilizerQuantity;
+    }
+
+    public int getPesticideQuantity() {
+        return pesticideQuantity;
+    }
+
     /**
      * This method helps the player switch from buying-mode in the market to selling-mode.
      * @param event the event
@@ -281,7 +387,8 @@ public class MarketBuyUIController {
                 new FXMLLoader(getClass().getResource("../style/MarketSellUI.fxml"));
         Parent root = loadMarketSell.load();
         MarketSellUIController msu = loadMarketSell.getController();
-        msu.initMarketSell(farmer, season, appleQuantity, potatoQuantity, cornQuantity);
+        msu.initMarketSell(farmer, season, appleQuantity, potatoQuantity, cornQuantity,
+                           pesticideQuantity, fertilizerQuantity);
 
         Scene nextPageScene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -342,21 +449,36 @@ public class MarketBuyUIController {
                 throw new SeedChoiceNotFoundException("Please add some quantity of seeds "
                         + "you'd like to purchase!");
             }
-            int merchQuantity = getQuantityOfType(seedChoice);
-            int buyQuantity = Integer.parseInt(quantityLabel.getText());
-            if (buyQuantity > farmer.getInventory().getAvailableSeedBagCapacity()) {
-                throw new InsufficientInventorySpaceException();
-            } else if (seedCost * buyQuantity > farmer.getMoney()) {
-                throw new InsufficientFundsException();
-            }  else if (buyQuantity > merchQuantity) {
-                throw new ExcessSeedBuyException();
+            if (itemName.getText().equals("Fertilizer") || itemName.getText().equals("Pesticide")) {
+                int merchQuantity = getQuantityOfType(itemChoice);
+                int buyQuantity = Integer.parseInt(quantityLabel.getText());
+                if (seedCost * buyQuantity > farmer.getMoney()) {
+                    throw new InsufficientFundsException();
+                } else {
+                    int item = (itemChoice.getItemName().equals("Pesticide") ? 1 : 0);
+                    farmer.getInventory().addItem(item, buyQuantity);
+                    farmer.pay(itemCost * buyQuantity);
+                    updateAvailableItemQuantity(itemChoice, buyQuantity);
+                    updateBankAmount();
+                    resetQuantityAndCostLabels();
+                }
             } else {
-                farmer.getInventory().addSeed(seedChoice, buyQuantity);
-                farmer.pay(seedCost * buyQuantity);
-                updateAvailableQuantity(seedChoice, buyQuantity);
-                updateAvailableCapacity();
-                updateBankAmount();
-                resetQuantityAndCostLabels();
+                int merchQuantity = getQuantityOfType(seedChoice);
+                int buyQuantity = Integer.parseInt(quantityLabel.getText());
+                if (buyQuantity > farmer.getInventory().getAvailableSeedBagCapacity()) {
+                    throw new InsufficientInventorySpaceException();
+                } else if (seedCost * buyQuantity > farmer.getMoney()) {
+                    throw new InsufficientFundsException();
+                } else if (buyQuantity > merchQuantity) {
+                    throw new ExcessSeedBuyException();
+                } else {
+                    farmer.getInventory().addSeed(seedChoice, buyQuantity);
+                    farmer.pay(seedCost * buyQuantity);
+                    updateAvailableQuantity(seedChoice, buyQuantity);
+                    updateAvailableCapacity();
+                    updateBankAmount();
+                    resetQuantityAndCostLabels();
+                }
             }
         } catch (SeedChoiceNotFoundException s) {
             if (quantityLabel.getText().equals("0") && !itemName.getText().equals("Item")) {
@@ -385,8 +507,15 @@ public class MarketBuyUIController {
             }
             int quantity = Integer.parseInt(quantityLabel.getText());
             if (quantity > 0) {
-                quantityLabel.setText("" + (quantity - 1));
-                totalCost.setText(String.format("$%,.2f", ((quantity - 1) * seedCost)));
+                if (itemName.getText().equals("Apple Seed")
+                        || itemName.getText().equals("Potato Seed")
+                        || itemName.getText().equals("Corn Seed")) {
+                    quantityLabel.setText("" + (quantity - 1));
+                    totalCost.setText(String.format("$%,.2f", ((quantity - 1) * seedCost)));
+                } else {
+                    quantityLabel.setText("" + (quantity - 1));
+                    totalCost.setText(String.format("$%,.2f", ((quantity - 1) * itemCost)));
+                }
             }
         } catch (SeedChoiceNotFoundException s) {
             alertPopUp("No Seed Chosen", s.getMessage());
@@ -404,17 +533,25 @@ public class MarketBuyUIController {
                 throw new SeedChoiceNotFoundException("Please select a seed to buy!");
             }
             int availableSeeds = 0;
-            if (itemName.getText().substring(0, 5).equals("Apple")) {
+            int availableItems = 0;
+            if (itemName.getText().equals("Apple Seed")) {
                 availableSeeds = appleQuantity;
-            } else if (itemName.getText().substring(0, 6).equals("Potato")) {
+            } else if (itemName.getText().equals("Potato Seed")) {
                 availableSeeds = potatoQuantity;
-            } else if (itemName.getText().substring(0, 4).equals("Corn")) {
+            } else if (itemName.getText().equals("Corn Seed")) {
                 availableSeeds = cornQuantity;
+            } else if (itemName.getText().equals("Fertilizer")) {
+                availableItems = fertilizerQuantity;
+            } else if (itemName.getText().equals("Pesticide")) {
+                availableItems = pesticideQuantity;
             }
             int quantity = Integer.parseInt(quantityLabel.getText());
             if (availableSeeds > quantity) {
                 quantityLabel.setText("" + (quantity + 1));
                 totalCost.setText(String.format("$%,.2f", ((quantity + 1) * seedCost)));
+            } else if (availableItems > quantity) {
+                quantityLabel.setText("" + (quantity + 1));
+                totalCost.setText(String.format("$%,.2f", ((quantity + 1) * itemCost)));
             }
         } catch (SeedChoiceNotFoundException s) {
             alertPopUp("No Seed Chosen", s.getMessage());
@@ -455,15 +592,15 @@ public class MarketBuyUIController {
         if (btn == appleButton) {
             seedChoice = new Seed("Apple");
             seedCost = appleSeedCost;
-            seedSelectActions(appleButton, potatoButton, cornButton);
+            selectActions(appleButton, potatoButton, cornButton, pesticideButton, fertilizerButton);
         } else if (btn == potatoButton) {
             seedChoice = new Seed("Potato");
             seedCost = potatoSeedCost;
-            seedSelectActions(potatoButton, appleButton, cornButton);
+            selectActions(potatoButton, appleButton, cornButton, pesticideButton, fertilizerButton);
         } else {
             seedChoice = new Seed("Corn");
             seedCost = cornSeedCost;
-            seedSelectActions(cornButton, appleButton, potatoButton);
+            selectActions(cornButton, appleButton, potatoButton, pesticideButton, fertilizerButton);
         }
         itemName.setText(seedChoice.getName() + " Seed");
         itemDescription.setText(String.format("The current price for "
@@ -474,16 +611,38 @@ public class MarketBuyUIController {
     /**
      * This helper method helps set the opacity and clickability of a button.
      * @param selected the button that is selected
-     * @param notSelected1 the first button that isn't selected
-     * @param notSelected2 the second button that isn't selected
+     * @param notSelected the buttons that aren't selected
      */
-    private void seedSelectActions(Button selected, Button notSelected1, Button notSelected2) {
+    private void selectActions(Button selected, Button ... notSelected) {
         selected.setOpacity(1.0);
         selected.setDisable(true);
-        notSelected1.setOpacity(0.5);
-        notSelected1.setDisable(false);
-        notSelected2.setOpacity(0.5);
-        notSelected2.setDisable(false);
+        for (Button button : notSelected) {
+            button.setOpacity(.5);
+            button.setDisable(false);
+        }
+    }
+
+    /**
+     * This method helps give functionality to the buttons that hold the item options.
+     * @param event the event
+     */
+    @FXML
+    void itemOnAction(ActionEvent event) {
+        Button btn = ((Button) event.getSource());
+        resetQuantityAndCostLabels();
+        if (btn == fertilizerButton) {
+            itemChoice = new InventoryItem("Fertilizer", 1);
+            itemCost = fertilizerCost;
+            selectActions(fertilizerButton, pesticideButton, appleButton, potatoButton, cornButton);
+        } else {
+            itemChoice = new InventoryItem("Pesticide", 1);
+            itemCost = pesticideCost;
+            selectActions(pesticideButton, fertilizerButton, appleButton, potatoButton, cornButton);
+        }
+        itemName.setText(itemChoice.getItemName());
+        itemDescription.setText(String.format("The current price for "
+                        + "one unit of %s in the %s Season is $%,.2f!",
+                itemChoice.getItemName(), season.getSeason(), itemCost));
     }
 
     /**
