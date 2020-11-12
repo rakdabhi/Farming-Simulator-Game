@@ -89,6 +89,9 @@ public class PlantInspectUIController {
     @FXML
     private Button plantTreatmentButton;
 
+    @FXML
+    private Label fertilizerLabel;
+
     private Farmer farmer;
 
     private Season season;
@@ -151,6 +154,8 @@ public class PlantInspectUIController {
         treatmentPress = false;
 
         centerY = ((Bounds) waterLevelGFX.getLayoutBounds()).getCenterY();
+
+        setFertilizerLabel(0);
 
     }
 
@@ -370,6 +375,10 @@ public class PlantInspectUIController {
         currentWaterLevel = yShift;
         yShift = yShift - temp;
         waterMeterAnimation(yShift);
+    }
+
+    void setFertilizerLabel(int i) {
+        fertilizerLabel.setText("Fertilizer Level: " + i + "%");
     }
 
     void waterMeterAnimation(double y) {
