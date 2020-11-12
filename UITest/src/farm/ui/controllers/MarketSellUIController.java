@@ -37,6 +37,8 @@ public class MarketSellUIController {
     private int marketBuyAppleQuantity;
     private int marketBuyPotatoQuantity;
     private int marketBuyCornQuantity;
+    private int marketBuyPesticideQuantity;
+    private int markeyBuyFertilizerQuantity;
 
     @FXML
     private Group appleImage;
@@ -202,12 +204,16 @@ public class MarketSellUIController {
      * @param marketBuyCornQuantity the corn quantity in the Market Buy Screen
      */
     public void initMarketSell(Farmer f, Season s, int marketBuyAppleQuantity,
-                           int marketBuyPotatoQuantity, int marketBuyCornQuantity) {
+                               int marketBuyPotatoQuantity, int marketBuyCornQuantity,
+                               int marketBuyPesticideQuantity, int markeyBuyFertilizerQuantity) {
         this.farmer = f;
         this.season = s;
         this.marketBuyAppleQuantity = marketBuyAppleQuantity;
         this.marketBuyPotatoQuantity = marketBuyPotatoQuantity;
         this.marketBuyCornQuantity = marketBuyCornQuantity;
+        this.marketBuyPesticideQuantity = marketBuyPesticideQuantity;
+        this.markeyBuyFertilizerQuantity = markeyBuyFertilizerQuantity;
+
         updateAvailableQuantity();
         updateBankAmount();
         updateAvailableCapacity();
@@ -276,7 +282,8 @@ public class MarketSellUIController {
         Parent root = loadMarketBuy.load();
         MarketBuyUIController mbu = loadMarketBuy.getController();
         mbu.initMarketBuy(farmer, season, marketBuyAppleQuantity,
-            marketBuyPotatoQuantity, marketBuyCornQuantity);
+                          marketBuyPotatoQuantity, marketBuyCornQuantity,
+                          marketBuyPesticideQuantity, markeyBuyFertilizerQuantity);
         quantityEndListen();
 
         Scene nextPageScene = new Scene(root);
