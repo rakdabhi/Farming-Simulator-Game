@@ -113,7 +113,7 @@ public class Inventory {
      */
     public void addHarvest(Crop c, int quantity) throws SeedChoiceNotFoundException {
         if (quantity > availableHarvestBagCapacity) {
-            throw new InsufficientInventorySpaceException();
+            throw new InsufficientInventorySpaceException("Not enough space in your harvest inventory!");
         } else {
             int seedID = c.getSeed().getSeedID();
             harvestBag[seedID].addQuantity(c, quantity);
@@ -145,6 +145,27 @@ public class Inventory {
         } else {
             harvestBag[index].addQuantity(c, -quantity);
             availableHarvestBagCapacity += quantity;
+        }
+    }
+
+    //item: fertilizer = 0, pesticide = 1
+    public void addItem(int item, int quantity) {
+        if (quantity > availableItemBagCapacity) {
+            throw new InsufficientInventorySpaceException("Not enough space in your item inventory!");
+        } else {
+            itemBag[item].addQuantity(quantity);
+            availableItemBagCapacity -= quantity;
+        }
+    }
+
+    //item: fertilizer = 0, pesticide = 1
+    public void removeItem(int item, int quantity) {
+        if (itemBag[item].getTotalQuantity() == 0
+                || itemBag[item].getTotalQuantity() < quantity) {
+            throw new InsufficientInventorySpaceException("You can't use this many items!");
+        } else {
+            itemBag[item].addQuantity(-quantity);
+            availableItemBagCapacity += quantity;
         }
     }
 
