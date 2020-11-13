@@ -45,6 +45,7 @@ public class Farmhand {
     }
 
     public int getDaysActive() {
+
         return daysActive;
     }
 
