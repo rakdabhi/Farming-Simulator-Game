@@ -112,8 +112,8 @@ public class MainPanelUIController {
     }
 
     void updateFarmhandStatus(boolean unpaid) {
-        farmhandStatus.setText("You didn't have enough money to pay your farmhand! " +
-                "All harvests in inventory stolen.");
+        farmhandStatus.setText("You didn't have enough money to pay your farmhand! "
+            + "All harvests in inventory stolen.");
         farmhandStatus.setTextFill(Color.web("#ffffff"));
     }
 

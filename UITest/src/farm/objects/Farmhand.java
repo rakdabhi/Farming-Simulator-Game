@@ -1,10 +1,10 @@
 package farm.objects;
 
 public class Farmhand {
-    int skillLevel;
-    boolean isActive;
-    int daysActive;
-    double wage;
+    private int skillLevel;
+    private boolean isActive;
+    private int daysActive;
+    private double wage;
 
     public Farmhand() {
         this(0, 0, 0);
@@ -44,7 +44,8 @@ public class Farmhand {
         return skillLevel;
     }
 
-    public int getDaysActive(){
+    public int getDaysActive() {
+
         return daysActive;
     }
 

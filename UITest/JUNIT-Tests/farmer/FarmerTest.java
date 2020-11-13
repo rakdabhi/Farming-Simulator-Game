@@ -85,9 +85,9 @@ public class FarmerTest {
         farmer1.getInventory().addSeed(potato, 1);
         farmer1.getInventory().addSeed(apple, 1);
         farmer1.getInventory().addSeed(corn, 1);
-        assertEquals(1, farmer1.getInventory().getSeedBag()[0]);
-        assertEquals(1, farmer1.getInventory().getSeedBag()[1]);
-        assertEquals(1, farmer1.getInventory().getSeedBag()[2]);
+        assertEquals(1, farmer1.getInventory().getSeedBag()[0].getTotalQuantity());
+        assertEquals(1, farmer1.getInventory().getSeedBag()[1].getTotalQuantity());
+        assertEquals(1, farmer1.getInventory().getSeedBag()[2].getTotalQuantity());
         assertEquals(72, farmer1.getInventory().getAvailableSeedBagCapacity());
         assertEquals(75, farmer1.getInventory().getTotalCapacity());
 
@@ -101,12 +101,12 @@ public class FarmerTest {
     public void removeSeed() throws SeedChoiceNotFoundException {
         Seed corn = new Seed("Corn");
         farmer3.getInventory().addSeed(corn, 10);
-        assertEquals(10, farmer3.getInventory().getSeedBag()[2]);
+        assertEquals(10, farmer3.getInventory().getSeedBag()[2].getTotalQuantity());
         assertEquals(15, farmer3.getInventory().getAvailableSeedBagCapacity());
         assertEquals(25, farmer3.getInventory().getTotalCapacity());
 
         farmer3.getInventory().removeSeed(new Seed("Corn"), 5);
-        assertEquals(5, farmer3.getInventory().getSeedBag()[2]);
+        assertEquals(5, farmer3.getInventory().getSeedBag()[2].getTotalQuantity());
         assertEquals(20, farmer3.getInventory().getAvailableSeedBagCapacity());
         assertEquals(25, farmer3.getInventory().getTotalCapacity());
     }

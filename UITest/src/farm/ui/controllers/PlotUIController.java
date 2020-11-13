@@ -436,7 +436,8 @@ public class PlotUIController {
                 if (crop != null && crop.getGrowthStage() == 2) {
                     try {
                         farmer.getField().getPlot(i, j).harvest();
-                    } catch (ImmatureHarvestException | EmptyPlotException | SeedChoiceNotFoundException e) {
+                    } catch (ImmatureHarvestException | EmptyPlotException
+                        | SeedChoiceNotFoundException e) {
                         e.printStackTrace();
                     }
                     if (isPaid) {
