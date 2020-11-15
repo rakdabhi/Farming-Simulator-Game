@@ -251,9 +251,9 @@ public class MarketBuyUIController {
         updateBankAmount();
         updateAvailableCapacity();
         updateAvailableItemQuantity();
-        appleSeedCost = calculateSeedCost(2.89, 2.59);
-        potatoSeedCost = calculateSeedCost(4.22, 2.33);
-        cornSeedCost = calculateSeedCost(3.35, 3.36);
+        appleSeedCost = calculateSeedCost(new Seed("Apple").getBaseSell(), 2.59);
+        potatoSeedCost = calculateSeedCost(new Seed("Potato").getBaseSell(), 2.33);
+        cornSeedCost = calculateSeedCost(new Seed("Corn").getBaseSell(), 3.36);
         fertilizerCost = calculateFertilizerCost();
         pesticideCost = calculatePesticideCost();
     }
@@ -615,7 +615,6 @@ public class MarketBuyUIController {
     private void resetQuantityAndCostLabels() {
         quantityLabel.setText("0");
         totalCost.setText("$0.00");
-        seedChoice = null;
     }
 
     /**
