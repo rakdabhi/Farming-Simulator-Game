@@ -2,11 +2,13 @@ package farm.objects;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class InventoryItem {
+public class InventoryItem implements java.io.Serializable {
     private String itemName;
     private int totalQuantity;
-    private SimpleIntegerProperty pesticideTreatedCount;
-    private SimpleIntegerProperty pesticideFreeCount;
+    private transient SimpleIntegerProperty pesticideTreatedCount;
+    private transient SimpleIntegerProperty pesticideFreeCount;
+    private int pTC;
+    private int pFC;
 
     public InventoryItem(String itemName, int totalQuantity) {
         this.itemName = itemName;
@@ -15,6 +17,14 @@ public class InventoryItem {
         pesticideTreatedCount = new SimpleIntegerProperty(0);
         pesticideFreeCount = new SimpleIntegerProperty(0);
 
+        pTC = pesticideTreatedCount.getValue();
+        pFC = pesticideFreeCount.getValue();
+
+    }
+
+    public void setIntegerPropertiesFromSave() {
+        pesticideTreatedCount = new SimpleIntegerProperty(pTC);
+        pesticideFreeCount = new SimpleIntegerProperty(pFC);
     }
 
     /**
@@ -36,9 +46,11 @@ public class InventoryItem {
         if (c.isPesticideTreated()) {
             int p = pesticideTreatedCount.getValue();
             pesticideTreatedCount.setValue(p + q);
+            pTC = pesticideTreatedCount.getValue();
         } else {
             int p = pesticideFreeCount.getValue();
             pesticideFreeCount.setValue(p + q);
+            pFC = pesticideFreeCount.getValue();
         }
     }
 

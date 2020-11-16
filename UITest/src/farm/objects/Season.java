@@ -2,7 +2,7 @@ package farm.objects;
 
 import java.util.Random;
 
-public class Season {
+public class Season implements java.io.Serializable {
     private String season;
     private int temperature;
     private Clock timer;
@@ -31,15 +31,30 @@ public class Season {
         return timer;
     }
 
-    public int getDay() {
+    public int getTimerDay() {
         day = timer.getDay();
         return day;
     }
 
-    public int getHour() {
+    public int getTimerHour() {
         hour = timer.getHour();
         return hour;
     }
+
+    public void setSaveTime() {
+        hour = timer.getHour();
+        day = timer.getDay();
+    }
+
+    public int getSaveDay() {
+        return day;
+    }
+
+    public int getSaveHour() {
+        return hour;
+    }
+
+
 
     /**
      * This method helps create a randomized temperature value that falls within

@@ -1,6 +1,6 @@
 package farm.objects;
 
-public class Farmhand {
+public class Farmhand implements java.io.Serializable {
     private int skillLevel;
     private boolean isActive;
     private int daysActive;

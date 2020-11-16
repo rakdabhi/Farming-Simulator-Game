@@ -6,16 +6,16 @@ import javafx.beans.property.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class Clock {
+public class Clock implements  java.io.Serializable {
 
-    private Timeline hoursCount = new Timeline(new KeyFrame(Duration.seconds(10),
+    private transient Timeline hoursCount = new Timeline(new KeyFrame(Duration.seconds(10),
         event -> hourLabel()));
 
     private int day;
     private int hour;
-    private Text hourWatch;
-    private SimpleIntegerProperty dayWatch;
-    private Text ampmWatch;
+    private transient Text hourWatch;
+    private transient SimpleIntegerProperty dayWatch;
+    private transient Text ampmWatch;
 
     public Clock(int day, int hour) {
         this.day = day;

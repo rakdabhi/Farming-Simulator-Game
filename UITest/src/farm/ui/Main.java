@@ -13,18 +13,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("style/StartScreenUI.fxml"));
         Parent root = loader.load();
+        WelcomeUIController w = loader.getController();
         primaryStage.setTitle("Farming Simulator");
         Scene startScene = new Scene(root);
         primaryStage.setScene(startScene);
         primaryStage.show();
-        startScene.setOnKeyTyped(event -> {
-            WelcomeUIController welcome = new WelcomeUIController();
-            try {
-                welcome.keyPress(event);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
+
+        w.initWelcome();
+
     }
 
 

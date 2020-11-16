@@ -1,7 +1,7 @@
 package farm.objects;
 import exceptions.InsufficientFundsException;
 
-public class Farmer {
+public class Farmer implements java.io.Serializable {
 
     private String name;
     private String experienceLevel;
