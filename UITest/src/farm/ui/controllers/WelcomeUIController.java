@@ -63,49 +63,54 @@ public class WelcomeUIController {
 
     @FXML
     void handleLoadGame(ActionEvent e) throws IOException {
-        LoadGame lg = new LoadGame();
-        lg.fileIn();
+        try{
+            LoadGame lg = new LoadGame();
+            lg.fileIn();
 
-        Farmer farmer1 = lg.getFarmer();
-        Season s = lg.getSeason();
-        Season startingSeason = new Season(s.getSeason(), s.getSaveDay(), s.getSaveHour());
+            Farmer farmer1 = lg.getFarmer();
+            Season s = lg.getSeason();
+            Season startingSeason = new Season(s.getSeason(), s.getSaveDay(), s.getSaveHour());
 
-        for (InventoryItem i : farmer1.getInventory().getHarvestBag()) {
-            i.setIntegerPropertiesFromSave();
+            for (InventoryItem i : farmer1.getInventory().getHarvestBag()) {
+                i.setIntegerPropertiesFromSave();
+            }
+
+            FXMLLoader nextPage =
+                    new FXMLLoader(getClass().getResource("../style/PlotUI.fxml"));
+            Parent root = nextPage.load();
+            PlotUIController plotController = nextPage.getController();
+
+            FXMLLoader loadMain =
+                    new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
+            loadMain.load();
+            MainPanelUIController mainPanelController = loadMain.getController();
+
+            FXMLLoader loadInventory =
+                    new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
+            loadInventory.load();
+            InventoryUIController inventoryController = loadInventory.getController();
+
+            FXMLLoader loadInspect =
+                    new FXMLLoader(getClass().getResource("../style/PlantInspectUI.fxml"));
+            loadInspect.load();
+            PlantInspectUIController inspectController = loadInspect.getController();
+
+            plotController.initPlotUI(farmer1, startingSeason,
+                    mainPanelController, inventoryController, inspectController);
+            mainPanelController.initMainPanelUI(farmer1, startingSeason,
+                    plotController, inventoryController, inspectController);
+            inventoryController.initInventoryUI(farmer1, startingSeason,
+                    mainPanelController, plotController);
+            inspectController.initPlantInspectUI(farmer1, startingSeason,
+                    plotController, mainPanelController);
+
+            Scene nextPageScene = new Scene(root);
+            Stage window = (Stage) (loadGameButton.getScene()).getWindow();
+            window.setScene(nextPageScene);
+            window.show();
+        } catch (NullPointerException i) {
+            System.out.println("File not found; null pointer exception. ");
         }
 
-        FXMLLoader nextPage =
-                new FXMLLoader(getClass().getResource("../style/PlotUI.fxml"));
-        Parent root = nextPage.load();
-        PlotUIController plotController = nextPage.getController();
-
-        FXMLLoader loadMain =
-                new FXMLLoader(getClass().getResource("../style/MainPanelUI.fxml"));
-        loadMain.load();
-        MainPanelUIController mainPanelController = loadMain.getController();
-
-        FXMLLoader loadInventory =
-                new FXMLLoader(getClass().getResource("../style/InventoryUI.fxml"));
-        loadInventory.load();
-        InventoryUIController inventoryController = loadInventory.getController();
-
-        FXMLLoader loadInspect =
-                new FXMLLoader(getClass().getResource("../style/PlantInspectUI.fxml"));
-        loadInspect.load();
-        PlantInspectUIController inspectController = loadInspect.getController();
-
-        plotController.initPlotUI(farmer1, startingSeason,
-                mainPanelController, inventoryController, inspectController);
-        mainPanelController.initMainPanelUI(farmer1, startingSeason,
-                plotController, inventoryController, inspectController);
-        inventoryController.initInventoryUI(farmer1, startingSeason,
-                mainPanelController, plotController);
-        inspectController.initPlantInspectUI(farmer1, startingSeason,
-                plotController, mainPanelController);
-
-        Scene nextPageScene = new Scene(root);
-        Stage window = (Stage) (loadGameButton.getScene()).getWindow();
-        window.setScene(nextPageScene);
-        window.show();
     }
 }
