@@ -19,6 +19,7 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 
@@ -75,6 +76,12 @@ public class PlotUIController {
 
     @FXML
     private Button locustButton;
+
+    @FXML
+    private Button previousFieldButton;
+
+    @FXML
+    private Button nextFieldButton;
 
     private Farmer farmer;
 
@@ -142,6 +149,8 @@ public class PlotUIController {
 
         dayStartListen();
 
+        handleFieldIterate(new ActionEvent());
+
         displayCrops();
 
     }
@@ -172,6 +181,7 @@ public class PlotUIController {
         for (int i = 0; i < plotArray.length; i++) {
             for (int j = 0; j < plotArray[i].length; j++) {
                 Crop crop = farmer.getField().getPlot(i, j).getCrop();
+
                 if (crop == null) {
                     plotArray[i][j].getChildren().get(4).setVisible(false);
                     plotArray[i][j].getChildren().get(5).setVisible(false);
@@ -181,6 +191,7 @@ public class PlotUIController {
                         plotArray[i][j].getChildren().get(4).setVisible(false);
                         plotArray[i][j].getChildren().get(5).setVisible(true);
                     } else {
+                        plotArray[i][j].getChildren().get(4).setVisible(true);
                         plotArray[i][j].getChildren().get(5).setVisible(false);
                         if (farmer.getField().getPlot(i, j) == selectedPlot
                                 && rightPaneWrapper.getChildren().get(0)
@@ -398,27 +409,32 @@ public class PlotUIController {
 
     public void advanceGrowthCycle(int chance) {
         try {
+            int origFieldIndex = farmer.getCurrFieldIndex();
             randomEvent.generateNewRainAndDroughtLevels();
-            for (int i = 0; i < plotArray.length; i++) {
-                for (int j = 0; j < plotArray[i].length; j++) {
-                    Plot currPlot = farmer.getField().getPlot(i, j);
-                    Crop crop = currPlot.getCrop();
-                    if (crop != null) {
-                        if (currPlot.getFertilizerLevel() == 0) {
-                            currPlot.setFertilizerTreated(false);
-                        }
-                        if (currPlot.isFertilizerTreated()) {
+            for (int h = 0; h < farmer.getFieldsSize(); h++) {
+                farmer.setCurrFieldIndex(h);
+                for (int i = 0; i < plotArray.length; i++) {
+                    for (int j = 0; j < plotArray[i].length; j++) {
+                        Plot currPlot = farmer.getField().getPlot(i, j);
+                        Crop crop = currPlot.getCrop();
+                        if (crop != null) {
+                            if (currPlot.getFertilizerLevel() == 0) {
+                                currPlot.setFertilizerTreated(false);
+                            }
+                            if (currPlot.isFertilizerTreated()) {
+                                crop.grow();
+                            }
                             crop.grow();
+                            currPlot.setFertilizerLevel(-5);
+                            crop.setWaterLevel(crop.getWaterLevel() - 2);
+                            randomEvent.performRandomEvent(crop, chance);
                         }
-                        crop.grow();
-                        currPlot.setFertilizerLevel(-5);
-                        crop.setWaterLevel(crop.getWaterLevel() - 2);
-                        randomEvent.performRandomEvent(crop, chance);
+                        //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
+                        ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                     }
-                    //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
-                    ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                 }
             }
+            farmer.setCurrFieldIndex(origFieldIndex);
             displayCrops();
         } finally {
             if ((randomEvent.getErrorHeader().length() != 0)
@@ -430,27 +446,31 @@ public class PlotUIController {
     }
 
     private void farmhandWork(Farmhand fh, boolean isPaid)  {
-        for (int i = 0; i < plotArray.length; i++) {
-            for (int j = 0; j < plotArray[i].length; j++) {
-                Crop crop = farmer.getField().getPlot(i, j).getCrop();
-                if (crop != null && crop.getGrowthStage() == 2) {
-                    try {
-                        farmer.getField().getPlot(i, j).harvest();
-                    } catch (ImmatureHarvestException | EmptyPlotException
-                        | SeedChoiceNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    if (isPaid) {
+        int origFieldIndex = farmer.getCurrFieldIndex();
+        for (int h = 0; h < farmer.getFieldsSize(); h++) {
+            for (int i = 0; i < plotArray.length; i++) {
+                for (int j = 0; j < plotArray[i].length; j++) {
+                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                    if (crop != null && crop.getGrowthStage() == 2) {
                         try {
-                            farmer.getInventory().addHarvest(crop, 1);
-                        } catch (SeedChoiceNotFoundException e) {
+                            farmer.getField().getPlot(i, j).harvest();
+                        } catch (ImmatureHarvestException | EmptyPlotException
+                                | SeedChoiceNotFoundException e) {
                             e.printStackTrace();
                         }
-                    }
+                        if (isPaid) {
+                            try {
+                                farmer.getInventory().addHarvest(crop, 1);
+                            } catch (SeedChoiceNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
 
+                    }
                 }
             }
         }
+        farmer.setCurrFieldIndex(origFieldIndex);
         displayCrops();
         updateRightPaneInspect(null);
 
@@ -493,15 +513,20 @@ public class PlotUIController {
     private void randomEventHandler(int chance) {
         try {
             randomEvent.generateNewRainAndDroughtLevels();
-            for (int i = 0; i < plotArray.length; i++) {
-                for (int j = 0; j < plotArray[i].length; j++) {
-                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
-                    if (crop != null) {
-                        randomEvent.performRandomEvent(crop, chance);
+            int origFieldIndex = farmer.getCurrFieldIndex();
+            for(int h = 0; h < farmer.getFieldsSize(); h++) {
+                farmer.setCurrFieldIndex(h);
+                for (int i = 0; i < plotArray.length; i++) {
+                    for (int j = 0; j < plotArray[i].length; j++) {
+                        Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                        if (crop != null) {
+                            randomEvent.performRandomEvent(crop, chance);
+                        }
+                        ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                     }
-                    ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                 }
             }
+            farmer.setCurrFieldIndex(origFieldIndex);
             displayCrops();
         } finally {
             if ((randomEvent.getErrorHeader().length() != 0)
@@ -525,6 +550,33 @@ public class PlotUIController {
     @FXML
     void handleLocustButton(ActionEvent event) {
         randomEventHandler(60);
+    }
+
+    @FXML
+    void handleFieldIterate(ActionEvent event) {
+
+        if (event.getSource() == nextFieldButton) {
+            farmer.setCurrFieldIndex(farmer.getCurrFieldIndex() + 1);
+        } else  if (event.getSource() == previousFieldButton){
+            farmer.setCurrFieldIndex(farmer.getCurrFieldIndex() - 1);
+        }
+
+        if (farmer.getCurrFieldIndex() - 1 >= 0
+                && farmer.getAllFields()[farmer.getCurrFieldIndex() - 1] != null)  {
+            previousFieldButton.setVisible(true);
+        } else {
+            previousFieldButton.setVisible(false);
+        }
+
+        if (((farmer.getCurrFieldIndex() + 1) < farmer.getFieldsSize())
+                && farmer.getAllFields()[farmer.getCurrFieldIndex() + 1] != null) {
+                nextFieldButton.setVisible(true);
+        } else {
+            nextFieldButton.setVisible(false);
+        }
+
+        displayCrops();
+
     }
 
     void dayStartListen() {

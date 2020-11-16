@@ -4,8 +4,7 @@ import exceptions.ExcessSeedBuyException;
 import exceptions.InsufficientFundsException;
 import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
-import farm.objects.Farmer;
-import farm.objects.InventoryItem;
+import farm.objects.*;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,8 +23,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import farm.objects.Season;
-import farm.objects.Seed;
 
 import java.io.IOException;
 import java.util.Random;
@@ -97,6 +94,12 @@ public class MarketBuyUIController {
 
     @FXML
     private Button fertilizerButton;
+
+    @FXML
+    private Group hireImage;
+
+    @FXML
+    private Group plotImage;
 
     @FXML
     private Button button7;
@@ -209,6 +212,9 @@ public class MarketBuyUIController {
     @FXML
     private Label dayCountLabel;
 
+    @FXML
+    private Button fieldsButton;
+
     private Button selectedFarmhandExperience = null;
 
     @FXML
@@ -216,6 +222,9 @@ public class MarketBuyUIController {
 
     @FXML
     private Button sellTab;
+
+    @FXML
+    private Button buyFieldSpaceButton;
 
     private Farmer farmer;
 
@@ -627,23 +636,24 @@ public class MarketBuyUIController {
             itemPane.setVisible(true);
             farmhandPane.setVisible(false);
         }
+        buyFieldSpaceButton.setVisible(false);
         Button btn = ((Button) event.getSource());
         resetQuantityAndCostLabels();
         if (btn == appleButton) {
             seedChoice = new Seed("Apple");
             seedCost = appleSeedCost;
             selectActions(appleButton, potatoButton, cornButton, pesticideButton,
-                    fertilizerButton, hireButton);
+                    fertilizerButton, hireButton, fieldsButton);
         } else if (btn == potatoButton) {
             seedChoice = new Seed("Potato");
             seedCost = potatoSeedCost;
             selectActions(potatoButton, appleButton, cornButton, pesticideButton,
-                    fertilizerButton, hireButton);
+                    fertilizerButton, hireButton, fieldsButton);
         } else {
             seedChoice = new Seed("Corn");
             seedCost = cornSeedCost;
             selectActions(cornButton, appleButton, potatoButton, pesticideButton,
-                    fertilizerButton, hireButton);
+                    fertilizerButton, hireButton, fieldsButton);
         }
         itemName.setText(seedChoice.getName() + " Seed");
         itemDescription.setText(String.format("The current price for "
@@ -656,7 +666,7 @@ public class MarketBuyUIController {
         itemPane.setVisible(false);
         farmhandPane.setVisible(true);
         selectActions(hireButton, pesticideButton, fertilizerButton, appleButton,
-                potatoButton, cornButton);
+                potatoButton, cornButton, fieldsButton);
     }
 
     @FXML
@@ -761,17 +771,18 @@ public class MarketBuyUIController {
             itemPane.setVisible(true);
             farmhandPane.setVisible(false);
         }
+        buyFieldSpaceButton.setVisible(false);
         resetQuantityAndCostLabels();
         if (btn == fertilizerButton) {
             itemChoice = new InventoryItem("Fertilizer", 1);
             itemCost = fertilizerCost;
             selectActions(fertilizerButton, pesticideButton, appleButton,
-                    potatoButton, cornButton, hireButton);
+                    potatoButton, cornButton, hireButton, fieldsButton);
         } else {
             itemChoice = new InventoryItem("Pesticide", 1);
             itemCost = pesticideCost;
             selectActions(pesticideButton, fertilizerButton, appleButton,
-                    potatoButton, cornButton, hireButton);
+                    potatoButton, cornButton, hireButton, fieldsButton);
         }
         itemName.setText(itemChoice.getItemName());
         itemDescription.setText(String.format("The current price for "
@@ -779,31 +790,65 @@ public class MarketBuyUIController {
                 itemChoice.getItemName(), season.getSeason(), itemCost));
     }
 
-    /**
-     * This method helps show a moving graphic when a mouse enters the button.
-     * @param event the event
-     */
     @FXML
-    void appleButtonMouseEnter(MouseEvent event) {
-        lowerRightGraphicTransition(appleImage);
+    void handleFieldsButton(ActionEvent e) {
+        if (!itemPane.isVisible()) {
+            itemPane.setVisible(true);
+            farmhandPane.setVisible(false);
+        }
+        buyFieldSpaceButton.setVisible(true);
+
+        selectActions(fieldsButton, appleButton, potatoButton, cornButton, pesticideButton,
+                fertilizerButton, hireButton);
+
+        itemName.setText("Field Space");
+
+
+        itemDescription.setText(String.format("The cost of buying 12 more field plots is $%,.2f!",
+                farmer.getNextFieldCost()));
+    }
+
+    @FXML
+    void handleBuyFieldSpace(ActionEvent e) {
+        if (farmer.getMoney() < farmer.getNextFieldCost()) {
+            throw new InsufficientFundsException("You don't have enough money to buy more field space!");
+        } else {
+            farmer.getAllFields()[farmer.getFieldsSize()] = new Field(3, 4, false);
+            farmer.pay(farmer.getNextFieldCost());
+            farmer.incrementFieldSize();
+            updateBankAmount();
+            handleFieldsButton(new ActionEvent());
+        }
     }
 
     /**
      * This method helps show a moving graphic when a mouse enters the button.
-     * @param event the event
+     * @param e the event
      */
     @FXML
-    void potatoButtonMouseEnter(MouseEvent event) {
-        lowerRightGraphicTransition(potatoImage);
-    }
+    void invButtonMouseEnter(MouseEvent e) {
+        Group g = null;
+        if (e.getSource() == appleButton) {
+            g = appleImage;
+        } else if (e.getSource() == potatoButton) {
+            g = potatoImage;
+        } else if (e.getSource() == cornButton) {
+            g = cornImage;
+        } else if (e.getSource() == pesticideButton) {
+            g = pesticideImage;
+        } else if (e.getSource() == fertilizerButton) {
+            g = fertilizerImage;
+        } else if (e.getSource() == hireButton) {
+            g = hireImage;
+        } else if (e.getSource() == fieldsButton) {
+            g = plotImage;
+        } else if (e.getSource() ==  homeScreenButton) {
+            g = homeGraphic;
+        }
 
-    /**
-     * This method helps show a moving graphic when a mouse enters the button.
-     * @param event the event
-     */
-    @FXML
-    void cornButtonMouseEnter(MouseEvent event) {
-        lowerRightGraphicTransition(cornImage);
+        if (g != null) {
+            lowerRightGraphicTransition(g);
+        }
     }
 
     /**
@@ -827,14 +872,6 @@ public class MarketBuyUIController {
                 + " -fx-background-radius: 10;");
     }
 
-    /**
-     * This method helps show a moving graphic when a mouse enters the button.
-     * @param event the event
-     */
-    @FXML
-    void homeButtonMouseEnter(MouseEvent event) {
-        lowerRightGraphicTransition(homeGraphic);
-    }
 
     /**
      * This method helps change the color of the button when it is pressed.
