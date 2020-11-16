@@ -6,13 +6,13 @@ public class Field {
     private int rows;
 
 
-    public Field(int columns, int rows) {
+    public Field(int columns, int rows, boolean randGen) {
         this.columns = columns;
         this.rows = rows;
         plots = new Plot[columns][rows];
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
-                plots[i][j] = new Plot(true);
+                plots[i][j] = new Plot(randGen);
             }
         }
     }

@@ -8,7 +8,10 @@ public class Farmer {
     private double money;
     private Inventory inventory;
     private String customSkin;
-    private Field field;
+    private Field[] fields = new Field[3];
+    private double nextFieldCost;
+    private int fieldsSize;
+    private int currFieldIndex;
     private Farmhand fh;
 
     /**
@@ -20,11 +23,21 @@ public class Farmer {
     public Farmer(String name, String experienceLevel, String customSkin) {
         this.name = name;
         this.experienceLevel = experienceLevel;
+        nextFieldCost = 200 * Integer.parseInt(experienceLevel);
         this.customSkin = customSkin;
         setMoney(this.experienceLevel);
         this.inventory = new Inventory(Integer.parseInt(experienceLevel));
-        field = new Field(3, 4);
+        initFieldData();
         fh = new Farmhand();
+    }
+
+    private void initFieldData() {
+        for (Field f : fields) {
+            f = null;
+        }
+        currFieldIndex = 0;
+        fields[currFieldIndex] = new Field(3, 4, true);
+        fieldsSize = 1;
     }
 
 
@@ -92,11 +105,50 @@ public class Farmer {
     }
 
     /**
-     * This method returns the field.
+     * This method returns the current field.
      * @return the field
      */
     public Field getField() {
-        return field;
+        return fields[currFieldIndex];
+    }
+
+    /**
+     * This method returns the current field index in the fields array.
+     * @return the field index.
+     */
+    public int getCurrFieldIndex() {
+        return currFieldIndex;
+    }
+
+    /**
+     * This method returns the fields array.
+     * @return the fields array.
+     */
+    public Field[] getAllFields() {
+        return fields;
+    }
+
+    public void setCurrFieldIndex(int i) {
+        if (i >= 0 && i < fieldsSize) {
+            currFieldIndex = i;
+        }
+    }
+
+    public double getNextFieldCost() {
+        return nextFieldCost;
+    }
+
+    public void incrementNextFieldCost() {
+        nextFieldCost += (Integer.parseInt(experienceLevel) * 50);
+    }
+
+    public int getFieldsSize() {
+        return fieldsSize;
+    }
+
+    public void incrementFieldSize() {
+        fieldsSize += 1;
+        incrementNextFieldCost();
     }
 
     public Inventory getInventory() {

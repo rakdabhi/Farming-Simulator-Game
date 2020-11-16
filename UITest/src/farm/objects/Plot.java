@@ -14,27 +14,33 @@ public class Plot {
     private boolean fertilizerTreated;
 
     public Plot(Seed seed) {
-
         crop = new Crop(seed, 0, 0);
         this.fertilizerLevel = 0;
         this.fertilizerTreated = false;
     }
 
     public Plot(boolean randGen) {
-        rand = new Random();
-        Seed seed;
-        int seedType = rand.nextInt(3);
-        int growthStage = rand.nextInt(3);
-        int waterLevel = rand.nextInt(5);
-        if (seedType == 0) {
-            seed = new Seed("Apple");
-        } else if (seedType == 1) {
-            seed = new Seed("Potato");
+        if (randGen) {
+            rand = new Random();
+            Seed seed;
+            int seedType = rand.nextInt(3);
+            int growthStage = rand.nextInt(3);
+            int waterLevel = rand.nextInt(5);
+            if (seedType == 0) {
+                seed = new Seed("Apple");
+            } else if (seedType == 1) {
+                seed = new Seed("Potato");
+            } else {
+                seed = new Seed("Corn");
+            }
+
+            crop = new Crop(seed, growthStage, waterLevel);
         } else {
-            seed = new Seed("Corn");
+            crop = null;
+            fertilizerLevel = 0;
+            fertilizerTreated = false;
         }
 
-        crop = new Crop(seed, growthStage, waterLevel);
     }
 
     public Seed harvest()

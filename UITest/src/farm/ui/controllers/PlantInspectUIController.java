@@ -92,6 +92,9 @@ public class PlantInspectUIController {
     @FXML
     private Label fertilizerLabel;
 
+    @FXML
+    private Group fertilizePesticideGraphic;
+
     private Farmer farmer;
 
     private Season season;
@@ -341,7 +344,6 @@ public class PlantInspectUIController {
     @FXML
     void sowButtonMouseEnter(MouseEvent event) {
         lowerRightGraphicTransition(sowGraphic);
-
     }
 
     @FXML
@@ -349,6 +351,13 @@ public class PlantInspectUIController {
         lowerRightGraphicTransition(waterGraphic);
 
     }
+
+    @FXML
+    void fertilizePesticideMouseEnter(MouseEvent event) {
+        lowerRightGraphicTransition(fertilizePesticideGraphic);
+    }
+
+
 
     void lowerRightGraphicTransition(Group gr) {
         RotateTransition rt = new RotateTransition(new Duration(200), gr);
