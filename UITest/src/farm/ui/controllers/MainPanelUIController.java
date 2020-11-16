@@ -1,8 +1,6 @@
 package farm.ui.controllers;
 
-import farm.objects.Clock;
-import farm.objects.Farmer;
-import farm.objects.Farmhand;
+import farm.objects.*;
 import javafx.animation.RotateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -15,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.util.Duration;
-import farm.objects.Season;
+
 import java.io.IOException;
 
 public class MainPanelUIController {
@@ -61,6 +59,9 @@ public class MainPanelUIController {
 
     @FXML
     private Label farmhandStatus;
+
+    @FXML
+    private Button saveButton;
 
     private Farmer farmer;
 
@@ -188,5 +189,12 @@ public class MainPanelUIController {
         rt.setAutoReverse(true);
 
         rt.play();
+    }
+
+    @FXML
+    void handleSaveButton(ActionEvent e) {
+        season.setSaveTime();
+        SaveGame sg = new SaveGame(farmer, season);
+        sg.fileOut();
     }
 }

@@ -1,6 +1,6 @@
 package farm.objects;
 
-public class Crop {
+public class Crop implements java.io.Serializable {
     private Seed seed;
     private int growthStage;
     private int waterLevel;

@@ -1,6 +1,6 @@
 package farm.objects;
 
-public class Seed {
+public class Seed implements java.io.Serializable {
     private String name;
     private int seedID;
     private double baseSell;

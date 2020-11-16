@@ -1,12 +1,12 @@
 package farm.objects;
 
-public class Field {
+public class Field implements java.io.Serializable {
     private Plot[][] plots;
     private int columns;
     private int rows;
 
 
-    public Field(int columns, int rows, boolean randGen) {
+    public Field(int columns, int rows, boolean randGen)  {
         this.columns = columns;
         this.rows = rows;
         plots = new Plot[columns][rows];

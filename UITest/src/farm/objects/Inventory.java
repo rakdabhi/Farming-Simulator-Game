@@ -3,7 +3,7 @@ package farm.objects;
 import exceptions.InsufficientInventorySpaceException;
 import exceptions.SeedChoiceNotFoundException;
 
-public class Inventory {
+public class Inventory implements java.io.Serializable {
     private int availableSeedBagCapacity;
     private int availableHarvestBagCapacity;
     private int availableItemBagCapacity;

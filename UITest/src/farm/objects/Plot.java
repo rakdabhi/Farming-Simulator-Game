@@ -7,7 +7,7 @@ import exceptions.SeedChoiceNotFoundException;
 
 import java.util.Random;
 
-public class Plot {
+public class Plot implements java.io.Serializable {
     private Crop crop;
     private Random rand;
     private int fertilizerLevel;
