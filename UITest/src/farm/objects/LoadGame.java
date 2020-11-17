@@ -6,9 +6,9 @@ public class LoadGame {
     Farmer farmer;
     Season season;
 
-    public void fileIn() {
+    public void fileIn(File f) {
         try {
-            FileInputStream fileIn = new FileInputStream("../UITest/SaveGame/SaveGame.ser");
+            FileInputStream fileIn = new FileInputStream(f);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             while (true) {
                 Object o = in.readObject();

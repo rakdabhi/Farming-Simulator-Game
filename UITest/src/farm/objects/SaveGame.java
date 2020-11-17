@@ -11,9 +11,9 @@ public class SaveGame {
         season = s;
     }
 
-    public void fileOut() {
+    public void fileOut(File f) {
         try {
-            FileOutputStream fileOut = new FileOutputStream("../UITest/SaveGame/SaveGame.ser");
+            FileOutputStream fileOut = new FileOutputStream(f);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(farmer);
             out.writeObject(season);

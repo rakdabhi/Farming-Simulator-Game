@@ -12,8 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -64,8 +66,14 @@ public class WelcomeUIController {
     @FXML
     void handleLoadGame(ActionEvent e) throws IOException {
         try{
+            FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showOpenDialog(loadGameButton.getScene().getWindow());
             LoadGame lg = new LoadGame();
-            lg.fileIn();
+
+            if (file != null) {
+                lg.fileIn(file);
+            }
+
 
             Farmer farmer1 = lg.getFarmer();
             Season s = lg.getSeason();

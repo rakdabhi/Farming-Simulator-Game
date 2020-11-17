@@ -12,8 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MainPanelUIController {
@@ -72,6 +74,8 @@ public class MainPanelUIController {
     private InventoryUIController invu;
 
     private PlantInspectUIController piu;
+
+    private File file;
 
     private Clock timer;
     private int day;
@@ -195,6 +199,10 @@ public class MainPanelUIController {
     void handleSaveButton(ActionEvent e) {
         season.setSaveTime();
         SaveGame sg = new SaveGame(farmer, season);
-        sg.fileOut();
+        if (file == null) {
+            FileChooser fileChooser = new FileChooser();
+            file = fileChooser.showSaveDialog(saveButton.getScene().getWindow());
+        }
+        sg.fileOut(file);
     }
 }
