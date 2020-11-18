@@ -511,25 +511,37 @@ public class PlotUIController {
         for (int h = 0; h < farmer.getFieldsSize(); h++) {
             for (int i = 0; i < plotArray.length; i++) {
                 for (int j = 0; j < plotArray[i].length; j++) {
-                    Crop crop = farmer.getField().getPlot(i, j).getCrop();
-                    if (crop != null && crop.getGrowthStage() == 2) {
-                        try {
-                            farmer.getField().getPlot(i, j).harvest();
-                        } catch (ImmatureHarvestException | EmptyPlotException
-                                | SeedChoiceNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        if (isPaid) {
+                    if (farmer.canHarvestMore()) {
+                        Crop crop = farmer.getField().getPlot(i, j).getCrop();
+                        if (crop != null && crop.getGrowthStage() == 2) {
                             try {
-                                farmer.getInventory().addHarvest(crop, 1);
-                            } catch (SeedChoiceNotFoundException e) {
+                                farmer.getField().getPlot(i, j).harvest();
+                                farmer.hasHarvested();
+                                updateWaterAndHarvestLabels();
+                            } catch (ImmatureHarvestException | EmptyPlotException
+                                    | SeedChoiceNotFoundException e) {
                                 e.printStackTrace();
                             }
+                            if (isPaid) {
+                                try {
+                                    farmer.getInventory().addHarvest(crop, 1);
+                                } catch (SeedChoiceNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
-
+                    } else {
+                        break;
                     }
                 }
+                if (!farmer.canHarvestMore()) {
+                    break;
+                }
             }
+            if (!farmer.canHarvestMore()) {
+                break;
+            }
+
         }
         farmer.setCurrFieldIndex(origFieldIndex);
         displayCrops();
