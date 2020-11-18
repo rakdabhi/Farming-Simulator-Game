@@ -11,6 +11,12 @@ public class Farmer implements java.io.Serializable {
     private Field[] fields = new Field[3];
     private double nextFieldCost;
     private int fieldsSize;
+    private int wateringCapacity;
+    private int wateringLeft;
+    private int nextWateringCost;
+    private int harvestingCapacity;
+    private int harvestingLeft;
+    private int nextHarvestingCost;
     private int currFieldIndex;
     private Farmhand fh;
 
@@ -24,10 +30,13 @@ public class Farmer implements java.io.Serializable {
         this.name = name;
         this.experienceLevel = experienceLevel;
         nextFieldCost = 200 * Integer.parseInt(experienceLevel);
+        nextWateringCost = 10 + (5 * Integer.parseInt(experienceLevel));
+        nextHarvestingCost = 15 + (10 * Integer.parseInt(experienceLevel));
         this.customSkin = customSkin;
         setMoney(this.experienceLevel);
         this.inventory = new Inventory(Integer.parseInt(experienceLevel));
         initFieldData();
+        initHarvestAndWaterCapacity();
         fh = new Farmhand();
     }
 
@@ -38,6 +47,21 @@ public class Farmer implements java.io.Serializable {
         currFieldIndex = 0;
         fields[currFieldIndex] = new Field(3, 4, true);
         fieldsSize = 1;
+    }
+
+    private void initHarvestAndWaterCapacity() {
+        if (experienceLevel.equals("1")) {
+            harvestingCapacity = 10;
+            wateringCapacity = 36;
+        } else if (experienceLevel.equals("2")) {
+            harvestingCapacity = 8;
+            wateringCapacity = 24;
+        } else {
+            harvestingCapacity = 5;
+            wateringCapacity = 12;
+        }
+        harvestingLeft = harvestingCapacity;
+        wateringLeft = wateringCapacity;
     }
 
 
@@ -161,5 +185,68 @@ public class Farmer implements java.io.Serializable {
 
     public Farmhand getFarmhand() {
         return fh;
+    }
+
+    public int getWateringCapacity() {
+        return wateringCapacity;
+    }
+
+    public int getWateringLeft() {
+        return wateringLeft;
+    }
+
+    public boolean canWaterMore() {
+        return wateringLeft > 0;
+    }
+
+    public void hasWatered() {
+        wateringLeft--;
+    }
+
+    public double getNextWateringCost() {
+        return nextWateringCost;
+    }
+
+    public void incrementNextWateringCost() {
+        nextWateringCost += (Integer.parseInt(experienceLevel) * 5);
+    }
+
+    public void incrementWateringCapacity() {
+        wateringCapacity += 12;
+        incrementNextWateringCost();
+    }
+
+    public int getHarvestingCapacity() {
+        return harvestingCapacity;
+    }
+
+    public int getHarvestingLeft() {
+        return harvestingLeft;
+    }
+
+    public boolean canHarvestMore() {
+        return harvestingLeft > 0;
+    }
+
+    public void hasHarvested() {
+        harvestingLeft--;
+    }
+
+    public double getNextHarvestingCost() {
+        return nextHarvestingCost;
+    }
+
+    public void incrementNextHarvestingCost() {
+        nextHarvestingCost += (Integer.parseInt(experienceLevel) * 5);
+    }
+
+    public void incrementHarvestingCapacity() {
+        harvestingCapacity += 3;
+        incrementNextHarvestingCost();
+    }
+
+    public void resetWateringAndHarvestingLeft() {
+        wateringLeft = wateringCapacity;
+        harvestingLeft = harvestingCapacity;
     }
 }

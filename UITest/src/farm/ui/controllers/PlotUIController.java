@@ -19,7 +19,6 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
 
@@ -83,6 +82,18 @@ public class PlotUIController {
     @FXML
     private Button nextFieldButton;
 
+    @FXML
+    private Label waterLeftLabel;
+
+    @FXML
+    private Label waterCapacityLabel;
+
+    @FXML
+    private Label harvestingLeftLabel;
+
+    @FXML
+    private Label harvestingCapacityLabel;
+
     private Farmer farmer;
 
     private Season season;
@@ -104,6 +115,8 @@ public class PlotUIController {
     private SimpleIntegerProperty day = new SimpleIntegerProperty(this, "day");
 
     private ChangeListener<Number> dayChange = (observable, oldValue, newValue) -> {
+        farmer.resetWateringAndHarvestingLeft();
+        updateWaterAndHarvestLabels();
         advanceGrowthCycle(chance.nextInt(101));
         if (rightPaneWrapper.getChildren().get(0) == piu.getRightPaneInspect()) {
             updateRightPaneInspect(selectedPlot.getCrop());
@@ -151,10 +164,18 @@ public class PlotUIController {
 
         handleFieldIterate(new ActionEvent());
 
+        updateWaterAndHarvestLabels();
+
         displayCrops();
 
     }
 
+    public void updateWaterAndHarvestLabels() {
+        waterLeftLabel.setText(String.format("%02d", farmer.getWateringLeft()));
+        waterCapacityLabel.setText(String.format("%02d", farmer.getWateringCapacity()));
+        harvestingLeftLabel.setText(String.format("%02d", farmer.getHarvestingLeft()));
+        harvestingCapacityLabel.setText(String.format("%02d", farmer.getHarvestingCapacity()));
+    }
 
     // |     Getters and Setters     |
     // |                             |
@@ -252,7 +273,36 @@ public class PlotUIController {
 
             //handle sowPress
             //harvests crop, updates PlotUI plant graphic to be invisible
-            if (PlantInspectUIController.getSowPress() && crop != null) {
+            if (PlantInspectUIController.getSowPress() && crop != null && !crop.isDead()) {
+                if (farmer.canHarvestMore()) {
+                    if (crop.getGrowthStage() == 2) {
+                        farmer.hasHarvested();
+                        harvestingLeftLabel.setText(String.format("%02d",
+                            farmer.getHarvestingLeft()));
+                    }
+                    Seed s = farmer.getField().getPlot(column, row).harvest();
+                    Random rand = new Random();
+                    if (s != null) {
+                        if (farmer.getField().getPlot(column, row).isFertilizerTreated()) {
+                            int yieldChance = rand.nextInt(2);
+                            farmer.getInventory().addHarvest(crop, 2 + yieldChance);
+                        } else {
+                            farmer.getInventory().addHarvest(crop, 1);
+                        }
+                    }
+                    displayCrops();
+                    ((Group) source).getChildren().get(4).setVisible(false);
+                    updateRightPaneInspect(null);
+                } else {
+                    String errorHeader = "Daily Harvesting Maximum Reached!";
+                    String errorMessage = "Your daily harvesting maximum has been reached.\n"
+                        + "If you want to harvest more crops, please purchase a\n"
+                        + "tractor from the market!";
+                    alertPopUp(errorHeader, errorMessage);
+                }
+            }
+
+            if (PlantInspectUIController.getSowPress() && crop != null && crop.isDead()) {
                 Seed s = farmer.getField().getPlot(column, row).harvest();
                 Random rand = new Random();
                 if (s != null) {
@@ -283,9 +333,19 @@ public class PlotUIController {
 
             //handle waterPress
             if (PlantInspectUIController.getWaterPress() && crop != null && !crop.isDead()) {
-                crop.setWaterLevel(crop.getWaterLevel() + 1);
-                updateRightPaneInspect(crop);
-                displayCrops();
+                if (farmer.canWaterMore()) {
+                    crop.setWaterLevel(crop.getWaterLevel() + 1);
+                    farmer.hasWatered();
+                    waterLeftLabel.setText(String.format("%02d", farmer.getWateringLeft()));
+                    updateRightPaneInspect(crop);
+                    displayCrops();
+                } else {
+                    String errorHeader = "Daily Watering Maximum Reached!";
+                    String errorMessage = "Your daily watering maximum has been reached.\n"
+                            + "If you want to water more crops, please purchase irrigation \n"
+                            + "from the market!";
+                    alertPopUp(errorHeader, errorMessage);
+                }
             }
 
             //handle treatmentPress
@@ -429,7 +489,8 @@ public class PlotUIController {
                             crop.setWaterLevel(crop.getWaterLevel() - 2);
                             randomEvent.performRandomEvent(crop, chance);
                         }
-                        //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
+                        //String text =
+                        // (crop == null) ? "This plot is empty.\n\n" : crop.toString();
                         ((Label) plotArray[i][j].getChildren().get(3)).setText("");
                     }
                 }
@@ -514,7 +575,7 @@ public class PlotUIController {
         try {
             randomEvent.generateNewRainAndDroughtLevels();
             int origFieldIndex = farmer.getCurrFieldIndex();
-            for(int h = 0; h < farmer.getFieldsSize(); h++) {
+            for (int h = 0; h < farmer.getFieldsSize(); h++) {
                 farmer.setCurrFieldIndex(h);
                 for (int i = 0; i < plotArray.length; i++) {
                     for (int j = 0; j < plotArray[i].length; j++) {
@@ -557,7 +618,7 @@ public class PlotUIController {
 
         if (event.getSource() == nextFieldButton) {
             farmer.setCurrFieldIndex(farmer.getCurrFieldIndex() + 1);
-        } else  if (event.getSource() == previousFieldButton){
+        } else  if (event.getSource() == previousFieldButton) {
             farmer.setCurrFieldIndex(farmer.getCurrFieldIndex() - 1);
         }
 
@@ -570,7 +631,7 @@ public class PlotUIController {
 
         if (((farmer.getCurrFieldIndex() + 1) < farmer.getFieldsSize())
                 && farmer.getAllFields()[farmer.getCurrFieldIndex() + 1] != null) {
-                nextFieldButton.setVisible(true);
+            nextFieldButton.setVisible(true);
         } else {
             nextFieldButton.setVisible(false);
         }

@@ -1,10 +1,9 @@
 package farm.objects;
 import java.io.*;
-import java.util.ArrayList;
 
 public class LoadGame {
-    Farmer farmer;
-    Season season;
+    private Farmer farmer;
+    private Season season;
 
     public void fileIn(File f) {
         try {
