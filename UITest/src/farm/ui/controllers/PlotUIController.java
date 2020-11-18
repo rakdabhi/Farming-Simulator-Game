@@ -9,7 +9,10 @@ import farm.objects.*;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
@@ -18,7 +21,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Random;
 
@@ -199,6 +204,7 @@ public class PlotUIController {
     }
 
     private void displayCrops() {
+        Crop cropCheck = null;
         for (int i = 0; i < plotArray.length; i++) {
             for (int j = 0; j < plotArray[i].length; j++) {
                 Crop crop = farmer.getField().getPlot(i, j).getCrop();
@@ -212,6 +218,7 @@ public class PlotUIController {
                         plotArray[i][j].getChildren().get(4).setVisible(false);
                         plotArray[i][j].getChildren().get(5).setVisible(true);
                     } else {
+                        cropCheck = crop;
                         plotArray[i][j].getChildren().get(4).setVisible(true);
                         plotArray[i][j].getChildren().get(5).setVisible(false);
                         if (farmer.getField().getPlot(i, j) == selectedPlot
@@ -226,6 +233,9 @@ public class PlotUIController {
                 //String text = (crop == null) ? "This plot is empty.\n\n" : crop.toString();
                 ((Label) plotArray[i][j].getChildren().get(3)).setText("");
             }
+        }
+        if (cropCheck == null) {
+            checkEndGame();
         }
     }
 
@@ -496,13 +506,13 @@ public class PlotUIController {
                 }
             }
             farmer.setCurrFieldIndex(origFieldIndex);
-            displayCrops();
         } finally {
             if ((randomEvent.getErrorHeader().length() != 0)
                 && (randomEvent.getErrorMessage().length() != 0)) {
                 alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
                 randomEvent.resetDeadFromLocusts();
             }
+            displayCrops();
         }
     }
 
@@ -600,13 +610,13 @@ public class PlotUIController {
                 }
             }
             farmer.setCurrFieldIndex(origFieldIndex);
-            displayCrops();
         } finally {
             if ((randomEvent.getErrorHeader().length() != 0)
                     && (randomEvent.getErrorMessage().length() != 0)) {
                 alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
                 randomEvent.resetDeadFromLocusts();
             }
+            displayCrops();
         }
     }
 
@@ -652,6 +662,52 @@ public class PlotUIController {
 
     }
 
+    void checkEndGame() {
+        if (farmer.getInventory().isEmpty(farmer.getInventory().getHarvestBag())
+            && farmer.getInventory().isEmpty(farmer.getInventory().getSeedBag())) {
+
+            int currField = farmer.getCurrFieldIndex();
+            Crop cropCheck = null;
+            for (int h = 0; h < farmer.getFieldsSize(); h++) {
+                farmer.setCurrFieldIndex(h);
+                for (int i = 0; i < plotArray.length; i++) {
+                    for (int j = 0; j < plotArray[i].length; j++) {
+                        Crop c = farmer.getField().getPlot(i, j).getCrop();
+                        if (c != null && !c.isDead()) {
+                            cropCheck = c;
+                        }
+                    }
+                }
+            }
+
+            if (cropCheck == null) {
+                alertPopUp("No Crops, No Money, No Seeds",
+                        "Aww Shucks. Pa's not gonna like this.");
+                triggerEndGame();
+            } else {
+                farmer.setCurrFieldIndex(currField);
+            }
+        }
+    }
+
+    void triggerEndGame() {
+        dayEndListen();
+        FXMLLoader loadEndGame =
+                new FXMLLoader(getClass().getResource("../style/EndGameUI.fxml"));
+        Parent root = null;
+        try {
+            root = loadEndGame.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        assert root != null;
+        Scene nextPageScene = new Scene(root);
+        Stage window = (Stage) nextFieldButton.getScene().getWindow();
+        window.setScene(nextPageScene);
+        window.show();
+    }
+
     void dayStartListen() {
         day.addListener(dayChange);
     }
@@ -659,6 +715,5 @@ public class PlotUIController {
     void dayEndListen() {
         day.removeListener(dayChange);
     }
-
 
 }
