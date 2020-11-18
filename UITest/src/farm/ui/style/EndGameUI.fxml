@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #381b95;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.EndGameUIController">
+   <children>
+      <Label layoutX="283.0" layoutY="111.0" text="GAME OVER" textFill="#feca57">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="87.0" />
+         </font>
+      </Label>
+      <Group fx:id="pigGroup" layoutX="543.0" layoutY="376.0" scaleX="2.0" scaleY="2.0">
+         <children>
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9a0f7" height="27.0" layoutX="-35.0" layoutY="15.0" strokeType="INSIDE" width="15.0" />
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9a0f7" height="27.0" layoutX="17.0" layoutY="15.0" strokeType="INSIDE" width="15.0" />
+            <Ellipse fill="#f9d4f6" layoutX="1.0" layoutY="-10.0" radiusX="56.0" radiusY="44.0" strokeType="INSIDE" />
+            <Label layoutX="-38.0" layoutY="-34.0" text="x" textFill="#f9a0f7">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#f9d4f6" height="31.0" layoutX="-64.0" layoutY="-24.0" strokeType="INSIDE" width="23.0" />
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9d4f6" height="30.0" layoutX="24.0" layoutY="12.0" strokeType="INSIDE" width="15.0" />
+            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9d4f6" height="27.0" layoutX="-27.0" layoutY="15.0" strokeType="INSIDE" width="15.0" />
+            <SVGPath content="M110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21zM110.7,167.21c0,0,17.21,24.65,9.93,26.66l7.26-4.85l-8.6-19.7L110.7,167.21z" fill="#f9a0f7" layoutX="-160.0" layoutY="-228.0" />
+            <SVGPath content="M195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7zM195.55,161.7c0,0-7.61-20.65-11-21.9c-3.39-1.25-3.39-1.25-3.39-1.25s21.76-0.55,35.4,11.57l2.2,0.53L195.55,161.7z" fill="#f9d4f6" layoutX="-231.0" layoutY="-199.0" />
+            <SVGPath content="M97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185ZM97.31,185s23.11-8.91,44,0A101.64,101.64,0,0,0,97.31,185Z" fill="#f9a0f7" layoutX="-108.0" layoutY="-231.0" rotate="7.1" />
+            <SVGPath content="M113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73ZM113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73Z" fill="#f9d4f6" layoutX="-60.0" layoutY="-191.0" />
+         </children>
+      </Group>
+      <Button fx:id="newGameButton" layoutX="357.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="110.0" prefWidth="371.0" style="-fx-background-radius: 10; -fx-background-color: #641fca;" text="Start New Game" textFill="#c9d6e4">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="33.0" />
+         </font>
+      </Button>
+      <Text fill="WHITE" layoutX="164.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You ran out of crops, seeds, and money. That means...">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -65,6 +65,17 @@ public class Inventory implements java.io.Serializable {
         return availableHarvestBagCapacity;
     }
 
+    public boolean isEmpty(InventoryItem[] arr) {
+        int total = 0;
+
+        for (InventoryItem inventoryItem : arr) {
+            total += inventoryItem.getTotalQuantity();
+        }
+
+        return (total == 0);
+    }
+
+
     public int getTotalCapacity() {
         return totalCapacity;
     }
