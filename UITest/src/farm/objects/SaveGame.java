@@ -3,8 +3,8 @@ package farm.objects;
 import java.io.*;
 
 public class SaveGame {
-    Farmer farmer;
-    Season season;
+    private Farmer farmer;
+    private Season season;
 
     public SaveGame(Farmer f, Season s) {
         farmer = f;

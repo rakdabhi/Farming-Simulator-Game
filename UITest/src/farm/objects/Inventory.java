@@ -23,7 +23,7 @@ public class Inventory implements java.io.Serializable {
 
         seedBag = new InventoryItem[3];
         harvestBag = new InventoryItem[3];
-        itemBag = new InventoryItem[2];
+        itemBag = new InventoryItem[3];
 
         availableHarvestBagCapacity = totalCapacity;
         availableSeedBagCapacity = totalCapacity;

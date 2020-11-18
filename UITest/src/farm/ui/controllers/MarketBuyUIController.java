@@ -38,6 +38,7 @@ public class MarketBuyUIController {
     private double cornSeedCost;
     private double fertilizerCost;
     private double pesticideCost;
+    private double waterCost = 10.00;
     private int appleQuantity;
     private int potatoQuantity;
     private int cornQuantity;
@@ -75,6 +76,9 @@ public class MarketBuyUIController {
     private Label fertilizerQuantityLabel;
 
     @FXML
+    private Group waterGraphic;
+
+    @FXML
     private Button appleButton;
 
     @FXML
@@ -96,13 +100,13 @@ public class MarketBuyUIController {
     private Button fertilizerButton;
 
     @FXML
+    private Button waterButton;
+
+    @FXML
     private Group hireImage;
 
     @FXML
     private Group plotImage;
-
-    @FXML
-    private Button button7;
 
     @FXML
     private Button button8;
@@ -112,9 +116,6 @@ public class MarketBuyUIController {
 
     @FXML
     private Button button10;
-
-    @FXML
-    private Button button11;
 
     @FXML
     private Button button12;
@@ -215,6 +216,9 @@ public class MarketBuyUIController {
     @FXML
     private Button fieldsButton;
 
+    @FXML
+    private Button tractorButton;
+
     private Button selectedFarmhandExperience = null;
 
     @FXML
@@ -265,6 +269,7 @@ public class MarketBuyUIController {
         cornSeedCost = calculateSeedCost(new Seed("Corn").getBaseSell(), 3.36);
         fertilizerCost = calculateFertilizerCost();
         pesticideCost = calculatePesticideCost();
+        waterCost = calculateWaterCost();
     }
 
     /**
@@ -322,6 +327,29 @@ public class MarketBuyUIController {
             break;
         }
         return pesticideCost;
+    }
+
+    /**
+     * This helper method generates the price of water, depending on the current difficulty.
+     *
+     * @return the cost of water
+     */
+    private double calculateWaterCost() {
+        switch (farmer.getExperienceLevel()) {
+        case "1":
+            waterCost = 3.25;
+            break;
+        case "2":
+            waterCost = 4.15;
+            break;
+        case "3":
+            waterCost = 5.75;
+            break;
+        default:
+            waterCost = 10.00;
+            break;
+        }
+        return waterCost;
     }
 
     /**
@@ -492,7 +520,7 @@ public class MarketBuyUIController {
             if (itemName.getText().equals("Item")) {
                 throw new SeedChoiceNotFoundException("Please select a seed to buy!");
             } else if (quantityLabel.getText().equals("0")) {
-                throw new SeedChoiceNotFoundException("Please add some quantity of seeds "
+                throw new SeedChoiceNotFoundException("Please add some quantity of items "
                         + "you'd like to purchase!");
             }
             if (itemName.getText().equals("Fertilizer") || itemName.getText().equals("Pesticide")) {
@@ -590,6 +618,8 @@ public class MarketBuyUIController {
                 availableItems = fertilizerQuantity;
             } else if (itemName.getText().equals("Pesticide")) {
                 availableItems = pesticideQuantity;
+            } else if (itemName.getText().equals("Water")) {
+                availableItems = 1000;
             }
             int quantity = Integer.parseInt(quantityLabel.getText());
             if (availableSeeds > quantity) {
@@ -600,7 +630,8 @@ public class MarketBuyUIController {
                 totalCost.setText(String.format("$%,.2f", ((quantity + 1) * itemCost)));
             }
         } catch (SeedChoiceNotFoundException s) {
-            alertPopUp("No Seed Chosen", s.getMessage());
+            String message = "Please select something to buy first!";
+            alertPopUp("No Item Chosen", message);
         }
     }
 
@@ -643,17 +674,17 @@ public class MarketBuyUIController {
             seedChoice = new Seed("Apple");
             seedCost = appleSeedCost;
             selectActions(appleButton, potatoButton, cornButton, pesticideButton,
-                    fertilizerButton, hireButton, fieldsButton);
+                    fertilizerButton, waterButton, hireButton, fieldsButton, tractorButton);
         } else if (btn == potatoButton) {
             seedChoice = new Seed("Potato");
             seedCost = potatoSeedCost;
             selectActions(potatoButton, appleButton, cornButton, pesticideButton,
-                    fertilizerButton, hireButton, fieldsButton);
+                    fertilizerButton, waterButton, hireButton, fieldsButton, tractorButton);
         } else {
             seedChoice = new Seed("Corn");
             seedCost = cornSeedCost;
             selectActions(cornButton, appleButton, potatoButton, pesticideButton,
-                    fertilizerButton, hireButton, fieldsButton);
+                    fertilizerButton, waterButton, hireButton, fieldsButton, tractorButton);
         }
         itemName.setText(seedChoice.getName() + " Seed");
         itemDescription.setText(String.format("The current price for "
@@ -665,8 +696,8 @@ public class MarketBuyUIController {
     void hireOnAction(ActionEvent e) {
         itemPane.setVisible(false);
         farmhandPane.setVisible(true);
-        selectActions(hireButton, pesticideButton, fertilizerButton, appleButton,
-                potatoButton, cornButton, fieldsButton);
+        selectActions(hireButton, pesticideButton, fertilizerButton, waterButton,
+                appleButton, potatoButton, cornButton, fieldsButton, tractorButton);
     }
 
     @FXML
@@ -776,18 +807,51 @@ public class MarketBuyUIController {
         if (btn == fertilizerButton) {
             itemChoice = new InventoryItem("Fertilizer", 1);
             itemCost = fertilizerCost;
-            selectActions(fertilizerButton, pesticideButton, appleButton,
-                    potatoButton, cornButton, hireButton, fieldsButton);
+            selectActions(fertilizerButton, pesticideButton, waterButton, appleButton,
+                    potatoButton, cornButton, hireButton, fieldsButton, tractorButton);
         } else {
             itemChoice = new InventoryItem("Pesticide", 1);
             itemCost = pesticideCost;
-            selectActions(pesticideButton, fertilizerButton, appleButton,
-                    potatoButton, cornButton, hireButton, fieldsButton);
+            selectActions(pesticideButton, fertilizerButton, waterButton, appleButton,
+                    potatoButton, cornButton, hireButton, fieldsButton, tractorButton);
         }
         itemName.setText(itemChoice.getItemName());
         itemDescription.setText(String.format("The current price for "
                         + "one unit of %s in the %s Season is $%,.2f!",
                 itemChoice.getItemName(), season.getSeason(), itemCost));
+    }
+
+    /**
+     * This method helps give functionality to the buttons that hold the Farm Machinery options.
+     * @param event the event
+     */
+    @FXML
+    void farmMachineryOnAction(ActionEvent event) {
+        Button btn = ((Button) event.getSource());
+        if (!itemPane.isVisible()) {
+            itemPane.setVisible(true);
+            farmhandPane.setVisible(false);
+        }
+        buyFieldSpaceButton.setVisible(true);
+        String name = "";
+        String description = "";
+        if (btn == waterButton) {
+            name = "Water/Irrigation";
+            description = String.format("The cost of increasing daily watering capacity "
+                + "by 12 gallons is $%,.2f!", farmer.getNextWateringCost());
+            selectActions(waterButton, fertilizerButton, pesticideButton, appleButton,
+                    potatoButton, cornButton, hireButton, fieldsButton, tractorButton);
+        } else {
+            name = "Tractor";
+            description = String.format("The cost of increasing daily harvesting capacity "
+                    + "by 3 crops is $%,.2f!", farmer.getNextHarvestingCost());
+            itemChoice = new InventoryItem("Pesticide", 1);
+            itemCost = pesticideCost;
+            selectActions(tractorButton, pesticideButton, fertilizerButton, waterButton,
+                    appleButton, potatoButton, cornButton, hireButton, fieldsButton);
+        }
+        itemName.setText(name);
+        itemDescription.setText(description);
     }
 
     @FXML
@@ -799,25 +863,50 @@ public class MarketBuyUIController {
         buyFieldSpaceButton.setVisible(true);
 
         selectActions(fieldsButton, appleButton, potatoButton, cornButton, pesticideButton,
-                fertilizerButton, hireButton);
+                fertilizerButton, waterButton, hireButton);
 
         itemName.setText("Field Space");
-
 
         itemDescription.setText(String.format("The cost of buying 12 more field plots is $%,.2f!",
                 farmer.getNextFieldCost()));
     }
 
     @FXML
-    void handleBuyFieldSpace(ActionEvent e) {
-        if (farmer.getMoney() < farmer.getNextFieldCost()) {
-            throw new InsufficientFundsException("You don't have enough money to buy more field space!");
-        } else {
-            farmer.getAllFields()[farmer.getFieldsSize()] = new Field(3, 4, false);
-            farmer.pay(farmer.getNextFieldCost());
-            farmer.incrementFieldSize();
+    void handleBuyFieldSpaceAndFarmMachinery(ActionEvent e) {
+        try {
+            if (itemName.getText().equals("Water/Irrigation")) {
+                if (farmer.getMoney() < farmer.getNextWateringCost()) {
+                    throw new InsufficientFundsException(
+                        "You don't have enough money to buy more irrigation!");
+                } else {
+                    farmer.pay(farmer.getNextWateringCost());
+                    farmer.incrementWateringCapacity();
+                    farmer.incrementNextWateringCost();
+                }
+            } else if (itemName.getText().equals("Tractor")) {
+                if (farmer.getMoney() < farmer.getNextHarvestingCost()) {
+                    throw new InsufficientFundsException("You don't have enough money to buy more\n"
+                        + "harvesting capacity!");
+                } else {
+                    farmer.pay(farmer.getNextHarvestingCost());
+                    farmer.incrementHarvestingCapacity();
+                    farmer.incrementNextHarvestingCost();
+                }
+            } else {
+                if (farmer.getMoney() < farmer.getNextFieldCost()) {
+                    throw new InsufficientFundsException(
+                        "You don't have enough money to buy more field space!");
+                } else {
+                    farmer.getAllFields()[farmer.getFieldsSize()] = new Field(3, 4, false);
+                    farmer.pay(farmer.getNextFieldCost());
+                    farmer.incrementFieldSize();
+                    handleFieldsButton(new ActionEvent());
+                }
+            }
+        } catch (InsufficientFundsException i) {
+            alertPopUp("Not Enough Money", i.getMessage());
+        } finally {
             updateBankAmount();
-            handleFieldsButton(new ActionEvent());
         }
     }
 
@@ -838,6 +927,8 @@ public class MarketBuyUIController {
             g = pesticideImage;
         } else if (e.getSource() == fertilizerButton) {
             g = fertilizerImage;
+        } else if (e.getSource() == waterButton) {
+            g = waterGraphic;
         } else if (e.getSource() == hireButton) {
             g = hireImage;
         } else if (e.getSource() == fieldsButton) {

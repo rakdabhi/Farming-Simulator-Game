@@ -32,7 +32,7 @@ public class WelcomeUIController {
     @FXML
     private Button loadGameButton;
 
-    Scene s;
+    private Scene s;
 
     public void initWelcome() {
         Scene s = loadGameButton.getScene();
@@ -65,7 +65,7 @@ public class WelcomeUIController {
 
     @FXML
     void handleLoadGame(ActionEvent e) throws IOException {
-        try{
+        try {
             FileChooser fileChooser = new FileChooser();
             File file = fileChooser.showOpenDialog(loadGameButton.getScene().getWindow());
             LoadGame lg = new LoadGame();

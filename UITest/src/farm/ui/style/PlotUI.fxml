@@ -272,17 +272,17 @@
                   </Group>
                </children>
             </GridPane>
-            <Button fx:id="rainButton" layoutX="98.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleRainButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Rain" textAlignment="CENTER" textFill="#15ad86" wrapText="true">
+            <Button fx:id="rainButton" layoutX="97.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleRainButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Rain" textAlignment="CENTER" textFill="#15ad86" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="droughtButton" layoutX="324.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleDroughtButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Drought" textAlignment="CENTER" textFill="#15ad86" wrapText="true">
+            <Button fx:id="droughtButton" layoutX="323.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleDroughtButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Drought" textAlignment="CENTER" textFill="#15ad86" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="locustButton" layoutX="546.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleLocustButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Locusts" textAlignment="CENTER" textFill="#15ad86" wrapText="true">
+            <Button fx:id="locustButton" layoutX="545.0" layoutY="681.0" mnemonicParsing="false" onAction="#handleLocustButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #22d2a3; -fx-background-radius: 10;" text="Locusts" textAlignment="CENTER" textFill="#15ad86" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="13.0" />
                </font>
@@ -297,6 +297,46 @@
                   <SVGPath content="M618.47,604.53l14.9-14.91-14.9-14.9v7.45l4.33,4.33H571.29v6.25h51.5l-4.32,4.32Zm7.41-14.95,0,0,0,0ZM618.47,604.53l14.9-14.91-14.9-14.9v7.45l4.33,4.33H571.29v6.25h51.5l-4.32,4.32Zm7.41-14.95,0,0,0,0Z" fill="#15ad86" rotate="180.0" />
                </graphic>
             </Button>
+            <Label layoutX="37.0" layoutY="13.0" text="Daily Water Available:" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="waterLeftLabel" layoutX="199.0" layoutY="13.0" text="00" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="220.0" layoutY="13.0" text="out of" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="waterCapacityLabel" layoutX="265.0" layoutY="13.0" text="00" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="13.0" text="Daily Harvesting Available:" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="harvestingLeftLabel" layoutX="599.0" layoutY="13.0" text="00" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="620.0" layoutY="13.0" text="out of" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="harvestingCapacityLabel" layoutX="665.0" layoutY="13.0" text="00" textFill="#22d2a3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="rightPaneWrapper" prefHeight="793.0" prefWidth="63.0" />
