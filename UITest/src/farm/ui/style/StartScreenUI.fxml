@@ -15,9 +15,20 @@
 <AnchorPane maxHeight="1080.0" maxWidth="1920.0" onKeyPressed="#keyPress" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #15ad86;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farm.ui.controllers.WelcomeUIController">
    <children>
       <Rectangle fill="#5da0fc" height="394.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1080.0" />
-      <Rectangle arcHeight="100.0" arcWidth="75.0" fill="WHITE" height="86.0" layoutX="803.0" layoutY="114.0" stroke="TRANSPARENT" strokeType="INSIDE" width="229.0" />
-      <Ellipse fill="WHITE" layoutX="946.0" layoutY="102.0" radiusX="62.0" radiusY="51.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <Ellipse fill="WHITE" layoutX="891.0" layoutY="115.0" radiusX="62.0" radiusY="51.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Group fx:id="cloud3" layoutX="803.0" layoutY="51.0">
+         <children>
+            <Rectangle arcHeight="100.0" arcWidth="75.0" fill="WHITE" height="86.0" layoutY="99.0" stroke="TRANSPARENT" strokeType="INSIDE" width="229.0" />
+            <Ellipse fill="WHITE" layoutX="158.0" layoutY="85.0" radiusX="62.0" radiusY="51.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Ellipse fill="WHITE" layoutX="84.0" layoutY="76.0" radiusX="62.0" radiusY="51.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="cloud1" layoutX="81.0" layoutY="31.0">
+         <children>
+            <Rectangle arcHeight="100.0" arcWidth="75.0" fill="WHITE" height="83.0" layoutY="54.0" stroke="TRANSPARENT" strokeType="INSIDE" width="191.0" />
+            <Ellipse fill="WHITE" layoutX="71.0" layoutY="53.0" radiusX="19.0" radiusY="15.0" scaleX="3.0" scaleY="3.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Ellipse fill="WHITE" layoutX="131.0" layoutY="43.0" radiusX="19.0" radiusY="15.0" scaleX="3.0" scaleY="3.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+         </children>
+      </Group>
       <Group layoutX="1016.0" layoutY="353.0" scaleX="2.25" scaleY="2.25">
          <children>
             <Ellipse fill="#8495a6" layoutX="-8.0" layoutY="-97.0" radiusX="25.0" radiusY="20.0" stroke="#00000040" strokeType="INSIDE" />
@@ -34,12 +45,13 @@
             <Line endX="15.4000244140625" endY="-85.39999389648438" layoutY="91.0" startX="-31.4000244140625" startY="-85.39999389648438" stroke="#aaaaaa" />
          </children>
       </Group>
-      <Rectangle arcHeight="100.0" arcWidth="75.0" fill="WHITE" height="83.0" layoutX="81.0" layoutY="85.0" stroke="TRANSPARENT" strokeType="INSIDE" width="191.0" />
-      <Ellipse fill="WHITE" layoutX="149.0" layoutY="76.0" radiusX="19.0" radiusY="15.0" scaleX="3.0" scaleY="3.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <Ellipse fill="WHITE" layoutX="196.0" layoutY="88.0" radiusX="19.0" radiusY="15.0" scaleX="3.0" scaleY="3.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <Rectangle arcHeight="50.0" arcWidth="40.0" fill="WHITE" height="31.0" layoutX="263.0" layoutY="279.0" scaleX="2.0" scaleY="2.0" stroke="TRANSPARENT" strokeType="INSIDE" width="65.0" />
-      <Ellipse fill="WHITE" layoutX="278.0" layoutY="269.0" radiusX="15.0" radiusY="12.0" scaleX="2.0" scaleY="2.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <Ellipse fill="WHITE" layoutX="312.0" layoutY="264.0" radiusX="14.0" radiusY="12.0" scaleX="2.0" scaleY="2.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Group fx:id="cloud2" layoutX="230.5" layoutY="240.0">
+         <children>
+            <Rectangle arcHeight="50.0" arcWidth="40.0" fill="WHITE" height="31.0" layoutY="23.5" scaleX="2.0" scaleY="2.0" stroke="TRANSPARENT" strokeType="INSIDE" width="65.0" />
+            <Ellipse fill="WHITE" layoutX="17.5" layoutY="5.0" radiusX="15.0" radiusY="12.0" scaleX="2.0" scaleY="2.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Ellipse fill="WHITE" layoutX="53.5" radiusX="14.0" radiusY="12.0" scaleX="2.0" scaleY="2.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+         </children>
+      </Group>
       <AnchorPane fx:id="textAnchor" layoutX="206.0" layoutY="20.47265625">
          <children>
             <Text layoutX="235.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome">
@@ -57,7 +69,7 @@
                   <Font name="Arial Rounded MT Bold" size="63.0" />
                </font>
             </Text>
-            <Text layoutX="207.0" layoutY="682.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;&lt;Press any key to continue&gt;&gt;">
+            <Text fx:id="pressAnyKey" layoutX="207.0" layoutY="682.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;&lt;Press any key to continue&gt;&gt;">
                <font>
                   <Font size="20.0" />
                </font>
