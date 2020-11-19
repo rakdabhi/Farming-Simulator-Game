@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -67,6 +68,21 @@ public class MainPanelUIController {
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Rectangle seasonRectangle;
+
+    @FXML
+    private Group springGraphic;
+
+    @FXML
+    private Group summerGraphic;
+
+    @FXML
+    private Group fallGraphic;
+
+    @FXML
+    private Group winterGraphic;
+
     private Farmer farmer;
 
     private Season season;
@@ -106,6 +122,7 @@ public class MainPanelUIController {
         ampmLabel.textProperty().bind(timer.amPmProperty().textProperty());
 
         updateFarmhandStatus();
+        updateSeasonIcon();
 
         nameLabel.setText(farmer.getName());
         head.setFill(Paint.valueOf(farmer.getCustomSkin()));
@@ -150,6 +167,32 @@ public class MainPanelUIController {
         }
         farmhandStatus.setText(s);
         farmhandStatus.setTextFill(Color.web("#22d2a3"));
+    }
+
+    void updateSeasonIcon() {
+        springGraphic.setVisible(false);
+        summerGraphic.setVisible(false);
+        fallGraphic.setVisible(false);
+        winterGraphic.setVisible(false);
+
+        switch(season.getSeason()) {
+            case ("Spring"):
+                springGraphic.setVisible(true);
+                seasonRectangle.setFill(Color.web("#15ad86"));
+                break;
+            case ("Summer") :
+                summerGraphic.setVisible(true);
+                seasonRectangle.setFill(Color.web("#fcca5f"));
+                break;
+            case ("Fall"):
+                fallGraphic.setVisible(true);
+                seasonRectangle.setFill(Color.web("#fd676b"));
+                break;
+            case("Winter"):
+                winterGraphic.setVisible(true);
+                seasonRectangle.setFill(Color.web("#51dcfa"));
+                break;
+        }
     }
 
 
