@@ -11,7 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
@@ -24,25 +26,13 @@ public class MainPanelUIController {
     private AnchorPane rightPaneMain;
 
     @FXML
-    private Arc sunGraphic;
-
-    @FXML
-    private Label dayTitleLabel;
-
-    @FXML
     private Label dayLabel;
 
     @FXML
     private Label hourLabel;
 
     @FXML
-    private Label minuteLabel;
-
-    @FXML
     private Label ampmLabel;
-
-    @FXML
-    private Group pigGroup;
 
     @FXML
     private Label moneyLabel;
@@ -63,6 +53,18 @@ public class MainPanelUIController {
     private Label farmhandStatus;
 
     @FXML
+    Circle head;
+
+    @FXML
+    Circle handLeft;
+
+    @FXML
+    Circle handRight;
+
+    @FXML
+    Label nameLabel;
+
+    @FXML
     private Button saveButton;
 
     private Farmer farmer;
@@ -78,7 +80,9 @@ public class MainPanelUIController {
     private File file;
 
     private Clock timer;
+
     private int day;
+
     private int hour;
 
 
@@ -102,6 +106,12 @@ public class MainPanelUIController {
         ampmLabel.textProperty().bind(timer.amPmProperty().textProperty());
 
         updateFarmhandStatus();
+
+        nameLabel.setText(farmer.getName());
+        head.setFill(Paint.valueOf(farmer.getCustomSkin()));
+        handLeft.setFill(Paint.valueOf(farmer.getCustomSkin()));
+        handRight.setFill(Paint.valueOf(farmer.getCustomSkin()));
+
     }
 
     // |     Getters and Setters     |
@@ -193,6 +203,18 @@ public class MainPanelUIController {
         rt.setAutoReverse(true);
 
         rt.play();
+    }
+
+    @FXML
+    void saveButtonMousePress(MouseEvent event) {
+        ((Button) event.getSource()).setStyle("-fx-background-color: #ff9f43;"
+                + " -fx-background-radius: 10");
+    }
+
+    @FXML
+    void saveButtonMouseRelease(MouseEvent event) {
+        ((Button) event.getSource()).setStyle("-fx-background-color: #feca57;"
+                + " -fx-background-radius: 10;");
     }
 
     @FXML

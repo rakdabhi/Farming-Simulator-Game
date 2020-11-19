@@ -18,43 +18,43 @@
    <children>
       <Pane layoutX="-2.0" layoutY="-1.0" prefHeight="191.0" prefWidth="368.0">
          <children>
-            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="150.0" layoutX="19.0" layoutY="47.0" strokeType="INSIDE" width="320.0">
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="150.0" layoutX="17.0" layoutY="47.0" strokeType="INSIDE" width="345.0">
                <rotationAxis>
                   <Point3D />
                </rotationAxis>
             </Rectangle>
-            <Arc fx:id="sunGraphic" fill="#feca57" layoutX="182.0" layoutY="197.0" length="180.0" radiusX="114.0" radiusY="119.0" strokeType="INSIDE" type="ROUND" />
-            <Label fx:id="dayTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="113.0" prefHeight="53.0" prefWidth="87.0" text="DAY" textAlignment="CENTER" textFill="#ff9f43">
+            <Arc fx:id="sunGraphic" fill="#feca57" layoutX="191.0" layoutY="197.0" length="180.0" radiusX="114.0" radiusY="119.0" strokeType="INSIDE" type="ROUND" />
+            <Label fx:id="dayTitleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="113.0" prefHeight="53.0" prefWidth="87.0" text="DAY" textAlignment="CENTER" textFill="#ff9f43">
                <font>
                   <Font name="Arial Black" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="201.0" layoutY="113.0" prefHeight="44.0" prefWidth="54.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
+            <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="113.0" prefHeight="44.0" prefWidth="54.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
                <font>
                   <Font name="Arial Black" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="hourLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="129.0" layoutY="163.0" prefHeight="30.0" prefWidth="30.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
+            <Label fx:id="hourLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="163.0" prefHeight="30.0" prefWidth="30.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
                <font>
                   <Font name="Arial Black" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="separator" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="155.0" layoutY="161.0" prefHeight="18.0" prefWidth="17.0" text=":" textAlignment="CENTER" textFill="#ff9f43">
+            <Label fx:id="separator" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="164.0" layoutY="161.0" prefHeight="18.0" prefWidth="17.0" text=":" textAlignment="CENTER" textFill="#ff9f43">
                <font>
                   <Font name="Arial Black" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="minuteLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="163.0" layoutY="162.0" prefHeight="31.0" prefWidth="38.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
+            <Label fx:id="minuteLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="172.0" layoutY="162.0" prefHeight="31.0" prefWidth="38.0" text="00" textAlignment="CENTER" textFill="#ff9f43">
                <font>
                   <Font name="Arial Black" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="ampmLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="196.0" layoutY="162.0" prefHeight="31.0" prefWidth="45.0" text="AM" textAlignment="CENTER" textFill="#ff9f43">
+            <Label fx:id="ampmLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="205.0" layoutY="162.0" prefHeight="31.0" prefWidth="45.0" text="AM" textAlignment="CENTER" textFill="#ff9f43">
                <font>
                   <Font name="Arial Black" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="nextDayButton" layoutX="252.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleNextDayButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Next Day" textAlignment="CENTER" textFill="#feca57" wrapText="true">
+            <Button fx:id="nextDayButton" layoutX="273.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleNextDayButton" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Next Day" textAlignment="CENTER" textFill="#feca57" wrapText="true">
                <font>
                   <Font name="Arial Rounded MT Bold" size="13.0" />
                </font>
@@ -63,8 +63,8 @@
       </Pane>
       <Pane layoutY="196.0" prefHeight="246.0" prefWidth="375.0">
          <children>
-            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="208.0" layoutX="19.0" layoutY="19.0" strokeType="INSIDE" width="320.0" />
-            <Group fx:id="pigGroup" layoutX="100.0" layoutY="82.0">
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="208.0" layoutX="15.0" layoutY="19.0" strokeType="INSIDE" width="345.0" />
+            <Group fx:id="pigGroup" layoutX="96.0" layoutY="82.0">
                <children>
                   <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9a0f7" height="27.0" layoutX="-35.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
                   <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#f9a0f7" height="27.0" layoutX="17.0" layoutY="30.0" strokeType="INSIDE" width="15.0" />
@@ -79,20 +79,31 @@
                   <SVGPath content="M113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73ZM113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73Z" fill="#f9d4f6" layoutX="-60.0" layoutY="-176.0" />
                </children>
             </Group>
-            <Label fx:id="moneyLabel" alignment="CENTER" layoutX="36.0" layoutY="156.0" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#feca57">
+            <Group layoutX="-4.0" scaleX="0.6" scaleY="0.6" translateX="-60.0" translateY="-20.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#15ad86" height="202.0" layoutX="208.0" layoutY="-15.0" strokeType="INSIDE" width="252.0" />
+                  <SVGPath content="M296,164.14l-58.47-42.91c-9.75-12.42-22.55-20-36.58-20-14.44,0-27.59,8-37.45,21.09l0,0-59.73,43.84,20.52,28,21.37-15.69c0,.93-.05,1.86-.05,2.79a115.27,115.27,0,0,0,1.3,17.24H255c.24-1.53.45-3.08.62-4.65a115.51,115.51,0,0,0,.68-12.59c0-1.08,0-2.14,0-3.21l19.23,14.11ZM296,164.14l-58.47-42.91c-9.75-12.42-22.55-20-36.58-20-14.44,0-27.59,8-37.45,21.09l0,0-59.73,43.84,20.52,28,21.37-15.69c0,.93-.05,1.86-.05,2.79a115.27,115.27,0,0,0,1.3,17.24H255c.24-1.53.45-3.08.62-4.65a115.51,115.51,0,0,0,.68-12.59c0-1.08,0-2.14,0-3.21l19.23,14.11Z" fill="#fd676b" layoutX="130.0" layoutY="-18.0" />
+                  <Circle fx:id="handRight" fill="#efdfbf" layoutX="427.0" layoutY="168.0" radius="14.0" strokeType="INSIDE" />
+                  <Circle fx:id="head" fill="#efdfbf" layoutX="330.0" layoutY="53.0" radius="35.0" strokeType="INSIDE" />
+                  <Circle fx:id="handLeft" fill="#efdfbf" layoutX="232.0" layoutY="170.0" radius="14.0" strokeType="INSIDE" />
+                  <SVGPath content="M242.31,144.79l-13-74.8h0V54.3h-7.57V70H177.09V54.3h-7.57V70l-12.88,74.8H145.8L172.51,245.4h26.34V163c0-1.08.41-2,.94-2s.93.91.9,2v82.4h25.83l27.39-100.61ZM242.31,144.79l-13-74.8h0V54.3h-7.57V70H177.09V54.3h-7.57V70l-12.88,74.8H145.8L172.51,245.4h26.34V163c0-1.08.41-2,.94-2s.93.91.9,2v82.4h25.83l27.39-100.61Z" fill="#24bee2" layoutX="131.0" layoutY="33.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#586574" height="15.0" layoutX="332.0" layoutY="273.0" strokeType="INSIDE" width="40.0" />
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#586574" height="15.0" layoutX="289.0" layoutY="273.0" strokeType="INSIDE" width="40.0" />
+                  <SVGPath content="M227.85,151.36l-1.33-.07c.78-3,3.65-16.47-8-16.47h-37.4c-11.62,0-8.74,13.48-8,16.47l-1.33.07c-22.11,1.14-37.41,3.58-37.41,6.42,0,3.93,29.28,7.11,65.4,7.11s65.41-3.18,65.41-7.11C265.26,154.94,250,152.5,227.85,151.36ZM227.85,151.36l-1.33-.07c.78-3,3.65-16.47-8-16.47h-37.4c-11.62,0-8.74,13.48-8,16.47l-1.33.07c-22.11,1.14-37.41,3.58-37.41,6.42,0,3.93,29.28,7.11,65.4,7.11s65.41-3.18,65.41-7.11C265.26,154.94,250,152.5,227.85,151.36Z" fill="#fcca5f" layoutX="130.0" layoutY="-132.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#22d2a3" height="108.0" layoutX="208.0" layoutY="187.0" strokeType="INSIDE" width="243.0" />
+                  <Label fx:id="nameLabel" alignment="CENTER" layoutX="208.0" layoutY="198.0" prefHeight="48.0" prefWidth="253.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Name" textAlignment="CENTER" textFill="#feca57">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Label fx:id="moneyLabel" alignment="CENTER" layoutX="32.0" layoutY="156.0" prefHeight="58.0" prefWidth="133.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#feca57">
                <font>
                   <Font name="Arial Rounded MT Bold" size="29.0" />
                </font>
             </Label>
-            <Label fx:id="farmhandStatus" alignment="CENTER" layoutX="184.0" layoutY="64.0" prefHeight="150.0" prefWidth="133.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="No farmhands currently hired." textAlignment="CENTER" textFill="#22d2a3" wrapText="true">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="14.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </Label>
-            <Button fx:id="saveButton" layoutX="183.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleSaveButton" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="27.0" prefWidth="133.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="Save Game" textFill="#feca57">
+            <Button fx:id="saveButton" layoutX="205.0" layoutY="189.0" mnemonicParsing="false" onAction="#handleSaveButton" onMousePressed="#saveButtonMousePress" onMouseReleased="#saveButtonMouseRelease" prefHeight="27.0" prefWidth="133.0" style="-fx-background-color: #feca57; -fx-background-radius: 10;" text="Save Game" textFill="#15ad86">
                <font>
                   <Font name="Arial Rounded MT Bold" size="13.0" />
                </font>
@@ -101,8 +112,9 @@
       </Pane>
       <Pane layoutX="-2.0" layoutY="437.0" prefHeight="284.0" prefWidth="366.0">
          <children>
-            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="232.0" layoutX="19.0" layoutY="5.0" strokeType="INSIDE" width="320.0" />
-            <Button fx:id="inspectButton" contentDisplay="TOP" layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleInspectButton" onMouseEntered="#inspectButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="198.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="232.0" layoutX="15.0" layoutY="5.0" strokeType="INSIDE" width="215.0" />
+            <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#22d2a3" height="232.0" layoutX="238.0" layoutY="5.0" strokeType="INSIDE" width="126.0" />
+            <Button fx:id="inspectButton" contentDisplay="TOP" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleInspectButton" onMouseEntered="#inspectButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
                <padding>
                   <Insets top="150.0" />
                </padding>
@@ -110,24 +122,32 @@
                   <Font name="Arial Black" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="inventoryButton" layoutX="232.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleInventoryButton" onMouseEntered="#inventoryButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
+            <Button fx:id="inventoryButton" layoutX="126.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleInventoryButton" onMouseEntered="#inventoryButtonMouseEnter" onMousePressed="#lowerRightMousePress" onMouseReleased="#lowerRightMouseRelease" prefHeight="212.0" prefWidth="97.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" textFill="#ff9f43">
                <padding>
                   <Insets top="150.0" />
                </padding>
             </Button>
-            <Group fx:id="inventoryGraphic" layoutX="-265.0" layoutY="-243.0" scaleX="0.2" scaleY="0.2">
+            <Group fx:id="inventoryGraphic" layoutX="-370.0" layoutY="-243.0" scaleX="0.2" scaleY="0.2">
                <children>
                   <SVGPath content="M712.87,347.71c23.54-49.07,0-61.68,0-61.68-32.6-11.3-43.47,0-43.47,0-14.49.69-47.08-15.06-47.08-15.06-5.44-38.35-76.07-37.15-76.07-37.15s-70.63-1.2-76.07,37.15c0,0-32.59,15.75-47.08,15.06,0,0-10.87-11.3-43.47,0,0,0-23.54,12.61,0,61.68V487.88H710.24V418.36M712.87,347.71c23.54-49.07,0-61.68,0-61.68-32.6-11.3-43.47,0-43.47,0-14.49.69-47.08-15.06-47.08-15.06-5.44-38.35-76.07-37.15-76.07-37.15s-70.63-1.2-76.07,37.15c0,0-32.59,15.75-47.08,15.06,0,0-10.87-11.3-43.47,0,0,0-23.54,12.61,0,61.68V487.88H710.24V418.36" fill="#ce804a" />
                   <SVGPath content="M379.7,340.7s167.37-9.47,334.75,0v5.64l-335.33,1.37ZM379.7,340.7s167.37-9.47,334.75,0v5.64l-335.33,1.37Z" fill="#aa6d43" />
                   <SVGPath content="M542.78,320.42c-6.88-.57-23.93.11-31,19.61l11.24,46.67H562.5L573.75,340C566.72,320.53,549.66,319.85,542.78,320.42Zm5.61,31.28-3.61,15.67h-4l-3.61-15.67a9.21,9.21,0,0,1-2.56-9.58c1.55-4.06,6.33-4.91,6.92-5a7.6,7.6,0,0,1,1-.12v0h.56v0a7.39,7.39,0,0,1,1,.12c.6.11,5.37,1,6.92,5A9.22,9.22,0,0,1,548.39,351.7ZM542.78,320.42c-6.88-.57-23.93.11-31,19.61l11.24,46.67H562.5L573.75,340C566.72,320.53,549.66,319.85,542.78,320.42Zm5.61,31.28-3.61,15.67h-4l-3.61-15.67a9.21,9.21,0,0,1-2.56-9.58c1.55-4.06,6.33-4.91,6.92-5a7.6,7.6,0,0,1,1-.12v0h.56v0a7.39,7.39,0,0,1,1,.12c.6.11,5.37,1,6.92,5A9.22,9.22,0,0,1,548.39,351.7Z" fill="#fcca5f" />
                </children>
             </Group>
-            <Group fx:id="inspectGraphic" layoutX="-35.0" layoutY="29.0" scaleX="1.5" scaleY="1.5">
+            <Group fx:id="inspectGraphic" layoutX="-44.0" layoutY="29.0">
                <children>
-                  <SVGPath content="M185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161ZM185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161Z" fill="#feca57" layoutX="13.0" layoutY="-71.0" />
-                  <Circle fill="#ff9f43" layoutX="164.0" layoutY="88.0" radius="10.0" strokeType="INSIDE" />
+                  <SVGPath content="M185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161ZM185,161c.18-4-3.31-7.47-7.74-7.66s-5.46-2.74-2.29-5.66,3.59-7.68.93-10.57-7.66-2.67-11.11.5-6.68,5.57-7.18,5.32l-.47-.2v-5.91c0-5.5-3.29-10-7.32-10s-7.32,3.67-7.32,8.17-.19,8.26-.42,8.38-3.2-2.13-6.1-5.29a7.6,7.6,0,0,0-10.67-.77c-3,2.72-3.15,6.64-.42,8.71s7.53,7.3,4.61,7.05-10.77,2.4-11,6.42,2.4,7,5.72,6.71,9.62.76,6.61,3.18-8.53,10.6-5.57,12.84,8,1.7,11.29-1.2,5.9-1.87,5.9,2.27a7.45,7.45,0,0,0,7.32,7.53,7.33,7.33,0,0,0,7.32-7.31c0-4,3.13-5,7-2.06s9.14,3.31,11.8.93,1.7-6.68-2.14-9.58-3-5.09,2-4.88S184.82,165,185,161Z" fill="#feca57" layoutX="-36.0" layoutY="-71.0" />
+                  <Circle fill="#ff9f43" layoutX="115.0" layoutY="88.0" radius="10.0" strokeType="INSIDE" />
                </children>
             </Group>
+            <Label fx:id="farmhandStatus" alignment="CENTER" layoutX="245.0" layoutY="17.0" prefHeight="208.0" prefWidth="112.0" style="-fx-background-color: #15ad86; -fx-background-radius: 10;" text="No farmhands currently hired." textAlignment="CENTER" textFill="#22d2a3" wrapText="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </Label>
          </children>
       </Pane>
    </children>
