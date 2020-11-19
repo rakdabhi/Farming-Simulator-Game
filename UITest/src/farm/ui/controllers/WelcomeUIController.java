@@ -64,6 +64,14 @@ public class WelcomeUIController {
         cloudAnimation();
     }
 
+    public void gameRestart() {
+        Scene s = loadGameButton.getScene();
+        cloudAnimation();
+        pressAnyKey.setVisible(false);
+        newGameButton.setVisible(true);
+        loadGameButton.setVisible(true);
+    }
+
     @FXML
     public void keyPress(KeyEvent event) {
         pressAnyKey.setVisible(false);

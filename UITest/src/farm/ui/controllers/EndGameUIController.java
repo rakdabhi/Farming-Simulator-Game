@@ -17,12 +17,18 @@ public class EndGameUIController {
 
     @FXML
     void handleNewGame(ActionEvent e) throws IOException {
-        Parent nextPage = FXMLLoader.load(getClass()
-                .getResource("../style/ConfigurationScreenUI.fxml"));
-        Scene nextPageScene = new Scene(nextPage);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../style/StartScreenUI.fxml"));
+        Parent root = loader.load();
+        WelcomeUIController w = loader.getController();
         Stage window = (Stage) (newGameButton.getScene()).getWindow();
-        window.setScene(nextPageScene);
+
+        Scene startScene = new Scene(root);
+        window.setScene(startScene);
         window.show();
+
+        w.gameRestart();
+
     }
 
 }

@@ -36,7 +36,7 @@
             <SVGPath content="M113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73ZM113.16,182.71s2.08,8.81,8.2,2.23c0,0,8-10,0-15.37,0,0-12.24,5.56,6.12,17.49l2,.32v-1.79s-8-5.63-8.16-5.79c-1.95-2.18-2.77-4.64,0-6.74,0,0,3.36,5,.3,7.06s-3.5,7.73-7,2.69-.77-2.73-.77-2.73Z" fill="#f9d4f6" layoutX="-60.0" layoutY="-191.0" />
          </children>
       </Group>
-      <Button fx:id="newGameButton" layoutX="357.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="110.0" prefWidth="371.0" style="-fx-background-radius: 10; -fx-background-color: #641fca;" text="Start New Game" textFill="#c9d6e4">
+      <Button fx:id="newGameButton" layoutX="357.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="110.0" prefWidth="371.0" style="-fx-background-radius: 10; -fx-background-color: #641fca;" text="Play Again" textFill="#c9d6e4">
          <font>
             <Font name="Arial Rounded MT Bold" size="33.0" />
          </font>
