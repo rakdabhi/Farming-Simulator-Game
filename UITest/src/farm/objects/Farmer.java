@@ -249,4 +249,8 @@ public class Farmer implements java.io.Serializable {
         wateringLeft = wateringCapacity;
         harvestingLeft = harvestingCapacity;
     }
+
+    public String getCustomSkin() {
+        return customSkin;
+    }
 }

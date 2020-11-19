@@ -4,9 +4,13 @@ import farm.objects.Farmer;
 import farm.objects.InventoryItem;
 import farm.objects.LoadGame;
 import farm.objects.Season;
+import javafx.animation.Animation;
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,9 +18,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+
 
 /**
  * Controls Welcome Screen events.
@@ -32,6 +38,15 @@ public class WelcomeUIController {
     @FXML
     private Button loadGameButton;
 
+    @FXML
+    private Group cloud1;
+
+    @FXML
+    private Group cloud2;
+
+    @FXML
+    private Group cloud3;
+
     private Scene s;
 
     public void initWelcome() {
@@ -44,10 +59,12 @@ public class WelcomeUIController {
                 e.printStackTrace();
             }
         });
+
+        cloudAnimation();
     }
 
     @FXML
-    public void keyPress(KeyEvent event) throws Exception {
+    public void keyPress(KeyEvent event) {
         textAnchor.setVisible(false);
         newGameButton.setVisible(true);
         loadGameButton.setVisible(true);
@@ -120,5 +137,49 @@ public class WelcomeUIController {
             System.out.println("File not found; null pointer exception. ");
         }
 
+    }
+
+    void cloudAnimation() {
+        TranslateTransition t1x = new TranslateTransition(Duration.seconds(80));
+        t1x.setToX(1100);
+        t1x.setCycleCount(1);
+        t1x.setNode(cloud1);
+        t1x.setOnFinished(e -> {
+            t1x.setAutoReverse(true);
+            t1x.setCycleCount(Animation.INDEFINITE);
+            t1x.play();
+
+        ;});
+
+        TranslateTransition t1y = new TranslateTransition(Duration.seconds(10));
+        t1y.setToY(-15);
+        t1y.setCycleCount(Animation.INDEFINITE);
+        t1y.setAutoReverse(true);
+        t1y.setNode(cloud1);
+
+        TranslateTransition t2x = new TranslateTransition(Duration.seconds(30));
+        t2x.setToX(-500);
+        t2x.setCycleCount(1);
+        t2x.setNode(cloud2);
+
+        TranslateTransition t2y = new TranslateTransition(Duration.seconds(10));
+        t2y.setToY(-15);
+        t2y.setCycleCount(Animation.INDEFINITE);
+        t2y.setAutoReverse(true);
+        t2y.setNode(cloud2);
+
+        TranslateTransition t3x = new TranslateTransition(Duration.seconds(50));
+        t3x.setToX(-500);
+        t3x.setCycleCount(1);
+        t3x.setNode(cloud3);
+
+        TranslateTransition t3y = new TranslateTransition(Duration.seconds(10));
+        t3y.setToY(20);
+        t3y.setCycleCount(Animation.INDEFINITE);
+        t3y.setAutoReverse(true);
+        t3y.setNode(cloud3);
+
+        ParallelTransition pt = new ParallelTransition(t1x, t1y, t2x, t2y, t3x, t3y);
+        pt.play();
     }
 }

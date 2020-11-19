@@ -663,7 +663,8 @@ public class PlotUIController {
     }
 
     void checkEndGame() {
-        if (farmer.getInventory().isEmpty(farmer.getInventory().getHarvestBag())
+        if (farmer.getMoney() < 6
+                && farmer.getInventory().isEmpty(farmer.getInventory().getHarvestBag())
             && farmer.getInventory().isEmpty(farmer.getInventory().getSeedBag())) {
 
             int currField = farmer.getCurrFieldIndex();

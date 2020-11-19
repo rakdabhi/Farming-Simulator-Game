@@ -145,6 +145,9 @@ public class MarketBuyUIController {
     private Label quantityLabel;
 
     @FXML
+    private Group tractorGraphic;
+
+    @FXML
     private Button minusButton;
 
     @FXML
@@ -863,7 +866,7 @@ public class MarketBuyUIController {
         buyFieldSpaceButton.setVisible(true);
 
         selectActions(fieldsButton, appleButton, potatoButton, cornButton, pesticideButton,
-                fertilizerButton, waterButton, hireButton);
+                fertilizerButton, waterButton, hireButton, tractorButton);
 
         itemName.setText("Field Space");
 
@@ -882,6 +885,8 @@ public class MarketBuyUIController {
                     farmer.pay(farmer.getNextWateringCost());
                     farmer.incrementWateringCapacity();
                     farmer.incrementNextWateringCost();
+                    itemDescription.setText(String.format("The cost of increasing daily watering capacity "
+                            + "by 12 gallons is $%,.2f!", farmer.getNextWateringCost()));
                 }
             } else if (itemName.getText().equals("Tractor")) {
                 if (farmer.getMoney() < farmer.getNextHarvestingCost()) {
@@ -891,6 +896,8 @@ public class MarketBuyUIController {
                     farmer.pay(farmer.getNextHarvestingCost());
                     farmer.incrementHarvestingCapacity();
                     farmer.incrementNextHarvestingCost();
+                    itemDescription.setText(String.format("The cost of increasing daily harvesting capacity "
+                            + "by 3 crops is $%,.2f!", farmer.getNextHarvestingCost()));
                 }
             } else {
                 if (farmer.getMoney() < farmer.getNextFieldCost()) {
@@ -935,6 +942,8 @@ public class MarketBuyUIController {
             g = plotImage;
         } else if (e.getSource() ==  homeScreenButton) {
             g = homeGraphic;
+        } else if (e.getSource() == tractorButton) {
+            g = tractorGraphic;
         }
 
         if (g != null) {
