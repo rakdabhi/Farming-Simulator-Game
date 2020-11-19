@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -30,7 +31,7 @@ import java.io.IOException;
 public class WelcomeUIController {
 
     @FXML
-    private AnchorPane textAnchor;
+    private Text pressAnyKey;
 
     @FXML
     private Button newGameButton;
@@ -65,7 +66,7 @@ public class WelcomeUIController {
 
     @FXML
     public void keyPress(KeyEvent event) {
-        textAnchor.setVisible(false);
+        pressAnyKey.setVisible(false);
         newGameButton.setVisible(true);
         loadGameButton.setVisible(true);
     }
@@ -144,12 +145,6 @@ public class WelcomeUIController {
         t1x.setToX(1100);
         t1x.setCycleCount(1);
         t1x.setNode(cloud1);
-        t1x.setOnFinished(e -> {
-            t1x.setAutoReverse(true);
-            t1x.setCycleCount(Animation.INDEFINITE);
-            t1x.play();
-
-        ;});
 
         TranslateTransition t1y = new TranslateTransition(Duration.seconds(10));
         t1y.setToY(-15);
@@ -157,7 +152,7 @@ public class WelcomeUIController {
         t1y.setAutoReverse(true);
         t1y.setNode(cloud1);
 
-        TranslateTransition t2x = new TranslateTransition(Duration.seconds(30));
+        TranslateTransition t2x = new TranslateTransition(Duration.seconds(90));
         t2x.setToX(-500);
         t2x.setCycleCount(1);
         t2x.setNode(cloud2);
@@ -168,7 +163,7 @@ public class WelcomeUIController {
         t2y.setAutoReverse(true);
         t2y.setNode(cloud2);
 
-        TranslateTransition t3x = new TranslateTransition(Duration.seconds(50));
+        TranslateTransition t3x = new TranslateTransition(Duration.seconds(70));
         t3x.setToX(-500);
         t3x.setCycleCount(1);
         t3x.setNode(cloud3);

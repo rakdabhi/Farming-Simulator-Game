@@ -167,11 +167,9 @@ public class PlotUIController {
 
         dayStartListen();
 
-        handleFieldIterate(new ActionEvent());
-
         updateWaterAndHarvestLabels();
 
-        displayCrops();
+        handleFieldIterate(new ActionEvent());
 
     }
 
@@ -681,7 +679,7 @@ public class PlotUIController {
                 }
             }
 
-            if (cropCheck == null) {
+            if (cropCheck == null && nextFieldButton.getScene() != null) {
                 alertPopUp("No Crops, No Money, No Seeds",
                         "Aww Shucks. Pa's not gonna like this.");
                 triggerEndGame();
@@ -693,6 +691,7 @@ public class PlotUIController {
 
     void triggerEndGame() {
         dayEndListen();
+
         FXMLLoader loadEndGame =
                 new FXMLLoader(getClass().getResource("../style/EndGameUI.fxml"));
         Parent root = null;
@@ -704,7 +703,9 @@ public class PlotUIController {
 
         assert root != null;
         Scene nextPageScene = new Scene(root);
+
         Stage window = (Stage) nextFieldButton.getScene().getWindow();
+
         window.setScene(nextPageScene);
         window.show();
     }
