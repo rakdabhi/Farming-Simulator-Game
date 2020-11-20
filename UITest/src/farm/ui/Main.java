@@ -14,7 +14,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("style/StartScreenUI.fxml"));
         Parent root = loader.load();
         WelcomeUIController w = loader.getController();
-        primaryStage.setTitle("Farming Simulator");
+        primaryStage.setTitle("Pro Farming Simulator 2");
         Scene startScene = new Scene(root);
         primaryStage.setScene(startScene);
         primaryStage.show();

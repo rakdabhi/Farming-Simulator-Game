@@ -99,6 +99,12 @@ public class PlotUIController {
     @FXML
     private Label harvestingCapacityLabel;
 
+    @FXML
+    private Group harvestAvailableContainer;
+
+    @FXML
+    private Group waterAvailableContainer;
+
     private Farmer farmer;
 
     private Season season;
@@ -191,6 +197,11 @@ public class PlotUIController {
     void setSelectedPlot(Plot pl) {
         selectedPlot = pl;
         displayCrops();
+    }
+
+    void setHarvestWaterContainersVisible(boolean b) {
+        harvestAvailableContainer.setVisible(b);
+        waterAvailableContainer.setVisible(b);
     }
 
     public Group getPlotGroup(int column, int row) {

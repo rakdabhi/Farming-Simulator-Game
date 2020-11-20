@@ -271,6 +271,7 @@ public class PlantInspectUIController {
     @FXML
     void handleHomeButton(ActionEvent event) {
         plotu.setRightPaneWrapper(mpu.getRightPaneMain());
+        plotu.setHarvestWaterContainersVisible(false);
         plotu.setSelectedPlot(null);
         sowPress = false;
         waterPress = false;

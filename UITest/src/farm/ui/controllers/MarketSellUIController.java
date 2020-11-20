@@ -219,9 +219,9 @@ public class MarketSellUIController {
         updateAvailableQuantity();
         updateBankAmount();
         updateAvailableCapacity();
-        appleSeedCost = calculateSeedCost(2.89, 2.59);
-        potatoSeedCost = calculateSeedCost(4.22, 2.33);
-        cornSeedCost = calculateSeedCost(3.35, 3.36);
+        appleSeedCost = calculateCropCost(new Seed("Apple").getBaseSell(), 2.59);
+        potatoSeedCost = calculateCropCost(new Seed("Potato").getBaseSell(), 2.33);
+        cornSeedCost = calculateCropCost(new Seed("Corn").getBaseSell(), 3.36);
 
         selectedPestBtn = pesticideFreeBtn;
         quantityStartListen();
@@ -233,8 +233,8 @@ public class MarketSellUIController {
      * @param divideFactor divides the length of the season
      * @return the price of the seed
      */
-    private double calculateSeedCost(double basePrice, double divideFactor) {
-        return Math.round((basePrice + (season.getSeason().length() / divideFactor)
+    private double calculateCropCost(double basePrice, double divideFactor) {
+        return Math.round(((basePrice + 4) + (season.getSeason().length() / divideFactor)
                 + (Math.random() * Integer.parseInt(farmer.getExperienceLevel()))) * 100.0) / 100.0;
     }
 
@@ -469,7 +469,7 @@ public class MarketSellUIController {
 
     void setItemDescription() {
         itemDescription.setText(String.format("The current selling price for "
-                        + "one %s Seed in the %s Season is $%,.2f!",
+                        + "one crop of %s in the %s Season is $%,.2f!",
                 seedChoice, season.getSeason(), seedCost));
     }
 

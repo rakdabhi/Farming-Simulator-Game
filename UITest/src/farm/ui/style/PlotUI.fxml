@@ -297,46 +297,56 @@
                   <SVGPath content="M618.47,604.53l14.9-14.91-14.9-14.9v7.45l4.33,4.33H571.29v6.25h51.5l-4.32,4.32Zm7.41-14.95,0,0,0,0ZM618.47,604.53l14.9-14.91-14.9-14.9v7.45l4.33,4.33H571.29v6.25h51.5l-4.32,4.32Zm7.41-14.95,0,0,0,0Z" fill="#15ad86" rotate="180.0" />
                </graphic>
             </Button>
-            <Label layoutX="37.0" layoutY="13.0" text="Daily Water Available:" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="waterLeftLabel" layoutX="199.0" layoutY="13.0" text="00" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="220.0" layoutY="13.0" text="out of" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="waterCapacityLabel" layoutX="265.0" layoutY="13.0" text="00" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="400.0" layoutY="13.0" text="Daily Harvesting Available:" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="harvestingLeftLabel" layoutX="599.0" layoutY="13.0" text="00" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="620.0" layoutY="13.0" text="out of" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="harvestingCapacityLabel" layoutX="665.0" layoutY="13.0" text="00" textFill="#22d2a3">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="15.0" />
-               </font>
-            </Label>
+            <Group fx:id="waterAvailableContainer" layoutX="22.0" layoutY="6.0" visible="false">
+               <children>
+                  <Rectangle arcHeight="18.0" arcWidth="20.0" fill="#feca57" height="32.0" strokeType="INSIDE" width="276.0" />
+                  <Label layoutX="15.0" layoutY="7.0" text="Daily Water Available:" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="waterLeftLabel" layoutX="177.0" layoutY="7.0" text="00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="198.0" layoutY="7.0" text="out of" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="waterCapacityLabel" layoutX="243.0" layoutY="7.0" text="00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Group fx:id="harvestAvailableContainer" layoutX="389.0" layoutY="6.0" visible="false">
+               <children>
+                  <Rectangle arcHeight="18.0" arcWidth="20.0" fill="#feca57" height="32.0" strokeType="INSIDE" width="305.0" />
+                  <Label layoutX="11.0" layoutY="7.0" text="Daily Harvesting Available:" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="harvestingLeftLabel" layoutX="210.0" layoutY="7.0" text="00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="231.0" layoutY="7.0" text="out of" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="harvestingCapacityLabel" layoutX="276.0" layoutY="7.0" text="00" textFill="#15ad86">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="rightPaneWrapper" prefHeight="793.0" prefWidth="63.0" />

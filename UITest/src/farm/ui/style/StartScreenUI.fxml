@@ -153,12 +153,12 @@
             <SVGPath content="M227.85,151.36l-1.33-.07c.78-3,3.65-16.47-8-16.47h-37.4c-11.62,0-8.74,13.48-8,16.47l-1.33.07c-22.11,1.14-37.41,3.58-37.41,6.42,0,3.93,29.28,7.11,65.4,7.11s65.41-3.18,65.41-7.11C265.26,154.94,250,152.5,227.85,151.36ZM227.85,151.36l-1.33-.07c.78-3,3.65-16.47-8-16.47h-37.4c-11.62,0-8.74,13.48-8,16.47l-1.33.07c-22.11,1.14-37.41,3.58-37.41,6.42,0,3.93,29.28,7.11,65.4,7.11s65.41-3.18,65.41-7.11C265.26,154.94,250,152.5,227.85,151.36Z" fill="#fcca5f" layoutX="-19.0" layoutY="-59.0" />
          </children>
       </Group>
-      <Button fx:id="newGameButton" layoutX="525.0" layoutY="478.0" mnemonicParsing="false" onAction="#handleNewGame" prefHeight="84.0" prefWidth="539.0" style="-fx-background-color: #ffffff; -fx-background-radius: 100;" text="New Game" visible="false">
+      <Button fx:id="newGameButton" layoutX="525.0" layoutY="478.0" mnemonicParsing="false" onAction="#handleNewGame" onMousePressed="#buttonOnMousePress" onMouseReleased="#buttonOnMouseRelease" prefHeight="84.0" prefWidth="539.0" style="-fx-background-color: #ffffff; -fx-background-radius: 100;" text="New Game" visible="false">
          <font>
             <Font name="Arial Rounded MT Bold" size="34.0" />
          </font>
       </Button>
-      <Button fx:id="loadGameButton" layoutX="523.0" layoutY="587.0" mnemonicParsing="false" onAction="#handleLoadGame" prefHeight="84.0" prefWidth="539.0" style="-fx-background-color: #ffffff; -fx-background-radius: 100;" text="Load Game" visible="false">
+      <Button fx:id="loadGameButton" layoutX="523.0" layoutY="587.0" mnemonicParsing="false" onAction="#handleLoadGame" onMousePressed="#buttonOnMousePress" onMouseReleased="#buttonOnMouseRelease" prefHeight="84.0" prefWidth="539.0" style="-fx-background-color: #ffffff; -fx-background-radius: 100;" text="Load Game" visible="false">
          <font>
             <Font name="Arial Rounded MT Bold" size="34.0" />
          </font>

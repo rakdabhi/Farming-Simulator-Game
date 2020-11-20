@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -145,6 +146,19 @@ public class WelcomeUIController {
         } catch (NullPointerException i) {
             System.out.println("File not found; null pointer exception. ");
         }
+
+    }
+
+    @FXML
+    void buttonOnMousePress(MouseEvent e) {
+        ((Button) e.getSource()).setStyle("-fx-background-color: #eeeeee;"
+                + " -fx-background-radius: 100");
+    }
+
+    @FXML
+    void buttonOnMouseRelease(MouseEvent e) {
+        ((Button) e.getSource()).setStyle("-fx-background-color: #ffffff;"
+                + " -fx-background-radius: 100");
 
     }
 

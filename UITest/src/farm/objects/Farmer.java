@@ -212,8 +212,10 @@ public class Farmer implements java.io.Serializable {
     }
 
     public void incrementWateringCapacity() {
+        int diff = wateringCapacity - wateringLeft;
         wateringCapacity += 12;
         incrementNextWateringCost();
+        wateringLeft = wateringCapacity - diff;
     }
 
     public int getHarvestingCapacity() {
@@ -241,7 +243,9 @@ public class Farmer implements java.io.Serializable {
     }
 
     public void incrementHarvestingCapacity() {
+        int diff = harvestingCapacity - harvestingLeft;
         harvestingCapacity += 3;
+        harvestingLeft = harvestingCapacity - diff;
         incrementNextHarvestingCost();
     }
 

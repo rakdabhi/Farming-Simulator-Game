@@ -208,6 +208,7 @@ public class MainPanelUIController {
     @FXML
     void handleInspectButton(ActionEvent event) throws IOException {
         plotu.setRightPaneWrapper(piu.getRightPaneInspect());
+        plotu.setHarvestWaterContainersVisible(true);
     }
 
     @FXML
