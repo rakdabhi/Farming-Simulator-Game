@@ -111,6 +111,74 @@ public class FarmerTest {
         assertEquals(25, farmer3.getInventory().getTotalCapacity());
     }
 
+    @Test
+    public void testInitialWaterCapacity() {
+        assertEquals(farmer1.getWateringCapacity(), 36);
+        assertEquals(farmer2.getWateringCapacity(), 24);
+        assertEquals(farmer3.getWateringCapacity(), 12);
+    }
+
+    @Test
+    public void testIncrementWaterCapacity() {
+        assertEquals(farmer1.getNextWateringCost(), 15, 0.01);
+        farmer1.incrementWateringCapacity();
+        assertEquals(farmer1.getWateringCapacity(), 48);
+        assertEquals(farmer1.getNextWateringCost(), 20, 0.01);
+        farmer1.incrementWateringCapacity();
+        assertEquals(farmer1.getWateringCapacity(), 60);
+        assertEquals(farmer1.getNextWateringCost(), 25, 0.01);
+
+        assertEquals(farmer2.getNextWateringCost(), 20, 0.01);
+        farmer2.incrementWateringCapacity();
+        assertEquals(farmer2.getWateringCapacity(), 36);
+        assertEquals(farmer2.getNextWateringCost(), 30, 0.01);
+        farmer2.incrementWateringCapacity();
+        assertEquals(farmer2.getWateringCapacity(), 48);
+        assertEquals(farmer2.getNextWateringCost(), 40, 0.01);
+
+        assertEquals(farmer3.getNextWateringCost(), 25, 0.01);
+        farmer3.incrementWateringCapacity();
+        assertEquals(farmer3.getWateringCapacity(), 24);
+        assertEquals(farmer3.getNextWateringCost(), 40, 0.01);
+        farmer3.incrementWateringCapacity();
+        assertEquals(farmer3.getWateringCapacity(), 36);
+        assertEquals(farmer3.getNextWateringCost(), 55, 0.01);
+    }
+
+    @Test
+    public void testInitialHarvestingCapacity() {
+        assertEquals(farmer1.getHarvestingCapacity(), 10);
+        assertEquals(farmer2.getHarvestingCapacity(), 8);
+        assertEquals(farmer3.getHarvestingCapacity(), 5);
+    }
+
+    @Test
+    public void testIncrementHarvestingCapacity() {
+        assertEquals(farmer1.getNextHarvestingCost(), 25, 0.01);
+        farmer1.incrementHarvestingCapacity();
+        assertEquals(farmer1.getHarvestingCapacity(), 13);
+        assertEquals(farmer1.getNextHarvestingCost(), 30, 0.01);
+        farmer1.incrementHarvestingCapacity();
+        assertEquals(farmer1.getHarvestingCapacity(), 16);
+        assertEquals(farmer1.getNextHarvestingCost(), 35, 0.01);
+
+        assertEquals(farmer2.getNextHarvestingCost(), 35, 0.01);
+        farmer2.incrementHarvestingCapacity();
+        assertEquals(farmer2.getHarvestingCapacity(), 11);
+        assertEquals(farmer2.getNextHarvestingCost(), 45, 0.01);
+        farmer2.incrementHarvestingCapacity();
+        assertEquals(farmer2.getHarvestingCapacity(), 14);
+        assertEquals(farmer2.getNextHarvestingCost(), 55, 0.01);
+
+        assertEquals(farmer3.getNextHarvestingCost(), 45, 0.01);
+        farmer3.incrementHarvestingCapacity();
+        assertEquals(farmer3.getHarvestingCapacity(), 8);
+        assertEquals(farmer3.getNextHarvestingCost(), 60, 0.01);
+        farmer3.incrementHarvestingCapacity();
+        assertEquals(farmer3.getHarvestingCapacity(), 11);
+        assertEquals(farmer3.getNextHarvestingCost(), 75, 0.01);
+    }
+
     @Test(expected = InsufficientFundsException.class)
     public void insufficientMoney() {
         farmer1.pay(500000);

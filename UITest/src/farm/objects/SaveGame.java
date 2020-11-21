@@ -22,7 +22,6 @@ public class SaveGame {
         } catch (IOException i) {
             i.printStackTrace();
         }
-
     }
 
 }
