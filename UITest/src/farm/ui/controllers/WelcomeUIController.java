@@ -142,8 +142,8 @@ public class WelcomeUIController {
             Stage window = (Stage) (loadGameButton.getScene()).getWindow();
             window.setScene(nextPageScene);
             window.show();
-        } catch (NullPointerException i) {
-            System.out.println("File not found; null pointer exception. ");
+        } catch (NullPointerException ignored) {
+
         }
 
     }

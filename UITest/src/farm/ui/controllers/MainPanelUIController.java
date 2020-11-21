@@ -271,7 +271,9 @@ public class MainPanelUIController {
             FileChooser fileChooser = new FileChooser();
             file = fileChooser.showSaveDialog(saveButton.getScene().getWindow());
         }
-        sg.fileOut(file);
+        if (file != null) {
+            sg.fileOut(file);
+        }
     }
 
     public void handleEndButton(ActionEvent e) {
