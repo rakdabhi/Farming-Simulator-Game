@@ -520,6 +520,7 @@ public class PlotUIController {
                 && (randomEvent.getErrorMessage().length() != 0)) {
                 alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
                 randomEvent.resetDeadFromLocusts();
+                randomEvent.resetErrorHeaderAndMessage();
             }
             displayCrops();
         }
@@ -624,6 +625,7 @@ public class PlotUIController {
                     && (randomEvent.getErrorMessage().length() != 0)) {
                 alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
                 randomEvent.resetDeadFromLocusts();
+                randomEvent.resetErrorHeaderAndMessage();
             }
             displayCrops();
         }

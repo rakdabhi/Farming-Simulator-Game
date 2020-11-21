@@ -132,6 +132,11 @@ public class RandomEvent {
         deadFromLocusts = 0;
     }
 
+    public void resetErrorHeaderAndMessage() {
+        errorHeader = "";
+        errorMessage = "";
+    }
+
     static void alertPopUp(String errorHeader, String message) {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("ATTENTION!");
