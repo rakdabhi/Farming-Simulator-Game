@@ -885,8 +885,9 @@ public class MarketBuyUIController {
                     farmer.pay(farmer.getNextWateringCost());
                     farmer.incrementWateringCapacity();
                     farmer.incrementNextWateringCost();
-                    itemDescription.setText(String.format("The cost of increasing daily watering capacity "
-                            + "by 12 gallons is $%,.2f!", farmer.getNextWateringCost()));
+                    itemDescription.setText(String.format("The cost of increasing daily "
+                        + "watering capacity by 12 gallons is $%,.2f!",
+                        farmer.getNextWateringCost()));
                 }
             } else if (itemName.getText().equals("Tractor")) {
                 if (farmer.getMoney() < farmer.getNextHarvestingCost()) {
@@ -896,8 +897,9 @@ public class MarketBuyUIController {
                     farmer.pay(farmer.getNextHarvestingCost());
                     farmer.incrementHarvestingCapacity();
                     farmer.incrementNextHarvestingCost();
-                    itemDescription.setText(String.format("The cost of increasing daily harvesting capacity "
-                            + "by 3 crops is $%,.2f!", farmer.getNextHarvestingCost()));
+                    itemDescription.setText(String.format("The cost of increasing daily "
+                        + "harvesting capacity by 3 crops is $%,.2f!",
+                        farmer.getNextHarvestingCost()));
                 }
             } else {
                 if (farmer.getMoney() < farmer.getNextFieldCost()) {

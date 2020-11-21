@@ -12,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -54,19 +53,22 @@ public class MainPanelUIController {
     private Label farmhandStatus;
 
     @FXML
-    Circle head;
+    private Circle head;
 
     @FXML
-    Circle handLeft;
+    private Circle handLeft;
 
     @FXML
-    Circle handRight;
+    private Circle handRight;
 
     @FXML
-    Label nameLabel;
+    private Label nameLabel;
 
     @FXML
     private Button saveButton;
+
+    @FXML
+    private Button endGame;
 
     @FXML
     private Rectangle seasonRectangle;
@@ -175,23 +177,23 @@ public class MainPanelUIController {
         fallGraphic.setVisible(false);
         winterGraphic.setVisible(false);
 
-        switch(season.getSeason()) {
-            case ("Spring"):
-                springGraphic.setVisible(true);
-                seasonRectangle.setFill(Color.web("#15ad86"));
-                break;
-            case ("Summer") :
-                summerGraphic.setVisible(true);
-                seasonRectangle.setFill(Color.web("#fcca5f"));
-                break;
-            case ("Fall"):
-                fallGraphic.setVisible(true);
-                seasonRectangle.setFill(Color.web("#fd676b"));
-                break;
-            case("Winter"):
-                winterGraphic.setVisible(true);
-                seasonRectangle.setFill(Color.web("#51dcfa"));
-                break;
+        switch (season.getSeason()) {
+        case ("Spring"):
+            springGraphic.setVisible(true);
+            seasonRectangle.setFill(Color.web("#15ad86"));
+            break;
+        case ("Summer") :
+            summerGraphic.setVisible(true);
+            seasonRectangle.setFill(Color.web("#fcca5f"));
+            break;
+        case ("Fall"):
+            fallGraphic.setVisible(true);
+            seasonRectangle.setFill(Color.web("#fd676b"));
+            break;
+        default:
+            winterGraphic.setVisible(true);
+            seasonRectangle.setFill(Color.web("#51dcfa"));
+            break;
         }
     }
 
@@ -270,5 +272,9 @@ public class MainPanelUIController {
             file = fileChooser.showSaveDialog(saveButton.getScene().getWindow());
         }
         sg.fileOut(file);
+    }
+
+    public void handleEndButton(ActionEvent e) {
+        plotu.triggerEndGame();
     }
 }
