@@ -69,6 +69,9 @@ public class PlantInspectUIController {
     private Group sowGraphic;
 
     @FXML
+    private Group pesticideIndicator;
+
+    @FXML
     private Group growthGraphicPotato;
 
     @FXML
@@ -151,6 +154,7 @@ public class PlantInspectUIController {
         growthGraphicPotato.setVisible(false);
         growthGraphicApple.setVisible(false);
         growthGraphicGrave.setVisible(false);
+        pesticideIndicator.setVisible(false);
 
         waterPress = false;
         sowPress = false;
@@ -276,6 +280,7 @@ public class PlantInspectUIController {
         sowPress = false;
         waterPress = false;
         treatmentPress = false;
+
         waterButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
         sowButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
         plantTreatmentButton.setStyle("-fx-background-color: #15ad86; -fx-background-radius: 10");
@@ -424,6 +429,10 @@ public class PlantInspectUIController {
 
             pt.play();
         }
+    }
+
+    void setPesticideIndicator(boolean b) {
+        pesticideIndicator.setVisible(b);
     }
 
 }

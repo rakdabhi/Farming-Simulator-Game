@@ -261,9 +261,11 @@ public class PlotUIController {
                 piu.setGrowthMeter(crop);
                 piu.setWaterMeter(crop.getWaterLevel());
                 piu.setFertilizerLabel(selectedPlot.getFertilizerLevel());
+                piu.setPesticideIndicator(crop.isPesticideTreated());
             } else {
                 piu.setGrowthMeter(crop);
                 piu.setWaterMeter(0);
+                piu.setPesticideIndicator(false);
             }
         }
     }
@@ -520,6 +522,7 @@ public class PlotUIController {
                 && (randomEvent.getErrorMessage().length() != 0)) {
                 alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
                 randomEvent.resetDeadFromLocusts();
+                randomEvent.resetErrorHeaderAndMessage();
             }
             displayCrops();
         }
@@ -624,6 +627,7 @@ public class PlotUIController {
                     && (randomEvent.getErrorMessage().length() != 0)) {
                 alertPopUp(randomEvent.getErrorHeader(), randomEvent.getErrorMessage());
                 randomEvent.resetDeadFromLocusts();
+                randomEvent.resetErrorHeaderAndMessage();
             }
             displayCrops();
         }
